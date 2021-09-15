@@ -37,6 +37,8 @@ import EmployeesPage from "views/pages/users/EmployeesPage.js"
 import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage.js";
 import CreateGroupPage from "views/pages/groups/CreateGroupPage.js"
 import GroupsPage from "views/pages/groups/GroupsPage.js"
+import CandidatesPage from "views/pages/users/CandidatesPage";
+import CandidateDetailsPage from "views/pages/users/CandidateDetailsPage";
 
 import CreateBestPracticePage from "views/pages/best-practices/CreateBestPracticePage.js"
 import SearchBestPracticesPage from "views/pages/best-practices/SearchBestPracticesPage.js"
@@ -55,119 +57,69 @@ import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage.js"
 const routes = [
   {
     collapse: true,
-    name: "Users",
-    icon: "ni ni-single-02 text-info",
-    state: "usersCollapse",
+    name: "Curriculum",
+    icon: "ni ni-chart-pie-35 text-info",
+    state: "curriculumCollapse",
     views: [
       {
-        path: "/employees",
-        name: "Employees",
-        miniName: "E",
-        component: EmployeesPage,
+        path: "/add-cv",
+        name: "Add CV",
+        miniName: "AC",
+        component: ChartsPage,
         layout: "/admin",
       },
       {
-        path: "/care-members",
-        name: "Care Members",
-        miniName: "CM",
-        component: CareMembersPage,
+        path: "/search-cv",
+        name: "Search CV",
+        miniName: "SC",
+        component: WorldOverviewPage,
         layout: "/admin",
       },
     ],
   },
   {
-    collapse: true,
-    name: "Groups",
-    icon: "ni ni-circle-08 text-info",
-    state: "groupsCollapse",
-    views: [
-      {
-        path: "/new-group",
-        name: "Create New",
-        miniName: "NG",
-        component: CreateGroupPage,
-        layout: "/admin",
-      },
-      {
-        path: "/search-groups",
-        name: "Search",
-        miniName: "SG",
-        component: GroupsPage,
-        layout: "/admin",
-      },
-    ],
+    path: "/candidates",
+    name: "Candidates",
+    miniName: "AP",
+    component: CandidatesPage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info"
   },
   {
-    collapse: true,
-    name: "Best Practices",
-    icon: "ni ni-compass-04 text-info",
-    state: "bestPracticesCollapse",
-    views: [
-      {
-        path: "/new-best-practice",
-        name: "Create New",
-        miniName: "NB",
-        component: CreateBestPracticePage,
-        layout: "/admin",
-      },
-      {
-        path: "/search-best-practices",
-        name: "Search",
-        miniName: "SB",
-        component: SearchBestPracticesPage,
-        layout: "/admin",
-      },
-    ],
+    path: "/offer",
+    name: "Offer",
+    miniName: "Of",
+    // TODO change to OfferPage
+    component: CandidatesPage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info"
   },
   {
-    collapse: true,
-    name: "Communications",
-    icon: "ni ni-email-83 text-info",
-    state: "communicationsCollapse",
-    views: [
-      {
-        path: "/create-email",
-        name: "Create Email",
-        miniName: "CE",
-        component: CreateEmailPage,
-        layout: "/admin",
-      },
-      {
-        path: "/create-notification",
-        name: "Create Notification",
-        miniName: "CN",
-        component: SendNotificationPage,
-        layout: "/admin",
-      },
-      {
-        path: "/email-history",
-        name: "Email History",
-        miniName: "EH",
-        component: EmailHistoryPage,
-        layout: "/admin",
-      },
-      {
-        path: "/email-create-template",
-        name: "Create Template",
-        miniName: "CT",
-        component: CreateEmailTemplatePage,
-        layout: "/admin",
-      },
-      {
-        path: "/email-search-template",
-        name: "Search Template",
-        miniName: "ST",
-        component: SearchTemplatePage,
-        layout: "/admin",
-      },
-      {
-        path: "/archive",
-        name: "Archive",
-        miniName: "CA",
-        component: ArchivePage,
-        layout: "/admin",
-      },
-    ],
+    path: "/applications",
+    name: "Applications",
+    miniName: "AP",
+    // TODO change to ApplicationsPage
+    component: CandidatesPage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info"
+  },
+  {
+    path: "/internship",
+    name: "Internship",
+    miniName: "IN",
+    // TODO change to InternshipPage
+    component: CandidatesPage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info"
+  },
+  {
+    path: "/email",
+    name: "Email",
+    miniName: "EM",
+    // TODO change to EmailPage
+    component: CandidatesPage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info"
   },
   {
     collapse: true,
@@ -194,8 +146,8 @@ const routes = [
   {
     collapse: false,  
     global:true, 
-    path: "/users/employee-details/:id",
-    component: EmployeeDetailsPage,
+    path: "/users/candidate-details/:id",
+    component: CandidateDetailsPage,
     layout: "/admin"
   },
   {
