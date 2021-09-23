@@ -72,7 +72,7 @@ const routes = [
         path: "/search-cv",
         name: "Search CV",
         miniName: "SC",
-        component: WorldOverviewPage,
+        component: CandidatesPage,
         layout: "/admin",
       },
     ],
@@ -86,13 +86,27 @@ const routes = [
     icon: "ni ni-chart-pie-35 text-info"
   },
   {
-    path: "/offer",
+    collapse: true,
     name: "Offer",
-    miniName: "Of",
     // TODO change to OfferPage
-    component: CandidatesPage,
-    layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info"
+    state: "offerCollapse",
+    icon: "ni ni-chart-pie-35 text-info",
+    views: [
+      {
+        path: "/search-candidates",
+        name: "Search Candidates",
+        miniName: "SC",
+        component: CandidatesPage,
+        layout: "/admin",
+      },
+      {
+        path: "/dashboard",
+        name: "Dashboard",
+        miniName: "SC",
+        component: WorldOverviewPage,
+        layout: "/admin",
+      }
+    ]
   },
   {
     path: "/applications",
@@ -104,13 +118,28 @@ const routes = [
     icon: "ni ni-chart-pie-35 text-info"
   },
   {
-    path: "/internship",
+    collapse: true,
     name: "Internship",
     miniName: "IN",
     // TODO change to InternshipPage
-    component: CandidatesPage,
-    layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info"
+    state: "internshipCollapse",
+    icon: "ni ni-chart-pie-35 text-info",
+    views: [
+      {
+        path: "/search-candidates",
+        name: "Search Candidates",
+        miniName: "SC",
+        component: CandidatesPage,
+        layout: "/admin",
+      },
+      {
+        path: "/dashboard",
+        name: "Dashboard",
+        miniName: "SC",
+        component: WorldOverviewPage,
+        layout: "/admin",
+      }
+    ]
   },
   {
     path: "/email",
