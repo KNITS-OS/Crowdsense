@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 
 import {useParams} from "react-router-dom";
-import { employees as candidates } from "./EmployeesData.js";
+import { candidates as candidates } from "./CandidatesData";
 
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
@@ -23,7 +23,7 @@ import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
 function CandidateDetailsPage(props) {
 
   let { id } = useParams();
-  let candidate=candidates.find(emp => emp.id===parseInt(id));
+  let candidate=candidates.find(cand => cand.id===parseInt(id));
  
   return (
     <>
@@ -66,7 +66,7 @@ function CandidateDetailsPage(props) {
                   </h6>
                   <div className="pl-lg-4">                    
                     <Row>
-                      <Col lg="6">
+                      <Col lg="4">
                         <FormGroup>
                           <label
                             className="form-control-label"
@@ -82,7 +82,7 @@ function CandidateDetailsPage(props) {
                           />
                         </FormGroup>
                       </Col>
-                      <Col lg="6">
+                      <Col lg="4">
                         <FormGroup>
                           <label
                             className="form-control-label"
@@ -98,6 +98,22 @@ function CandidateDetailsPage(props) {
                           />
                         </FormGroup>
                       </Col>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-fullname"
+                          >
+                            Full Name
+                          </label>
+                          <Input                           
+                            id="input-fullname"
+                            value={candidate.fullName}
+                            disabled = {true}
+                            type="text"                         
+                          />
+                        </FormGroup>
+                      </Col>                      
                     </Row>
 
                     
@@ -106,13 +122,13 @@ function CandidateDetailsPage(props) {
                         <FormGroup>
                           <label
                             className="form-control-label"
-                            htmlFor="input-username"
+                            htmlFor="input-submission-date"
                           >
-                            International Name
+                            Submission Date
                           </label>
                           <Input                           
-                            id="input-username"
-                            value={candidate.internationalName}
+                            id="input-submission-date"
+                            value={candidate.submissionDate}
                             disabled = {true}
                             type="text"                         
                           />
@@ -135,161 +151,96 @@ function CandidateDetailsPage(props) {
                         </FormGroup>
                       </Col>
                     </Row>
-                   
-
                   </div>
+
                   <hr className="my-4" />
 
                   <h6 className="heading-small text-muted mb-4">
-                    Contact information
+                    Evaluation
                   </h6>
-                  <div className="pl-lg-4">
+                  <div className="pl-lg-4">                    
                     <Row>
-                      <Col md="12">
+                      <Col lg="6">
                         <FormGroup>
                           <label
                             className="form-control-label"
-                            htmlFor="input-address"
+                            htmlFor="input-status"
                           >
-                            Address
+                            Current Status
                           </label>
-                          <Input
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                            id="input-address"
-                            placeholder="Home Address"
+                          <Input                            
+                            id="input-status"
+                            value={candidate.status}
+                            type="text"
+                            disabled = {true}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col lg="6">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-rating"
+                          >
+                            Rating
+                          </label>
+                          <Input                           
+                            id="input-rating"
+                            value={candidate.rating}
+                            disabled = {true}
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                     </Row>
+
+                    
                     <Row>
-                      <Col lg="4">
+                      <Col lg="12">
                         <FormGroup>
                           <label
                             className="form-control-label"
-                            htmlFor="input-city"
+                            htmlFor="input-tags"
                           >
-                            City
+                            Tags
                           </label>
-                          <Input
-                            defaultValue="New York"
-                            id="input-city"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Country
-                          </label>
-                          <Input
-                            defaultValue="United States"
-                            id="input-country"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Postal code
-                          </label>
-                          <Input
-                            id="input-postal-code"
-                            placeholder="Postal code"
-                            type="number"
+                          <Input                           
+                            id="input-tags"
+                            value={candidate.tags}
+                            disabled = {true}
+                            type="text"                         
                           />
                         </FormGroup>
                       </Col>
                     </Row>
                   </div>
+
                   <hr className="my-4" />
-
-                  <h6 className="heading-small text-muted mb-4">Company Data</h6>
-                  <div className="pl-lg-4">
-                  <Row>
-                      <Col lg="4">
-                          <FormGroup>
-                          <label className="form-control-label">Title</label>
-                          <Input
-                                id="title"
-                                value={candidate.title}
-                                disabled = {true}
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-
-                        <Col lg="4">
+                    
+                  <h6 className="heading-small text-muted mb-4">
+                    Additional information
+                  </h6>
+                  <div className="pl-lg-4">                    
+                    <Row>
+                      <Col lg="12">
                         <FormGroup>
-                          <label className="form-control-label">Company Phone</label>
-                          <Input
-                                id="companyPhone"
-                                value="+372 77645322"
-                                disabled = {true}
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="4">
-                        <FormGroup>
-                          <label className="form-control-label">Company Code</label>
-                          <Input
-                                id="input-postal-code"
-                                value={candidate.companyCode}
-                                disabled = {true}
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-                        </Row>
-                   
-                        <Row>
-                        <Col lg="4">
-                            <FormGroup>
-                            <label className="form-control-label">Business Unit</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={candidate.businessUnit}
-                                  disabled = {true}
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-
-                          <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">Cost Center</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={candidate.costCenter}
-                                  disabled = {true}
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-                          <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">Management Group</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={candidate.managementGroup}
-                                  disabled = {true}
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-                        </Row>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-comment"
+                          >
+                            Comment
+                          </label>
+                          <Input                            
+                            id="input-comment"
+                            value={candidate.comment}
+                            type="text"
+                            disabled = {true}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
                   </div>
+
                 </Form>
               </CardBody>
             </Card>
