@@ -21,7 +21,7 @@ import {
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
 
-import { employees as candidates } from "./EmployeesData.js";
+import { candidates as candidates } from "./CandidatesData";
 
 
 const pagination = paginationFactory({
@@ -94,52 +94,43 @@ function Candidates(props) {
                 columns={[
                   {
                     dataField: "firstName",
-                    text: "First Name",
-                    hidden : true,
+                    text: "First Name"
                   },
                   {
                     dataField: "lastName",
-                    text: "lastName",
-                    hidden : true,
+                    text: "Last Name"
                   },
                   {
-                    dataField: "internationalName",
-                    text: "int Name",
+                    dataField: "fullName",
+                    text: "Full Name",
                     sort: true                    
                   },
                   {
-                    dataField: "title",
-                    text: "title",
+                    dataField: "email",
+                    text: "email"
+                  },
+                  {
+                    dataField: "submissionDate",
+                    text: "Submission Date",
+                    sort: true //TODO fix the sorting
+                  },
+                  {
+                    dataField: "status",
+                    text: "Current Status",
                     sort: true ,
                     style: { width:'50px' }                   
                   },
                   {
-                    dataField: "businessUnit",
-                    text: "bUnit",
+                    dataField: "rating",
+                    text: "Rating",
                     sort: true,
                     style: { width:'50px' }
                   },
                   {
-                    dataField: "managementGroup",
-                    text: "Man Group",
+                    dataField: "tags",
+                    text: "Tags",
                     sort: true,
                     style: { width:'50px' }
-                  },
-                  {
-                    dataField: "companyCode",
-                    text: "companyCode",
-                    sort: true,
-                    style: { width:'50px' }
-                  },
-                  {
-                    dataField: "costCenter",
-                    text: "costCenter",
-                    sort: true,
-                  },
-                  {
-                    dataField: "country",
-                    text: "country",
-                    sort: true,
                   },{  
                     dataField: 'action',    
                     text:'',
