@@ -17,7 +17,6 @@
 import AdminFooter from "components/Footers/AdminFooter";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar";
-import Sidebar from "components/Sidebar/Sidebar";
 import { useRef } from "react";
 // react library for routing
 import { Redirect, Switch, useLocation } from "react-router-dom";
@@ -26,6 +25,7 @@ import { Theme } from "types/types";
 import { useSidenav } from "context";
 import { getRoutes, ScrollToTop } from ".";
 import { useToggleSidenav } from "hooks";
+import { Sidebar } from "components/Sidebar";
 
 const Admin = () => {
   const location = useLocation();
@@ -49,6 +49,7 @@ const Admin = () => {
           imgSrc: require("assets/img/brand/CareLogoMin.png").default,
           imgAlt: "...",
         }}
+        rtlActive={false}
       />
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar theme={getNavbarTheme()} />

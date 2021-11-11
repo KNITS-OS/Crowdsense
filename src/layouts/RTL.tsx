@@ -17,7 +17,7 @@
 import AdminFooter from "components/Footers/AdminFooter";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar";
-import Sidebar from "components/Sidebar/Sidebar";
+import { Sidebar } from "components/Sidebar";
 import { useEffect, useRef } from "react";
 // react library for routing
 import { Redirect, Switch } from "react-router-dom";
@@ -29,6 +29,7 @@ import { useToggleSidenav } from "hooks";
 const RTL = () => {
   const { sidenavOpen } = useSidenav();
   const { toggleSidenav } = useToggleSidenav();
+
   const mainContentRef = useRef(document.createElement("div"));
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const RTL = () => {
         routes={routes}
         logo={{
           innerLink: "/",
-          // imgSrc: require("assets/img/brand/argon-png").default,
+          imgSrc: require("assets/img/brand/CareLogoMin.png").default,
           imgAlt: "...",
         }}
         rtlActive
