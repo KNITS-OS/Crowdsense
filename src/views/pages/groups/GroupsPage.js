@@ -36,7 +36,7 @@ import {
 import { pagination } from "utils";
 import { dataTable } from "variables/general";
 import { useAlert } from "context";
-import { useCopy } from "../../../hooks";
+import { useCopy } from "hooks";
 
 const { SearchBar } = Search;
 

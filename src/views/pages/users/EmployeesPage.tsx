@@ -24,12 +24,14 @@ import { useHistory } from "react-router";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
+import { useAlert } from "context";
 import { employees } from "./EmployeesData";
 
 const { SearchBar } = Search;
 
 const Employees = () => {
   const history = useHistory();
+  const { alert } = useAlert();
 
   const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
     var { id } = e.target as HTMLButtonElement;
@@ -76,51 +78,9 @@ const Employees = () => {
     );
   };
 
-  // const [alert, setAlert] = React.useState(null);
-  // const componentRef = React.useRef(null);
-
-  // this function will copy to clipboard an entire table,
-  // so you can paste it inside an excel or csv file
-  // const copyToClipboardAsTable = el => {
-  //   var body = document.body,
-  //     range,
-  //     sel;
-  //   if (document.createRange && window.getSelection) {
-  //     range = document.createRange();
-  //     sel = window.getSelection();
-  //     sel.removeAllRanges();
-  //     try {
-  //       range.selectNodeContents(el);
-  //       sel.addRange(range);
-  //     } catch (e) {
-  //       range.selectNode(el);
-  //       sel.addRange(range);
-  //     }
-  //     document.execCommand("copy");
-  //   } else if (body.createTextRange) {
-  //     range = body.createTextRange();
-  //     range.moveToElementText(el);
-  //     range.select();
-  //     range.execCommand("Copy");
-  //   }
-  //   setAlert(
-  //     <ReactBSAlert
-  //       success
-  //       style={{ display: "block", marginTop: "-100px" }}
-  //       title="Good job!"
-  //       onConfirm={() => setAlert(null)}
-  //       onCancel={() => setAlert(null)}
-  //       confirmBtnBsStyle="info"
-  //       btnSize=""
-  //     >
-  //       Copied to clipboard!
-  //     </ReactBSAlert>,
-  //   );
-  // };
-
   return (
     <>
-      {/* {alert} */}
+      {alert}
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>

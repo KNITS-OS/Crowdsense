@@ -32,8 +32,13 @@ import CandidateDetailsPage from "views/pages/users/CandidateDetailsPage";
 import CandidatesPage from "views/pages/users/CandidatesPage";
 import EditCareMemberPage from "views/pages/users/EditCareMemberPage";
 import { IRoute } from "./types/types";
+import { ApplicationsPage } from "./views/pages/applications";
+import { EmailPage } from "./views/pages/emails";
+import { InternshipPage } from "./views/pages/internships";
+import { OfferPage } from "./views/pages/offers";
 
 const routes: IRoute[] = [
+  // Curriculum
   {
     collapse: true,
     name: "Curriculum",
@@ -56,6 +61,7 @@ const routes: IRoute[] = [
       },
     ],
   },
+  // Candidates
   {
     collapse: false,
     path: "/candidates",
@@ -65,18 +71,18 @@ const routes: IRoute[] = [
     layout: "/admin",
     icon: "ni ni-chart-pie-35 text-info",
   },
+  // Offers
   {
     collapse: true,
-    name: "Offer",
-    // TODO change to OfferPage
+    name: "Offers",
     state: "offerCollapse",
     icon: "ni ni-chart-pie-35 text-info",
     views: [
       {
-        path: "/search-candidates",
-        name: "Search Candidates",
-        miniName: "SC",
-        component: CandidatesPage,
+        path: "/offers",
+        name: "Offers",
+        miniName: "O",
+        component: OfferPage,
         layout: "/admin",
       },
       {
@@ -88,50 +94,51 @@ const routes: IRoute[] = [
       },
     ],
   },
+  // Applications
   {
     collapse: false,
     path: "/applications",
     name: "Applications",
     miniName: "AP",
-    // TODO change to ApplicationsPage
-    component: CandidatesPage,
+    component: ApplicationsPage,
     layout: "/admin",
     icon: "ni ni-chart-pie-35 text-info",
   },
+  // Internship
   {
     collapse: true,
     name: "Internship",
     miniName: "IN",
-    // TODO change to InternshipPage
     state: "internshipCollapse",
     icon: "ni ni-chart-pie-35 text-info",
     views: [
       {
-        path: "/search-candidates",
-        name: "Search Candidates",
-        miniName: "SC",
-        component: CandidatesPage,
+        path: "/internship",
+        name: "Internship",
+        miniName: "I",
+        component: InternshipPage,
         layout: "/admin",
       },
       {
         path: "/dashboard",
         name: "Dashboard",
-        miniName: "SC",
+        miniName: "I",
         component: WorldOverviewPage,
         layout: "/admin",
       },
     ],
   },
+  // Email
   {
     collapse: false,
     path: "/email",
     name: "Email",
     miniName: "EM",
-    // TODO change to EmailPage
-    component: CandidatesPage,
+    component: EmailPage,
     layout: "/admin",
     icon: "ni ni-chart-pie-35 text-info",
   },
+  // Dashboard
   {
     collapse: true,
     name: "Dashboard",
@@ -154,6 +161,7 @@ const routes: IRoute[] = [
       },
     ],
   },
+  // Details
   {
     collapse: false,
     global: true,
@@ -168,6 +176,7 @@ const routes: IRoute[] = [
     component: EditCareMemberPage,
     layout: "/admin",
   },
+  // Examples
   {
     collapse: true,
     name: "Examples",

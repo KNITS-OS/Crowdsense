@@ -9,28 +9,35 @@ import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
 import { useAlert } from "context";
 import { candidates } from "./CandidatesData";
+import { ICanditate } from "../../../types/types";
+import { useHistory } from "react-router";
 
 const { SearchBar } = Search;
 
-function Candidates(props) {
-  const candidateDetails = e => {
-    var { id } = e.target;
-    props.history.push("/admin/users/candidate-details/" + id);
+const Candidates = () => {
+  const history = useHistory();
+  const candidateDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
+    var { id } = e.target as HTMLButtonElement;
+    history.push("/admin/users/candidate-details/" + id);
   };
+
   const { alert } = useAlert();
 
-  const formatActionButtonCell = (cell, row) => {
+  const formatActionButtonCell = (_: undefined, row: ICanditate) => {
+    const { id } = row;
+    let candidateId = id.toString();
+
     return (
       <div>
         <Button
-          id={row.id}
+          id={candidateId}
           className="btn-icon btn-2"
           type="button"
           color="info"
           onClick={candidateDetails}
         >
-          <span id={row.id} className="btn-inner--icon">
-            <i id={row.id} className="ni ni-badge" />
+          <span id={candidateId} className="btn-inner--icon">
+            <i id={candidateId} className="ni ni-badge" />
           </span>
         </Button>
       </div>
@@ -40,7 +47,7 @@ function Candidates(props) {
   return (
     <div>
       {alert}
-      <GradientEmptyHeader name="Candidates" />
+      <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">
@@ -121,7 +128,6 @@ function Candidates(props) {
                       bootstrap4={true}
                       pagination={pagination}
                       bordered={false}
-                      deleteRow={true}
                     />
                   </div>
                 )}
@@ -132,6 +138,6 @@ function Candidates(props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Candidates;

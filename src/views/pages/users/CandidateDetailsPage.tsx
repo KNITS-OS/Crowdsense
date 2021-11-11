@@ -1,32 +1,48 @@
-import React from "react";
-
-// reactstrap components
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { useHistory } from "react-router";
+import { useParams } from "react-router-dom";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
+  CardHeader,
   Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Row,
 } from "reactstrap";
-
-import { useParams } from "react-router-dom";
+import { ICanditate } from "types/types";
 import { candidates } from "./CandidatesData";
 
-// core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+interface RouteParams {
+  id: string;
+}
 
-function CandidateDetailsPage(props) {
-  let { id } = useParams();
-  let candidate = candidates.find(cand => cand.id === parseInt(id));
+const CandidateDetailsPage = () => {
+  let { id } = useParams<RouteParams>();
+
+  const history = useHistory();
+
+  let fetchCandidate = () =>
+    candidates.find(candidate => candidate.id === parseInt(id));
+
+  const {
+    comment,
+    email,
+    fullName,
+    firstName,
+    lastName,
+    rating,
+    status,
+    submissionDate,
+    tags,
+  } = fetchCandidate() as ICanditate;
 
   return (
     <>
-      <GradientEmptyHeader name="Candidates" />
+      <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col className="order-xl-1" xl="12">
@@ -42,7 +58,6 @@ function CandidateDetailsPage(props) {
                     <Button
                       type="button"
                       color="success"
-                      href="#pablo"
                       onClick={e => e.preventDefault()}
                     >
                       Invite to Care
@@ -50,10 +65,7 @@ function CandidateDetailsPage(props) {
                     <Button
                       type="button"
                       color="info"
-                      href="#"
-                      onClick={e =>
-                        props.history.push("/admin/candidates")
-                      }
+                      onClick={e => history.push("/admin/candidates")}
                     >
                       Back to Search
                     </Button>
@@ -77,7 +89,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-first-name"
-                            value={candidate.firstName}
+                            value={firstName}
                             type="text"
                             disabled={true}
                           />
@@ -93,7 +105,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-last-name"
-                            value={candidate.lastName}
+                            value={lastName}
                             disabled={true}
                             type="text"
                           />
@@ -109,7 +121,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-fullname"
-                            value={candidate.fullName}
+                            value={fullName}
                             disabled={true}
                             type="text"
                           />
@@ -128,7 +140,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-submission-date"
-                            value={candidate.submissionDate}
+                            value={submissionDate}
                             disabled={true}
                             type="text"
                           />
@@ -144,7 +156,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-email"
-                            value={candidate.email}
+                            value={email}
                             disabled={true}
                             type="email"
                           />
@@ -170,7 +182,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-status"
-                            value={candidate.status}
+                            value={status}
                             type="text"
                             disabled={true}
                           />
@@ -186,7 +198,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-rating"
-                            value={candidate.rating}
+                            value={rating}
                             disabled={true}
                             type="text"
                           />
@@ -205,7 +217,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-tags"
-                            value={candidate.tags}
+                            value={tags}
                             disabled={true}
                             type="text"
                           />
@@ -231,7 +243,7 @@ function CandidateDetailsPage(props) {
                           </label>
                           <Input
                             id="input-comment"
-                            value={candidate.comment}
+                            value={comment}
                             type="text"
                             disabled={true}
                           />
@@ -247,6 +259,6 @@ function CandidateDetailsPage(props) {
       </Container>
     </>
   );
-}
+};
 
 export default CandidateDetailsPage;

@@ -16,9 +16,8 @@
 */
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { useAlert } from "context";
 import React from "react";
-// react component used to create sweet alerts
-import ReactBSAlert from "react-bootstrap-sweetalert";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
@@ -30,6 +29,8 @@ import { employees } from "./EmployeesData";
 const { SearchBar } = Search;
 
 function CareMembersPage(props) {
+  const { alert } = useAlert();
+
   const rowDataDetails = e => {
     //console.log(e.target);
     var { id } = e.target;
@@ -62,47 +63,6 @@ function CareMembersPage(props) {
           </span>
         </Button>
       </>
-    );
-  };
-
-  const [alert, setAlert] = React.useState(null);
-  const componentRef = React.useRef(null);
-  // this function will copy to clipboard an entire table,
-  // so you can paste it inside an excel or csv file
-  const copyToClipboardAsTable = el => {
-    var body = document.body,
-      range,
-      sel;
-    if (document.createRange && window.getSelection) {
-      range = document.createRange();
-      sel = window.getSelection();
-      sel.removeAllRanges();
-      try {
-        range.selectNodeContents(el);
-        sel.addRange(range);
-      } catch (e) {
-        range.selectNode(el);
-        sel.addRange(range);
-      }
-      document.execCommand("copy");
-    } else if (body.createTextRange) {
-      range = body.createTextRange();
-      range.moveToElementText(el);
-      range.select();
-      range.execCommand("Copy");
-    }
-    setAlert(
-      <ReactBSAlert
-        success
-        style={{ display: "block", marginTop: "-100px" }}
-        title="Good job!"
-        onConfirm={() => setAlert(null)}
-        onCancel={() => setAlert(null)}
-        confirmBtnBsStyle="info"
-        btnSize=""
-      >
-        Copied to clipboard!
-      </ReactBSAlert>,
     );
   };
 
