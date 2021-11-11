@@ -4,7 +4,7 @@
 * Argon Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -15,34 +15,32 @@
 
 */
 /*eslint-disable*/
-import React from "react";
-
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 
-function AdminFooter() {
+const AuthFooter = () => {
   return (
     <>
-      <Container fluid>
-        {/* <footer className="footer pt-0">
-          <Row className="align-items-center justify-content-lg-between">
-            <Col lg="6">
-              <div className="copyright text-center text-lg-left text-muted">
+      <footer className="py-5" id="footer-main">
+        <Container>
+          <Row className="align-items-center justify-content-xl-between">
+            <Col xl="6">
+              <div className="copyright text-center text-xl-left text-muted">
                 © {new Date().getFullYear()}{" "}
                 <a
                   className="font-weight-bold ml-1"
-                  href="https://www.creative-tim.com?ref=adpr-admin-footer"
+                  href="https://www.creative-tim.com?ref=adpr-auth-footer"
                   target="_blank"
                 >
                   Creative Tim
                 </a>
               </div>
             </Col>
-            <Col lg="6">
-              <Nav className="nav-footer justify-content-center justify-content-lg-end">
+            <Col xl="6">
+              <Nav className="nav-footer justify-content-center justify-content-xl-end">
                 <NavItem>
                   <NavLink
-                    href="https://www.creative-tim.com?ref=adpr-admin-footer"
+                    href="https://www.creative-tim.com?ref=adpr-auth-footer"
                     target="_blank"
                   >
                     Creative Tim
@@ -50,7 +48,7 @@ function AdminFooter() {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    href="https://www.creative-tim.com/presentation?ref=adpr-admin-footer"
+                    href="https://www.creative-tim.com/presentation?ref=adpr-auth-footer"
                     target="_blank"
                   >
                     About Us
@@ -58,7 +56,7 @@ function AdminFooter() {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    href="http://blog.creative-tim.com?ref=adpr-admin-footer"
+                    href="http://blog.creative-tim.com?ref=adpr-auth-footer"
                     target="_blank"
                   >
                     Blog
@@ -66,7 +64,7 @@ function AdminFooter() {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    href="https://www.creative-tim.com/license?ref=adpr-admin-footer"
+                    href="https://www.creative-tim.com/license?ref=adpr-auth-footer"
                     target="_blank"
                   >
                     License
@@ -75,10 +73,10 @@ function AdminFooter() {
               </Nav>
             </Col>
           </Row>
-        </footer> */}
-      </Container>
+        </Container>
+      </footer>
     </>
   );
-}
+};
 
-export default AdminFooter;
+export default AuthFooter;
