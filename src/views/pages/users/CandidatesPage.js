@@ -7,6 +7,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
+import { useAlert } from "context";
 import { candidates } from "./CandidatesData";
 
 const { SearchBar } = Search;
@@ -16,6 +17,7 @@ function Candidates(props) {
     var { id } = e.target;
     props.history.push("/admin/users/candidate-details/" + id);
   };
+  const { alert } = useAlert();
 
   const formatActionButtonCell = (cell, row) => {
     return (
@@ -34,9 +36,6 @@ function Candidates(props) {
       </div>
     );
   };
-
-  const [alert, setAlert] = React.useState(null);
-  const componentRef = React.useRef(null);
 
   return (
     <div>

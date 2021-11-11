@@ -14,33 +14,15 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardImg,
-  CardTitle,
-  FormGroup,
-  Form,
-  Input,
-  ListGroupItem,
-  ListGroup,
-  Progress,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+// reactstrap components
+import { Col, Container, FormGroup, Input, Row } from "reactstrap";
 
-function CreateBestPracticePage() {
+const CreateBestPracticePage = () => {
   return (
     <>
-      <GradientEmptyHeader name="Best Practices" />
+      <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col className="order-xl-1" xl="12">
@@ -53,6 +35,6 @@ function CreateBestPracticePage() {
       </Container>
     </>
   );
-}
+};
 
 export default CreateBestPracticePage;
