@@ -1,4 +1,1 @@
-export {
-  default as SidenavProvider,
-  useToggleSidenav,
-} from "./SidenavContext";
+export { default as SidenavProvider, useSidenav } from "./SidenavContext";

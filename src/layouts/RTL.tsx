@@ -14,20 +14,21 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import AdminFooter from "components/Footers/AdminFooter.js";
+import AdminFooter from "components/Footers/AdminFooter";
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
+import AdminNavbar from "components/Navbars/AdminNavbar";
+import Sidebar from "components/Sidebar/Sidebar";
 import { useEffect, useRef } from "react";
 // react library for routing
 import { Redirect, Switch } from "react-router-dom";
-import routes from "routes.js";
-import { getRoutes, ScrollToTop, ToggleSidenav } from ".";
-import { useToggleSidenav } from "../context";
+import routes from "routes";
+import { getRoutes, ScrollToTop } from ".";
+import { useSidenav } from "context";
+import { useToggleSidenav } from "hooks";
 
 const RTL = () => {
-  const { sidenavOpen } = useToggleSidenav();
-
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
   const mainContentRef = useRef(document.createElement("div"));
 
   useEffect(() => {
@@ -46,11 +47,9 @@ const RTL = () => {
     <>
       <Sidebar
         routes={routes}
-        toggleSidenav={ToggleSidenav}
-        sidenavOpen={sidenavOpen}
         logo={{
           innerLink: "/",
-          imgSrc: require("assets/img/brand/argon-png").default,
+          // imgSrc: require("assets/img/brand/argon-png").default,
           imgAlt: "...",
         }}
         rtlActive
@@ -64,7 +63,10 @@ const RTL = () => {
         <AdminFooter />
       </div>
       {sidenavOpen ? (
-        <div className="backdrop d-xl-none" onClick={ToggleSidenav} />
+        <div
+          className="backdrop d-xl-none"
+          onClick={() => toggleSidenav}
+        />
       ) : null}
     </>
   );

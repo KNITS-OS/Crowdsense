@@ -22,7 +22,7 @@ const initContextData: InitialContextType = {
 
 const SidenavContext = createContext(initContextData);
 
-export const useToggleSidenav = () => useContext(SidenavContext);
+export const useSidenav = () => useContext(SidenavContext);
 
 const SidenavProvider = ({ children }: ProviderProps) => {
   const [sidenavOpen, setSidenavOpen] = useState(true);

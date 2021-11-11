@@ -14,8 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // nodejs library that concatenates classes
+// @ts-ignore
 import classnames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
@@ -43,11 +43,17 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { useToggleSidenav } from "context";
-import { ToggleSidenav } from "layouts/ToggleSidenav";
+import { useSidenav } from "context";
+import { useToggleSidenav } from "hooks";
+import { Theme } from "types/types";
 
-function AdminNavbar({ theme }) {
-  const { sidenavOpen } = useToggleSidenav();
+interface Props {
+  theme: Theme;
+}
+
+const AdminNavbar = ({ theme }: Props) => {
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
   // function that on mobile devices makes the search open
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
@@ -121,7 +127,7 @@ function AdminNavbar({ theme }) {
                     { active: sidenavOpen },
                     { "sidenav-toggler-dark": theme === "dark" },
                   )}
-                  onClick={ToggleSidenav}
+                  onClick={() => toggleSidenav}
                 >
                   <div className="sidenav-toggler-inner">
                     <i className="sidenav-toggler-line" />
@@ -474,7 +480,7 @@ function AdminNavbar({ theme }) {
       </Navbar>
     </>
   );
-}
+};
 
 AdminNavbar.defaultProps = {
   toggleSidenav: () => {},

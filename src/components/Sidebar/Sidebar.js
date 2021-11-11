@@ -36,12 +36,13 @@ import {
   NavLink,
   Nav,
 } from "reactstrap";
-import { ToggleSidenav } from "layouts/ToggleSidenav";
-import { useToggleSidenav } from "context";
+import { useSidenav } from "context";
+import { useToggleSidenav } from "hooks";
 
 function Sidebar({ routes, logo, rtlActive }) {
   const [state, setState] = React.useState({});
-  const { sidenavOpen } = useToggleSidenav();
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
   const location = useLocation();
   React.useEffect(() => {
     setState(getCollapseStates(routes));
@@ -96,7 +97,7 @@ function Sidebar({ routes, logo, rtlActive }) {
   // the sidebar will autoclose
   const closeSidenav = () => {
     if (window.innerWidth < 1200) {
-      ToggleSidenav();
+      toggleSidenav();
     }
   };
   // this function creates the links and collapses that appear in the sidebar (left menu)
@@ -207,7 +208,7 @@ function Sidebar({ routes, logo, rtlActive }) {
             className={classnames("sidenav-toggler d-none d-xl-block", {
               active: sidenavOpen,
             })}
-            onClick={ToggleSidenav}
+            onClick={toggleSidenav}
           >
             <div className="sidenav-toggler-inner">
               <i className="sidenav-toggler-line" />

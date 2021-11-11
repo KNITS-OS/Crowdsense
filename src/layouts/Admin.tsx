@@ -23,13 +23,15 @@ import { useRef } from "react";
 import { Redirect, Switch, useLocation } from "react-router-dom";
 import routes from "routes";
 import { Theme } from "types/types";
-import { useToggleSidenav } from "context";
-import { getRoutes, ScrollToTop, ToggleSidenav } from ".";
+import { useSidenav } from "context";
+import { getRoutes, ScrollToTop } from ".";
+import { useToggleSidenav } from "hooks";
 
 const Admin = () => {
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
-  const { sidenavOpen } = useToggleSidenav();
+  const { sidenavOpen } = useSidenav();
+  const { toggleSidenav } = useToggleSidenav();
   ScrollToTop(mainContentRef);
 
   const getNavbarTheme = (): Theme => {
@@ -57,7 +59,10 @@ const Admin = () => {
         <AdminFooter />
       </div>
       {sidenavOpen ? (
-        <div className="backdrop d-xl-none" onClick={ToggleSidenav} />
+        <div
+          className="backdrop d-xl-none"
+          onClick={() => toggleSidenav}
+        />
       ) : null}
     </>
   );
