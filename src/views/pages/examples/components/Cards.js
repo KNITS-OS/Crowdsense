@@ -34,7 +34,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import CardsHeader from "components/Headers/CardsHeader.js";
+import CardsHeader from "components/Headers/CardsHeader";
 
 function Cards() {
   return (
@@ -46,7 +46,9 @@ function Cards() {
             <Card>
               <CardImg
                 alt="..."
-                src={require("assets/img/theme/img-1-1000x600.jpg").default}
+                src={
+                  require("assets/img/theme/img-1-1000x600.jpg").default
+                }
                 top
               />
 
@@ -62,14 +64,14 @@ function Cards() {
                 </CardTitle>
                 <CardText className="mb-4">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Facilis non dolore est fuga nobis ipsum illum eligendi nemo
-                  iure repellat, soluta, optio minus ut reiciendis voluptates
-                  enim impedit veritatis officiis.
+                  Facilis non dolore est fuga nobis ipsum illum eligendi
+                  nemo iure repellat, soluta, optio minus ut reiciendis
+                  voluptates enim impedit veritatis officiis.
                 </CardText>
                 <Button
                   color="primary"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   Go somewhere
                 </Button>
@@ -83,14 +85,14 @@ function Cards() {
                 </CardTitle>
                 <CardText className="mb-4">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Facilis non dolore est fuga nobis ipsum illum eligendi nemo
-                  iure repellat, soluta, optio minus ut reiciendis voluptates
-                  enim impedit veritatis officiis.
+                  Facilis non dolore est fuga nobis ipsum illum eligendi
+                  nemo iure repellat, soluta, optio minus ut reiciendis
+                  voluptates enim impedit veritatis officiis.
                 </CardText>
                 <Button
                   color="primary"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   Go somewhere
                 </Button>
@@ -100,17 +102,21 @@ function Cards() {
             <Card className="card-profile">
               <CardImg
                 alt="..."
-                src={require("assets/img/theme/img-1-1000x600.jpg").default}
+                src={
+                  require("assets/img/theme/img-1-1000x600.jpg").default
+                }
                 top
               />
               <Row className="justify-content-center">
                 <Col className="order-lg-2" lg="3">
                   <div className="card-profile-image">
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."
                         className="rounded-circle"
-                        src={require("assets/img/theme/team-4.jpg").default}
+                        src={
+                          require("assets/img/theme/team-4.jpg").default
+                        }
                       />
                     </a>
                   </div>
@@ -122,7 +128,7 @@ function Cards() {
                     className="mr-4"
                     color="info"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                     size="sm"
                   >
                     Connect
@@ -131,7 +137,7 @@ function Cards() {
                     className="float-right"
                     color="default"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                     size="sm"
                   >
                     Message
@@ -179,14 +185,14 @@ function Cards() {
               <CardBody>
                 <CardText className="mb-4">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Facilis non dolore est fuga nobis ipsum illum eligendi nemo
-                  iure repellat, soluta, optio minus ut reiciendis voluptates
-                  enim impedit veritatis officiis.
+                  Facilis non dolore est fuga nobis ipsum illum eligendi
+                  nemo iure repellat, soluta, optio minus ut reiciendis
+                  voluptates enim impedit veritatis officiis.
                 </CardText>
                 <Button
                   color="primary"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   Go somewhere
                 </Button>
@@ -200,21 +206,25 @@ function Cards() {
                     <a
                       className="avatar avatar-xl rounded-circle"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                     >
                       <img
                         alt="..."
-                        src={require("assets/img/theme/team-2.jpg").default}
+                        src={
+                          require("assets/img/theme/team-2.jpg").default
+                        }
                       />
                     </a>
                   </Col>
                   <div className="col ml--2">
                     <h4 className="mb-0">
-                      <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <a href="#pablo" onClick={e => e.preventDefault()}>
                         John Snow
                       </a>
                     </h4>
-                    <p className="text-sm text-muted mb-0">Working remoteley</p>
+                    <p className="text-sm text-muted mb-0">
+                      Working remoteley
+                    </p>
                     <span className="text-success mr-1">●</span>
                     <small>Active</small>
                   </div>
@@ -229,7 +239,7 @@ function Cards() {
 
             <Card>
               <CardBody>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
                   <img
                     alt="..."
                     className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
@@ -249,7 +259,7 @@ function Cards() {
                       className="btn-icon-only rounded-circle"
                       color="twitter"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                     >
                       <i className="fab fa-twitter" />
                     </Button>
@@ -257,7 +267,7 @@ function Cards() {
                       className="btn-icon-only rounded-circle"
                       color="facebook"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                     >
                       <i className="fab fa-facebook" />
                     </Button>
@@ -265,7 +275,7 @@ function Cards() {
                       className="btn-icon-only rounded-circle"
                       color="dribbble"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                     >
                       <i className="fab fa-dribbble" />
                     </Button>
@@ -277,7 +287,9 @@ function Cards() {
             <Card>
               <CardImg
                 alt="..."
-                src={require("assets/img/theme/img-1-1000x900.jpg").default}
+                src={
+                  require("assets/img/theme/img-1-1000x900.jpg").default
+                }
                 top
               />
 
@@ -289,14 +301,14 @@ function Cards() {
                   by John Snow on Oct 29th at 10:23 AM
                 </small>
                 <CardText className="mt-4">
-                  Argon is a great free UI package based on Bootstrap 4 that
-                  includes the most important components and features.
+                  Argon is a great free UI package based on Bootstrap 4
+                  that includes the most important components and features.
                 </CardText>
                 <Button
                   className="px-0"
                   color="link"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   View article
                 </Button>
@@ -310,8 +322,8 @@ function Cards() {
                 </CardTitle>
                 <blockquote className="blockquote text-white mb-0">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer posuere erat a ante.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Integer posuere erat a ante.
                   </p>
                   <footer className="blockquote-footer text-danger">
                     Someone famous in{" "}
@@ -383,7 +395,7 @@ function Cards() {
                 <a
                   className="text-white"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   Request a demo
                 </a>
@@ -401,7 +413,7 @@ function Cards() {
                       className="btn-neutral"
                       color="default"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       size="sm"
                     >
                       Action
@@ -413,14 +425,14 @@ function Cards() {
               <CardBody>
                 <CardText className="mb-4">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Facilis non dolore est fuga nobis ipsum illum eligendi nemo
-                  iure repellat, soluta, optio minus ut reiciendis voluptates
-                  enim impedit veritatis officiis.
+                  Facilis non dolore est fuga nobis ipsum illum eligendi
+                  nemo iure repellat, soluta, optio minus ut reiciendis
+                  voluptates enim impedit veritatis officiis.
                 </CardText>
                 <Button
                   color="primary"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   Go somewhere
                 </Button>
@@ -430,7 +442,9 @@ function Cards() {
             <Card className="bg-dark text-white border-0">
               <CardImg
                 alt="..."
-                src={require("assets/img/theme/img-1-1000x600.jpg").default}
+                src={
+                  require("assets/img/theme/img-1-1000x600.jpg").default
+                }
               />
               <CardImgOverlay className="d-flex align-items-center">
                 <div>
@@ -438,9 +452,9 @@ function Cards() {
                     Card title
                   </CardTitle>
                   <CardText>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                    This is a wider card with supporting text below as a
+                    natural lead-in to additional content. This content is
+                    a little bit longer.
                   </CardText>
                   <CardText className="text-sm font-weight-bold">
                     Last updated 3 mins ago
@@ -495,7 +509,9 @@ function Cards() {
                         </div>
                       </div>
                       <div>
-                        <span className="pl-2 text-sm">2GB cloud storage</span>
+                        <span className="pl-2 text-sm">
+                          2GB cloud storage
+                        </span>
                       </div>
                     </div>
                   </li>
@@ -508,7 +524,7 @@ function Cards() {
                 <a
                   className="text-muted"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   Request a demo
                 </a>

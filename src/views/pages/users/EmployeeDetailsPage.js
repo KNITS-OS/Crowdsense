@@ -30,58 +30,57 @@ import {
   Col,
 } from "reactstrap";
 
-import {useParams} from "react-router-dom";
-import { employees } from "./EmployeesData.js";
+import { useParams } from "react-router-dom";
+import { employees } from "./EmployeesData";
 
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 
 function EmployeeDetailsPage(props) {
-
   let { id } = useParams(); //see in routes path: "/users/employee-details/:id",
- // const importedEmployees =employees;
-  let employee=employees.find(emp => emp.id===parseInt(id));
- 
+  // const importedEmployees =employees;
+  let employee = employees.find(emp => emp.id === parseInt(id));
+
   return (
     <>
-      <GradientEmptyHeader name="Employees"  />
-      <Container className="mt--6" fluid>    
-        <Row>     
+      <GradientEmptyHeader name="Employees" />
+      <Container className="mt--6" fluid>
+        <Row>
           <Col className="order-xl-1" xl="12">
             <Card>
               <CardHeader>
                 <Row className="align-items-center">
                   <Col xs="8">
                     <h3 className="mb-0">Employee Details</h3>
-                  </Col>                
+                  </Col>
                 </Row>
-                <Row className="align-items-center py-4">              
+                <Row className="align-items-center py-4">
                   <Col lg="12" xs="7" className="text-right">
-                      <Button
-                          type="button"
-                          color="success"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}                  
-                        >
-                          Invite to Care
-                        </Button> 
-                        <Button
-                          type="button"
-                          color="info"
-                          href="#pablo"
-                          onClick={(e) => props.history.push('/admin/employees')}                  
-                        >
-                          Back to Search
-                        </Button>                     
+                    <Button
+                      type="button"
+                      color="success"
+                      href="#pablo"
+                      onClick={e => e.preventDefault()}
+                    >
+                      Invite to Care
+                    </Button>
+                    <Button
+                      type="button"
+                      color="info"
+                      href="#pablo"
+                      onClick={e => props.history.push("/admin/employees")}
+                    >
+                      Back to Search
+                    </Button>
                   </Col>
                 </Row>
               </CardHeader>
               <CardBody>
-              <Form>
+                <Form>
                   <h6 className="heading-small text-muted mb-4">
                     User information
                   </h6>
-                  <div className="pl-lg-4">                    
+                  <div className="pl-lg-4">
                     <Row>
                       <Col lg="6">
                         <FormGroup>
@@ -91,11 +90,11 @@ function EmployeeDetailsPage(props) {
                           >
                             First name
                           </label>
-                          <Input                            
+                          <Input
                             id="input-first-name"
                             value={employee.firstName}
                             type="text"
-                            disabled = {true}
+                            disabled={true}
                           />
                         </FormGroup>
                       </Col>
@@ -107,17 +106,16 @@ function EmployeeDetailsPage(props) {
                           >
                             Last name
                           </label>
-                          <Input                           
+                          <Input
                             id="input-last-name"
                             value={employee.lastName}
-                            disabled = {true}
+                            disabled={true}
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    
                     <Row>
                       <Col lg="6">
                         <FormGroup>
@@ -127,11 +125,11 @@ function EmployeeDetailsPage(props) {
                           >
                             International Name
                           </label>
-                          <Input                           
+                          <Input
                             id="input-username"
                             value={employee.internationalName}
-                            disabled = {true}
-                            type="text"                         
+                            disabled={true}
+                            type="text"
                           />
                         </FormGroup>
                       </Col>
@@ -146,14 +144,12 @@ function EmployeeDetailsPage(props) {
                           <Input
                             id="input-email"
                             value={employee.email}
-                            disabled = {true}
+                            disabled={true}
                             type="email"
                           />
                         </FormGroup>
                       </Col>
                     </Row>
-                   
-
                   </div>
                   <hr className="my-4" />
 
@@ -231,81 +227,95 @@ function EmployeeDetailsPage(props) {
                   </div>
                   <hr className="my-4" />
 
-                  <h6 className="heading-small text-muted mb-4">Company Data</h6>
+                  <h6 className="heading-small text-muted mb-4">
+                    Company Data
+                  </h6>
                   <div className="pl-lg-4">
-                  <Row>
+                    <Row>
                       <Col lg="4">
-                          <FormGroup>
-                          <label className="form-control-label">Title</label>
-                          <Input
-                                id="title"
-                                value={employee.title}
-                                disabled = {true}
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-
-                        <Col lg="4">
                         <FormGroup>
-                          <label className="form-control-label">Company Phone</label>
+                          <label className="form-control-label">
+                            Title
+                          </label>
                           <Input
-                                id="companyPhone"
-                                value="+372 77645322"
-                                disabled = {true}
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="4">
-                        <FormGroup>
-                          <label className="form-control-label">Company Code</label>
-                          <Input
-                                id="input-postal-code"
-                                value={employee.companyCode}
-                                disabled = {true}
-                                type="text"
-                              />
-                          </FormGroup>
-                        </Col>
-                        </Row>
-                   
-                        <Row>
-                        <Col lg="4">
-                            <FormGroup>
-                            <label className="form-control-label">Business Unit</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={employee.businessUnit}
-                                  disabled = {true}
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
+                            id="title"
+                            value={employee.title}
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
 
-                          <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">Cost Center</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={employee.costCenter}
-                                  disabled = {true}
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-                          <Col lg="4">
-                          <FormGroup>
-                            <label className="form-control-label">Management Group</label>
-                            <Input
-                                  id="input-postal-code"
-                                  value={employee.managementGroup}
-                                  disabled = {true}
-                                  type="text"
-                                />
-                            </FormGroup>
-                          </Col>
-                        </Row>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Company Phone
+                          </label>
+                          <Input
+                            id="companyPhone"
+                            value="+372 77645322"
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Company Code
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={employee.companyCode}
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Business Unit
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={employee.businessUnit}
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Cost Center
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={employee.costCenter}
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label className="form-control-label">
+                            Management Group
+                          </label>
+                          <Input
+                            id="input-postal-code"
+                            value={employee.managementGroup}
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
                   </div>
                 </Form>
               </CardBody>

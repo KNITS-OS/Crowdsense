@@ -34,7 +34,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import AuthHeader from "components/Headers/AuthHeader.js";
+import AuthHeader from "components/Headers/AuthHeader";
 
 function Login() {
   const [focusedEmail, setfocusedEmail] = React.useState(false);
@@ -58,13 +58,14 @@ function Login() {
                     className="btn-neutral btn-icon"
                     color="default"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <span className="btn-inner--icon mr-1">
                       <img
                         alt="..."
                         src={
-                          require("assets/img/icons/common/github.svg").default
+                          require("assets/img/icons/common/github.svg")
+                            .default
                         }
                       />
                     </span>
@@ -74,13 +75,14 @@ function Login() {
                     className="btn-neutral btn-icon"
                     color="default"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <span className="btn-inner--icon mr-1">
                       <img
                         alt="..."
                         src={
-                          require("assets/img/icons/common/google.svg").default
+                          require("assets/img/icons/common/google.svg")
+                            .default
                         }
                       />
                     </span>
@@ -157,7 +159,7 @@ function Login() {
                 <a
                   className="text-light"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   <small>Forgot password?</small>
                 </a>
@@ -166,7 +168,7 @@ function Login() {
                 <a
                   className="text-light"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   <small>Create new account</small>
                 </a>

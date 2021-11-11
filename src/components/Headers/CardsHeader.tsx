@@ -4,7 +4,7 @@
 * Argon Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -14,9 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
+
 // reactstrap components
 import {
   Breadcrumb,
@@ -30,7 +28,12 @@ import {
   Col,
 } from "reactstrap";
 
-function CardsHeader({ name, parentName }) {
+interface Props {
+  name: string;
+  parentName: string;
+}
+
+const CardsHeader = ({ name, parentName }: Props) => {
   return (
     <>
       <div className="header bg-info pb-6">
@@ -38,18 +41,20 @@ function CardsHeader({ name, parentName }) {
           <div className="header-body">
             <Row className="align-items-center py-4">
               <Col lg="6" xs="7">
-                <h6 className="h2 text-white d-inline-block mb-0">{name}</h6>{" "}
+                <h6 className="h2 text-white d-inline-block mb-0">
+                  {name}
+                </h6>{" "}
                 <Breadcrumb
                   className="d-none d-md-inline-block ml-md-4"
                   listClassName="breadcrumb-links breadcrumb-dark"
                 >
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <i className="fas fa-home" />
                     </a>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       {parentName}
                     </a>
                   </BreadcrumbItem>
@@ -63,7 +68,7 @@ function CardsHeader({ name, parentName }) {
                   className="btn-neutral"
                   color="default"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                   size="sm"
                 >
                   New
@@ -72,7 +77,7 @@ function CardsHeader({ name, parentName }) {
                   className="btn-neutral"
                   color="default"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                   size="sm"
                 >
                   Filters
@@ -122,7 +127,9 @@ function CardsHeader({ name, parentName }) {
                         >
                           New users
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">2,356</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          2,356
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -150,7 +157,9 @@ function CardsHeader({ name, parentName }) {
                         >
                           Sales
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">924</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          924
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -178,7 +187,9 @@ function CardsHeader({ name, parentName }) {
                         >
                           Performance
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">49,65%</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          49,65%
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
@@ -201,11 +212,6 @@ function CardsHeader({ name, parentName }) {
       </div>
     </>
   );
-}
-
-CardsHeader.propTypes = {
-  name: PropTypes.string,
-  parentName: PropTypes.string,
 };
 
 export default CardsHeader;

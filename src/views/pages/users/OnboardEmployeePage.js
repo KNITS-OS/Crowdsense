@@ -35,7 +35,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import ProfileHeader from "components/Headers/ProfileHeader.js";
+import ProfileHeader from "components/Headers/ProfileHeader";
 
 function OnboardEmployeePage() {
   return (
@@ -47,17 +47,21 @@ function OnboardEmployeePage() {
             <Card className="card-profile">
               <CardImg
                 alt="..."
-                src={require("assets/img/theme/img-1-1000x600.jpg").default}
+                src={
+                  require("assets/img/theme/img-1-1000x600.jpg").default
+                }
                 top
               />
               <Row className="justify-content-center">
                 <Col className="order-lg-2" lg="3">
                   <div className="card-profile-image">
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."
                         className="rounded-circle"
-                        src={require("assets/img/theme/team-4.jpg").default}
+                        src={
+                          require("assets/img/theme/team-4.jpg").default
+                        }
                       />
                     </a>
                   </div>
@@ -69,7 +73,7 @@ function OnboardEmployeePage() {
                     className="mr-4"
                     color="info"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                     size="sm"
                   >
                     Connect
@@ -78,7 +82,7 @@ function OnboardEmployeePage() {
                     className="float-right"
                     color="default"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                     size="sm"
                   >
                     Message
@@ -138,12 +142,13 @@ function OnboardEmployeePage() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/bootstrap.jpg").default
+                              require("assets/img/theme/bootstrap.jpg")
+                                .default
                             }
                           />
                         </a>
@@ -165,12 +170,13 @@ function OnboardEmployeePage() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/angular.jpg").default
+                              require("assets/img/theme/angular.jpg")
+                                .default
                             }
                           />
                         </a>
@@ -192,11 +198,14 @@ function OnboardEmployeePage() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/sketch.jpg").default}
+                            src={
+                              require("assets/img/theme/sketch.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
@@ -217,11 +226,13 @@ function OnboardEmployeePage() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/react.jpg").default}
+                            src={
+                              require("assets/img/theme/react.jpg").default
+                            }
                           />
                         </a>
                       </Col>
@@ -242,11 +253,13 @@ function OnboardEmployeePage() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/vue.jpg").default}
+                            src={
+                              require("assets/img/theme/vue.jpg").default
+                            }
                           />
                         </a>
                       </Col>
@@ -341,7 +354,7 @@ function OnboardEmployeePage() {
                     <Button
                       color="primary"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       size="sm"
                     >
                       Settings
@@ -499,10 +512,14 @@ function OnboardEmployeePage() {
                   </div>
                   <hr className="my-4" />
 
-                  <h6 className="heading-small text-muted mb-4">About me</h6>
+                  <h6 className="heading-small text-muted mb-4">
+                    About me
+                  </h6>
                   <div className="pl-lg-4">
                     <FormGroup>
-                      <label className="form-control-label">About Me</label>
+                      <label className="form-control-label">
+                        About Me
+                      </label>
                       <Input
                         placeholder="A few words about you ..."
                         rows="4"

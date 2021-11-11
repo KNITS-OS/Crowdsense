@@ -17,9 +17,16 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Typography() {
   return (
@@ -164,7 +171,9 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h3 className="heading mb-0">Argon Dashboard PRO React</h3>
+                    <h3 className="heading mb-0">
+                      Argon Dashboard PRO React
+                    </h3>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -187,11 +196,13 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <div>
-                      <h2 className="display-3">Header with small subtitle</h2>
+                      <h2 className="display-3">
+                        Header with small subtitle
+                      </h2>
                       <p className="lead text-muted">
                         According to the National Oceanic and Atmospheric
-                        Administration, Ted, Scambos, NSIDClead scentist, puts
-                        the potentially record maximum.
+                        Administration, Ted, Scambos, NSIDClead scentist,
+                        puts the potentially record maximum.
                       </p>
                     </div>
                   </Col>
@@ -212,11 +223,12 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p>
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers. I
-                      understand culture. I am the nucleus. I think that’s a
-                      responsibility that I have, to push possibilities, to show
-                      people, this is the level that things could be at.
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the answers.
+                      I understand culture. I am the nucleus. I think
+                      that’s a responsibility that I have, to push
+                      possibilities, to show people, this is the level that
+                      things could be at.
                     </p>
                   </Col>
                 </Row>
@@ -228,11 +240,12 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="lead">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers. I
-                      understand culture. I am the nucleus. I think that’s a
-                      responsibility that I have, to push possibilities, to show
-                      people, this is the level that things could be at.
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the answers.
+                      I understand culture. I am the nucleus. I think
+                      that’s a responsibility that I have, to push
+                      possibilities, to show people, this is the level that
+                      things could be at.
                     </p>
                   </Col>
                 </Row>
@@ -245,8 +258,8 @@ function Typography() {
                   <Col sm="9">
                     <blockquote className="blockquote">
                       <p className="mb-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Integer posuere erat a ante.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. Integer posuere erat a ante.
                       </p>
                       <footer className="blockquote-footer">
                         Someone famous in{" "}
@@ -263,8 +276,9 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="text-muted mb-0">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers...
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the
+                      answers...
                     </p>
                   </Col>
                 </Row>
@@ -276,8 +290,9 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="text-primary">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers...
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the
+                      answers...
                     </p>
                   </Col>
                 </Row>
@@ -289,8 +304,9 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="text-info mb-0">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers...
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the
+                      answers...
                     </p>
                   </Col>
                 </Row>
@@ -302,8 +318,9 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="text-success mb-0">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers...
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the
+                      answers...
                     </p>
                   </Col>
                 </Row>
@@ -315,8 +332,9 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="text-warning mb-0">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers...
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the
+                      answers...
                     </p>
                   </Col>
                 </Row>
@@ -328,8 +346,9 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <p className="text-danger mb-0">
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers...
+                      I will be the leader of a company that ends up being
+                      worth billions of dollars, because I got the
+                      answers...
                     </p>
                   </Col>
                 </Row>

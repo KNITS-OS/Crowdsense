@@ -15,7 +15,7 @@
 
 */
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
@@ -24,7 +24,7 @@ import { useHistory } from "react-router";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
-import { employees } from "./EmployeesData.js";
+import { employees } from "./EmployeesData";
 
 const { SearchBar } = Search;
 

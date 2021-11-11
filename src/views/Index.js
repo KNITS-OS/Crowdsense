@@ -30,9 +30,9 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 // core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import IndexHeader from "components/Headers/IndexHeader.js";
-import AuthFooter from "components/Footers/AuthFooter.js";
+import IndexNavbar from "components/Navbars/IndexNavbar";
+import IndexHeader from "components/Headers/IndexHeader";
+import AuthFooter from "components/Footers/AuthFooter";
 
 function Index() {
   return (
@@ -48,12 +48,12 @@ function Index() {
                   A complete React solution
                 </h2>
                 <p className="lead text-white">
-                  Argon is a completly new product built on our newest re-built
-                  from scratch framework structure that is meant to make our
-                  products more intuitive, more adaptive and, needless to say,
-                  so much easier to customize. Let Argon amaze you with its cool
-                  features and build tools and get your project to a whole new
-                  level.
+                  Argon is a completly new product built on our newest
+                  re-built from scratch framework structure that is meant
+                  to make our products more intuitive, more adaptive and,
+                  needless to say, so much easier to customize. Let Argon
+                  amaze you with its cool features and build tools and get
+                  your project to a whole new level.
                 </p>
               </Col>
             </Row>
@@ -74,8 +74,9 @@ function Index() {
                           Based on React and Reactstrap
                         </h4>
                         <p className="description mt-3">
-                          Argon is built on top of the most popular open source
-                          toolkit for developing with HTML, CSS, and JS.
+                          Argon is built on top of the most popular open
+                          source toolkit for developing with HTML, CSS, and
+                          JS.
                         </p>
                         <div>
                           <Badge color="info" pill>
@@ -104,8 +105,9 @@ function Index() {
                           Integrated build tools
                         </h4>
                         <p className="description mt-3">
-                          Use Argons's included npm scripts to compile source
-                          code, scss and more with just a few simple commands.
+                          Use Argons's included npm scripts to compile
+                          source code, scss and more with just a few simple
+                          commands.
                         </p>
                         <div>
                           <Badge color="success" pill>
@@ -128,9 +130,9 @@ function Index() {
                           Full Sass support
                         </h4>
                         <p className="description mt-3">
-                          Argon makes customization easier than ever before. You
-                          get all the tools to make your website building
-                          process a breeze.
+                          Argon makes customization easier than ever
+                          before. You get all the tools to make your
+                          website building process a breeze.
                         </p>
                         <div>
                           <Badge color="warning" pill>
@@ -165,27 +167,35 @@ function Index() {
                 <div className="pr-md-5">
                   <h1>Awesome features</h1>
                   <p>
-                    The kit comes with three pre-built pages to help you get
-                    started faster. You can change the text and images and
-                    you're good to go.
+                    The kit comes with three pre-built pages to help you
+                    get started faster. You can change the text and images
+                    and you're good to go.
                   </p>
                   <ul className="list-unstyled mt-5">
                     <li className="py-2">
                       <div className="d-flex align-items-center">
                         <div>
-                          <Badge className="badge-circle mr-3" color="success">
+                          <Badge
+                            className="badge-circle mr-3"
+                            color="success"
+                          >
                             <i className="ni ni-settings-gear-65" />
                           </Badge>
                         </div>
                         <div>
-                          <h4 className="mb-0">Carefully crafted components</h4>
+                          <h4 className="mb-0">
+                            Carefully crafted components
+                          </h4>
                         </div>
                       </div>
                     </li>
                     <li className="py-2">
                       <div className="d-flex align-items-center">
                         <div>
-                          <Badge className="badge-circle mr-3" color="success">
+                          <Badge
+                            className="badge-circle mr-3"
+                            color="success"
+                          >
                             <i className="ni ni-html5" />
                           </Badge>
                         </div>
@@ -197,12 +207,17 @@ function Index() {
                     <li className="py-2">
                       <div className="d-flex align-items-center">
                         <div>
-                          <Badge className="badge-circle mr-3" color="success">
+                          <Badge
+                            className="badge-circle mr-3"
+                            color="success"
+                          >
                             <i className="ni ni-satisfied" />
                           </Badge>
                         </div>
                         <div>
-                          <h4 className="mb-0">Super friendly support team</h4>
+                          <h4 className="mb-0">
+                            Super friendly support team
+                          </h4>
                         </div>
                       </div>
                     </li>
@@ -255,11 +270,11 @@ function Index() {
                 <div className="pr-md-5">
                   <h1>Lovable widgets and cards</h1>
                   <p>
-                    We love cards and everybody on the web seems to. We have
-                    gone above and beyond with options for you to organise your
-                    information. From cards designed for content, to pricing
-                    cards or user profiles, you will have many options to choose
-                    from.
+                    We love cards and everybody on the web seems to. We
+                    have gone above and beyond with options for you to
+                    organise your information. From cards designed for
+                    content, to pricing cards or user profiles, you will
+                    have many options to choose from.
                   </p>
                   <Link
                     className="font-weight-bold text-info mt-5"
@@ -279,9 +294,9 @@ function Index() {
                 <h2 className="display-3">Nucleo Icons</h2>
                 <p className="lead">
                   The official package contains over 21.000 icons which are
-                  looking great in combination with Argon Design System. Make
-                  sure you check all of them and use those that you like the
-                  most.
+                  looking great in combination with Argon Design System.
+                  Make sure you check all of them and use those that you
+                  like the most.
                 </p>
                 <div className="btn-wrapper">
                   <Button
@@ -344,10 +359,10 @@ function Index() {
                   </span>
                 </h2>
                 <p className="lead">
-                  Cause if you do, it can be yours now. Hit the button below to
-                  navigate to get the free version or purchase a license for
-                  your next project. Build a new web app or give an old
-                  Bootstrap project a new look!
+                  Cause if you do, it can be yours now. Hit the button
+                  below to navigate to get the free version or purchase a
+                  license for your next project. Build a new web app or
+                  give an old Bootstrap project a new look!
                 </p>
                 <div className="btn-wrapper">
                   <Button
@@ -356,7 +371,9 @@ function Index() {
                     href="https://www.creative-tim.com/product/argon-dashboard-react?ref=adpr-index-page"
                     target="_blank"
                   >
-                    <span className="btn-inner--text">Get FREE version</span>
+                    <span className="btn-inner--text">
+                      Get FREE version
+                    </span>
                   </Button>
                   <Button
                     className="btn-icon mb-3 mb-sm-0"
@@ -394,8 +411,12 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/bootstrap.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip170669606">
-                        Bootstrap 4 - Most popular front-end component library
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip170669606"
+                      >
+                        Bootstrap 4 - Most popular front-end component
+                        library
                       </UncontrolledTooltip>
                     </Col>
                     <Col className="my-2" md="2" xs="3">
@@ -410,7 +431,10 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip374813715">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip374813715"
+                      >
                         React - A JavaScript library for building user
                         interfaces
                       </UncontrolledTooltip>
@@ -427,7 +451,10 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/nodejs-logo.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip374813716">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip374813716"
+                      >
                         Node.js - a JavaScript runtime built on Chrome's V8
                         JavaScript engine
                       </UncontrolledTooltip>
@@ -445,7 +472,10 @@ function Index() {
                           style={{ backgroundColor: "white" }}
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip374813717">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip374813717"
+                      >
                         Laravel - The PHP Framework For Web Artisans
                       </UncontrolledTooltip>
                     </Col>
@@ -461,7 +491,10 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/vue.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip616015001">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip616015001"
+                      >
                         Vue.js - The progressive javascript framework
                       </UncontrolledTooltip>
                     </Col>
@@ -477,7 +510,10 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/angular.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip211254026">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip211254026"
+                      >
                         Angular - One framework. Mobile & desktop
                       </UncontrolledTooltip>
                     </Col>
@@ -493,7 +529,10 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/sketch.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip82987604">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip82987604"
+                      >
                         Sketch - Digital design toolkit
                       </UncontrolledTooltip>
                     </Col>
@@ -509,7 +548,10 @@ function Index() {
                           src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/ps.jpg"
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip731835410">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip731835410"
+                      >
                         Adobe Photoshop - Software for digital images
                         manipulation
                       </UncontrolledTooltip>

@@ -34,7 +34,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Validation() {
   const [focused, setFocused] = React.useState(false);
@@ -104,15 +104,16 @@ function Validation() {
                   <Row>
                     <Col lg="8">
                       <p className="mb-0">
-                        For custom form validation messages, you’ll need to add
-                        the novalidate boolean attribute to your{" "}
+                        For custom form validation messages, you’ll need to
+                        add the novalidate boolean attribute to your{" "}
                         <code>{`<form>`}</code>. This disables the browser
-                        default feedback tooltips, but still provides access to
-                        the form validation APIs in JavaScript. <br />
+                        default feedback tooltips, but still provides
+                        access to the form validation APIs in JavaScript.{" "}
+                        <br />
                         <br />
                         When attempting to submit, you’ll see the{" "}
-                        <code>:invalid</code> and <code>:valid</code> styles
-                        applied to your form controls.
+                        <code>:invalid</code> and <code>:valid</code>{" "}
+                        styles applied to your form controls.
                       </p>
                     </Col>
                   </Row>
@@ -133,7 +134,7 @@ function Validation() {
                           type="text"
                           valid={firstNameState === "valid"}
                           invalid={firstNameState === "invalid"}
-                          onChange={(e) => {
+                          onChange={e => {
                             setfirstName(e.target.value);
                             if (e.target.value === "") {
                               setfirstNameState("invalid");
@@ -158,7 +159,7 @@ function Validation() {
                           type="text"
                           valid={lastNameState === "valid"}
                           invalid={lastNameState === "invalid"}
-                          onChange={(e) => {
+                          onChange={e => {
                             setlastName(e.target.value);
                             if (e.target.value === "") {
                               setlastNameState("invalid");
@@ -183,7 +184,7 @@ function Validation() {
                           type="text"
                           valid={usernameState === "valid"}
                           invalid={usernameState === "invalid"}
-                          onChange={(e) => {
+                          onChange={e => {
                             setusername(e.target.value);
                             if (e.target.value === "") {
                               setusernameState("invalid");
@@ -211,7 +212,7 @@ function Validation() {
                           type="text"
                           valid={cityState === "valid"}
                           invalid={cityState === "invalid"}
-                          onChange={(e) => {
+                          onChange={e => {
                             setcity(e.target.value);
                             if (e.target.value === "") {
                               setcityState("invalid");
@@ -237,7 +238,7 @@ function Validation() {
                           type="text"
                           valid={stateState === "valid"}
                           invalid={stateState === "invalid"}
-                          onChange={(e) => {
+                          onChange={e => {
                             setstate(e.target.value);
                             if (e.target.value === "") {
                               setstateState("invalid");
@@ -263,7 +264,7 @@ function Validation() {
                           type="text"
                           valid={zipState === "valid"}
                           invalid={zipState === "invalid"}
-                          onChange={(e) => {
+                          onChange={e => {
                             setzip(e.target.value);
                             if (e.target.value === "") {
                               setzipState("invalid");
@@ -285,8 +286,10 @@ function Validation() {
                           id="invalidCheck"
                           type="checkbox"
                           valid={(checkboxState === "valid").toString()}
-                          invalid={(checkboxState === "invalid").toString()}
-                          onChange={(e) => {
+                          invalid={(
+                            checkboxState === "invalid"
+                          ).toString()}
+                          onChange={e => {
                             setcheckbox(e.target.value);
                             if (e.target.value === "") {
                               setcheckboxState("invalid");
@@ -326,15 +329,16 @@ function Validation() {
                   <Row>
                     <Col lg="8">
                       <p className="mb-0">
-                        Not interested in custom validation feedback messages or
-                        writing JavaScript to change form behaviors? All good,
-                        you can use the browser defaults. Try submitting the
-                        form below. Depending on your browser and OS, you’ll see
-                        a slightly different style of feedback. <br />
+                        Not interested in custom validation feedback
+                        messages or writing JavaScript to change form
+                        behaviors? All good, you can use the browser
+                        defaults. Try submitting the form below. Depending
+                        on your browser and OS, you’ll see a slightly
+                        different style of feedback. <br />
                         <br />
-                        While these feedback styles cannot be styled with CSS,
-                        you can still customize the feedback text through
-                        JavaScript.
+                        While these feedback styles cannot be styled with
+                        CSS, you can still customize the feedback text
+                        through JavaScript.
                       </p>
                     </Col>
                   </Row>
@@ -492,12 +496,12 @@ function Validation() {
                   <Row>
                     <Col lg="8">
                       <p className="mb-0">
-                        We recommend using client side validation, but in case
-                        you require server side, you can indicate invalid and
-                        valid form fields with <code>.is-invalid</code> and{" "}
-                        <code>.is-valid</code>. Note that{" "}
-                        <code>.invalid-feedback</code> is also supported with
-                        these classes.
+                        We recommend using client side validation, but in
+                        case you require server side, you can indicate
+                        invalid and valid form fields with{" "}
+                        <code>.is-invalid</code> and <code>.is-valid</code>
+                        . Note that <code>.invalid-feedback</code> is also
+                        supported with these classes.
                       </p>
                     </Col>
                   </Row>

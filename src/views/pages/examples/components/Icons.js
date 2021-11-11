@@ -28,7 +28,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Icons() {
   const [copiedText, setCopiedText] = React.useState(null);
@@ -829,7 +829,9 @@ function Icons() {
                   <Col lg="3" md="6">
                     <CopyToClipboard
                       text={"ni ni-calendar-grid-58"}
-                      onCopy={() => setCopiedText("ni ni-calendar-grid-58")}
+                      onCopy={() =>
+                        setCopiedText("ni ni-calendar-grid-58")
+                      }
                     >
                       <button
                         className="btn-icon-clipboard"
@@ -1072,7 +1074,9 @@ function Icons() {
                   <Col lg="3" md="6">
                     <CopyToClipboard
                       text={"ni ni-cloud-download-95"}
-                      onCopy={() => setCopiedText("ni ni-cloud-download-95")}
+                      onCopy={() =>
+                        setCopiedText("ni ni-cloud-download-95")
+                      }
                     >
                       <button
                         className="btn-icon-clipboard"
@@ -1693,7 +1697,9 @@ function Icons() {
                   <Col lg="3" md="6">
                     <CopyToClipboard
                       text={"ni ni-lock-circle-open"}
-                      onCopy={() => setCopiedText("ni ni-lock-circle-open")}
+                      onCopy={() =>
+                        setCopiedText("ni ni-lock-circle-open")
+                      }
                     >
                       <button
                         className="btn-icon-clipboard"
@@ -2071,7 +2077,9 @@ function Icons() {
                   <Col lg="3" md="6">
                     <CopyToClipboard
                       text={"ni ni-settings-gear-65"}
-                      onCopy={() => setCopiedText("ni ni-settings-gear-65")}
+                      onCopy={() =>
+                        setCopiedText("ni ni-settings-gear-65")
+                      }
                     >
                       <button
                         className="btn-icon-clipboard"

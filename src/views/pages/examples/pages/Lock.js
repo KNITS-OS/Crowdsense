@@ -33,13 +33,16 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import AuthHeader from "components/Headers/AuthHeader.js";
+import AuthHeader from "components/Headers/AuthHeader";
 
 function Lock() {
   const [focused, setFocused] = React.useState(false);
   return (
     <>
-      <AuthHeader title="Lock screen" lead="Better to be safe than sorry." />
+      <AuthHeader
+        title="Lock screen"
+        lead="Better to be safe than sorry."
+      />
       <Container className="mt--8 pb-5">
         <Row className="justify-content-center">
           <Col lg="5" md="7">

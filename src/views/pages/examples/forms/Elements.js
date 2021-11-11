@@ -29,7 +29,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Elements() {
   return (
@@ -403,7 +403,9 @@ function Elements() {
                       </Label>
                       <Col md="10">
                         <Input
-                          defaultValue={new Date().getFullYear() + "-11-23"}
+                          defaultValue={
+                            new Date().getFullYear() + "-11-23"
+                          }
                           id="example-date-input"
                           type="date"
                         />
@@ -486,7 +488,9 @@ function Elements() {
                 </CardHeader>
                 <CardBody>
                   <FormGroup>
-                    <label className="form-control-label">Large input</label>
+                    <label className="form-control-label">
+                      Large input
+                    </label>
                     <Input
                       className="form-control-lg"
                       placeholder=".form-control-lg"
@@ -494,11 +498,15 @@ function Elements() {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <label className="form-control-label">Default input</label>
+                    <label className="form-control-label">
+                      Default input
+                    </label>
                     <Input placeholder="Default input" type="text" />
                   </FormGroup>
                   <FormGroup>
-                    <label className="form-control-label">Small input</label>
+                    <label className="form-control-label">
+                      Small input
+                    </label>
                     <Input
                       className="form-control-sm"
                       placeholder=".form-control-sm"

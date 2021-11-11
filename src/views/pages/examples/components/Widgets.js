@@ -47,9 +47,9 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import CardsHeader from "components/Headers/CardsHeader.js";
+import CardsHeader from "components/Headers/CardsHeader";
 
-import { widgetEvents } from "variables/general.js";
+import { widgetEvents } from "variables/general";
 
 let mapData = {
   AU: 760,
@@ -92,7 +92,9 @@ function Widgets() {
             <Card>
               <CardImg
                 alt="..."
-                src={require("assets/img/theme/img-1-1000x900.jpg").default}
+                src={
+                  require("assets/img/theme/img-1-1000x900.jpg").default
+                }
                 top
               />
               <CardBody>
@@ -103,14 +105,14 @@ function Widgets() {
                   by John Snow on Oct 29th at 10:23 AM
                 </small>
                 <CardText className="mt-4">
-                  Argon is a great free UI package based on Bootstrap 4 that
-                  includes the most important components and features.
+                  Argon is a great free UI package based on Bootstrap 4
+                  that includes the most important components and features.
                 </CardText>
                 <Button
                   className="px-0"
                   color="link"
                   href="#pablo"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={e => e.preventDefault()}
                 >
                   View article
                 </Button>
@@ -142,17 +144,23 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/team-1.jpg").default}
+                            src={
+                              require("assets/img/theme/team-1.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
                       <div className="col ml--2">
                         <h4 className="mb-0">
-                          <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          <a
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                          >
                             John Michael
                           </a>
                         </h4>
@@ -172,17 +180,23 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/team-2.jpg").default}
+                            src={
+                              require("assets/img/theme/team-2.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
                       <div className="col ml--2">
                         <h4 className="mb-0">
-                          <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          <a
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                          >
                             Alex Smith
                           </a>
                         </h4>
@@ -202,17 +216,23 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/team-3.jpg").default}
+                            src={
+                              require("assets/img/theme/team-3.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
                       <div className="col ml--2">
                         <h4 className="mb-0">
-                          <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          <a
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                          >
                             Samantha Ivy
                           </a>
                         </h4>
@@ -232,17 +252,23 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/team-4.jpg").default}
+                            src={
+                              require("assets/img/theme/team-4.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
                       <div className="col ml--2">
                         <h4 className="mb-0">
-                          <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          <a
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                          >
                             John Michael
                           </a>
                         </h4>
@@ -262,17 +288,23 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/team-5.jpg").default}
+                            src={
+                              require("assets/img/theme/team-5.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
                       <div className="col ml--2">
                         <h4 className="mb-0">
-                          <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          <a
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                          >
                             John Snow
                           </a>
                         </h4>
@@ -298,7 +330,7 @@ function Widgets() {
                   <ListGroupItem
                     className="list-group-item-action flex-column align-items-start py-4 px-4"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                     tag="a"
                   >
                     <div className="d-flex w-100 justify-content-between">
@@ -307,14 +339,19 @@ function Widgets() {
                           <img
                             alt="..."
                             className="avatar avatar-xs mr-2"
-                            src={require("assets/img/theme/team-1.jpg").default}
+                            src={
+                              require("assets/img/theme/team-1.jpg")
+                                .default
+                            }
                           />
                           <h5 className="mb-1">Tim</h5>
                         </div>
                       </div>
                       <small>2 hrs ago</small>
                     </div>
-                    <h4 className="mt-3 mb-1">New order for Argon Dashboard</h4>
+                    <h4 className="mt-3 mb-1">
+                      New order for Argon Dashboard
+                    </h4>
                     <p className="text-sm mb-0">
                       Doasdnec id elit non mi porta gravida at eget metus.
                       Maecenas sed diam eget risus varius blandit.
@@ -323,7 +360,7 @@ function Widgets() {
                   <ListGroupItem
                     className="list-group-item-action flex-column align-items-start py-4 px-4"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                     tag="a"
                   >
                     <div className="d-flex w-100 justify-content-between">
@@ -332,7 +369,10 @@ function Widgets() {
                           <img
                             alt="..."
                             className="avatar avatar-xs mr-2"
-                            src={require("assets/img/theme/team-2.jpg").default}
+                            src={
+                              require("assets/img/theme/team-2.jpg")
+                                .default
+                            }
                           />
                           <h5 className="mb-1">Mike</h5>
                         </div>
@@ -358,7 +398,8 @@ function Widgets() {
                     <img
                       alt="..."
                       src={
-                        require("assets/img/icons/cards/mastercard.png").default
+                        require("assets/img/icons/cards/mastercard.png")
+                          .default
                       }
                     />
                   </div>
@@ -384,9 +425,12 @@ function Widgets() {
                   <Form className="form-primary" role="form">
                     <FormGroup>
                       <InputGroup
-                        className={classnames("input-group-alternative mb-3", {
-                          focused: nameOnCard,
-                        })}
+                        className={classnames(
+                          "input-group-alternative mb-3",
+                          {
+                            focused: nameOnCard,
+                          },
+                        )}
                       >
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -396,16 +440,19 @@ function Widgets() {
                         <Input
                           placeholder="Name on card"
                           type="text"
-                          onFocus={(e) => setnameOnCard(true)}
-                          onBlur={(e) => setnameOnCard(false)}
+                          onFocus={e => setnameOnCard(true)}
+                          onBlur={e => setnameOnCard(false)}
                         />
                       </InputGroup>
                     </FormGroup>
                     <FormGroup>
                       <InputGroup
-                        className={classnames("input-group-alternative mb-3", {
-                          focused: cardNumber,
-                        })}
+                        className={classnames(
+                          "input-group-alternative mb-3",
+                          {
+                            focused: cardNumber,
+                          },
+                        )}
                       >
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -415,8 +462,8 @@ function Widgets() {
                         <Input
                           placeholder="Card number"
                           type="text"
-                          onFocus={(e) => setcardNumber(true)}
-                          onBlur={(e) => setcardNumber(false)}
+                          onFocus={e => setcardNumber(true)}
+                          onBlur={e => setcardNumber(false)}
                         />
                       </InputGroup>
                     </FormGroup>
@@ -428,7 +475,7 @@ function Widgets() {
                               "input-group-alternative mb-3",
                               {
                                 focused: date,
-                              }
+                              },
                             )}
                           >
                             <InputGroupAddon addonType="prepend">
@@ -439,8 +486,8 @@ function Widgets() {
                             <Input
                               placeholder="MM/YY"
                               type="text"
-                              onFocus={(e) => setdate(true)}
-                              onBlur={(e) => setdate(false)}
+                              onFocus={e => setdate(true)}
+                              onBlur={e => setdate(false)}
                             />
                           </InputGroup>
                         </FormGroup>
@@ -448,9 +495,12 @@ function Widgets() {
                       <Col xs="6">
                         <FormGroup>
                           <InputGroup
-                            className={classnames("input-group-alternative", {
-                              focused: ccv,
-                            })}
+                            className={classnames(
+                              "input-group-alternative",
+                              {
+                                focused: ccv,
+                              },
+                            )}
                           >
                             <InputGroupAddon addonType="prepend">
                               <InputGroupText>
@@ -460,8 +510,8 @@ function Widgets() {
                             <Input
                               placeholder="CCV"
                               type="text"
-                              onFocus={(e) => setccv(true)}
-                              onBlur={(e) => setccv(false)}
+                              onFocus={e => setccv(true)}
+                              onBlur={e => setccv(false)}
                             />
                           </InputGroup>
                         </FormGroup>
@@ -580,12 +630,13 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/bootstrap.jpg").default
+                              require("assets/img/theme/bootstrap.jpg")
+                                .default
                             }
                           />
                         </a>
@@ -607,12 +658,13 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/angular.jpg").default
+                              require("assets/img/theme/angular.jpg")
+                                .default
                             }
                           />
                         </a>
@@ -634,11 +686,14 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/sketch.jpg").default}
+                            src={
+                              require("assets/img/theme/sketch.jpg")
+                                .default
+                            }
                           />
                         </a>
                       </Col>
@@ -659,11 +714,13 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/react.jpg").default}
+                            src={
+                              require("assets/img/theme/react.jpg").default
+                            }
                           />
                         </a>
                       </Col>
@@ -684,11 +741,13 @@ function Widgets() {
                         <a
                           className="avatar rounded-circle"
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           <img
                             alt="..."
-                            src={require("assets/img/theme/vue.jpg").default}
+                            src={
+                              require("assets/img/theme/vue.jpg").default
+                            }
                           />
                         </a>
                       </Col>
@@ -712,7 +771,10 @@ function Widgets() {
                   <div className="col">
                     <img
                       alt="..."
-                      src={require("assets/img/icons/cards/paypal.png").default}
+                      src={
+                        require("assets/img/icons/cards/paypal.png")
+                          .default
+                      }
                     />
                   </div>
                   <Col className="col-auto">
@@ -722,7 +784,9 @@ function Widgets() {
                   </Col>
                 </Row>
                 <div className="my-4">
-                  <span className="h6 surtitle text-muted">PayPal E-mail</span>
+                  <span className="h6 surtitle text-muted">
+                    PayPal E-mail
+                  </span>
                   <div className="h1">john.snow@gmail.com</div>
                 </div>
                 <Row>
@@ -746,7 +810,7 @@ function Widgets() {
                       className="btn-neutral"
                       color="default"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       size="sm"
                     >
                       Action
@@ -850,7 +914,10 @@ function Widgets() {
                       <Col className="col-auto">
                         <img
                           alt="..."
-                          src={require("assets/img/icons/flags/US.png").default}
+                          src={
+                            require("assets/img/icons/flags/US.png")
+                              .default
+                          }
                         />
                       </Col>
                       <div className="col">
@@ -872,7 +939,10 @@ function Widgets() {
                       <Col className="col-auto">
                         <img
                           alt="..."
-                          src={require("assets/img/icons/flags/DE.png").default}
+                          src={
+                            require("assets/img/icons/flags/DE.png")
+                              .default
+                          }
                         />
                       </Col>
                       <div className="col">
@@ -894,7 +964,10 @@ function Widgets() {
                       <Col className="col-auto">
                         <img
                           alt="..."
-                          src={require("assets/img/icons/flags/GB.png").default}
+                          src={
+                            require("assets/img/icons/flags/GB.png")
+                              .default
+                          }
                         />
                       </Col>
                       <div className="col">
@@ -920,7 +993,9 @@ function Widgets() {
                   <div className="col">
                     <img
                       alt="..."
-                      src={require("assets/img/icons/cards/visa.png").default}
+                      src={
+                        require("assets/img/icons/cards/visa.png").default
+                      }
                     />
                   </div>
                   <Col className="col-auto">
@@ -930,7 +1005,9 @@ function Widgets() {
                   </Col>
                 </Row>
                 <div className="my-4">
-                  <span className="h6 surtitle text-light">Card number</span>
+                  <span className="h6 surtitle text-light">
+                    Card number
+                  </span>
                   <div className="card-serial-number h1 text-white">
                     <div>4358</div>
                     <div>7421</div>
@@ -941,10 +1018,14 @@ function Widgets() {
                 <Row>
                   <div className="col">
                     <span className="h6 surtitle text-light">Name</span>
-                    <span className="d-block h3 text-white">John Snow</span>
+                    <span className="d-block h3 text-white">
+                      John Snow
+                    </span>
                   </div>
                   <div className="col">
-                    <span className="h6 surtitle text-light">Expiry date</span>
+                    <span className="h6 surtitle text-light">
+                      Expiry date
+                    </span>
                     <span className="d-block h3 text-white">11/23</span>
                   </div>
                 </Row>
@@ -1043,7 +1124,9 @@ function Widgets() {
                   <ListGroupItem className="checklist-entry flex-column align-items-start py-4 px-4">
                     <div className="checklist-item checklist-item-success checklist-item-checked">
                       <div className="checklist-info">
-                        <h5 className="checklist-title mb-0">Call with Dave</h5>
+                        <h5 className="checklist-title mb-0">
+                          Call with Dave
+                        </h5>
                         <small>10:30 AM</small>
                       </div>
                       <div>
@@ -1065,7 +1148,9 @@ function Widgets() {
                   <ListGroupItem className="checklist-entry flex-column align-items-start py-4 px-4">
                     <div className="checklist-item checklist-item-warning">
                       <div className="checklist-info">
-                        <h5 className="checklist-title mb-0">Lunch meeting</h5>
+                        <h5 className="checklist-title mb-0">
+                          Lunch meeting
+                        </h5>
                         <small>10:30 AM</small>
                       </div>
                       <div>

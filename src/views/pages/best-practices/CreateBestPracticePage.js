@@ -35,26 +35,22 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader.js";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 
 function CreateBestPracticePage() {
   return (
     <>
-       <GradientEmptyHeader name="Best Practices"  />
-       <Container className="mt--6" fluid>    
-        <Row>     
+      <GradientEmptyHeader name="Best Practices" />
+      <Container className="mt--6" fluid>
+        <Row>
           <Col className="order-xl-1" xl="12">
-          <FormGroup>
-            <label className="form-control-label">Best Practice</label>
-            <Input
-                  id="input-postal-code" 
-                  type="textarea"
-                  rows="20"
-                />
+            <FormGroup>
+              <label className="form-control-label">Best Practice</label>
+              <Input id="input-postal-code" type="textarea" rows="20" />
             </FormGroup>
-          </Col>         
+          </Col>
         </Row>
-        </Container>
+      </Container>
     </>
   );
 }

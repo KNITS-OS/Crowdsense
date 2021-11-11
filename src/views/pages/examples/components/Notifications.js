@@ -40,7 +40,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Notifications() {
   const [focusedEmail, setFocusedEmail] = React.useState(false);
@@ -50,7 +50,7 @@ function Notifications() {
   const [formModal, setformModal] = React.useState(false);
   const [alert, setalert] = React.useState(false);
   const notificationAlertRef = React.useRef(null);
-  const notify = (type) => {
+  const notify = type => {
     let options = {
       place: "tc",
       message: (
@@ -81,7 +81,7 @@ function Notifications() {
         text="A few words about this sweet alert ..."
       >
         A few words about this sweet alert ...
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
   const infoAlert = () => {
@@ -97,7 +97,7 @@ function Notifications() {
         btnSize=""
       >
         A few words about this sweet alert ...
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
   const successAlert = () => {
@@ -113,7 +113,7 @@ function Notifications() {
         btnSize=""
       >
         A few words about this sweet alert ...
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
   const warningAlert = () => {
@@ -129,7 +129,7 @@ function Notifications() {
         btnSize=""
       >
         A few words about this sweet alert ...
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
   const questionAlert = () => {
@@ -153,7 +153,7 @@ function Notifications() {
         btnSize=""
       >
         A few words about this sweet alert ...
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
 
@@ -177,8 +177,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Default!</strong> This is a default alert—check it
-                    out!
+                    <strong>Default!</strong> This is a default alert—check
+                    it out!
                   </span>
                 </UncontrolledAlert>
                 <UncontrolledAlert color="primary">
@@ -186,8 +186,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Primary!</strong> This is a primary alert—check it
-                    out!
+                    <strong>Primary!</strong> This is a primary alert—check
+                    it out!
                   </span>
                 </UncontrolledAlert>
                 <UncontrolledAlert color="secondary">
@@ -195,8 +195,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Secondary!</strong> This is a secondary alert—check
-                    it out!
+                    <strong>Secondary!</strong> This is a secondary
+                    alert—check it out!
                   </span>
                 </UncontrolledAlert>
                 <UncontrolledAlert color="info">
@@ -204,7 +204,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Info!</strong> This is a info alert—check it out!
+                    <strong>Info!</strong> This is a info alert—check it
+                    out!
                   </span>
                 </UncontrolledAlert>
                 <UncontrolledAlert color="success">
@@ -212,8 +213,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Success!</strong> This is a success alert—check it
-                    out!
+                    <strong>Success!</strong> This is a success alert—check
+                    it out!
                   </span>
                 </UncontrolledAlert>
                 <UncontrolledAlert color="danger">
@@ -221,8 +222,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Danger!</strong> This is a danger alert—check it
-                    out!
+                    <strong>Danger!</strong> This is a danger alert—check
+                    it out!
                   </span>
                 </UncontrolledAlert>
                 <UncontrolledAlert color="warning">
@@ -230,8 +231,8 @@ function Notifications() {
                     <i className="ni ni-like-2" />
                   </span>
                   <span className="alert-text ml-1">
-                    <strong>Warning!</strong> This is a warning alert—check it
-                    out!
+                    <strong>Warning!</strong> This is a warning alert—check
+                    it out!
                   </span>
                 </UncontrolledAlert>
               </CardBody>
@@ -258,7 +259,10 @@ function Notifications() {
                       toggle={() => setdefaultModal(false)}
                     >
                       <div className="modal-header">
-                        <h6 className="modal-title" id="modal-title-default">
+                        <h6
+                          className="modal-title"
+                          id="modal-title-default"
+                        >
                           Type your modal title
                         </h6>
                         <button
@@ -273,17 +277,17 @@ function Notifications() {
                       </div>
                       <div className="modal-body">
                         <p>
-                          Far far away, behind the word mountains, far from the
-                          countries Vokalia and Consonantia, there live the
-                          blind texts. Separated they live in Bookmarksgrove
-                          right at the coast of the Semantics, a large language
-                          ocean.
+                          Far far away, behind the word mountains, far from
+                          the countries Vokalia and Consonantia, there live
+                          the blind texts. Separated they live in
+                          Bookmarksgrove right at the coast of the
+                          Semantics, a large language ocean.
                         </p>
                         <p>
-                          A small river named Duden flows by their place and
-                          supplies it with the necessary regelialia. It is a
-                          paradisematic country, in which roasted parts of
-                          sentences fly into your mouth.
+                          A small river named Duden flows by their place
+                          and supplies it with the necessary regelialia. It
+                          is a paradisematic country, in which roasted
+                          parts of sentences fly into your mouth.
                         </p>
                       </div>
                       <div className="modal-footer">
@@ -341,8 +345,8 @@ function Notifications() {
                             You should read this!
                           </h4>
                           <p>
-                            A small river named Duden flows by their place and
-                            supplies it with the necessary regelialia.
+                            A small river named Duden flows by their place
+                            and supplies it with the necessary regelialia.
                           </p>
                         </div>
                       </div>
@@ -391,7 +395,7 @@ function Notifications() {
                                 className="btn-neutral btn-icon"
                                 color="default"
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={e => e.preventDefault()}
                               >
                                 <span className="btn-inner--icon mr-1">
                                   <img
@@ -402,13 +406,15 @@ function Notifications() {
                                     }
                                   />
                                 </span>
-                                <span className="btn-inner--text">Github</span>
+                                <span className="btn-inner--text">
+                                  Github
+                                </span>
                               </Button>
                               <Button
                                 className="btn-neutral btn-icon"
                                 color="default"
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={e => e.preventDefault()}
                               >
                                 <span className="btn-inner--icon mr-1">
                                   <img
@@ -419,7 +425,9 @@ function Notifications() {
                                     }
                                   />
                                 </span>
-                                <span className="btn-inner--text">Google</span>
+                                <span className="btn-inner--text">
+                                  Google
+                                </span>
                               </Button>
                             </div>
                           </CardHeader>
@@ -461,8 +469,12 @@ function Notifications() {
                                   <Input
                                     placeholder="Password"
                                     type="password"
-                                    onFocus={() => setFocusedPassword(true)}
-                                    onBlur={() => setFocusedPassword(false)}
+                                    onFocus={() =>
+                                      setFocusedPassword(true)
+                                    }
+                                    onBlur={() =>
+                                      setFocusedPassword(false)
+                                    }
                                   />
                                 </InputGroup>
                               </FormGroup>

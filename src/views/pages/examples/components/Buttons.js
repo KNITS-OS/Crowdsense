@@ -28,7 +28,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Buttons() {
   return (
@@ -154,7 +154,11 @@ function Buttons() {
                   <Button color="secondary" type="button">
                     Left
                   </Button>
-                  <Button className="active" color="secondary" type="button">
+                  <Button
+                    className="active"
+                    color="secondary"
+                    type="button"
+                  >
                     Middle
                   </Button>
                   <Button color="secondary" type="button">
@@ -230,7 +234,11 @@ function Buttons() {
                   </span>
                   <span className="btn-inner--text">Instagram</span>
                 </Button>
-                <Button className="btn-icon" color="pinterest" type="button">
+                <Button
+                  className="btn-icon"
+                  color="pinterest"
+                  type="button"
+                >
                   <span className="btn-inner--icon mr-1">
                     <i className="fab fa-pinterest" />
                   </span>
@@ -262,7 +270,11 @@ function Buttons() {
                   </span>
                   <span className="btn-inner--text">Slack</span>
                 </Button>
-                <Button className="btn-icon" color="dribbble" type="button">
+                <Button
+                  className="btn-icon"
+                  color="dribbble"
+                  type="button"
+                >
                   <span className="btn-inner--icon mr-1">
                     <i className="fab fa-dribbble" />
                   </span>
@@ -278,7 +290,11 @@ function Buttons() {
                     <i className="fab fa-facebook" />
                   </span>
                 </Button>
-                <Button className="btn-icon-only" color="twitter" type="button">
+                <Button
+                  className="btn-icon-only"
+                  color="twitter"
+                  type="button"
+                >
                   <span className="btn-inner--icon">
                     <i className="fab fa-twitter" />
                   </span>
@@ -310,7 +326,11 @@ function Buttons() {
                     <i className="fab fa-pinterest" />
                   </span>
                 </Button>
-                <Button className="btn-icon-only" color="youtube" type="button">
+                <Button
+                  className="btn-icon-only"
+                  color="youtube"
+                  type="button"
+                >
                   <span className="btn-inner--icon">
                     <i className="fab fa-youtube" />
                   </span>

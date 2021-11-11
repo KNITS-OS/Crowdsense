@@ -42,7 +42,7 @@ import {
 } from "reactstrap";
 // core components
 
-import { events as eventsVariables } from "variables/general.js";
+import { events as eventsVariables } from "variables/general";
 
 let calendar;
 
@@ -74,7 +74,7 @@ function CalendarView() {
       events: events,
       headerToolbar: "",
       // Add new event
-      select: (info) => {
+      select: info => {
         setModalAdd(true);
         setStartDate(info.startStr);
         setEndDate(info.endStr);
@@ -93,7 +93,7 @@ function CalendarView() {
     calendar.render();
     setCurrentDate(calendar.view.title);
   };
-  const changeView = (newView) => {
+  const changeView = newView => {
     calendar.changeView(newView);
     setCurrentDate(calendar.view.title);
   };
@@ -172,11 +172,11 @@ function CalendarView() {
         btnSize=""
       >
         You won't be able to revert this!
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
   const deleteEvent = () => {
-    var newEvents = events.filter((prop) => prop.id + "" !== eventId);
+    var newEvents = events.filter(prop => prop.id + "" !== eventId);
     setEvent(undefined);
     setAlert(
       <ReactBSAlert
@@ -190,7 +190,7 @@ function CalendarView() {
         btnSize=""
       >
         A few words about this sweet alert ...
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
     setModalChange(false);
     setEvents(newEvents);
@@ -217,12 +217,12 @@ function CalendarView() {
                   listClassName="breadcrumb-links breadcrumb-dark"
                 >
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <i className="fas fa-home" />
                     </a>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       Dashboard
                     </a>
                   </BreadcrumbItem>
@@ -308,12 +308,14 @@ function CalendarView() {
               <div className="modal-body">
                 <form className="new-event--form">
                   <FormGroup>
-                    <label className="form-control-label">Event title</label>
+                    <label className="form-control-label">
+                      Event title
+                    </label>
                     <Input
                       className="form-control-alternative new-event--title"
                       placeholder="Event Title"
                       type="text"
-                      onChange={(e) => setEventTitle(e.target.value)}
+                      onChange={e => setEventTitle(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup className="mb-0">
@@ -403,13 +405,15 @@ function CalendarView() {
               <div className="modal-body">
                 <Form className="edit-event--form">
                   <FormGroup>
-                    <label className="form-control-label">Event title</label>
+                    <label className="form-control-label">
+                      Event title
+                    </label>
                     <Input
                       className="form-control-alternative edit-event--title"
                       placeholder="Event Title"
                       type="text"
                       defaultValue={eventTitle}
-                      onChange={(e) => setEventTitle(e.target.value)}
+                      onChange={e => setEventTitle(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -471,13 +475,15 @@ function CalendarView() {
                     </ButtonGroup>
                   </FormGroup>
                   <FormGroup>
-                    <label className="form-control-label">Description</label>
+                    <label className="form-control-label">
+                      Description
+                    </label>
                     <Input
                       className="form-control-alternative edit-event--description textarea-autosize"
                       placeholder="Event Desctiption"
                       type="textarea"
                       defaultValue={eventDescription}
-                      onChange={(e) => setEventDescription(e.target.value)}
+                      onChange={e => setEventDescription(e.target.value)}
                     />
                     <i className="form-group--bar" />
                   </FormGroup>

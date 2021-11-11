@@ -18,7 +18,7 @@ import React from "react";
 // reactstrap components
 import { Card, Container, Row } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 const MapCustom = () => {
   const mapRef = React.useRef(null);

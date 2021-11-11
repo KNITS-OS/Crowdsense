@@ -27,7 +27,7 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 
 function EmailHistoryPage() {
   return (
@@ -56,9 +56,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="mt-3 mb-0">New message</h5>
                       <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="success" pill>
@@ -83,9 +83,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="mt-3 mb-0">Product issue</h5>
                       <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="danger" pill>
@@ -110,9 +110,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="mt-3 mb-0">New likes</h5>
                       <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="info" pill>
@@ -137,9 +137,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="mt-3 mb-0">New message</h5>
                       <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="success" pill>
@@ -164,9 +164,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="mt-3 mb-0">Product issue</h5>
                       <p className="text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="danger" pill>
@@ -206,9 +206,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="text-white mt-3 mb-0">New message</h5>
                       <p className="text-light text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="success" pill>
@@ -231,11 +231,13 @@ function EmailHistoryPage() {
                       <small className="text-light font-weight-bold">
                         10:30 AM
                       </small>
-                      <h5 className="text-white mt-3 mb-0">Product issue</h5>
+                      <h5 className="text-white mt-3 mb-0">
+                        Product issue
+                      </h5>
                       <p className="text-light text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="danger" pill>
@@ -260,9 +262,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="text-white mt-3 mb-0">New likes</h5>
                       <p className="text-light text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="info" pill>
@@ -287,9 +289,9 @@ function EmailHistoryPage() {
                       </small>
                       <h5 className="text-white mt-3 mb-0">New message</h5>
                       <p className="text-light text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="success" pill>
@@ -312,11 +314,13 @@ function EmailHistoryPage() {
                       <small className="text-light font-weight-bold">
                         10:30 AM
                       </small>
-                      <h5 className="text-white mt-3 mb-0">Product issue</h5>
+                      <h5 className="text-white mt-3 mb-0">
+                        Product issue
+                      </h5>
                       <p className="text-light text-sm mt-1 mb-0">
-                        Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        Cum sociis natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        Nullam id dolor id nibh ultricies vehicula ut id
+                        elit. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus.
                       </p>
                       <div className="mt-3">
                         <Badge color="danger" pill>

@@ -4,7 +4,7 @@
 * Argon Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -14,13 +14,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // react library for routing
 import { Link } from "react-router-dom";
 // reactstrap components
 import { Button, Card, CardBody, Container, Row, Col } from "reactstrap";
 
-function IndexHeader() {
+const IndexHeader = () => {
   return (
     <>
       <div className="header bg-info pt-5 pb-7">
@@ -33,13 +32,13 @@ function IndexHeader() {
                     Argon Dashboard PRO React
                   </h1>
                   <h2 className="display-4 text-white font-weight-light">
-                    A beautiful premium dashboard for Bootstrap 4, React and
-                    Reactstrap.
+                    A beautiful premium dashboard for Bootstrap 4, React
+                    and Reactstrap.
                   </h2>
                   <p className="text-white mt-4">
-                    Argon perfectly combines reusable HTML and modular CSS with
-                    a modern styling and beautiful markup throughout each HTML
-                    template in the pack.
+                    Argon perfectly combines reusable HTML and modular CSS
+                    with a modern styling and beautiful markup throughout
+                    each HTML template in the pack.
                   </p>
                   <div className="mt-5">
                     <Button
@@ -53,7 +52,7 @@ function IndexHeader() {
                     <Button
                       className="my-2"
                       color="default"
-                      href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-auth-navbar"
+                      href="https://www.creative-tim.com/product/argon-dashboard-react?ref=adpr-auth-navbar"
                     >
                       Purchase now
                     </Button>
@@ -69,7 +68,9 @@ function IndexHeader() {
                           <i className="ni ni-active-40" />
                         </div>
                         <h5 className="h3">Components</h5>
-                        <p>Argon comes with over 70 handcrafted components.</p>
+                        <p>
+                          Argon comes with over 70 handcrafted components.
+                        </p>
                       </CardBody>
                     </Card>
                     <Card>
@@ -79,8 +80,8 @@ function IndexHeader() {
                         </div>
                         <h5 className="h3">Plugins</h5>
                         <p>
-                          Fully integrated and extendable third-party plugins
-                          that you will love.
+                          Fully integrated and extendable third-party
+                          plugins that you will love.
                         </p>
                       </CardBody>
                     </Card>
@@ -93,8 +94,8 @@ function IndexHeader() {
                         </div>
                         <h5 className="h3">Pages</h5>
                         <p>
-                          From simple to complex, you get a beautiful set of 15+
-                          page examples.
+                          From simple to complex, you get a beautiful set
+                          of 15+ page examples.
                         </p>
                       </CardBody>
                     </Card>
@@ -104,7 +105,9 @@ function IndexHeader() {
                           <i className="ni ni-active-40" />
                         </div>
                         <h5 className="h3">Documentation</h5>
-                        <p>You will love how easy is to to work with Argon.</p>
+                        <p>
+                          You will love how easy is to to work with Argon.
+                        </p>
                       </CardBody>
                     </Card>
                   </Col>
@@ -122,12 +125,15 @@ function IndexHeader() {
             x="0"
             y="0"
           >
-            <polygon className="fill-default" points="2560 0 2560 100 0 100" />
+            <polygon
+              className="fill-default"
+              points="2560 0 2560 100 0 100"
+            />
           </svg>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default IndexHeader;

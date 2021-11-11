@@ -35,34 +35,31 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import GroupHeader from "components/Headers/GroupHeader.js";
+import GroupHeader from "components/Headers/GroupHeader";
 
 function CreateGroupPage() {
   return (
     <>
-      
       <div
         className="header pb-6 d-flex align-items-center"
         style={{
-          minHeight: "100px",        
+          minHeight: "100px",
           backgroundSize: "cover",
           backgroundPosition: "center top",
         }}
       >
         <span className="mask bg-gradient-info opacity-8" />
-
       </div>
 
       <Container className="mt--6" fluid>
         <Row>
-     
           <Col className="order-xl-1" xl="12">
             <Card>
               <CardHeader>
                 <Row className="align-items-center">
                   <Col xs="8">
                     <h3 className="mb-0">Create Group</h3>
-                  </Col>                
+                  </Col>
                 </Row>
               </CardHeader>
               <CardBody>
@@ -72,7 +69,7 @@ function CreateGroupPage() {
                   </h6>
                   <div className="pl-lg-4">
                     <Row>
-                       <Col lg="10">
+                      <Col lg="10">
                         <FormGroup>
                           <label
                             className="form-control-label"
@@ -87,11 +84,11 @@ function CreateGroupPage() {
                             type="text"
                           />
                         </FormGroup>
-                      </Col>                    
+                      </Col>
                     </Row>
-                  
+
                     <Row>
-                       <Col lg="10">
+                      <Col lg="10">
                         <FormGroup>
                           <label
                             className="form-control-label"
@@ -103,13 +100,11 @@ function CreateGroupPage() {
                             id="input-group-description"
                             placeholder="A few words about the group"
                             rows="4"
-                            type="textarea"                           
+                            type="textarea"
                           />
                         </FormGroup>
-                      </Col>                    
+                      </Col>
                     </Row>
-
-
                   </div>
                   <hr className="my-4" />
 
@@ -187,10 +182,14 @@ function CreateGroupPage() {
                   </div>
                   <hr className="my-4" />
 
-                  <h6 className="heading-small text-muted mb-4">About me</h6>
+                  <h6 className="heading-small text-muted mb-4">
+                    About me
+                  </h6>
                   <div className="pl-lg-4">
                     <FormGroup>
-                      <label className="form-control-label">About Me</label>
+                      <label className="form-control-label">
+                        About Me
+                      </label>
                       <Input
                         placeholder="A few words about you ..."
                         rows="4"

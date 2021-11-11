@@ -15,7 +15,7 @@
 
 */
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from "components/Headers/SimpleHeader";
 import React from "react";
 // react component used to create sweet alerts
 import ReactBSAlert from "react-bootstrap-sweetalert";
