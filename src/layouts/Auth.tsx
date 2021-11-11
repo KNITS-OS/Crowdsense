@@ -21,8 +21,7 @@ import { useEffect, useRef } from "react";
 // react library for routing
 import { Redirect, Switch } from "react-router-dom";
 import routes from "routes";
-import { getRoutes } from "./GetRoutes";
-import ScrollToTop from "./ScrollToTop";
+import { getRoutes, ScrollToTop } from ".";
 
 const Auth = () => {
   const mainContentRef = useRef(document.createElement("div"));

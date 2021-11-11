@@ -24,9 +24,7 @@ import { Redirect, Switch, useLocation } from "react-router-dom";
 import routes from "routes";
 import { Theme } from "types/types";
 import { useToggleSidenav } from "context";
-import { getRoutes } from "./GetRoutes";
-import ScrollToTop from "./ScrollToTop";
-import { ToggleSidenav } from "./ToggleSidenav";
+import { getRoutes, ScrollToTop, ToggleSidenav } from ".";
 
 const Admin = () => {
   const location = useLocation();

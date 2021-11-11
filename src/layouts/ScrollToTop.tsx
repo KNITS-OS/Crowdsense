@@ -5,6 +5,7 @@ const ScrollToTop = (
   mainContentRef: React.MutableRefObject<HTMLDivElement>,
 ) => {
   const location = useLocation();
+
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     if (document.scrollingElement) document.scrollingElement.scrollTop = 0;

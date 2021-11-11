@@ -31,8 +31,7 @@ import "./assets/scss/argon-dashboard-pro-react.scss?v1.2.0";
 // plugins styles downloaded
 import "./assets/vendor/nucleo/css/nucleo.css";
 import { SidenavProvider } from "./context";
-import AdminLayout from "./layouts/Admin";
-import AuthLayout from "./layouts/Auth";
+import { AdminLayout, AuthLayout } from "./layouts";
 
 ReactDOM.render(
   <BrowserRouter>

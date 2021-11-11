@@ -22,12 +22,10 @@ import { useEffect, useRef } from "react";
 // react library for routing
 import { Redirect, Switch } from "react-router-dom";
 import routes from "routes.js";
+import { getRoutes, ScrollToTop, ToggleSidenav } from ".";
 import { useToggleSidenav } from "../context";
-import { getRoutes } from "./GetRoutes";
-import ScrollToTop from "./ScrollToTop";
-import { ToggleSidenav } from "./ToggleSidenav";
 
-function RTL() {
+const RTL = () => {
   const { sidenavOpen } = useToggleSidenav();
 
   const mainContentRef = useRef(document.createElement("div"));
@@ -70,6 +68,6 @@ function RTL() {
       ) : null}
     </>
   );
-}
+};
 
 export default RTL;

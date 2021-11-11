@@ -1,9 +1,9 @@
-import { useToggleSidenav } from "../context";
+import { useToggleSidenav } from "context";
 
 /**
  * @description This function is used to toggle the sidenav
  */
-export const ToggleSidenav = () => {
+const ToggleSidenav = () => {
   const { setSidenavOpen, sidenavOpen } = useToggleSidenav();
 
   if (document.body.classList.contains("g-sidenav-pinned")) {
@@ -15,3 +15,5 @@ export const ToggleSidenav = () => {
   }
   setSidenavOpen(!sidenavOpen);
 };
+
+export default ToggleSidenav;
