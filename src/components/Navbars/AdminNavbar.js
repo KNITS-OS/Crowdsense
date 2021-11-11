@@ -43,8 +43,11 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { useToggleSidenav } from "context";
+import { ToggleSidenav } from "layouts/ToggleSidenav";
 
-function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
+function AdminNavbar({ theme }) {
+  const { sidenavOpen } = useToggleSidenav();
   // function that on mobile devices makes the search open
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
@@ -78,7 +81,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
         className={classnames(
           "navbar-top navbar-expand border-bottom",
           { "navbar-dark bg-info": theme === "dark" },
-          { "navbar-light bg-secondary": theme === "light" }
+          { "navbar-light bg-secondary": theme === "light" },
         )}
       >
         <Container fluid>
@@ -87,7 +90,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               className={classnames(
                 "navbar-search form-inline mr-sm-3",
                 { "navbar-search-light": theme === "dark" },
-                { "navbar-search-dark": theme === "light" }
+                { "navbar-search-dark": theme === "light" },
               )}
             >
               <FormGroup className="mb-0">
@@ -116,9 +119,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   className={classnames(
                     "pr-3 sidenav-toggler",
                     { active: sidenavOpen },
-                    { "sidenav-toggler-dark": theme === "dark" }
+                    { "sidenav-toggler-dark": theme === "dark" },
                   )}
-                  onClick={toggleSidenav}
+                  onClick={ToggleSidenav}
                 >
                   <div className="sidenav-toggler-inner">
                     <i className="sidenav-toggler-line" />
@@ -151,7 +154,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <ListGroupItem
                       className="list-group-item-action"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       tag="a"
                     >
                       <Row className="align-items-center">
@@ -159,7 +162,10 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-1.jpg").default}
+                            src={
+                              require("assets/img/theme/team-1.jpg")
+                                .default
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -180,7 +186,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <ListGroupItem
                       className="list-group-item-action"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       tag="a"
                     >
                       <Row className="align-items-center">
@@ -188,7 +194,10 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-2.jpg").default}
+                            src={
+                              require("assets/img/theme/team-2.jpg")
+                                .default
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -209,7 +218,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <ListGroupItem
                       className="list-group-item-action"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       tag="a"
                     >
                       <Row className="align-items-center">
@@ -217,7 +226,10 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-3.jpg").default}
+                            src={
+                              require("assets/img/theme/team-3.jpg")
+                                .default
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -238,7 +250,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <ListGroupItem
                       className="list-group-item-action"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       tag="a"
                     >
                       <Row className="align-items-center">
@@ -246,7 +258,10 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-4.jpg").default}
+                            src={
+                              require("assets/img/theme/team-4.jpg")
+                                .default
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -267,7 +282,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <ListGroupItem
                       className="list-group-item-action"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       tag="a"
                     >
                       <Row className="align-items-center">
@@ -275,7 +290,10 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-5.jpg").default}
+                            src={
+                              require("assets/img/theme/team-5.jpg")
+                                .default
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -298,7 +316,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <DropdownItem
                     className="text-center text-info font-weight-bold py-3"
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     View all
                   </DropdownItem>
@@ -316,7 +334,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <Col
                       className="shortcut-item"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       xs="4"
                       tag="a"
                     >
@@ -328,7 +346,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <Col
                       className="shortcut-item"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       xs="4"
                       tag="a"
                     >
@@ -340,7 +358,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <Col
                       className="shortcut-item"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       xs="4"
                       tag="a"
                     >
@@ -352,7 +370,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <Col
                       className="shortcut-item"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       xs="4"
                       tag="a"
                     >
@@ -364,7 +382,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <Col
                       className="shortcut-item"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       xs="4"
                       tag="a"
                     >
@@ -376,7 +394,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <Col
                       className="shortcut-item"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       xs="4"
                       tag="a"
                     >
@@ -396,7 +414,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                     <span className="avatar avatar-sm rounded-circle">
                       <img
                         alt="..."
-                        src={require("assets/img/theme/team-4.jpg").default}
+                        src={
+                          require("assets/img/theme/team-4.jpg").default
+                        }
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
@@ -412,28 +432,28 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-single-02" />
                     <span>My profile</span>
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-settings-gear-65" />
                     <span>Settings</span>
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-calendar-grid-58" />
                     <span>Activity</span>
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-support-16" />
                     <span>Support</span>
@@ -441,7 +461,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <DropdownItem divider />
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={e => e.preventDefault()}
                   >
                     <i className="ni ni-user-run" />
                     <span>Logout</span>

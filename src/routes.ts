@@ -15,46 +15,25 @@
 
 */
 
-
-import Buttons from "views/pages/examples/components/Buttons.js";
-import Calendar from "views/pages/examples/components/Calendar.js";
-import Cards from "views/pages/examples/components/Cards.js";
-import Components from "views/pages/examples/forms/Components.js";
-import Elements from "views/pages/examples/forms/Elements.js";
-import Validation from "views/pages/examples/forms/Validation.js";
-import Notifications from "views/pages/examples/components/Notifications.js";
-import Timeline from "views/pages/examples/components/Timeline.js";
-import Typography from "views/pages/examples/components/Typography.js";
-
-import Pricing from "views/pages/examples/pages/Pricing.js";
-import Profile from "views/pages/examples/pages/Profile.js";
-
-
-
-import CareMembersPage from "views/pages/users/CareMembersPage.js";
-import EditCareMemberPage from "views/pages/users/EditCareMemberPage.js";
-import EmployeesPage from "views/pages/users/EmployeesPage.js"
-import EmployeeDetailsPage from "views/pages/users/EmployeeDetailsPage.js";
-import CreateGroupPage from "views/pages/groups/CreateGroupPage.js"
-import GroupsPage from "views/pages/groups/GroupsPage.js"
-import CandidatesPage from "views/pages/users/CandidatesPage";
+import ChartsPage from "views/pages/dashboards/ChartsPage";
+import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
+import Buttons from "views/pages/examples/components/Buttons";
+import Calendar from "views/pages/examples/components/Calendar";
+import Cards from "views/pages/examples/components/Cards";
+import Notifications from "views/pages/examples/components/Notifications";
+import Timeline from "views/pages/examples/components/Timeline";
+import Typography from "views/pages/examples/components/Typography";
+import Components from "views/pages/examples/forms/Components";
+import Elements from "views/pages/examples/forms/Elements";
+import Validation from "views/pages/examples/forms/Validation";
+import Pricing from "views/pages/examples/pages/Pricing";
+import Profile from "views/pages/examples/pages/Profile";
 import CandidateDetailsPage from "views/pages/users/CandidateDetailsPage";
+import CandidatesPage from "views/pages/users/CandidatesPage";
+import EditCareMemberPage from "views/pages/users/EditCareMemberPage";
+import { IRoute } from "./types/types";
 
-import CreateBestPracticePage from "views/pages/best-practices/CreateBestPracticePage.js"
-import SearchBestPracticesPage from "views/pages/best-practices/SearchBestPracticesPage.js"
-
-import CreateEmailPage from "views/pages/communications/CreateEmailPage.js"
-import SendNotificationPage from "views/pages/communications/SendNotificationPage.js"
-import CreateEmailTemplatePage from "views/pages/communications/CreateEmailTemplatePage.js"
-import SearchTemplatePage from "views/pages/communications/SearchTemplatePage.js"
-import EmailHistoryPage from "views/pages/communications/EmailHistoryPage.js"
-import ArchivePage from "views/pages/communications/ArchivePage.js"
-
-import ChartsPage from "views/pages/dashboards/ChartsPage.js"
-import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage.js"
-
-
-const routes = [
+const routes: IRoute[] = [
   {
     collapse: true,
     name: "Curriculum",
@@ -78,12 +57,13 @@ const routes = [
     ],
   },
   {
+    collapse: false,
     path: "/candidates",
     name: "Candidates",
     miniName: "AP",
     component: CandidatesPage,
     layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info"
+    icon: "ni ni-chart-pie-35 text-info",
   },
   {
     collapse: true,
@@ -105,17 +85,18 @@ const routes = [
         miniName: "SC",
         component: WorldOverviewPage,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
   {
+    collapse: false,
     path: "/applications",
     name: "Applications",
     miniName: "AP",
     // TODO change to ApplicationsPage
     component: CandidatesPage,
     layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info"
+    icon: "ni ni-chart-pie-35 text-info",
   },
   {
     collapse: true,
@@ -138,17 +119,18 @@ const routes = [
         miniName: "SC",
         component: WorldOverviewPage,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
   {
+    collapse: false,
     path: "/email",
     name: "Email",
     miniName: "EM",
     // TODO change to EmailPage
     component: CandidatesPage,
     layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info"
+    icon: "ni ni-chart-pie-35 text-info",
   },
   {
     collapse: true,
@@ -173,18 +155,18 @@ const routes = [
     ],
   },
   {
-    collapse: false,  
-    global:true, 
+    collapse: false,
+    global: true,
     path: "/users/candidate-details/:id",
     component: CandidateDetailsPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
-    collapse: false,  
-    global:true, 
+    collapse: false,
+    global: true,
     path: "/users/care-member-details/:id",
     component: EditCareMemberPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     collapse: true,
@@ -271,8 +253,7 @@ const routes = [
         layout: "/admin",
       },
     ],
-  }
-
+  },
 ];
 
 export default routes;
