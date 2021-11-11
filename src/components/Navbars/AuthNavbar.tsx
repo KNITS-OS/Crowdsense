@@ -14,7 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // react library for routing
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -32,14 +31,11 @@ import {
   Button,
 } from "reactstrap";
 
-import CareLogoMin  from "assets/img/brand/CareLogoMin.png";
-
-
-function AdminNavbar() {
+const AdminNavbar = () => {
   return (
     <>
       <Navbar
-        className="navbar-horizontal navbar-main navbar-dark bg-info"
+        className="navbar-horizontal navbar-main navbar-dark navbar-transparent"
         expand="lg"
         id="navbar-main"
       >
@@ -47,7 +43,9 @@ function AdminNavbar() {
           <NavbarBrand to="/" tag={Link}>
             <img
               alt="..."
-              src={CareLogoMin}
+              src={
+                require("assets/img/brand/argon-react-white.png").default
+              }
             />
           </NavbarBrand>
           <button
@@ -179,7 +177,9 @@ function AdminNavbar() {
                   target="_blank"
                 >
                   <i className="fab fa-github" />
-                  <span className="nav-link-inner--text d-lg-none">Github</span>
+                  <span className="nav-link-inner--text d-lg-none">
+                    Github
+                  </span>
                 </NavLink>
                 <UncontrolledTooltip delay={0} target="tooltip931502898">
                   Star us on Github
@@ -189,13 +189,15 @@ function AdminNavbar() {
                 <Button
                   className="btn-neutral btn-icon"
                   color="default"
-                  href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-navbar"
+                  href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-auth-navbar"
                   target="_blank"
                 >
                   <span className="btn-inner--icon">
                     <i className="fas fa-shopping-cart mr-2" />
                   </span>
-                  <span className="nav-link-inner--text">Purchase now</span>
+                  <span className="nav-link-inner--text">
+                    Purchase now
+                  </span>
                 </Button>
               </NavItem>
             </Nav>
@@ -204,6 +206,6 @@ function AdminNavbar() {
       </Navbar>
     </>
   );
-}
+};
 
 export default AdminNavbar;
