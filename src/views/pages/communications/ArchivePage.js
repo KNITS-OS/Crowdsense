@@ -14,58 +14,29 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+// core components
+import SimpleHeader from "components/Headers/SimpleHeader";
 import React from "react";
-// react plugin that prints a given react component
-import ReactToPrint from "react-to-print";
-// react component for creating dynamic tables
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 // react component used to create sweet alerts
 import ReactBSAlert from "react-bootstrap-sweetalert";
+// react component for creating dynamic tables
+import BootstrapTable from "react-bootstrap-table-next";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+// react plugin that prints a given react component
+import ReactToPrint from "react-to-print";
 // reactstrap components
 import {
   Button,
   ButtonGroup,
   Card,
   CardHeader,
+  Col,
   Container,
   Row,
-  Col,
   UncontrolledTooltip,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
-
+import { pagination } from "utils";
 import { dataTable } from "variables/general";
-
-const pagination = paginationFactory({
-  page: 1,
-  alwaysShowAllBtns: true,
-  showTotal: true,
-  withFirstAndLast: false,
-  sizePerPageRenderer: ({ options, currSizePerPage, onSizePerPageChange }) => (
-    <div className="dataTables_length" id="datatable-basic_length">
-      <label>
-        Show{" "}
-        {
-          <select
-            name="datatable-basic_length"
-            aria-controls="datatable-basic"
-            className="form-control form-control-sm"
-            onChange={(e) => onSizePerPageChange(e.target.value)}
-          >
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>
-        }{" "}
-        entries.
-      </label>
-    </div>
-  ),
-});
 
 const { SearchBar } = Search;
 
@@ -74,7 +45,7 @@ function ArchivePage() {
   const componentRef = React.useRef(null);
   // this function will copy to clipboard an entire table,
   // so you can paste it inside an excel or csv file
-  const copyToClipboardAsTable = (el) => {
+  const copyToClipboardAsTable = el => {
     var body = document.body,
       range,
       sel;
@@ -107,7 +78,7 @@ function ArchivePage() {
         btnSize=""
       >
         Copied to clipboard!
-      </ReactBSAlert>
+      </ReactBSAlert>,
     );
   };
 
@@ -164,7 +135,7 @@ function ArchivePage() {
                 ]}
                 search
               >
-                {(props) => (
+                {props => (
                   <div className="py-4 table-responsive">
                     <div
                       id="datatable-basic_filter"
@@ -235,7 +206,7 @@ function ArchivePage() {
                 ]}
                 search
               >
-                {(props) => (
+                {props => (
                   <div className="py-4 table-responsive">
                     <Container fluid>
                       <Row>
@@ -248,7 +219,9 @@ function ArchivePage() {
                               id="copy-tooltip"
                               onClick={() =>
                                 copyToClipboardAsTable(
-                                  document.getElementById("react-bs-table")
+                                  document.getElementById(
+                                    "react-bs-table",
+                                  ),
                                 )
                               }
                             >
@@ -272,15 +245,15 @@ function ArchivePage() {
                             placement="top"
                             target="print-tooltip"
                           >
-                            This will open a print page with the visible rows of
-                            the table.
+                            This will open a print page with the visible
+                            rows of the table.
                           </UncontrolledTooltip>
                           <UncontrolledTooltip
                             placement="top"
                             target="copy-tooltip"
                           >
-                            This will copy to your clipboard the visible rows of
-                            the table.
+                            This will copy to your clipboard the visible
+                            rows of the table.
                           </UncontrolledTooltip>
                         </Col>
                         <Col xs={12} sm={6}>
