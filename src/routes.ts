@@ -15,8 +15,6 @@
 
 */
 
-import ChartsPage from "views/pages/dashboards/ChartsPage";
-import WorldOverviewPage from "views/pages/dashboards/WorldOverviewPage";
 import Buttons from "views/pages/examples/components/Buttons";
 import Calendar from "views/pages/examples/components/Calendar";
 import Cards from "views/pages/examples/components/Cards";
@@ -28,10 +26,11 @@ import Elements from "views/pages/examples/forms/Elements";
 import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
+import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { IRoute } from "./types/types";
 import { ApplicationsPage } from "./views/pages/applications";
+import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import { EmailPage } from "./views/pages/emails";
-import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { InternshipPage } from "./views/pages/internships";
 import { OfferPage } from "./views/pages/offers";
 import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";

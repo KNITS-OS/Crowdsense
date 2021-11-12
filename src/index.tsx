@@ -32,6 +32,7 @@ import "./assets/scss/argon-dashboard-pro-react.scss?v1.2.0";
 import "./assets/vendor/nucleo/css/nucleo.css";
 import { AlertProvider, SidenavProvider } from "./context";
 import { AdminLayout, AuthLayout } from "./layouts";
+import "./variables/chartDefaults";
 
 ReactDOM.render(
   <BrowserRouter>

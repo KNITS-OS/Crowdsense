@@ -14,12 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// javascipt plugin for creating charts
-import Chart from "chart.js";
-// react plugin used to create charts
 import { Line, Bar, Doughnut, Pie } from "react-chartjs-2";
-// reactstrap components
 import {
   Card,
   CardHeader,
@@ -28,24 +23,18 @@ import {
   Row,
   Col,
 } from "reactstrap";
-// core components
 import CardsHeader from "components/Headers/CardsHeader";
 
 import {
-  chartOptions,
-  parseOptions,
-  chartExample2,
-  chartExample3,
-  chartExample4,
-  chartExample5,
-  chartExample6,
-  chartExample7,
+  barChartExample,
+  lineChartExample,
+  dotChartExample,
+  doughnutChartExample,
+  pieChartExample,
+  multiBarChartExample,
 } from "variables/charts";
 
-function Charts() {
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
+const ChartsPage = () => {
   return (
     <>
       <CardsHeader name="Charts" parentName="Charts" />
@@ -60,8 +49,8 @@ function Charts() {
               <CardBody>
                 <div className="chart">
                   <Line
-                    data={chartExample3.data}
-                    options={chartExample3.options}
+                    data={lineChartExample.data}
+                    options={lineChartExample.options}
                     id="chart-sales"
                     className="chart-canvas"
                   />
@@ -78,8 +67,8 @@ function Charts() {
               <CardBody>
                 <div className="chart">
                   <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
+                    data={barChartExample.data}
+                    options={barChartExample.options}
                     className="chart-canvas"
                     id="chart-bars"
                   />
@@ -98,8 +87,8 @@ function Charts() {
               <CardBody>
                 <div className="chart">
                   <Line
-                    data={chartExample4.data}
-                    options={chartExample4.options}
+                    data={dotChartExample.data}
+                    options={dotChartExample.options}
                     id="chart-points"
                     className="chart-canvas"
                   />
@@ -116,8 +105,8 @@ function Charts() {
               <CardBody>
                 <div className="chart">
                   <Doughnut
-                    data={chartExample5.data}
-                    options={chartExample5.options}
+                    data={doughnutChartExample.data}
+                    options={doughnutChartExample.options}
                     className="chart-canvas"
                     id="chart-doughnut"
                   />
@@ -136,8 +125,8 @@ function Charts() {
               <CardBody>
                 <div className="chart">
                   <Pie
-                    data={chartExample6.data}
-                    options={chartExample6.options}
+                    data={pieChartExample.data}
+                    options={pieChartExample.options}
                     className="chart-canvas"
                     id="chart-pie"
                   />
@@ -154,8 +143,8 @@ function Charts() {
               <CardBody>
                 <div className="chart">
                   <Bar
-                    data={chartExample7.data}
-                    options={chartExample7.options}
+                    data={multiBarChartExample.data}
+                    options={multiBarChartExample.options}
                     className="chart-canvas"
                     id="chart-bar-stacked"
                   />
@@ -167,6 +156,6 @@ function Charts() {
       </Container>
     </>
   );
-}
+};
 
-export default Charts;
+export default ChartsPage;
