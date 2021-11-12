@@ -37,7 +37,7 @@ import {
 // core components
 import ProfileHeader from "components/Headers/ProfileHeader";
 
-function CreateEmailPage() {
+function EditGroupPage() {
   return (
     <>
       <ProfileHeader />
@@ -538,4 +538,4 @@ function CreateEmailPage() {
   );
 }
 
-export default CreateEmailPage;
+export default EditGroupPage;

@@ -17,7 +17,6 @@
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 import { useAlert } from "context";
-import { useCopy } from "hooks";
 import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
@@ -37,14 +36,13 @@ import {
 } from "reactstrap";
 import { pagination } from "utils";
 import { dataTable } from "variables/general";
+import CopyButton from "../../../components/Buttons/CopyButton";
 
 const { SearchBar } = Search;
 
-function ArchivePage() {
+const ReactBSTables = () => {
   const componentRef = React.useRef(null);
-
   const { alert } = useAlert();
-  const { copyToClipboardAsTable } = useCopy();
 
   return (
     <>
@@ -176,21 +174,7 @@ function ArchivePage() {
                       <Row>
                         <Col xs={12} sm={6}>
                           <ButtonGroup>
-                            <Button
-                              className="buttons-copy buttons-html5"
-                              color="default"
-                              size="sm"
-                              id="copy-tooltip"
-                              onClick={() =>
-                                copyToClipboardAsTable(
-                                  document.getElementById(
-                                    "react-bs-table",
-                                  ),
-                                )
-                              }
-                            >
-                              <span>Copy</span>
-                            </Button>
+                            <CopyButton elementId="react-bs-table" />
                             <ReactToPrint
                               trigger={() => (
                                 <Button
@@ -254,6 +238,6 @@ function ArchivePage() {
       </Container>
     </>
   );
-}
+};
 
-export default ArchivePage;
+export default ReactBSTables;

@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-
 // reactstrap components
 import {
   Button,
@@ -37,7 +35,7 @@ import {
 // core components
 import ProfileHeader from "components/Headers/ProfileHeader";
 
-function SendNotificationPage() {
+const SendNotificationPage = () => {
   return (
     <>
       <ProfileHeader />
@@ -536,6 +534,6 @@ function SendNotificationPage() {
       </Container>
     </>
   );
-}
+};
 
 export default SendNotificationPage;

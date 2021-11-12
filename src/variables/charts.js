@@ -62,10 +62,12 @@ Chart.elements.Rectangle.prototype.draw = function () {
     borderWidth = borderWidth > barSize ? barSize : borderWidth;
     var halfStroke = borderWidth / 2;
     // Adjust borderWidth when bar top position is near vm.base(zero).
-    var borderLeft = left + (borderSkipped !== "left" ? halfStroke * signX : 0);
+    var borderLeft =
+      left + (borderSkipped !== "left" ? halfStroke * signX : 0);
     var borderRight =
       right + (borderSkipped !== "right" ? -halfStroke * signX : 0);
-    var borderTop = top + (borderSkipped !== "top" ? halfStroke * signY : 0);
+    var borderTop =
+      top + (borderSkipped !== "top" ? halfStroke * signY : 0);
     var borderBottom =
       bottom + (borderSkipped !== "bottom" ? -halfStroke * signY : 0);
     // not become a vertical line?
@@ -123,8 +125,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
     let height = corners[0][1] - corners[1][1];
     let x = corners[1][0];
     let y = corners[1][1];
-    // eslint-disable-next-line
-    var radius: any = cornerRadius;
+    radius = cornerRadius;
 
     // Fix radius being too large
     if (radius > height / 2) {
@@ -138,7 +139,12 @@ Chart.elements.Rectangle.prototype.draw = function () {
     ctx.lineTo(x + width - radius, y);
     ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
     ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.quadraticCurveTo(
+      x + width,
+      y + height,
+      x + width - radius,
+      y + height,
+    );
     ctx.lineTo(x + radius, y + height);
     ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
     ctx.lineTo(x, y + radius);
@@ -193,8 +199,10 @@ function chartOptions() {
       global: {
         responsive: true,
         maintainAspectRatio: false,
-        defaultColor: mode === "dark" ? colors.gray[700] : colors.gray[600],
-        defaultFontColor: mode === "dark" ? colors.gray[700] : colors.gray[600],
+        defaultColor:
+          mode === "dark" ? colors.gray[700] : colors.gray[600],
+        defaultFontColor:
+          mode === "dark" ? colors.gray[700] : colors.gray[600],
         defaultFontFamily: fonts.base,
         defaultFontSize: 13,
         layout: {
@@ -347,7 +355,7 @@ let chartExample1 = {
       },
     },
   },
-  data1: (canvas) => {
+  data1: canvas => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
@@ -358,7 +366,7 @@ let chartExample1 = {
       ],
     };
   },
-  data2: (canvas) => {
+  data2: canvas => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
@@ -549,7 +557,15 @@ const chartExample6 = {
 // Example 7 of Chart inside src/views/pages/Charts.js
 const chartExample7 = {
   data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+    ],
     datasets: [
       {
         label: "Dataset 1",

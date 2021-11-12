@@ -17,16 +17,12 @@
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 import { useAlert } from "context";
-import { useCopy } from "hooks";
 import React from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-// react plugin that prints a given react component
-import ReactToPrint from "react-to-print";
 // reactstrap components
 import {
-  Button,
   ButtonGroup,
   Card,
   CardHeader,
@@ -37,14 +33,15 @@ import {
 } from "reactstrap";
 import { pagination } from "utils";
 import { dataTable } from "variables/general";
+import { PrintButton } from "../../../../components/Buttons";
+import CopyButton from "../../../../components/Buttons/CopyButton";
 
 const { SearchBar } = Search;
 
-function SearchTemplatePage() {
+const ReactBSTables = () => {
   const componentRef = React.useRef(null);
 
   const { alert } = useAlert();
-  const { copyToClipboardAsTable } = useCopy();
 
   return (
     <>
@@ -176,34 +173,8 @@ function SearchTemplatePage() {
                       <Row>
                         <Col xs={12} sm={6}>
                           <ButtonGroup>
-                            <Button
-                              className="buttons-copy buttons-html5"
-                              color="default"
-                              size="sm"
-                              id="copy-tooltip"
-                              onClick={() =>
-                                copyToClipboardAsTable(
-                                  document.getElementById(
-                                    "react-bs-table",
-                                  ),
-                                )
-                              }
-                            >
-                              <span>Copy</span>
-                            </Button>
-                            <ReactToPrint
-                              trigger={() => (
-                                <Button
-                                  color="default"
-                                  size="sm"
-                                  className="buttons-copy buttons-html5"
-                                  id="print-tooltip"
-                                >
-                                  Print
-                                </Button>
-                              )}
-                              content={() => componentRef.current}
-                            />
+                            <CopyButton elementId="react-bs-table" />
+                            <PrintButton ref={componentRef} />
                           </ButtonGroup>
                           <UncontrolledTooltip
                             placement="top"
@@ -254,6 +225,6 @@ function SearchTemplatePage() {
       </Container>
     </>
   );
-}
+};
 
-export default SearchTemplatePage;
+export default ReactBSTables;

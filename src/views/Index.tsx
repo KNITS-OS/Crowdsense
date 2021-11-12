@@ -14,8 +14,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-/*eslint-disable*/
-import React from "react";
 // react library for routing
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -34,7 +32,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
 import IndexHeader from "components/Headers/IndexHeader";
 import AuthFooter from "components/Footers/AuthFooter";
 
-function Index() {
+const Index = () => {
   return (
     <>
       <IndexNavbar />
@@ -321,6 +319,7 @@ function Index() {
               <a
                 href="https://demos.creative-tim.com/argon-dashboard-pro-react/#/documentation/icons?ref=adpr-index-page"
                 target="_blank"
+                rel="noreferrer"
               >
                 <div className="icons-container blur-item mt-5">
                   <i className="icon ni ni-diamond" />
@@ -404,6 +403,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=adpr-index-page"
                         id="tooltip170669606"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -424,6 +424,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-page"
                         id="tooltip374813715"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -444,6 +445,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/argon-dashboard-pro-nodejs?ref=adpr-index-page"
                         id="tooltip374813716"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -464,6 +466,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel?ref=adpr-index-page"
                         id="tooltip374813717"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -484,6 +487,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/vue-argon-dashboard-pro?ref=adpr-index-page"
                         id="tooltip616015001"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -503,6 +507,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/argon-dashboard-pro-angular?ref=adpr-index-page"
                         id="tooltip211254026"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -522,6 +527,7 @@ function Index() {
                         href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-page"
                         id="tooltip82987604"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -541,6 +547,7 @@ function Index() {
                         href="https://www.adobe.com/products/photoshop.html?ref=creative-tim"
                         id="tooltip731835410"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <img
                           alt="..."
@@ -566,6 +573,6 @@ function Index() {
       <AuthFooter />
     </>
   );
-}
+};
 
 export default Index;

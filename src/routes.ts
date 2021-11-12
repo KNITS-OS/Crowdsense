@@ -28,14 +28,13 @@ import Elements from "views/pages/examples/forms/Elements";
 import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
-import CandidateDetailsPage from "views/pages/users/CandidateDetailsPage";
-import CandidatesPage from "views/pages/users/CandidatesPage";
-import EditCareMemberPage from "views/pages/users/EditCareMemberPage";
 import { IRoute } from "./types/types";
 import { ApplicationsPage } from "./views/pages/applications";
 import { EmailPage } from "./views/pages/emails";
+import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { InternshipPage } from "./views/pages/internships";
 import { OfferPage } from "./views/pages/offers";
+import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
 
 const routes: IRoute[] = [
   // Curriculum
