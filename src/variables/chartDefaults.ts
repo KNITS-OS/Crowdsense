@@ -66,8 +66,9 @@ defaults.scales["linear"].ticks.callback = value => {
   }
 };
 defaults.scales["linear"] = {
-  // @ts-ignore
+  ...defaults.scales["linear"],
   grid: {
+    ...defaults.scales["linear"].grid,
     borderDash: [2],
     borderDashOffset: 2,
   },
@@ -77,8 +78,9 @@ defaults.scales["linear"] = {
 defaults.scales["category"].ticks.padding = 20;
 // takes away horizontal lines
 defaults.scales["category"] = {
-  // @ts-ignore
+  ...defaults.scales["category"],
   grid: {
+    ...defaults.scales["category"].grid,
     drawOnChartArea: false,
   },
 };
