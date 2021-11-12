@@ -211,8 +211,6 @@ export const multiBarChartExample: IBarChart = {
         intersect: false,
       },
     },
-
-    responsive: true,
     scales: {
       x: {
         stacked: true,
