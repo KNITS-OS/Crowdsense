@@ -14,16 +14,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+import { IDataTable, IEvent, IWidgetEvent } from "types/types";
+
 // ##############################
 // // // data for populating the calendar in Calendar view
 // #############################
 
-var today = new Date();
-var y = today.getFullYear();
-var m = today.getMonth();
-var d = today.getDate();
+let today = new Date();
+let y = today.getFullYear();
+let m = today.getMonth();
+let d = today.getDate();
 
-const events = [
+const events: IEvent[] = [
   {
     id: 1,
     title: "Call with Dave",
@@ -129,7 +132,7 @@ const events = [
 // // // data for populating the calendar in Widgest view
 // #############################
 
-const widgetEvents = [
+const widgetEvents: IWidgetEvent[] = [
   {
     title: "Lunch meeting",
     start: new Date().getFullYear() + "-11-21",
@@ -191,7 +194,7 @@ const widgetEvents = [
 // // // data for populating the table in ReactTables view
 // #############################
 
-const dataTable = [
+const dataTable: IDataTable[] = [
   {
     name: "Tiger Nixon",
     position: "System Architect",

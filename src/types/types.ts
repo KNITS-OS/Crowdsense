@@ -37,3 +37,29 @@ export interface ICanditate {
   tags: string;
   comment: string;
 }
+
+export interface IEvent {
+  id: number;
+  title: string;
+  className: string;
+  start: Date;
+  allDay: boolean;
+  description: string;
+}
+
+export interface IWidgetEvent {
+  title: string;
+  className: string;
+  start: string | Date;
+  end?: string | Date;
+  allDay?: boolean;
+}
+
+export interface IDataTable {
+  name: string;
+  position: string;
+  office: string;
+  age: string;
+  start_date: string;
+  salary: string;
+}
