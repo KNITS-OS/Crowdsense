@@ -14,16 +14,13 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// react plugin for creating vector maps
-import { VectorMap } from "react-jvectormap";
 
-// reactstrap components
-import { Card, CardBody, Container, Row } from "reactstrap";
-// core components
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import SimpleHeader from "components/Headers/SimpleHeader";
+import { VectorMap } from "@react-jvectormap/core";
+import worldMill from "@react-jvectormap/world/dist/worldMill.json";
 
-let mapData = {
+const mapData = {
   AU: 760,
   BR: 550,
   CA: 120,
@@ -36,32 +33,30 @@ let mapData = {
   RU: 300,
   US: 2920,
 };
-
-function Vector() {
+// @todo
+// fix zoom-in zoom-out buttons
+const WorldOverviewPage = () => {
   return (
     <>
       <SimpleHeader name="Vector maps" parentName="Maps" />
       <Container className="mt--6" fluid>
         <Row>
-          <div className="col">
+          <Col>
             <Card>
               <CardBody className="pt-0">
                 <VectorMap
                   containerClassName="vector-map"
-                  containerStyle={{
-                    width: "100%",
+                  className="vector-map"
+                  style={{
                     height: "600px",
                   }}
-                  map={"world_mill"}
+                  map={worldMill}
                   zoomOnScroll={false}
-                  scaleColors={["#f00", "#0071A4"]}
-                  normalizeFunction="polynomial"
-                  hoverOpacity={0.7}
-                  hoverColor={false}
                   backgroundColor="transparent"
                   regionStyle={{
                     initial: {
                       fill: "#e9ecef",
+                      // @ts-ignore
                       "fill-opacity": 0.8,
                       stroke: "none",
                       "stroke-width": 0,
@@ -69,22 +64,25 @@ function Vector() {
                     },
                     hover: {
                       fill: "#dee2e6",
+                      // @ts-ignore
                       "fill-opacity": 0.8,
                       cursor: "pointer",
                     },
                     selected: {
                       fill: "yellow",
                     },
-                    selectedHover: {},
                   }}
                   markerStyle={{
                     initial: {
                       fill: "#fb6340",
+                      // @ts-ignore
                       "stroke-width": 0,
                     },
                     hover: {
                       fill: "#11cdef",
+                      // @ts-ignore
                       "stroke-width": 0,
+                      border: 0,
                     },
                   }}
                   markers={[
@@ -128,20 +126,23 @@ function Vector() {
                   series={{
                     regions: [
                       {
+                        //@ts-ignore
                         values: mapData,
+                        //@ts-ignore
                         scale: ["#ced4da", "#adb5bd"],
                         normalizeFunction: "polynomial",
+                        attribute: "fill",
                       },
                     ],
                   }}
                 />
               </CardBody>
             </Card>
-          </div>
+          </Col>
         </Row>
       </Container>
     </>
   );
-}
+};
 
-export default Vector;
+export default WorldOverviewPage;
