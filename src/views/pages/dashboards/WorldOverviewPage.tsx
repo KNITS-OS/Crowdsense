@@ -33,8 +33,7 @@ const mapData = {
   RU: 300,
   US: 2920,
 };
-// @todo
-// fix zoom-in zoom-out buttons
+
 const WorldOverviewPage = () => {
   return (
     <>
