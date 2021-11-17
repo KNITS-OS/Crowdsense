@@ -14,7 +14,7 @@ import {
   Row,
 } from "reactstrap";
 import { ICanditate } from "types/types";
-import { candidates } from "./CandidatesData";
+import { candidates } from ".";
 
 interface RouteParams {
   id: string;
@@ -25,20 +25,26 @@ const CandidateDetailsPage = () => {
 
   const history = useHistory();
 
-  let fetchCandidate = () =>
-    candidates.find(candidate => candidate.id === parseInt(id));
+  let fetchCandidate = () => {
+    let candidatesData: ICanditate[] = candidates;
+    const candidate = candidatesData.find(
+      (candidate: ICanditate) => candidate.reqId === id,
+    );
+    return candidate;
+  };
+  let candidate = fetchCandidate();
+  if (!candidate) return <div>No candidate found</div>;
 
   const {
     comment,
     email,
     fullName,
     firstName,
-    lastName,
     rating,
     status,
     submissionDate,
-    tags,
-  } = fetchCandidate() as ICanditate;
+    country,
+  } = candidate;
 
   return (
     <>
@@ -99,22 +105,6 @@ const CandidateDetailsPage = () => {
                         <FormGroup>
                           <label
                             className="form-control-label"
-                            htmlFor="input-last-name"
-                          >
-                            Last name
-                          </label>
-                          <Input
-                            id="input-last-name"
-                            value={lastName}
-                            disabled={true}
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
                             htmlFor="input-fullname"
                           >
                             Full Name
@@ -162,6 +152,22 @@ const CandidateDetailsPage = () => {
                           />
                         </FormGroup>
                       </Col>
+                      <Col lg="4">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-country"
+                          >
+                            Country
+                          </label>
+                          <Input
+                            id="input-country"
+                            value={country}
+                            disabled={true}
+                            type="text"
+                          />
+                        </FormGroup>
+                      </Col>
                     </Row>
                   </div>
 
@@ -199,25 +205,6 @@ const CandidateDetailsPage = () => {
                           <Input
                             id="input-rating"
                             value={rating}
-                            disabled={true}
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      <Col lg="12">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-tags"
-                          >
-                            Tags
-                          </label>
-                          <Input
-                            id="input-tags"
-                            value={tags}
                             disabled={true}
                             type="text"
                           />

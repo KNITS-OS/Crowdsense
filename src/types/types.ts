@@ -27,16 +27,15 @@ export interface IRoute {
 export type Theme = "light" | "dark";
 
 export interface ICanditate {
-  id: number;
+  reqId: string;
   firstName: string;
-  lastName: string;
   fullName: string;
+  rating: string;
+  comment: string;
   email: string;
   submissionDate: string;
   status: string;
-  rating: string;
-  tags: string;
-  comment: string;
+  country: string;
 }
 
 export interface IEvent {

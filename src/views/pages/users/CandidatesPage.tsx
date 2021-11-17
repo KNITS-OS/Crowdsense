@@ -8,9 +8,9 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
 import { useAlert } from "context";
-import { candidates } from "./CandidatesData";
 import { ICanditate } from "../../../types/types";
 import { useHistory } from "react-router";
+import { candidates } from ".";
 
 const { SearchBar } = Search;
 
@@ -24,8 +24,8 @@ const Candidates = () => {
   const { alert } = useAlert();
 
   const formatActionButtonCell = (_: undefined, row: ICanditate) => {
-    const { id } = row;
-    let candidateId = id.toString();
+    const { reqId } = row;
+    let candidateId = reqId.toString();
 
     return (
       <div>
@@ -65,10 +65,6 @@ const Candidates = () => {
                     text: "First Name",
                   },
                   {
-                    dataField: "lastName",
-                    text: "Last Name",
-                  },
-                  {
                     dataField: "fullName",
                     text: "Full Name",
                     sort: true,
@@ -91,12 +87,6 @@ const Candidates = () => {
                   {
                     dataField: "rating",
                     text: "Rating",
-                    sort: true,
-                    style: { width: "50px" },
-                  },
-                  {
-                    dataField: "tags",
-                    text: "Tags",
                     sort: true,
                     style: { width: "50px" },
                   },
