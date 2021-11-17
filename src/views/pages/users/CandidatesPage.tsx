@@ -20,10 +20,10 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import { addLikeFilter, addSimpleFilter } from "redux/filters";
+import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
+import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
-import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
 
 const Candidates = () => {
   const history = useHistory();
@@ -46,13 +46,13 @@ const Candidates = () => {
   const { alert } = useAlert();
 
   const findByAllParameters = () => {
-    const fullNameFilter = addLikeFilter({
+    const fullNameFilter = addFilter({
       param: searchName,
       filter: "like",
     });
-    const statusFilter = addSimpleFilter({ param: status, filter: "eq" });
-    const ratingFilter = addSimpleFilter({ param: rating, filter: "eq" });
-    const emailFilter = addLikeFilter({ param: email, filter: "like" });
+    const statusFilter = addFilter({ param: status, filter: "eq" });
+    const ratingFilter = addFilter({ param: rating, filter: "eq" });
+    const emailFilter = addFilter({ param: email, filter: "like" });
 
     const filters: ICandidateFilters = {
       fullName: fullNameFilter,

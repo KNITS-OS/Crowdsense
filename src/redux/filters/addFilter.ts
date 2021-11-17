@@ -1,19 +1,30 @@
-import { ISimpleFilter, StringOrUndefined } from "types/types";
+import {
+  ILikeFilter,
+  ISimpleFilter,
+  StringOrUndefined,
+} from "types/types";
 
 /**
  *
  * @returns undefined or filter.param
  * @description function that takes in a string and returns query param if it is defined
+ *
  */
 interface Props {
   param: string;
-  filter: ISimpleFilter;
+  filter: ISimpleFilter | ILikeFilter;
 }
 
 const addSimpleFilter = ({ param, filter }: Props) => {
   let finalFilter: StringOrUndefined = undefined;
 
-  if (param) finalFilter = `${filter}.${param}`;
+  if (param) {
+    if (filter === "like" || filter === "ilike") {
+      finalFilter = `${filter}.%${param}%`;
+    } else {
+      finalFilter = `${filter}.${param}`;
+    }
+  }
 
   return finalFilter;
 };
