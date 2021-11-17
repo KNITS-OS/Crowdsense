@@ -1,5 +1,5 @@
-import { IFilter, StringOrUndefined } from "types/types";
-
+import { IArrayFilter, StringOrUndefined } from "types/types";
+// @todo make it work
 /**
  *
  * @returns undefined or filter.param
@@ -7,15 +7,15 @@ import { IFilter, StringOrUndefined } from "types/types";
  */
 interface Props {
   param: string;
-  filter: IFilter;
+  filter: IArrayFilter;
 }
 
-const addFilter = ({ param, filter }: Props) => {
+const addArrayFilter = ({ param, filter }: Props) => {
   let finalFilter: StringOrUndefined = undefined;
 
-  if (param) finalFilter = `${filter}.${param}`;
+  if (param) finalFilter = `${filter}`;
 
   return finalFilter;
 };
 
-export default addFilter;
+export default addArrayFilter;

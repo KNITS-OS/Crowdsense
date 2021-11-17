@@ -6,8 +6,10 @@ export const baseQuery = fetchBaseQuery({
   prepareHeaders(headers) {
     if (process.env.REACT_APP_BACKEND_ENV === "dev") {
       headers.set("apikey", process.env.REACT_APP_API_KEY);
+      headers.set("Access-Control-Allow-Origin", "*");
       return headers;
     } else if (process.env.REACT_APP_BACKEND_ENV === "prod") {
+      headers.set("Access-Control-Allow-Origin", "*");
       // @todo return Java backend headers
       // headers.set("apikey", process.env.REACT_APP_API_KEY);
       return headers;

@@ -19,10 +19,10 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import { addFilter } from "redux/filters";
+import { addLikeFilter, addSimpleFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
-import { candidates } from ".";
+import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
 
 const Candidates = () => {
   const history = useHistory();
@@ -32,24 +32,32 @@ const Candidates = () => {
     history.push(`/admin/users/candidate-details/${id}`);
   };
 
+  const [getFilteredCandidates, { data: candidates = [] }] =
+    useLazyGetFilteredCandidatesQuery();
+
   const [searchName, setSearchName] = useState("");
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState("");
+  const [email, setEmail] = useState("");
 
   const { alert } = useAlert();
 
-  const findByAllParameters = async () => {
-    const fullNameFilter = addFilter({ param: searchName, filter: "eq" });
-    const statusFilter = addFilter({ param: status, filter: "eq" });
-    const ratingFilter = addFilter({ param: rating, filter: "eq" });
+  const findByAllParameters = () => {
+    const fullNameFilter = addLikeFilter({
+      param: searchName,
+      filter: "like",
+    });
+    const statusFilter = addSimpleFilter({ param: status, filter: "eq" });
+    const ratingFilter = addSimpleFilter({ param: rating, filter: "eq" });
+    const emailFilter = addLikeFilter({ param: email, filter: "like" });
 
     const filters: ICandidateFilters = {
       fullName: fullNameFilter,
       status: statusFilter,
       rating: ratingFilter,
+      email: emailFilter,
     };
-    // fetchEmployeesByFilters({ select: "*", filters });
-    console.log(filters);
+    getFilteredCandidates({ limit: 30, select: "*", filters });
   };
 
   const formatActionButtonCell = (_: undefined, row: ICandidate) => {
@@ -105,6 +113,25 @@ const Candidates = () => {
                             placeholder="Name"
                             value={searchName}
                             onChange={e => setSearchName(e.target.value)}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md="3">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <Input
+                            id="email"
+                            style={{ height: "36px" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="Email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                           />
                         </FormGroup>
                       </Col>

@@ -33,12 +33,12 @@ export interface ICandidate {
   reqId: string;
   firstName: string;
   fullName: string;
-  rating: ICandidateRating;
-  comment: string;
   email: string;
   submissionDate: string;
   status: ICandidateStatus;
   country: string;
+  rating?: ICandidateRating;
+  comment?: string;
 }
 
 export interface IEvent {
@@ -93,21 +93,21 @@ export interface ICandidateFilters {
   fullName: StringOrUndefined;
   rating: StringOrUndefined;
   status: StringOrUndefined;
+  email: StringOrUndefined;
 }
 
-export type IFilter =
+export type ISimpleFilter =
   | "eq"
+  | "neq"
   | "gt"
   | "gte"
   | "lt"
   | "lte"
-  | "neq"
-  | "like"
-  | "ilike"
-  | "in"
-  | "is"
-  | "cs"
-  | "cd";
+  | "is";
+
+export type IArrayFilter = "in" | "cs" | "cd";
+
+export type ILikeFilter = "like" | "ilike";
 
 export interface ICreateCandidate {
   firstName: string;
