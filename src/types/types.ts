@@ -108,3 +108,14 @@ export type IFilter =
   | "is"
   | "cs"
   | "cd";
+
+export interface ICreateCandidate {
+  firstName: string;
+  lastName: string;
+  email: string;
+  country: string;
+  status: ICandidateStatus | "";
+  rating: ICandidateRating | "";
+  comment: string;
+  submissionDate: string;
+}

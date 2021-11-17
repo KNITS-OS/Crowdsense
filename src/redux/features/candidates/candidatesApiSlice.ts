@@ -1,6 +1,10 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "utils/rtkQueryConfig";
-import { ICandidate, ICandidateFilters } from "../../../types/types";
+import {
+  ICandidate,
+  ICandidateFilters,
+  ICreateCandidate,
+} from "types/types";
 
 const candidatesTable = "candidates";
 
@@ -69,9 +73,21 @@ export const candidatesApiSlice = createApi({
           };
         },
       }),
+      createCandidate: builder.mutation<ICandidate, ICreateCandidate>({
+        query: data => {
+          return {
+            url: `${candidatesTable}`,
+            method: "POST",
+            body: data,
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useGetCandidateQuery, useLazyGetFilteredCandidatesQuery } =
-  candidatesApiSlice;
+export const {
+  useGetCandidateQuery,
+  useLazyGetFilteredCandidatesQuery,
+  useCreateCandidateMutation,
+} = candidatesApiSlice;

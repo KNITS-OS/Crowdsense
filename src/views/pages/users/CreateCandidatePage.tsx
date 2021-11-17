@@ -12,11 +12,12 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { FormInput } from "../../../components/Input";
+import { FormInput } from "components/Input";
+import { ICreateCandidate } from "types/types";
 
 const CreateCandidatePage = () => {
   const history = useHistory();
-  const initialState = {
+  const initialState: ICreateCandidate = {
     firstName: "",
     lastName: "",
     submissionDate: "",
