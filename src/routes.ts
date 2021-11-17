@@ -33,7 +33,11 @@ import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import { EmailPage } from "./views/pages/emails";
 import { InternshipPage } from "./views/pages/internships";
 import { OfferPage } from "./views/pages/offers";
-import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
+import {
+  CandidateDetailsPage,
+  CandidatesPage,
+  CreateCandidatePage,
+} from "./views/pages/users";
 
 const routes: IRoute[] = [
   // Curriculum
@@ -61,13 +65,26 @@ const routes: IRoute[] = [
   },
   // Candidates
   {
-    collapse: false,
-    path: "/candidates",
+    collapse: true,
     name: "Candidates",
-    miniName: "AP",
-    component: CandidatesPage,
-    layout: "/admin",
     icon: "ni ni-chart-pie-35 text-info",
+    state: "candidatesCollapse",
+    views: [
+      {
+        path: "/candidates",
+        name: "Candidates",
+        miniName: "CA",
+        component: CandidatesPage,
+        layout: "/admin",
+      },
+      {
+        path: "/create-candidate",
+        name: "Create",
+        miniName: "CR",
+        component: CreateCandidatePage,
+        layout: "/admin",
+      },
+    ],
   },
   // Offers
   {

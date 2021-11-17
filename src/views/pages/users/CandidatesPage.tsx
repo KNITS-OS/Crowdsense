@@ -26,9 +26,10 @@ import { candidates } from ".";
 
 const Candidates = () => {
   const history = useHistory();
+
   const candidateDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
     var { id } = e.target as HTMLButtonElement;
-    history.push("/admin/users/candidate-details/" + id);
+    history.push(`/admin/users/candidate-details/${id}`);
   };
 
   const [searchName, setSearchName] = useState("");
