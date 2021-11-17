@@ -42,14 +42,14 @@ export const candidatesApiSlice = createApi({
           };
         },
       }),
-      getCandidate: builder.query<ICandidate, IGetCandidateArgs>({
+      getCandidate: builder.query<ICandidate[], IGetCandidateArgs>({
         query: args => {
           const { id, select } = args;
           return {
             url: `${candidatesTable}`,
             params: {
               select,
-              id,
+              reqId: `eq.${id}`,
               limit: 1,
             },
             method: "GET",

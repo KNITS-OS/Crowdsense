@@ -12,9 +12,9 @@ import {
   FormGroup,
   Input,
   Row,
+  Spinner,
 } from "reactstrap";
-import { ICandidate } from "types/types";
-import { candidates } from ".";
+import { useGetCandidateQuery } from "redux/features/candidates/candidatesApiSlice";
 
 interface RouteParams {
   id: string;
@@ -23,17 +23,31 @@ interface RouteParams {
 const CandidateDetailsPage = () => {
   let { id } = useParams<RouteParams>();
 
+  const {
+    data = [],
+    isError,
+    isLoading,
+    isFetching,
+  } = useGetCandidateQuery({ id, select: "*" });
+
   const history = useHistory();
 
-  let fetchCandidate = () => {
-    let candidatesData = candidates as ICandidate[];
-    const candidate = candidatesData.find(
-      (candidate: ICandidate) => candidate.reqId === id,
+  let candidate = data[0];
+  if (isLoading || isFetching) {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
+        <Spinner />
+      </div>
     );
-    return candidate;
-  };
-  let candidate = fetchCandidate();
-  if (!candidate) return <div>No candidate found</div>;
+  }
+
+  if (!candidate) {
+    return <div>No candidate found</div>;
+  }
 
   const {
     comment,
@@ -50,6 +64,7 @@ const CandidateDetailsPage = () => {
     <>
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
+        {isError && <div>Couldn't fetch data</div>}
         <Row>
           <Col className="order-xl-1" xl="12">
             <Card>
@@ -71,7 +86,7 @@ const CandidateDetailsPage = () => {
                     <Button
                       type="button"
                       color="info"
-                      onClick={e => history.push("/admin/candidates")}
+                      onClick={() => history.push("/admin/candidates")}
                     >
                       Back to Search
                     </Button>

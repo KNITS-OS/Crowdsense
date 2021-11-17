@@ -18,6 +18,7 @@ import {
   FormGroup,
   Input,
   Row,
+  Spinner,
 } from "reactstrap";
 import { addLikeFilter, addSimpleFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
@@ -32,8 +33,10 @@ const Candidates = () => {
     history.push(`/admin/users/candidate-details/${id}`);
   };
 
-  const [getFilteredCandidates, { data: candidates = [] }] =
-    useLazyGetFilteredCandidatesQuery();
+  const [
+    getFilteredCandidates,
+    { data: candidates = [], isLoading, isFetching },
+  ] = useLazyGetFilteredCandidatesQuery();
 
   const [searchName, setSearchName] = useState("");
   const [status, setStatus] = useState("");
@@ -223,62 +226,72 @@ const Candidates = () => {
                 <h3 className="mb-0">Candidates</h3>
                 <p className="text-sm mb-0">Candidates for internship</p>
               </CardHeader>
-              <ToolkitProvider
-                data={candidates}
-                keyField="id"
-                columns={[
-                  {
-                    dataField: "firstName",
-                    text: "First Name",
-                  },
-                  {
-                    dataField: "fullName",
-                    text: "Full Name",
-                    sort: true,
-                  },
-                  {
-                    dataField: "email",
-                    text: "email",
-                  },
-                  {
-                    dataField: "submissionDate",
-                    text: "Submission Date",
-                    sort: true, //TODO fix the sorting
-                  },
-                  {
-                    dataField: "status",
-                    text: "Current Status",
-                    sort: true,
-                    style: { width: "50px" },
-                  },
-                  {
-                    dataField: "rating",
-                    text: "Rating",
-                    sort: true,
-                    style: { width: "50px" },
-                  },
-                  {
-                    dataField: "action",
-                    text: "",
-                    formatter: formatActionButtonCell,
-                  },
-                ]}
-                search
-              >
-                {props => {
-                  return (
-                    <div className="py-4 table-responsive">
-                      <BootstrapTable
-                        {...props.baseProps}
-                        keyField="reqId"
-                        bootstrap4={true}
-                        pagination={pagination}
-                        bordered={false}
-                      />
-                    </div>
-                  );
-                }}
-              </ToolkitProvider>
+              {isLoading || isFetching ? (
+                <div
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  <Spinner />
+                </div>
+              ) : (
+                <ToolkitProvider
+                  data={candidates}
+                  keyField="id"
+                  columns={[
+                    {
+                      dataField: "firstName",
+                      text: "First Name",
+                    },
+                    {
+                      dataField: "fullName",
+                      text: "Full Name",
+                      sort: true,
+                    },
+                    {
+                      dataField: "email",
+                      text: "email",
+                    },
+                    {
+                      dataField: "submissionDate",
+                      text: "Submission Date",
+                      sort: true, //TODO fix the sorting
+                    },
+                    {
+                      dataField: "status",
+                      text: "Current Status",
+                      sort: true,
+                      style: { width: "50px" },
+                    },
+                    {
+                      dataField: "rating",
+                      text: "Rating",
+                      sort: true,
+                      style: { width: "50px" },
+                    },
+                    {
+                      dataField: "action",
+                      text: "",
+                      formatter: formatActionButtonCell,
+                    },
+                  ]}
+                  search
+                >
+                  {props => {
+                    return (
+                      <div className="py-4 table-responsive">
+                        <BootstrapTable
+                          {...props.baseProps}
+                          keyField="reqId"
+                          bootstrap4={true}
+                          pagination={pagination}
+                          bordered={false}
+                        />
+                      </div>
+                    );
+                  }}
+                </ToolkitProvider>
+              )}
             </Card>
           </div>
         </Row>
