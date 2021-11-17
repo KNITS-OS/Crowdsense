@@ -19,9 +19,10 @@ import {
   Input,
   Row,
 } from "reactstrap";
+import { addFilter } from "redux/filters";
+import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
 import { candidates } from ".";
-import { ICandidate } from "../../../types/types";
 
 const Candidates = () => {
   const history = useHistory();
@@ -37,15 +38,14 @@ const Candidates = () => {
   const { alert } = useAlert();
 
   const findByAllParameters = async () => {
-    // const lastNameFilter = addLastnameFilter(searchLastName);
-    // const countryFilter = await addCountryFilter(searchCountry);
-    // const businessUnitFilter = await addBusinessUnitFilter(
-    //   searchBusinessUnit,
-    // );
-    const filters = {
-      fullName: searchName,
-      status,
-      rating,
+    const fullNameFilter = addFilter({ param: searchName, filter: "eq" });
+    const statusFilter = addFilter({ param: status, filter: "eq" });
+    const ratingFilter = addFilter({ param: rating, filter: "eq" });
+
+    const filters: ICandidateFilters = {
+      fullName: fullNameFilter,
+      status: statusFilter,
+      rating: ratingFilter,
     };
     // fetchEmployeesByFilters({ select: "*", filters });
     console.log(filters);

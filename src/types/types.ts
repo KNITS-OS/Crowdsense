@@ -2,7 +2,7 @@ import { ChartData, ChartOptions } from "chart.js";
 import { ReactNode } from "react";
 
 export type LayoutType = "/admin" | "/auth" | "/rtl";
-
+export type StringOrUndefined = string | undefined;
 export interface IView {
   path: string;
   name: string;
@@ -88,3 +88,23 @@ export interface OptionType {
   value: string;
   label: string;
 }
+
+export interface ICandidateFilters {
+  fullName: StringOrUndefined;
+  rating: StringOrUndefined;
+  status: StringOrUndefined;
+}
+
+export type IFilter =
+  | "eq"
+  | "gt"
+  | "gte"
+  | "lt"
+  | "lte"
+  | "neq"
+  | "like"
+  | "ilike"
+  | "in"
+  | "is"
+  | "cs"
+  | "cd";
