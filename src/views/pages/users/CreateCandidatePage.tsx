@@ -10,13 +10,16 @@ import {
   Container,
   Form,
   FormGroup,
+  Label,
   Row,
 } from "reactstrap";
 import { FormInput } from "components/Input";
 import { ICreateCandidate } from "types/types";
+import { useCreateCandidateMutation } from "redux/features/candidates/candidatesApiSlice";
 
 const CreateCandidatePage = () => {
   const history = useHistory();
+
   const initialState: ICreateCandidate = {
     firstName: "",
     lastName: "",
@@ -29,7 +32,7 @@ const CreateCandidatePage = () => {
   };
 
   const [values, setValues] = useState(initialState);
-
+  const [createCandidate] = useCreateCandidateMutation();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -40,7 +43,8 @@ const CreateCandidatePage = () => {
   };
 
   const handleSubmit = () => {
-    console.log(values);
+    // console.log(values);
+    createCandidate(values);
     // history.push("/users/candidates");
   };
 
@@ -62,16 +66,9 @@ const CreateCandidatePage = () => {
                     <Button
                       type="button"
                       color="info"
-                      onClick={e => history.push("/admin/candidates")}
+                      onClick={() => history.push("/admin/candidates")}
                     >
                       Back to Search
-                    </Button>
-                    <Button
-                      type="button"
-                      color="success"
-                      onClick={handleSubmit}
-                    >
-                      Create
                     </Button>
                   </Col>
                 </Row>
@@ -85,12 +82,12 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="4">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-first-name"
+                            for="input-first-name"
                           >
                             First name
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-first-name"
                             name="firstName"
@@ -101,12 +98,12 @@ const CreateCandidatePage = () => {
                       </Col>
                       <Col lg="4">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-lastname"
+                            for="input-lastname"
                           >
                             Last Name
-                          </label>
+                          </Label>
 
                           <FormInput
                             id="input-lastname"
@@ -121,12 +118,12 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="6">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-submission-date"
+                            for="input-submission-date"
                           >
                             Submission Date
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-submission-date"
                             name="submissionDate"
@@ -137,28 +134,29 @@ const CreateCandidatePage = () => {
                       </Col>
                       <Col lg="6">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-email"
+                            for="input-email"
                           >
                             Email address
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-email"
                             name="email"
                             value={values.email}
                             onChange={handleInputChange}
+                            type="email"
                           />
                         </FormGroup>
                       </Col>
                       <Col lg="4">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-country"
+                            for="input-country"
                           >
                             Country
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-country"
                             name="country"
@@ -179,12 +177,12 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="6">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-status"
+                            for="input-status"
                           >
                             Current Status
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-status"
                             name="status"
@@ -195,12 +193,12 @@ const CreateCandidatePage = () => {
                       </Col>
                       <Col lg="6">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-rating"
+                            for="input-rating"
                           >
                             Rating
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-rating"
                             name="rating"
@@ -221,12 +219,12 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="12">
                         <FormGroup>
-                          <label
+                          <Label
                             className="form-control-label"
-                            htmlFor="input-comment"
+                            for="input-comment"
                           >
                             Comment
-                          </label>
+                          </Label>
                           <FormInput
                             id="input-comment"
                             name="comment"
@@ -237,6 +235,13 @@ const CreateCandidatePage = () => {
                       </Col>
                     </Row>
                   </div>
+                  <Button
+                    type="button"
+                    color="success"
+                    onClick={handleSubmit}
+                  >
+                    Create
+                  </Button>
                 </Form>
               </CardBody>
             </Card>

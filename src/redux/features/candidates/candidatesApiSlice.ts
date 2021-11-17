@@ -75,6 +75,8 @@ export const candidatesApiSlice = createApi({
       }),
       createCandidate: builder.mutation<ICandidate, ICreateCandidate>({
         query: data => {
+          console.log("daaata", data);
+
           return {
             url: `${candidatesTable}`,
             method: "POST",
