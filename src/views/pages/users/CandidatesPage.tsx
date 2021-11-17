@@ -1,18 +1,27 @@
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import React from "react";
+import { useAlert } from "context";
+import React, { useState } from "react";
 // react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-// reactstrap components
-import { Button, Card, CardHeader, Container, Row } from "reactstrap";
-import { pagination } from "utils";
-import { useAlert } from "context";
-import { ICanditate } from "../../../types/types";
+import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
+import Select from "react-select";
+// reactstrap components
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Container,
+  FormGroup,
+  Input,
+  Row,
+} from "reactstrap";
+import { getSelectRating, getSelectStatus, pagination } from "utils";
 import { candidates } from ".";
-
-const { SearchBar } = Search;
+import { ICandidate } from "../../../types/types";
 
 const Candidates = () => {
   const history = useHistory();
@@ -21,9 +30,28 @@ const Candidates = () => {
     history.push("/admin/users/candidate-details/" + id);
   };
 
+  const [searchName, setSearchName] = useState("");
+  const [status, setStatus] = useState("");
+  const [rating, setRating] = useState("");
+
   const { alert } = useAlert();
 
-  const formatActionButtonCell = (_: undefined, row: ICanditate) => {
+  const findByAllParameters = async () => {
+    // const lastNameFilter = addLastnameFilter(searchLastName);
+    // const countryFilter = await addCountryFilter(searchCountry);
+    // const businessUnitFilter = await addBusinessUnitFilter(
+    //   searchBusinessUnit,
+    // );
+    const filters = {
+      fullName: searchName,
+      status,
+      rating,
+    };
+    // fetchEmployeesByFilters({ select: "*", filters });
+    console.log(filters);
+  };
+
+  const formatActionButtonCell = (_: undefined, row: ICandidate) => {
     const { reqId } = row;
     let candidateId = reqId.toString();
 
@@ -49,6 +77,117 @@ const Candidates = () => {
       {alert}
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
+        <Row>
+          <Col>
+            <Card>
+              <CardHeader>
+                <h3 className="mb-0">Search Candidates</h3>
+                <p className="text-sm mb-0">Filters</p>
+              </CardHeader>
+              <CardBody>
+                <Row>
+                  <Col md="10">
+                    <Row>
+                      <Col md="3">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="name"
+                          >
+                            Name
+                          </label>
+                          <Input
+                            id="name"
+                            style={{ height: "36px" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="Name"
+                            value={searchName}
+                            onChange={e => setSearchName(e.target.value)}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md="3">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="status"
+                          >
+                            Status
+                          </label>
+                          <Select
+                            id="status"
+                            options={getSelectStatus}
+                            onChange={item =>
+                              item && setStatus(item.value)
+                            }
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md="3">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="rating"
+                          >
+                            Rating
+                          </label>
+                          <Select
+                            id="rating"
+                            options={getSelectRating}
+                            onChange={item =>
+                              item && setRating(item.value)
+                            }
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    {/* <Col md="2">
+                    <FormGroup>
+                      <label
+                        className="form-control-label"
+                        htmlFor="example3cols2Input"
+                      >
+                        Hire Date From
+                      </label>
+                      <ReactDatetime
+                        inputProps={{
+                          placeholder: "Hire date",
+                        }}
+                        onChange={
+                          (dateAsMoment: any) =>
+                            console.log(dateAsMoment.format("D-MM-YYYY"))
+
+                          // setSearchHiringDate(
+                          //   dateAsMoment.format("D-MM-YYYY"),
+                          // )
+                        }
+                        timeFormat={false}
+                      />
+                    </FormGroup>
+                  </Col> */}
+                  </Col>
+                  <Col md="2">
+                    <FormGroup>
+                      <button
+                        style={{
+                          marginTop: "32px",
+                          marginLeft: "32px",
+                          height: "40px",
+                        }}
+                        className="btn btn-info"
+                        type="button"
+                        onClick={findByAllParameters}
+                      >
+                        Search
+                      </button>
+                    </FormGroup>
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
         <Row>
           <div className="col">
             <Card>
@@ -98,29 +237,19 @@ const Candidates = () => {
                 ]}
                 search
               >
-                {props => (
-                  <div className="py-4 table-responsive">
-                    <div
-                      id="datatable-basic_filter"
-                      className="dataTables_filter px-4 pb-1"
-                    >
-                      <label>
-                        Search:
-                        <SearchBar
-                          className="form-control-sm"
-                          placeholder=""
-                          {...props.searchProps}
-                        />
-                      </label>
+                {props => {
+                  return (
+                    <div className="py-4 table-responsive">
+                      <BootstrapTable
+                        {...props.baseProps}
+                        keyField="reqId"
+                        bootstrap4={true}
+                        pagination={pagination}
+                        bordered={false}
+                      />
                     </div>
-                    <BootstrapTable
-                      {...props.baseProps}
-                      bootstrap4={true}
-                      pagination={pagination}
-                      bordered={false}
-                    />
-                  </div>
-                )}
+                  );
+                }}
               </ToolkitProvider>
             </Card>
           </div>

@@ -26,15 +26,18 @@ export interface IRoute {
 
 export type Theme = "light" | "dark";
 
-export interface ICanditate {
+export type ICandidateStatus = "Closed" | "In Review" | "New";
+export type ICandidateRating = "1" | "2" | "3" | "4" | "5";
+
+export interface ICandidate {
   reqId: string;
   firstName: string;
   fullName: string;
-  rating: string;
+  rating: ICandidateRating;
   comment: string;
   email: string;
   submissionDate: string;
-  status: string;
+  status: ICandidateStatus;
   country: string;
 }
 
@@ -79,4 +82,9 @@ export interface IDoughnutChart {
 export interface IPieChart {
   data: ChartData<"pie">;
   options: ChartOptions<"pie">;
+}
+
+export interface OptionType {
+  value: string;
+  label: string;
 }

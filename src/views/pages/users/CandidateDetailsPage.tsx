@@ -13,7 +13,7 @@ import {
   Input,
   Row,
 } from "reactstrap";
-import { ICanditate } from "types/types";
+import { ICandidate } from "types/types";
 import { candidates } from ".";
 
 interface RouteParams {
@@ -26,9 +26,9 @@ const CandidateDetailsPage = () => {
   const history = useHistory();
 
   let fetchCandidate = () => {
-    let candidatesData: ICanditate[] = candidates;
+    let candidatesData = candidates as ICandidate[];
     const candidate = candidatesData.find(
-      (candidate: ICanditate) => candidate.reqId === id,
+      (candidate: ICandidate) => candidate.reqId === id,
     );
     return candidate;
   };
