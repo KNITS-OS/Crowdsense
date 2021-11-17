@@ -23,12 +23,12 @@ import { useEffect, useRef } from "react";
 import { Redirect, Switch } from "react-router-dom";
 import routes from "routes";
 import { getRoutes, ScrollToTop } from ".";
-import { useSidenav } from "context";
-import { useToggleSidenav } from "hooks";
+import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+import { toggleSidenav } from "../redux/features/sidenav/sidenavSlice";
 
 const RTL = () => {
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
+  const dispatch = useAppDispatch();
+  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
   const mainContentRef = useRef(document.createElement("div"));
 
@@ -63,10 +63,10 @@ const RTL = () => {
         </Switch>
         <AdminFooter />
       </div>
-      {sidenavOpen ? (
+      {isSidenavOpen ? (
         <div
           className="backdrop d-xl-none"
-          onClick={() => toggleSidenav}
+          onClick={() => dispatch(toggleSidenav())}
         />
       ) : null}
     </>

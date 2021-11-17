@@ -22,16 +22,17 @@ import { useRef } from "react";
 import { Redirect, Switch, useLocation } from "react-router-dom";
 import routes from "routes";
 import { Theme } from "types/types";
-import { useSidenav } from "context";
 import { getRoutes, ScrollToTop } from ".";
-import { useToggleSidenav } from "hooks";
 import { Sidebar } from "components/Sidebar";
+import { useAppDispatch, useAppSelector } from "redux/app/hooks";
+import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
 
 const Admin = () => {
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
+  const dispatch = useAppDispatch();
+  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
+
   ScrollToTop(mainContentRef);
 
   const getNavbarTheme = (): Theme => {
@@ -59,10 +60,10 @@ const Admin = () => {
         </Switch>
         <AdminFooter />
       </div>
-      {sidenavOpen ? (
+      {isSidenavOpen ? (
         <div
           className="backdrop d-xl-none"
-          onClick={() => toggleSidenav}
+          onClick={() => dispatch(toggleSidenav())}
         />
       ) : null}
     </>

@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import sidenavReducer from "redux/features/sidenav/sidenavSlice";
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    sidenav: sidenavReducer,
+  },
   // add special capabilites to the store
   // like tracking cache lifetimes
   // if no other part of the codebase needs this data

@@ -17,43 +17,42 @@
 // nodejs library that concatenates classes
 // @ts-ignore
 import classnames from "classnames";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
 // reactstrap components
 import {
+  Col,
   Collapse,
-  DropdownMenu,
+  Container,
   DropdownItem,
-  UncontrolledDropdown,
+  DropdownMenu,
   DropdownToggle,
-  FormGroup,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
-  ListGroupItem,
   ListGroup,
+  ListGroupItem,
   Media,
+  Nav,
   Navbar,
   NavItem,
   NavLink,
-  Nav,
-  Container,
   Row,
-  Col,
+  UncontrolledDropdown,
 } from "reactstrap";
-import { useSidenav } from "context";
-import { useToggleSidenav } from "hooks";
+import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
 import { Theme } from "types/types";
+import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 
 interface Props {
   theme: Theme;
 }
 
 const AdminNavbar = ({ theme }: Props) => {
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
+  const dispatch = useAppDispatch();
+  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
+
   // function that on mobile devices makes the search open
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
@@ -124,10 +123,10 @@ const AdminNavbar = ({ theme }: Props) => {
                 <div
                   className={classnames(
                     "pr-3 sidenav-toggler",
-                    { active: sidenavOpen },
+                    { active: isSidenavOpen },
                     { "sidenav-toggler-dark": theme === "dark" },
                   )}
-                  onClick={() => toggleSidenav}
+                  onClick={() => dispatch(toggleSidenav())}
                 >
                   <div className="sidenav-toggler-inner">
                     <i className="sidenav-toggler-line" />
@@ -480,17 +479,6 @@ const AdminNavbar = ({ theme }: Props) => {
       </Navbar>
     </>
   );
-};
-
-AdminNavbar.defaultProps = {
-  toggleSidenav: () => {},
-  sidenavOpen: false,
-  theme: "dark",
-};
-AdminNavbar.propTypes = {
-  toggleSidenav: PropTypes.func,
-  sidenavOpen: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"]),
 };
 
 export default AdminNavbar;

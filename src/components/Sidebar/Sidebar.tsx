@@ -34,9 +34,9 @@ import {
   NavLink,
   Nav,
 } from "reactstrap";
-import { useSidenav } from "context";
-import { useToggleSidenav } from "hooks";
 import { IRoute, IView } from "types/types";
+import { useAppDispatch, useAppSelector } from "redux/app/hooks";
+import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
 
 interface Props {
   /**
@@ -75,8 +75,8 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
   const [state, setState] = useState({});
   const location = useLocation();
 
-  const { sidenavOpen } = useSidenav();
-  const { toggleSidenav } = useToggleSidenav();
+  const dispatch = useAppDispatch();
+  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
   useEffect(() => {
     setState(getCollapseStates(routes));
@@ -168,7 +168,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
    */
   const closeSidenav = () => {
     if (window.innerWidth < 1200) {
-      toggleSidenav();
+      dispatch(toggleSidenav());
     }
   };
 
@@ -284,9 +284,9 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
         <div className="ml-auto">
           <div
             className={classnames("sidenav-toggler d-none d-xl-block", {
-              active: sidenavOpen,
+              active: isSidenavOpen,
             })}
-            onClick={toggleSidenav}
+            onClick={() => dispatch(toggleSidenav())}
           >
             <div className="sidenav-toggler-inner">
               <i className="sidenav-toggler-line" />

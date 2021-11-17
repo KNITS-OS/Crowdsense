@@ -18,10 +18,12 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fullcalendar/common/main.min.css";
 import "@fullcalendar/daygrid/main.min.css";
 import "quill/dist/quill.core.css";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 // plugins styles from node_modules
 import "react-notification-alert/dist/animate.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import { Provider } from "react-redux";
 // react library for routing
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "select2/dist/css/select2.min.css";
@@ -30,22 +32,25 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import "./assets/scss/argon-dashboard-pro-react.scss?v1.2.0";
 // plugins styles downloaded
 import "./assets/vendor/nucleo/css/nucleo.css";
-import { AlertProvider, SidenavProvider } from "./context";
+import { AlertProvider } from "./context";
 import { AdminLayout, AuthLayout } from "./layouts";
+import { store } from "./redux/app/store";
 import "./variables/chartDefaults";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <SidenavProvider>
-      <AlertProvider>
-        <Switch>
-          <Route path="/admin" render={() => <AdminLayout />} />
-          <Route path="/auth" render={() => <AuthLayout />} />
-          <Route path="/" render={() => <AdminLayout />} />
-          <Redirect from="*" to="/" />
-        </Switch>
-      </AlertProvider>
-    </SidenavProvider>
-  </BrowserRouter>,
+  <StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AlertProvider>
+          <Switch>
+            <Route path="/admin" render={() => <AdminLayout />} />
+            <Route path="/auth" render={() => <AuthLayout />} />
+            <Route path="/" render={() => <AdminLayout />} />
+            <Redirect from="*" to="/" />
+          </Switch>
+        </AlertProvider>
+      </BrowserRouter>
+    </Provider>
+  </StrictMode>,
   document.getElementById("root"),
 );
