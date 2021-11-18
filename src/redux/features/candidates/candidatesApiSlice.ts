@@ -109,6 +109,20 @@ export const candidatesApiSlice = createApi({
           { type: "Candidates", reqId },
         ],
       }),
+      deleteCandidate: builder.mutation<
+        { success: boolean; reqId: string },
+        number
+      >({
+        query(reqId) {
+          return {
+            url: `${candidatesTable}/${reqId}`,
+            method: "DELETE",
+          };
+        },
+        invalidatesTags: (result, error, reqId) => [
+          { type: "Candidates", reqId },
+        ],
+      }),
     };
   },
 });
@@ -117,4 +131,6 @@ export const {
   useGetCandidateQuery,
   useLazyGetFilteredCandidatesQuery,
   useCreateCandidateMutation,
+  useUpdateCandidateMutation,
+  useDeleteCandidateMutation,
 } = candidatesApiSlice;
