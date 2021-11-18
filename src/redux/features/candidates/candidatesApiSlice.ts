@@ -74,17 +74,14 @@ export const candidatesApiSlice = createApi({
           };
         },
         providesTags: result =>
-          // is result available?
           result
-            ? // successful query
-              [
+            ? [
                 ...result.map(
                   ({ reqId }) => ({ type: "Candidates", reqId } as const),
                 ),
                 { type: "Candidates", id: "LIST" },
               ]
-            : // an error occurred, but we still want to refetch this query when `{ type: 'Candidates', id: 'LIST' }` is invalidated
-              [{ type: "Candidates", id: "LIST" }],
+            : [{ type: "Candidates", id: "LIST" }],
       }),
       createCandidate: builder.mutation<
         ICandidate,
@@ -108,8 +105,6 @@ export const candidatesApiSlice = createApi({
             body,
           };
         },
-        // Invalidates all queries that subscribe to this Post `id` only.
-        // In this case, `getPost` will be re-run. `getPosts` *might*  rerun, if this id was under its results.
         invalidatesTags: (result, error, { reqId }) => [
           { type: "Candidates", reqId },
         ],
