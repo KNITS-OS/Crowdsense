@@ -27,14 +27,14 @@ const CreateCandidatePage = () => {
   const history = useHistory();
 
   const initialState: ICreateCandidateInitialState = {
-    firstName: "Peeter",
-    lastName: "Mattias",
-    submissionDate: "12.11.22",
-    email: "test@gmail.com",
-    country: "Estonia",
-    status: "New",
-    rating: "5",
-    comment: "Lorem ipsum",
+    firstName: "",
+    lastName: "",
+    submissionDate: "",
+    email: "",
+    country: "",
+    status: "",
+    rating: "",
+    comment: "",
   };
 
   const [values, setValues] = useState(initialState);
