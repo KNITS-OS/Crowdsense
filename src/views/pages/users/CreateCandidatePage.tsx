@@ -1,6 +1,8 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { FormInput } from "components/Input";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import Select from "react-select";
 import {
   Button,
   Card,
@@ -13,22 +15,26 @@ import {
   Label,
   Row,
 } from "reactstrap";
-import { FormInput } from "components/Input";
-import { ICreateCandidate } from "types/types";
 import { useCreateCandidateMutation } from "redux/features/candidates/candidatesApiSlice";
+import {
+  ICandidateRating,
+  ICreateCandidateFinalState,
+  ICreateCandidateInitialState,
+} from "types/types";
+import { getSelectRating } from "../../../utils";
 
 const CreateCandidatePage = () => {
   const history = useHistory();
 
-  const initialState: ICreateCandidate = {
-    firstName: "",
-    lastName: "",
-    submissionDate: "",
-    email: "",
-    country: "",
-    status: "",
-    rating: "",
-    comment: "",
+  const initialState: ICreateCandidateInitialState = {
+    firstName: "Peeter",
+    lastName: "Mattias",
+    submissionDate: "12.11.22",
+    email: "test@gmail.com",
+    country: "Estonia",
+    status: "New",
+    rating: "5",
+    comment: "Lorem ipsum",
   };
 
   const [values, setValues] = useState(initialState);
@@ -43,9 +49,30 @@ const CreateCandidatePage = () => {
   };
 
   const handleSubmit = () => {
-    // console.log(values);
-    createCandidate(values);
-    // history.push("/users/candidates");
+    const {
+      firstName,
+      lastName,
+      comment,
+      country,
+      submissionDate,
+      email,
+      rating,
+      status,
+    } = values;
+    const createValues: ICreateCandidateFinalState = {
+      // @todo remove this
+      reqId: `Req${Math.random()}`,
+      firstName,
+      fullName: firstName + " " + lastName,
+      submissionDate,
+      email,
+      country,
+      status,
+      rating,
+      comment,
+    };
+    createCandidate(createValues);
+    history.push("/admin/candidates");
   };
 
   return (
@@ -176,23 +203,7 @@ const CreateCandidatePage = () => {
                   <div className="pl-lg-4">
                     <Row>
                       <Col lg="6">
-                        <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-status"
-                          >
-                            Current Status
-                          </Label>
-                          <FormInput
-                            id="input-status"
-                            name="status"
-                            value={values.status}
-                            onChange={handleInputChange}
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
+                        {/* <FormGroup>
                           <Label
                             className="form-control-label"
                             for="input-rating"
@@ -204,6 +215,26 @@ const CreateCandidatePage = () => {
                             name="rating"
                             value={values.rating}
                             onChange={handleInputChange}
+                          />
+                        </FormGroup> */}
+                        <FormGroup>
+                          <Label
+                            className="form-control-label"
+                            for="rating"
+                          >
+                            Rating
+                          </Label>
+                          <Select
+                            id="rating"
+                            name="rating"
+                            options={getSelectRating}
+                            onChange={item =>
+                              item &&
+                              setValues({
+                                ...values,
+                                rating: item.value as ICandidateRating,
+                              })
+                            }
                           />
                         </FormGroup>
                       </Col>

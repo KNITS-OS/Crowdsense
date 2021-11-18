@@ -1,10 +1,10 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "utils/rtkQueryConfig";
 import {
   ICandidate,
   ICandidateFilters,
-  ICreateCandidate,
+  ICreateCandidateFinalState,
 } from "types/types";
+import { baseQuery } from "utils/rtkQueryConfig";
 
 const candidatesTable = "candidates";
 
@@ -23,10 +23,11 @@ interface IGetCandidatesByFiltersArgs {
   filters: ICandidateFilters;
   limit?: number;
 }
-
+// https://redux-toolkit.js.org/rtk-query/usage/mutations#revalidation-example
 export const candidatesApiSlice = createApi({
   reducerPath: "candidates",
   baseQuery,
+  tagTypes: ["Candidates"],
   endpoints(builder) {
     return {
       getAllCandidates: builder.query<ICandidate[], IGetEmployeesArgs>({
@@ -61,7 +62,7 @@ export const candidatesApiSlice = createApi({
         IGetCandidatesByFiltersArgs
       >({
         query: args => {
-          const { select, filters, limit = 30 } = args;
+          const { select, limit = 30, filters } = args;
           return {
             url: `${candidatesTable}`,
             params: {
@@ -72,8 +73,23 @@ export const candidatesApiSlice = createApi({
             method: "GET",
           };
         },
+        providesTags: result =>
+          // is result available?
+          result
+            ? // successful query
+              [
+                ...result.map(
+                  ({ reqId }) => ({ type: "Candidates", reqId } as const),
+                ),
+                { type: "Candidates", id: "LIST" },
+              ]
+            : // an error occurred, but we still want to refetch this query when `{ type: 'Candidates', id: 'LIST' }` is invalidated
+              [{ type: "Candidates", id: "LIST" }],
       }),
-      createCandidate: builder.mutation<ICandidate, ICreateCandidate>({
+      createCandidate: builder.mutation<
+        ICandidate,
+        ICreateCandidateFinalState
+      >({
         query: data => {
           return {
             url: `${candidatesTable}`,
@@ -81,6 +97,22 @@ export const candidatesApiSlice = createApi({
             body: data,
           };
         },
+        invalidatesTags: [{ type: "Candidates" }],
+      }),
+      updateCandidate: builder.mutation<ICandidate, Partial<ICandidate>>({
+        query(data) {
+          const { reqId, ...body } = data;
+          return {
+            url: `${candidatesTable}/${reqId}`,
+            method: "PUT",
+            body,
+          };
+        },
+        // Invalidates all queries that subscribe to this Post `id` only.
+        // In this case, `getPost` will be re-run. `getPosts` *might*  rerun, if this id was under its results.
+        invalidatesTags: (result, error, { reqId }) => [
+          { type: "Candidates", reqId },
+        ],
       }),
     };
   },

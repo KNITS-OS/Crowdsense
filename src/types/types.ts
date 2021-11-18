@@ -109,9 +109,21 @@ export type IArrayFilter = "in" | "cs" | "cd";
 
 export type ILikeFilter = "like" | "ilike";
 
-export interface ICreateCandidate {
+export interface ICreateCandidateInitialState {
   firstName: string;
   lastName: string;
+  email: string;
+  country: string;
+  status: ICandidateStatus | "";
+  rating: ICandidateRating | "";
+  comment: string;
+  submissionDate: string;
+}
+
+export interface ICreateCandidateFinalState {
+  reqId?: string;
+  firstName: string;
+  fullName: string;
   email: string;
   country: string;
   status: ICandidateStatus | "";
