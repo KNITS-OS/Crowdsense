@@ -38,9 +38,9 @@ import { store } from "./redux/app/store";
 import "./variables/chartDefaults";
 
 ReactDOM.render(
-  <StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <StrictMode>
         <AlertProvider>
           <Switch>
             <Route path="/admin" render={() => <AdminLayout />} />
@@ -49,8 +49,8 @@ ReactDOM.render(
             <Redirect from="*" to="/" />
           </Switch>
         </AlertProvider>
-      </BrowserRouter>
-    </Provider>
-  </StrictMode>,
+      </StrictMode>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root"),
 );

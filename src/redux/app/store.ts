@@ -10,8 +10,9 @@ export const store = configureStore({
   // like tracking cache lifetimes
   // if no other part of the codebase needs this data
   // it will be removed from the cache after it expires
-  middleware: getDefaultMiddleware => {
-    return getDefaultMiddleware().concat(candidatesApiSlice.middleware);
+  // gdm = get default middleware
+  middleware: gdm => {
+    return gdm().concat(candidatesApiSlice.middleware);
   },
 });
 
