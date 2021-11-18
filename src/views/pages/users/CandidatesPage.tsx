@@ -2,11 +2,11 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import React, { useState } from "react";
-// react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
+// react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
-import Select from "react-select";
+import Select, { MultiValue } from "react-select";
 // reactstrap components
 import {
   Button,
@@ -22,7 +22,11 @@ import {
 } from "reactstrap";
 import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
 import { addFilter } from "redux/filters";
-import { ICandidate, ICandidateFilters } from "types/types";
+import {
+  ICandidate,
+  ICandidateFilters,
+  StringOrUndefined,
+} from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
 
 const Candidates = () => {
@@ -42,10 +46,17 @@ const Candidates = () => {
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState("");
   const [email, setEmail] = useState("");
+  const [comment, setComment] = useState<StringOrUndefined>("");
+  const [tags, setTags] = useState<
+    MultiValue<{
+      value: string;
+      label: string;
+    }>
+  >([]);
 
   const { alert } = useAlert();
 
-  const findByAllParameters = () => {
+  const findByTagParameters = () => {
     const fullNameFilter = addFilter({
       param: searchName,
       filter: "like",
@@ -82,6 +93,58 @@ const Candidates = () => {
         </Button>
       </div>
     );
+  };
+
+  const options = [
+    { value: "tag1", label: "Tag1" },
+    { value: "tag2", label: "Tag2" },
+    { value: "tag3", label: "Tag3" },
+    { value: "tag4", label: "Tag4" },
+    { value: "tag5", label: "Tag5" },
+    { value: "tag6", label: "Tag6" },
+  ];
+
+  const onSave = () => {
+    console.log("tags", tags);
+    console.log("comment", comment);
+  };
+
+  const expandRow = {
+    renderer: () => {
+      return (
+        <>
+          <Row>
+            <Col md="10">
+              <Select
+                isMulti
+                options={options}
+                onChange={item => setTags(item)}
+              />
+            </Col>
+
+            <Button color="success" size="md" onClick={onSave}>
+              Save
+            </Button>
+          </Row>
+          <Row>
+            <Col md="10">
+              <Input
+                type="text"
+                value={comment}
+                onChange={e => setComment(e.target.value)}
+              />
+            </Col>
+          </Row>
+        </>
+      );
+    },
+    onExpand: (row: ICandidate) => {
+      setTimeout(() => {
+        setComment(row.comment);
+      }, 100);
+    },
+    animate: false,
+    onlyOneExpanding: true,
   };
 
   return (
@@ -208,7 +271,7 @@ const Candidates = () => {
                         }}
                         className="btn btn-info"
                         type="button"
-                        onClick={findByAllParameters}
+                        onClick={findByTagParameters}
                       >
                         Search
                       </button>
@@ -255,19 +318,17 @@ const Candidates = () => {
                     {
                       dataField: "submissionDate",
                       text: "Submission Date",
-                      sort: true, //TODO fix the sorting
+                      sort: true,
                     },
                     {
                       dataField: "status",
                       text: "Current Status",
                       sort: true,
-                      style: { width: "50px" },
                     },
                     {
                       dataField: "rating",
                       text: "Rating",
                       sort: true,
-                      style: { width: "50px" },
                     },
                     {
                       dataField: "action",
@@ -275,7 +336,6 @@ const Candidates = () => {
                       formatter: formatActionButtonCell,
                     },
                   ]}
-                  search
                 >
                   {props => {
                     return (
@@ -286,6 +346,7 @@ const Candidates = () => {
                           bootstrap4={true}
                           pagination={pagination}
                           bordered={false}
+                          expandRow={expandRow}
                         />
                       </div>
                     );
