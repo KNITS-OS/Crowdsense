@@ -38,8 +38,19 @@ import {
   CandidatesPage,
   CreateCandidatePage,
 } from "./views/pages/users";
+import { HomePage } from "./views/pages/home";
 
 const routes: IRoute[] = [
+  //Home
+  {
+    collapse: false,
+    path: "/home",
+    name: "Home",
+    miniName: "HO",
+    component: HomePage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info",
+  },
   // Curriculum
   {
     collapse: true,

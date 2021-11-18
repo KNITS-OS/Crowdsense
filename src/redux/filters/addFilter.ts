@@ -2,6 +2,7 @@ import {
   ILikeFilter,
   ISimpleFilter,
   StringOrUndefined,
+  IArrayFilter,
 } from "types/types";
 
 /**
@@ -12,15 +13,19 @@ import {
  */
 interface Props {
   param: string;
-  filter: ISimpleFilter | ILikeFilter;
+  filter: ISimpleFilter | ILikeFilter | IArrayFilter;
 }
 
-const addSimpleFilter = ({ param, filter }: Props) => {
+const addFilter = ({ param, filter }: Props) => {
   let finalFilter: StringOrUndefined = undefined;
 
   if (param) {
     if (filter === "like" || filter === "ilike") {
       finalFilter = `${filter}.%${param}%`;
+    } else if (filter === "in") {
+      finalFilter = `${filter}.(${param})`;
+    } else if (filter === "cs" || filter === "cd") {
+      finalFilter = `${filter}.{${param}}`;
     } else {
       finalFilter = `${filter}.${param}`;
     }
@@ -29,4 +34,4 @@ const addSimpleFilter = ({ param, filter }: Props) => {
   return finalFilter;
 };
 
-export default addSimpleFilter;
+export default addFilter;

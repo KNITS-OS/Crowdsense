@@ -56,7 +56,7 @@ const Admin = () => {
         <AdminNavbar theme={getNavbarTheme()} />
         <Switch>
           {getRoutes(routes, "/admin")}
-          <Redirect from="*" to="/admin/dashboard" />
+          <Redirect from="*" to="/admin/home" />
         </Switch>
         <AdminFooter />
       </div>
