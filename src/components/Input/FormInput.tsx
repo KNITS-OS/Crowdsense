@@ -4,9 +4,10 @@ import { InputType } from "reactstrap/es/Input";
 interface Props {
   id: string;
   name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string | number | undefined;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: InputType;
+  disabled?: boolean;
 }
 
 const FormInput = ({
@@ -15,6 +16,7 @@ const FormInput = ({
   onChange,
   value,
   type = "text",
+  disabled = false,
 }: Props) => {
   return (
     <Input
@@ -24,6 +26,7 @@ const FormInput = ({
       onChange={onChange}
       required={true}
       type={type}
+      disabled={disabled}
     />
   );
 };

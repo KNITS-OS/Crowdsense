@@ -149,6 +149,7 @@ const CreateCandidatePage = () => {
                             id="input-email"
                             label="Email"
                             name="email"
+                            type="email"
                             value={values.email}
                             onChange={handleInputChange}
                           />

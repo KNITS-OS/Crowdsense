@@ -12,11 +12,11 @@ import {
   Container,
   Form,
   FormGroup,
-  Input,
   Row,
   Spinner,
 } from "reactstrap";
 import { useGetCandidateQuery } from "redux/features/candidates/candidatesApiSlice";
+import { LabeledFormInput } from "../../../components/Input";
 import { defaultTags } from "../../../mockData";
 import { ITag } from "../../../types/types";
 
@@ -61,7 +61,7 @@ const CandidateDetailsPage = () => {
     email,
     fullName,
     firstName,
-    rating,
+    rating = 0,
     status,
     submissionDate,
     country,
@@ -111,33 +111,23 @@ const CandidateDetailsPage = () => {
                     <Row>
                       <Col lg="4">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-first-name"
-                          >
-                            First name
-                          </label>
-                          <Input
-                            id="input-first-name"
+                          <LabeledFormInput
+                            id="input-firstname"
+                            label="First name"
+                            name="firstName"
                             value={firstName}
-                            type="text"
                             disabled
                           />
                         </FormGroup>
                       </Col>
                       <Col lg="4">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-fullname"
-                          >
-                            Full Name
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-fullname"
+                            label="Full name"
+                            name="fullName"
                             value={fullName}
                             disabled
-                            type="text"
                           />
                         </FormGroup>
                       </Col>
@@ -146,49 +136,35 @@ const CandidateDetailsPage = () => {
                     <Row>
                       <Col lg="6">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-submission-date"
-                          >
-                            Submission Date
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-submission-date"
+                            label="Submission Date"
+                            name="submissionDate"
                             value={submissionDate}
                             disabled
-                            type="text"
                           />
                         </FormGroup>
                       </Col>
                       <Col lg="6">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-email"
-                          >
-                            Email address
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-email"
+                            label="Email"
+                            name="email"
+                            type="email"
                             value={email}
                             disabled
-                            type="email"
                           />
                         </FormGroup>
                       </Col>
                       <Col lg="4">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Country
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-country"
+                            label="Country"
+                            name="country"
                             value={country}
                             disabled
-                            type="text"
                           />
                         </FormGroup>
                       </Col>
@@ -204,33 +180,21 @@ const CandidateDetailsPage = () => {
                     <Row>
                       <Col lg="6">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-status"
-                          >
-                            Current Status
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-status"
+                            label="Status"
+                            name="status"
                             value={status}
-                            type="text"
-                            disabled
                           />
                         </FormGroup>
                       </Col>
                       <Col lg="6">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-rating"
-                          >
-                            Rating
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-rating"
+                            label="Rating"
+                            name="rating"
                             value={rating}
-                            disabled
-                            type="text"
                           />
                         </FormGroup>
                       </Col>
@@ -246,16 +210,11 @@ const CandidateDetailsPage = () => {
                     <Row>
                       <Col lg="12">
                         <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-comment"
-                          >
-                            Comment
-                          </label>
-                          <Input
+                          <LabeledFormInput
                             id="input-comment"
+                            label="Comment"
+                            name="comment"
                             value={comment}
-                            type="text"
                           />
                         </FormGroup>
                       </Col>
