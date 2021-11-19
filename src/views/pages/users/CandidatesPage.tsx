@@ -1,14 +1,10 @@
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
-import { defaultTags } from "mockData";
 import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
-import { OnChangeValue } from "react-select";
-import CreatableSelect from "react-select/creatable";
-import { Rating } from "react-simple-star-rating";
 // reactstrap components
 import {
   Button,
@@ -30,7 +26,11 @@ import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
 import { InputFilter } from "../../../components/Filters";
 import SelectFilter from "../../../components/Filters/SelectFilter";
-import { TableActionButtons } from "./components";
+import {
+  TableActionButtons,
+  TableRatingCell,
+  TableTagsCell,
+} from "./components";
 
 const Candidates = () => {
   const [
@@ -68,57 +68,6 @@ const Candidates = () => {
     };
     getFilteredCandidates({ limit: 150, select: "*", filters });
   };
-
-  const handleChange = (newValue: OnChangeValue<any, true>) => {
-    console.log(newValue);
-    // setTags(newValue);
-  };
-
-  const tagsSelectCell = (_: undefined, row: ICandidate) => {
-    return (
-      <>
-        <Row>
-          <Col md="10">
-            {/* https://react-select.com/creatable */}
-            <CreatableSelect
-              isMulti
-              onChange={handleChange}
-              // onChange={item => setTags(item)}
-              options={defaultTags}
-              // value={candidateTags.map(tag => ({
-              //   value: tag.value,
-              //   label: tag.label,
-              // }))}
-            />
-          </Col>
-        </Row>
-      </>
-    );
-  };
-
-  const ratingCell = (_: undefined, row: ICandidate) => {
-    if (!row.rating) row.rating = 0;
-
-    const handleRatingChange = (newRating: number) => {
-      updateCandidate({
-        reqId: row.reqId,
-        body: { rating: newRating },
-      });
-    };
-    return (
-      <>
-        <Row>
-          <Col md="10">
-            <Rating
-              onClick={newRating => handleRatingChange(newRating)}
-              ratingValue={row.rating}
-            />
-          </Col>
-        </Row>
-      </>
-    );
-  };
-  // const handleRatingUpdate
 
   const selectRow: any = {
     mode: "checkbox",
@@ -308,17 +257,18 @@ const Candidates = () => {
                       dataField: "rating",
                       text: "Rating",
                       sort: true,
-                      formatter: ratingCell,
+                      formatter: (_, row) =>
+                        TableRatingCell({ row, updateCandidate }),
                     },
                     {
                       dataField: "tags",
                       text: "Tags",
-                      formatter: tagsSelectCell,
+                      formatter: TableTagsCell,
                     },
                     {
                       dataField: "action",
                       text: "",
-                      formatter: TableActionButtons,
+                      formatter: (_, row) => TableActionButtons({ row }),
                     },
                   ]}
                 >

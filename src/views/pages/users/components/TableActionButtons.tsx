@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { ICandidate } from "types/types";
 
-const TableActionButtons = (_: undefined, row: ICandidate) => {
+interface Props {
+  row: ICandidate;
+  col?: number;
+  rowIndex?: number;
+}
+
+const TableActionButtons = ({ row }: Props) => {
   const { reqId } = row;
   let candidateId = reqId.toString();
 
