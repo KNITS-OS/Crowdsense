@@ -1,5 +1,5 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { FormInput } from "components/Input";
+import { LabeledFormInput } from "components/Input";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import Select from "react-select";
@@ -12,7 +12,6 @@ import {
   Container,
   Form,
   FormGroup,
-  Label,
   Row,
 } from "reactstrap";
 import { useCreateCandidateMutation } from "redux/features/candidates/candidatesApiSlice";
@@ -21,6 +20,7 @@ import {
   ICreateCandidateFinalState,
   ICreateCandidateInitialState,
 } from "types/types";
+import { FormLabel } from "../../../components/Labels";
 import { getSelectRating } from "../../../utils";
 
 const CreateCandidatePage = () => {
@@ -109,14 +109,9 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="4">
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-first-name"
-                          >
-                            First name
-                          </Label>
-                          <FormInput
-                            id="input-first-name"
+                          <LabeledFormInput
+                            id="input-firstname"
+                            label="First name"
                             name="firstName"
                             value={values.firstName}
                             onChange={handleInputChange}
@@ -125,15 +120,9 @@ const CreateCandidatePage = () => {
                       </Col>
                       <Col lg="4">
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-lastname"
-                          >
-                            Last Name
-                          </Label>
-
-                          <FormInput
+                          <LabeledFormInput
                             id="input-lastname"
+                            label="Last Name"
                             name="lastName"
                             value={values.lastName}
                             onChange={handleInputChange}
@@ -145,14 +134,9 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="6">
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-submission-date"
-                          >
-                            Submission Date
-                          </Label>
-                          <FormInput
+                          <LabeledFormInput
                             id="input-submission-date"
+                            label="Submission Date"
                             name="submissionDate"
                             value={values.submissionDate}
                             onChange={handleInputChange}
@@ -161,31 +145,20 @@ const CreateCandidatePage = () => {
                       </Col>
                       <Col lg="6">
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-email"
-                          >
-                            Email address
-                          </Label>
-                          <FormInput
+                          <LabeledFormInput
                             id="input-email"
+                            label="Email"
                             name="email"
                             value={values.email}
                             onChange={handleInputChange}
-                            type="email"
                           />
                         </FormGroup>
                       </Col>
                       <Col lg="4">
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-country"
-                          >
-                            Country
-                          </Label>
-                          <FormInput
+                          <LabeledFormInput
                             id="input-country"
+                            label="Country"
                             name="country"
                             value={values.country}
                             onChange={handleInputChange}
@@ -194,9 +167,7 @@ const CreateCandidatePage = () => {
                       </Col>
                     </Row>
                   </div>
-
                   <hr className="my-4" />
-
                   <h6 className="heading-small text-muted mb-4">
                     Evaluation
                   </h6>
@@ -218,12 +189,7 @@ const CreateCandidatePage = () => {
                           />
                         </FormGroup> */}
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="rating"
-                          >
-                            Rating
-                          </Label>
+                          <FormLabel label="Rating" id="rating" />
                           <Select
                             id="rating"
                             name="rating"
@@ -240,7 +206,6 @@ const CreateCandidatePage = () => {
                       </Col>
                     </Row>
                   </div>
-
                   <hr className="my-4" />
 
                   <h6 className="heading-small text-muted mb-4">
@@ -250,14 +215,9 @@ const CreateCandidatePage = () => {
                     <Row>
                       <Col lg="12">
                         <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-comment"
-                          >
-                            Comment
-                          </Label>
-                          <FormInput
+                          <LabeledFormInput
                             id="input-comment"
+                            label="Comment"
                             name="comment"
                             value={values.comment}
                             onChange={handleInputChange}
