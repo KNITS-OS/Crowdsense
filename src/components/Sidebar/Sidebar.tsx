@@ -72,7 +72,7 @@ interface Props {
 }
 
 const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
-  const [state, setState] = useState({});
+  const [state, setState] = useState<any>({});
   const location = useLocation();
 
   const dispatch = useAppDispatch();
@@ -184,6 +184,8 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
       if (route.global) {
         return null;
       }
+      console.log(route);
+
       if (route.collapse && route.state && route.views) {
         var st = {};
         st[route["state"]] = !state[route.state];
@@ -198,7 +200,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
               })}
               onClick={e => {
                 e.preventDefault();
-                setState(st);
+                setState({ ...state, ...st });
               }}
             >
               {route.icon ? (
@@ -206,11 +208,9 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
                   <i className={route.icon} />
                   <span className="nav-link-text">{route.name}</span>
                 </>
-              ) : // @ts-ignore
-              route.miniName ? (
+              ) : route.miniName ? (
                 <>
                   <span className="sidenav-mini-icon">
-                    {/* @ts-ignore */}
                     {route.miniName}
                   </span>
                   <span className="sidenav-normal"> {route.name} </span>
@@ -219,7 +219,6 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
             </NavLink>
             <Collapse isOpen={state[route.state]}>
               <Nav className="nav-sm flex-column">
-                {/* @ts-ignore */}
                 {createLinks(route.views)}
               </Nav>
             </Collapse>
