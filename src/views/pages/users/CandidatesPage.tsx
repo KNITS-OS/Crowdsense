@@ -2,7 +2,9 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import { useState } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
+import BootstrapTable, {
+  SelectRowProps,
+} from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 // reactstrap components
@@ -37,23 +39,18 @@ const Candidates = () => {
     getFilteredCandidates,
     { data: candidates = [], isLoading, isFetching },
   ] = useLazyGetFilteredCandidatesQuery();
-
-  // const [getCandidateTags, { data: candidateTags = [] }] =
-  //   useLazyGetCandidateTagsQuery();
+  const { alert } = useAlert();
   const [updateCandidate] = useUpdateCandidateMutation();
 
-  const [searchName, setSearchName] = useState("");
+  const [name, setName] = useState("");
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState("");
   const [email, setEmail] = useState("");
   const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
-  // const [tags, setTags] = useState<any>();
 
-  const { alert } = useAlert();
-
-  const findByTagParameters = () => {
+  const findByFilters = () => {
     const fullNameFilter = addFilter({
-      param: searchName,
+      param: name,
       filter: "like",
     });
     const statusFilter = addFilter({ param: status, filter: "eq" });
@@ -69,9 +66,9 @@ const Candidates = () => {
     getFilteredCandidates({ limit: 150, select: "*", filters });
   };
 
-  const selectRow: any = {
+  const selectRow: SelectRowProps<ICandidate> = {
     mode: "checkbox",
-    onSelect: (row: ICandidate, isSelect: boolean) => {
+    onSelect: (row, isSelect) => {
       if (isSelect) {
         setSelectedRows(oldRows => [...oldRows, row]);
       } else {
@@ -106,8 +103,8 @@ const Candidates = () => {
                         <InputFilter
                           id="name"
                           placeholder="Name"
-                          value={searchName}
-                          setValue={setSearchName}
+                          value={name}
+                          setValue={setName}
                         />
                       </Col>
                       <Col md="3">
@@ -170,7 +167,7 @@ const Candidates = () => {
                         }}
                         className="btn btn-info"
                         type="button"
-                        onClick={findByTagParameters}
+                        onClick={findByFilters}
                       >
                         Search
                       </Button>
