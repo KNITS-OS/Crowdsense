@@ -1,6 +1,8 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
+import CreatableSelect from "react-select/creatable";
 import {
   Button,
   Card,
@@ -15,6 +17,8 @@ import {
   Spinner,
 } from "reactstrap";
 import { useGetCandidateQuery } from "redux/features/candidates/candidatesApiSlice";
+import { defaultTags } from "../../../mockData";
+import { ITag } from "../../../types/types";
 
 interface RouteParams {
   id: string;
@@ -22,14 +26,13 @@ interface RouteParams {
 
 const CandidateDetailsPage = () => {
   let { id } = useParams<RouteParams>();
-
+  const [tags, setTags] = useState<ITag[]>([]);
   const {
     data = [],
     isError,
     isLoading,
     isFetching,
   } = useGetCandidateQuery({ id, select: "*" });
-
   const history = useHistory();
 
   let candidate = data[0];
@@ -44,6 +47,10 @@ const CandidateDetailsPage = () => {
       </div>
     );
   }
+
+  const handleTagChange = (newValue: any) => {
+    setTags(newValue);
+  };
 
   if (!candidate) {
     return <div>No candidate found</div>;
@@ -112,7 +119,7 @@ const CandidateDetailsPage = () => {
                             id="input-first-name"
                             value={firstName}
                             type="text"
-                            disabled={true}
+                            disabled
                           />
                         </FormGroup>
                       </Col>
@@ -127,7 +134,7 @@ const CandidateDetailsPage = () => {
                           <Input
                             id="input-fullname"
                             value={fullName}
-                            disabled={true}
+                            disabled
                             type="text"
                           />
                         </FormGroup>
@@ -146,7 +153,7 @@ const CandidateDetailsPage = () => {
                           <Input
                             id="input-submission-date"
                             value={submissionDate}
-                            disabled={true}
+                            disabled
                             type="text"
                           />
                         </FormGroup>
@@ -162,7 +169,7 @@ const CandidateDetailsPage = () => {
                           <Input
                             id="input-email"
                             value={email}
-                            disabled={true}
+                            disabled
                             type="email"
                           />
                         </FormGroup>
@@ -178,7 +185,7 @@ const CandidateDetailsPage = () => {
                           <Input
                             id="input-country"
                             value={country}
-                            disabled={true}
+                            disabled
                             type="text"
                           />
                         </FormGroup>
@@ -205,7 +212,7 @@ const CandidateDetailsPage = () => {
                             id="input-status"
                             value={status}
                             type="text"
-                            disabled={true}
+                            disabled
                           />
                         </FormGroup>
                       </Col>
@@ -220,7 +227,7 @@ const CandidateDetailsPage = () => {
                           <Input
                             id="input-rating"
                             value={rating}
-                            disabled={true}
+                            disabled
                             type="text"
                           />
                         </FormGroup>
@@ -247,7 +254,20 @@ const CandidateDetailsPage = () => {
                             id="input-comment"
                             value={comment}
                             type="text"
-                            disabled={true}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col lg="12">
+                        <FormGroup>
+                          {/* https://react-select.com/creatable */}
+                          <CreatableSelect
+                            isMulti
+                            onChange={handleTagChange}
+                            options={defaultTags}
+                            value={tags.map(tag => ({
+                              value: tag.value,
+                              label: tag.label,
+                            }))}
                           />
                         </FormGroup>
                       </Col>
