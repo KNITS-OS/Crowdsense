@@ -71,7 +71,7 @@ const Candidates = () => {
       rating: ratingFilter,
       email: emailFilter,
     };
-    getFilteredCandidates({ limit: 5, select: "*", filters });
+    getFilteredCandidates({ limit: 150, select: "*", filters });
   };
 
   const formatActionButtonCell = (_: undefined, row: ICandidate) => {

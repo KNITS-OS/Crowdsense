@@ -81,6 +81,7 @@ export const candidatesApiSlice = createApi({
               select,
               ...filters,
               limit,
+              order: "firstName.asc.nullslast",
             },
             method: "GET",
           };
@@ -117,7 +118,6 @@ export const candidatesApiSlice = createApi({
             params: {
               reqId: `eq.${reqId}`,
             },
-            // rating: body.rating,
             body: { ...body },
           };
         },
