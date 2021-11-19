@@ -54,7 +54,7 @@ export interface ITag {
 
 export type IKNCareerStatus = "New" | "Closed" | "In Review";
 
-export type ICandidateRating = "1" | "2" | "3" | "4" | "5";
+export type ICandidateRating = 0 | 1 | 2 | 3 | 4 | 5 | number;
 
 export interface ICandidate {
   reqId: string;

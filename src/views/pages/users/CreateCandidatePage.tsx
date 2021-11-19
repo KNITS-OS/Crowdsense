@@ -228,7 +228,7 @@ const CreateCandidatePage = () => {
                             id="rating"
                             name="rating"
                             options={getSelectRating}
-                            onChange={item =>
+                            onChange={(item: any) =>
                               item &&
                               setValues({
                                 ...values,

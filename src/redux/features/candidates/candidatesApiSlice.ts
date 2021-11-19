@@ -110,14 +110,15 @@ export const candidatesApiSlice = createApi({
       }),
       updateCandidate: builder.mutation<ICandidate, IUpdateCandidateArgs>({
         query(args) {
-          const { reqId, ...body } = args;
+          const { reqId, body } = args;
           return {
             url: `${candidatesTable}`,
-            method: "PUT",
+            method: "PATCH",
             params: {
-              reqId,
+              reqId: `eq.${reqId}`,
             },
-            body,
+            // rating: body.rating,
+            body: { ...body },
           };
         },
         invalidatesTags: (result, error, { reqId }) => [

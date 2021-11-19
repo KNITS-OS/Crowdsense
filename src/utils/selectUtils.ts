@@ -20,19 +20,11 @@ export const getSelectStatus: OptionType[] = selectStatusArray.map(
   },
 );
 
-export const selectRatingArray: ICandidateRating[] = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-];
+export const selectRatingArray: ICandidateRating[] = [1, 2, 3, 4, 5];
 
-export const getSelectRating: OptionType[] = selectRatingArray.map(
-  status => {
-    return {
-      value: status,
-      label: status,
-    };
-  },
-);
+export const getSelectRating: any = selectRatingArray.map(status => {
+  return {
+    value: status.toString(),
+    label: status.toString(),
+  };
+});

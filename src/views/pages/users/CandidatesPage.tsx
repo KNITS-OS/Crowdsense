@@ -8,6 +8,7 @@ import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
 import Select, { OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
+import { Rating } from "react-simple-star-rating";
 // reactstrap components
 import {
   Button,
@@ -21,11 +22,13 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
+import {
+  useLazyGetFilteredCandidatesQuery,
+  useUpdateCandidateMutation,
+} from "redux/features/candidates/candidatesApiSlice";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
-import cellEditFactory from "react-bootstrap-table2-editor";
 
 const Candidates = () => {
   const history = useHistory();
@@ -42,6 +45,7 @@ const Candidates = () => {
 
   // const [getCandidateTags, { data: candidateTags = [] }] =
   //   useLazyGetCandidateTagsQuery();
+  const [updateCandidate] = useUpdateCandidateMutation();
 
   const [searchName, setSearchName] = useState("");
   const [status, setStatus] = useState("");
@@ -127,12 +131,33 @@ const Candidates = () => {
     );
   };
 
+  const ratingCell = (_: undefined, row: ICandidate) => {
+    if (!row.rating) row.rating = 0;
+
+    const handleRatingChange = (newRating: number) => {
+      updateCandidate({
+        reqId: row.reqId,
+        body: { rating: newRating },
+      });
+    };
+    return (
+      <>
+        <Row>
+          <Col md="10">
+            <Rating
+              onClick={newRating => handleRatingChange(newRating)}
+              ratingValue={row.rating}
+            />
+          </Col>
+        </Row>
+      </>
+    );
+  };
+  // const handleRatingUpdate
+
   const selectRow: any = {
     mode: "checkbox",
-    clickToSelect: true,
-    clickToEdit: true,
     onSelect: (row: ICandidate, isSelect: boolean) => {
-      console.log(isSelect);
       if (isSelect) {
         setSelectedRows(oldRows => [...oldRows, row]);
       } else {
@@ -229,7 +254,7 @@ const Candidates = () => {
                           <Select
                             id="rating"
                             options={getSelectRating}
-                            onChange={item =>
+                            onChange={(item: any) =>
                               item && setRating(item.value)
                             }
                           />
@@ -344,15 +369,21 @@ const Candidates = () => {
                       sort: true,
                       editable: false,
                     },
+                    // {
+                    //   dataField: "rating",
+                    //   text: "Rating",
+                    //   sort: true,
+                    //   editable: true,
+                    //   editor: {
+                    //     type: "select",
+                    //     options: getSelectRating,
+                    //   },
+                    // },
                     {
                       dataField: "rating",
                       text: "Rating",
                       sort: true,
-                      editable: true,
-                      editor: {
-                        type: "select",
-                        options: getSelectRating,
-                      },
+                      formatter: ratingCell,
                     },
                     {
                       dataField: "tags",
@@ -376,10 +407,10 @@ const Candidates = () => {
                           pagination={pagination}
                           bordered={false}
                           selectRow={selectRow}
-                          cellEdit={cellEditFactory({
-                            mode: "dbclick",
-                            blurToSave: true,
-                          })}
+                          // cellEdit={cellEditFactory({
+                          //   mode: "dbclick",
+                          //   blurToSave: true,
+                          // })}
                         />
                       </div>
                     );
