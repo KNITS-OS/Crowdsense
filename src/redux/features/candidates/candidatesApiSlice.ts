@@ -23,6 +23,12 @@ interface IGetCandidatesByFiltersArgs {
   filters: ICandidateFilters;
   limit?: number;
 }
+
+interface IUpdateCandidateArgs {
+  reqId: string;
+  body: Partial<ICandidate>;
+}
+
 // https://redux-toolkit.js.org/rtk-query/usage/mutations#revalidation-example
 export const candidatesApiSlice = createApi({
   reducerPath: "candidates",
@@ -87,18 +93,18 @@ export const candidatesApiSlice = createApi({
         ICandidate,
         ICreateCandidateFinalState
       >({
-        query: data => {
+        query: args => {
           return {
             url: `${candidatesTable}`,
             method: "POST",
-            body: data,
+            body: args,
           };
         },
         invalidatesTags: [{ type: "Candidates" }],
       }),
-      updateCandidate: builder.mutation<ICandidate, Partial<ICandidate>>({
-        query(data) {
-          const { reqId, ...body } = data;
+      updateCandidate: builder.mutation<ICandidate, IUpdateCandidateArgs>({
+        query(args) {
+          const { reqId, ...body } = args;
           return {
             url: `${candidatesTable}/${reqId}`,
             method: "PUT",

@@ -1,10 +1,11 @@
 import {
   ICandidateRating,
   ICandidateStatus,
+  IKNCareerStatus,
   OptionType,
 } from "types/types";
 
-export const selectStatusArray: ICandidateStatus[] = [
+export const selectStatusArray: ICandidateStatus[] | IKNCareerStatus[] = [
   "Closed",
   "In Review",
   "New",

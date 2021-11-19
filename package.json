@@ -10,11 +10,13 @@
     "@react-jvectormap/core": "^1.0.0-alpha.6",
     "@react-jvectormap/world": "^1.0.0-alpha.4",
     "@reduxjs/toolkit": "^1.6.2",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "bootstrap": "4.6.0",
     "chart.js": "^3.6.0",
     "classnames": "^2.3.1",
     "dropzone": "5.7.2",
-    "jest-fetch-mock": "^3.0.3",
     "list.js": "2.3.1",
     "moment": "2.29.1",
     "node-sass": "4.14.1",
@@ -59,8 +61,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -76,9 +77,6 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "@types/classnames": "^2.3.1",
     "@types/react-bootstrap-table-next": "^4.0.16",
     "@types/react-bootstrap-table2-paginator": "^2.1.2",
@@ -90,7 +88,6 @@
     "eslint-plugin-flowtype": "5.2.0",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
-    "msw": "^0.35.0",
     "typescript": "4.1.3"
   }
 }

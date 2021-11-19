@@ -20,7 +20,10 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
+import {
+  useLazyGetFilteredCandidatesQuery,
+  useUpdateCandidateMutation,
+} from "redux/features/candidates/candidatesApiSlice";
 import { addFilter } from "redux/filters";
 import {
   ICandidate,
@@ -41,6 +44,7 @@ const Candidates = () => {
     getFilteredCandidates,
     { data: candidates = [], isLoading, isFetching },
   ] = useLazyGetFilteredCandidatesQuery();
+  const [updateCandidate] = useUpdateCandidateMutation();
 
   const [searchName, setSearchName] = useState("");
   const [status, setStatus] = useState("");
@@ -104,13 +108,17 @@ const Candidates = () => {
     { value: "tag6", label: "Tag6" },
   ];
 
-  const onSave = () => {
+  const onSave = (reqId: string) => {
     console.log("tags", tags);
     console.log("comment", comment);
+    const body = {
+      comment,
+    };
+    updateCandidate({ reqId, body });
   };
 
   const expandRow = {
-    renderer: () => {
+    renderer: (row: ICandidate) => {
       return (
         <>
           <Row>
@@ -122,7 +130,11 @@ const Candidates = () => {
               />
             </Col>
 
-            <Button color="success" size="md" onClick={onSave}>
+            <Button
+              color="success"
+              size="md"
+              onClick={() => onSave(row.reqId)}
+            >
               Save
             </Button>
           </Row>

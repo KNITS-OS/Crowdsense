@@ -26,19 +26,13 @@ import Elements from "views/pages/examples/forms/Elements";
 import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
-import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { IRoute } from "./types/types";
-import { ApplicationsPage } from "./views/pages/applications";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
-import { EmailPage } from "./views/pages/emails";
+import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
+import { HomePage } from "./views/pages/home";
 import { InternshipPage } from "./views/pages/internships";
 import { OfferPage } from "./views/pages/offers";
-import {
-  CandidateDetailsPage,
-  CandidatesPage,
-  CreateCandidatePage,
-} from "./views/pages/users";
-import { HomePage } from "./views/pages/home";
+import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
 
 const routes: IRoute[] = [
   //Home
@@ -51,10 +45,33 @@ const routes: IRoute[] = [
     layout: "/admin",
     icon: "ni ni-chart-pie-35 text-info",
   },
+  // Candidates
+  {
+    collapse: true,
+    name: "Candidates",
+    icon: "ni ni-chart-pie-35 text-info",
+    state: "candidatesCollapse",
+    views: [
+      {
+        path: "/candidates",
+        name: "Candidates",
+        miniName: "CA",
+        component: CandidatesPage,
+        layout: "/admin",
+      },
+      // {
+      //   path: "/create-candidate",
+      //   name: "Create",
+      //   miniName: "CR",
+      //   component: CreateCandidatePage,
+      //   layout: "/admin",
+      // },
+    ],
+  },
   // Curriculum
   {
     collapse: true,
-    name: "Curriculum",
+    name: "CV",
     icon: "ni ni-chart-pie-35 text-info",
     state: "curriculumCollapse",
     views: [
@@ -74,39 +91,39 @@ const routes: IRoute[] = [
       },
     ],
   },
-  // Candidates
+  // Interview
   {
     collapse: true,
-    name: "Candidates",
+    name: "Interview",
     icon: "ni ni-chart-pie-35 text-info",
-    state: "candidatesCollapse",
+    state: "interviewCollapse",
     views: [
       {
-        path: "/candidates",
-        name: "Candidates",
-        miniName: "CA",
-        component: CandidatesPage,
+        path: "/add-cv",
+        name: "Add CV",
+        miniName: "AC",
+        component: ChartsPage,
         layout: "/admin",
       },
       {
-        path: "/create-candidate",
-        name: "Create",
-        miniName: "CR",
-        component: CreateCandidatePage,
+        path: "/search-cv",
+        name: "Search CV",
+        miniName: "SC",
+        component: CandidatesPage,
         layout: "/admin",
       },
     ],
   },
-  // Offers
+  // Offer
   {
     collapse: true,
-    name: "Offers",
+    name: "Offer",
     state: "offerCollapse",
     icon: "ni ni-chart-pie-35 text-info",
     views: [
       {
-        path: "/offers",
-        name: "Offers",
+        path: "/offer",
+        name: "Offer",
         miniName: "O",
         component: OfferPage,
         layout: "/admin",
@@ -120,16 +137,7 @@ const routes: IRoute[] = [
       },
     ],
   },
-  // Applications
-  {
-    collapse: false,
-    path: "/applications",
-    name: "Applications",
-    miniName: "AP",
-    component: ApplicationsPage,
-    layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info",
-  },
+
   // Internship
   {
     collapse: true,
@@ -153,16 +161,6 @@ const routes: IRoute[] = [
         layout: "/admin",
       },
     ],
-  },
-  // Email
-  {
-    collapse: false,
-    path: "/email",
-    name: "Email",
-    miniName: "EM",
-    component: EmailPage,
-    layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info",
   },
   // Dashboard
   {

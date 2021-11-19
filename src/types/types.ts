@@ -26,7 +26,26 @@ export interface IRoute {
 
 export type Theme = "light" | "dark";
 
-export type ICandidateStatus = "Closed" | "In Review" | "New";
+export type ICandidateStatus =
+  // CV Page has candidates with these statuses
+  | "CV Review"
+  | "CV Reviewed"
+  | "Ready for interview"
+  // Interview Page has candidates with these statuses
+  | "Interview Booked"
+  | "Interview performed"
+  | "Interview Offered"
+  | "Ready to Offer"
+  // Offer Page has candidates with these statuses
+  | "Offer sent"
+  | "Offer Accepted"
+  | "Offer Declined"
+  // All Pages have candidates with these statuses
+  | "Declined By Candidate"
+  | "Declined By Reviewer";
+
+export type IKNCareerStatus = "New" | "Closed" | "In Review";
+
 export type ICandidateRating = "1" | "2" | "3" | "4" | "5";
 
 export interface ICandidate {
