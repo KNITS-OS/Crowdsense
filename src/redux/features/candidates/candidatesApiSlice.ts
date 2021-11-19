@@ -3,10 +3,12 @@ import {
   ICandidate,
   ICandidateFilters,
   ICreateCandidateFinalState,
+  ITag,
 } from "types/types";
 import { baseQuery } from "utils/rtkQueryConfig";
 
 const candidatesTable = "candidates";
+const tagsTable = "tags";
 
 interface IGetEmployeesArgs {
   select: string;
@@ -27,6 +29,10 @@ interface IGetCandidatesByFiltersArgs {
 interface IUpdateCandidateArgs {
   reqId: string;
   body: Partial<ICandidate>;
+}
+
+interface IGetCandidateTagsArgs {
+  reqId: string;
 }
 
 // https://redux-toolkit.js.org/rtk-query/usage/mutations#revalidation-example
@@ -106,8 +112,11 @@ export const candidatesApiSlice = createApi({
         query(args) {
           const { reqId, ...body } = args;
           return {
-            url: `${candidatesTable}/${reqId}`,
+            url: `${candidatesTable}`,
             method: "PUT",
+            params: {
+              reqId,
+            },
             body,
           };
         },
@@ -129,6 +138,18 @@ export const candidatesApiSlice = createApi({
           { type: "Candidates", reqId },
         ],
       }),
+      getCandidateTags: builder.query<ITag[], IGetCandidateTagsArgs>({
+        query(args) {
+          const { reqId } = args;
+          return {
+            url: `${tagsTable}`,
+            method: "GET",
+            params: {
+              candidate_id: `eq.${reqId}`,
+            },
+          };
+        },
+      }),
     };
   },
 });
@@ -139,4 +160,5 @@ export const {
   useCreateCandidateMutation,
   useUpdateCandidateMutation,
   useDeleteCandidateMutation,
+  useLazyGetCandidateTagsQuery,
 } = candidatesApiSlice;

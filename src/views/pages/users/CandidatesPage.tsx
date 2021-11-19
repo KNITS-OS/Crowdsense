@@ -6,7 +6,8 @@ import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
-import Select, { MultiValue } from "react-select";
+import Select, { OnChangeValue } from "react-select";
+import CreatableSelect from "react-select/creatable";
 // reactstrap components
 import {
   Button,
@@ -20,16 +21,9 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import {
-  useLazyGetFilteredCandidatesQuery,
-  useUpdateCandidateMutation,
-} from "redux/features/candidates/candidatesApiSlice";
+import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/candidatesApiSlice";
 import { addFilter } from "redux/filters";
-import {
-  ICandidate,
-  ICandidateFilters,
-  StringOrUndefined,
-} from "types/types";
+import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
 
 const Candidates = () => {
@@ -44,19 +38,15 @@ const Candidates = () => {
     getFilteredCandidates,
     { data: candidates = [], isLoading, isFetching },
   ] = useLazyGetFilteredCandidatesQuery();
-  const [updateCandidate] = useUpdateCandidateMutation();
+
+  // const [getCandidateTags, { data: candidateTags = [] }] =
+  //   useLazyGetCandidateTagsQuery();
 
   const [searchName, setSearchName] = useState("");
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState("");
   const [email, setEmail] = useState("");
-  const [comment, setComment] = useState<StringOrUndefined>("");
-  const [tags, setTags] = useState<
-    MultiValue<{
-      value: string;
-      label: string;
-    }>
-  >([]);
+  // const [tags, setTags] = useState<any>();
 
   const { alert } = useAlert();
 
@@ -75,7 +65,7 @@ const Candidates = () => {
       rating: ratingFilter,
       email: emailFilter,
     };
-    getFilteredCandidates({ limit: 30, select: "*", filters });
+    getFilteredCandidates({ limit: 5, select: "*", filters });
   };
 
   const formatActionButtonCell = (_: undefined, row: ICandidate) => {
@@ -99,7 +89,7 @@ const Candidates = () => {
     );
   };
 
-  const options = [
+  const defaultTags = [
     { value: "tag1", label: "Tag1" },
     { value: "tag2", label: "Tag2" },
     { value: "tag3", label: "Tag3" },
@@ -108,55 +98,30 @@ const Candidates = () => {
     { value: "tag6", label: "Tag6" },
   ];
 
-  const onSave = (reqId: string) => {
-    console.log("tags", tags);
-    console.log("comment", comment);
-    const body = {
-      comment,
-    };
-    updateCandidate({ reqId, body });
+  const handleChange = (newValue: OnChangeValue<any, true>) => {
+    console.log(newValue);
+    // setTags(newValue);
   };
 
-  const expandRow = {
-    renderer: (row: ICandidate) => {
-      return (
-        <>
-          <Row>
-            <Col md="10">
-              <Select
-                isMulti
-                options={options}
-                onChange={item => setTags(item)}
-              />
-            </Col>
-
-            <Button
-              color="success"
-              size="md"
-              onClick={() => onSave(row.reqId)}
-            >
-              Save
-            </Button>
-          </Row>
-          <Row>
-            <Col md="10">
-              <Input
-                type="text"
-                value={comment}
-                onChange={e => setComment(e.target.value)}
-              />
-            </Col>
-          </Row>
-        </>
-      );
-    },
-    onExpand: (row: ICandidate) => {
-      setTimeout(() => {
-        setComment(row.comment);
-      }, 100);
-    },
-    animate: false,
-    onlyOneExpanding: true,
+  const tagsSelectCell = (_: undefined, row: ICandidate) => {
+    return (
+      <>
+        <Row>
+          <Col md="10">
+            <CreatableSelect
+              isMulti
+              onChange={handleChange}
+              // onChange={item => setTags(item)}
+              options={defaultTags}
+              // value={candidateTags.map(tag => ({
+              //   value: tag.value,
+              //   label: tag.label,
+              // }))}
+            />
+          </Col>
+        </Row>
+      </>
+    );
   };
 
   return (
@@ -343,6 +308,11 @@ const Candidates = () => {
                       sort: true,
                     },
                     {
+                      dataField: "tags",
+                      text: "Tags",
+                      formatter: tagsSelectCell,
+                    },
+                    {
                       dataField: "action",
                       text: "",
                       formatter: formatActionButtonCell,
@@ -358,7 +328,6 @@ const Candidates = () => {
                           bootstrap4={true}
                           pagination={pagination}
                           bordered={false}
-                          expandRow={expandRow}
                         />
                       </div>
                     );

@@ -44,6 +44,14 @@ export type ICandidateStatus =
   | "Declined By Candidate"
   | "Declined By Reviewer";
 
+export interface ITag {
+  id: number;
+  candidateId: string;
+  value: string;
+  label: string;
+  createdAt: Date;
+}
+
 export type IKNCareerStatus = "New" | "Closed" | "In Review";
 
 export type ICandidateRating = "1" | "2" | "3" | "4" | "5";
