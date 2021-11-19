@@ -184,8 +184,6 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
       if (route.global) {
         return null;
       }
-      console.log(route);
-
       if (route.collapse && route.state && route.views) {
         var st = {};
         st[route["state"]] = !state[route.state];

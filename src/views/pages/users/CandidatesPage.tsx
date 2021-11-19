@@ -25,6 +25,7 @@ import { useLazyGetFilteredCandidatesQuery } from "redux/features/candidates/can
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
+import cellEditFactory from "react-bootstrap-table2-editor";
 
 const Candidates = () => {
   const history = useHistory();
@@ -46,6 +47,7 @@ const Candidates = () => {
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState("");
   const [email, setEmail] = useState("");
+  const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
   // const [tags, setTags] = useState<any>();
 
   const { alert } = useAlert();
@@ -123,6 +125,26 @@ const Candidates = () => {
         </Row>
       </>
     );
+  };
+
+  const selectRow: any = {
+    mode: "checkbox",
+    clickToSelect: true,
+    clickToEdit: true,
+    onSelect: (row: ICandidate, isSelect: boolean) => {
+      console.log(isSelect);
+      if (isSelect) {
+        setSelectedRows(oldRows => [...oldRows, row]);
+      } else {
+        setSelectedRows(oldRows =>
+          oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
+        );
+      }
+    },
+  };
+
+  const handleMove = () => {
+    console.log(selectedRows);
   };
 
   return (
@@ -264,8 +286,22 @@ const Candidates = () => {
           <div className="col">
             <Card>
               <CardHeader>
-                <h3 className="mb-0">Candidates</h3>
-                <p className="text-sm mb-0">Candidates for internship</p>
+                <Row
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Col md="10">
+                    <h3 className="mb-0">Candidates</h3>
+                    <p className="text-sm mb-0">
+                      Candidates for internship
+                    </p>
+                  </Col>
+                  <Col md="2">
+                    <Button onClick={handleMove}>Move</Button>
+                  </Col>
+                </Row>
               </CardHeader>
               {isLoading || isFetching ? (
                 <div
@@ -283,30 +319,40 @@ const Candidates = () => {
                     {
                       dataField: "firstName",
                       text: "First Name",
+                      editable: false,
                     },
                     {
                       dataField: "fullName",
                       text: "Full Name",
                       sort: true,
+                      editable: false,
                     },
                     {
                       dataField: "email",
                       text: "email",
+                      editable: false,
                     },
                     {
                       dataField: "submissionDate",
                       text: "Submission Date",
                       sort: true,
+                      editable: false,
                     },
                     {
                       dataField: "status",
                       text: "Current Status",
                       sort: true,
+                      editable: false,
                     },
                     {
                       dataField: "rating",
                       text: "Rating",
                       sort: true,
+                      editable: true,
+                      editor: {
+                        type: "select",
+                        options: getSelectRating,
+                      },
                     },
                     {
                       dataField: "tags",
@@ -329,6 +375,11 @@ const Candidates = () => {
                           bootstrap4={true}
                           pagination={pagination}
                           bordered={false}
+                          selectRow={selectRow}
+                          cellEdit={cellEditFactory({
+                            mode: "dbclick",
+                            blurToSave: true,
+                          })}
                         />
                       </div>
                     );
