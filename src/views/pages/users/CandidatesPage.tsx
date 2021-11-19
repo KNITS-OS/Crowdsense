@@ -1,12 +1,13 @@
 // core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
+import { defaultTags } from "mockData";
 import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
-import Select, { OnChangeValue } from "react-select";
+import { OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { Rating } from "react-simple-star-rating";
 // reactstrap components
@@ -18,7 +19,6 @@ import {
   Col,
   Container,
   FormGroup,
-  Input,
   Row,
   Spinner,
 } from "reactstrap";
@@ -29,7 +29,8 @@ import {
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
-import { defaultTags } from "mockData";
+import { InputFilter } from "../../../components/Filters";
+import SelectFilter from "../../../components/Filters/SelectFilter";
 
 const Candidates = () => {
   const history = useHistory();
@@ -181,76 +182,36 @@ const Candidates = () => {
                   <Col md="10">
                     <Row>
                       <Col md="3">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="name"
-                          >
-                            Name
-                          </label>
-                          <Input
-                            id="name"
-                            style={{ height: "36px" }}
-                            className="form-control"
-                            type="text"
-                            placeholder="Name"
-                            value={searchName}
-                            onChange={e => setSearchName(e.target.value)}
-                          />
-                        </FormGroup>
+                        <InputFilter
+                          id="name"
+                          placeholder="Name"
+                          value={searchName}
+                          setValue={setSearchName}
+                        />
                       </Col>
                       <Col md="3">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="email"
-                          >
-                            Email
-                          </label>
-                          <Input
-                            id="email"
-                            style={{ height: "36px" }}
-                            className="form-control"
-                            type="text"
-                            placeholder="Email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                          />
-                        </FormGroup>
+                        <InputFilter
+                          id="email"
+                          placeholder="Email"
+                          value={email}
+                          setValue={setEmail}
+                        />
                       </Col>
                       <Col md="3">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="status"
-                          >
-                            Status
-                          </label>
-                          <Select
-                            id="status"
-                            options={getSelectStatus}
-                            onChange={item =>
-                              item && setStatus(item.value)
-                            }
-                          />
-                        </FormGroup>
+                        <SelectFilter
+                          id="status"
+                          label="Status"
+                          setValue={setStatus}
+                          options={getSelectStatus}
+                        />
                       </Col>
                       <Col md="3">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="rating"
-                          >
-                            Rating
-                          </label>
-                          <Select
-                            id="rating"
-                            options={getSelectRating}
-                            onChange={(item: any) =>
-                              item && setRating(item.value)
-                            }
-                          />
-                        </FormGroup>
+                        <SelectFilter
+                          id="rating"
+                          label="Rating"
+                          setValue={setRating}
+                          options={getSelectRating}
+                        />
                       </Col>
                     </Row>
                     {/* <Col md="2">
@@ -280,7 +241,7 @@ const Candidates = () => {
                   </Col>
                   <Col md="2">
                     <FormGroup>
-                      <button
+                      <Button
                         style={{
                           marginTop: "32px",
                           marginLeft: "32px",
@@ -291,7 +252,7 @@ const Candidates = () => {
                         onClick={findByTagParameters}
                       >
                         Search
-                      </button>
+                      </Button>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -300,12 +261,11 @@ const Candidates = () => {
           </Col>
         </Row>
         <Row>
-          <div className="col">
+          <Col>
             <Card>
               <CardHeader>
                 <Row
                   style={{
-                    justifyContent: "center",
                     alignItems: "center",
                   }}
                 >
@@ -410,7 +370,7 @@ const Candidates = () => {
                 </ToolkitProvider>
               )}
             </Card>
-          </div>
+          </Col>
         </Row>
       </Container>
     </div>

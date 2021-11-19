@@ -109,6 +109,7 @@ export const candidatesApiSlice = createApi({
         },
         invalidatesTags: [{ type: "Candidates" }],
       }),
+
       updateCandidate: builder.mutation<ICandidate, IUpdateCandidateArgs>({
         query(args) {
           const { reqId, body } = args;
@@ -121,6 +122,7 @@ export const candidatesApiSlice = createApi({
             body: { ...body },
           };
         },
+        // @todo update cache instead of fetching again
         invalidatesTags: (result, error, { reqId }) => [
           { type: "Candidates", reqId },
         ],
