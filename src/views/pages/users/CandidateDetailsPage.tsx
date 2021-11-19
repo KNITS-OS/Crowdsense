@@ -93,7 +93,9 @@ const CandidateDetailsPage = () => {
                     <Button
                       type="button"
                       color="info"
-                      onClick={() => history.push("/admin/candidates")}
+                      onClick={() =>
+                        history.push("/admin/candidates-search")
+                      }
                     >
                       Back to Search
                     </Button>

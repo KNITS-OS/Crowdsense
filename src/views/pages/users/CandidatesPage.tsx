@@ -2,11 +2,10 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import { defaultTags } from "mockData";
-import React, { useState } from "react";
+import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
-import { useHistory } from "react-router";
 import { OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { Rating } from "react-simple-star-rating";
@@ -31,15 +30,9 @@ import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
 import { InputFilter } from "../../../components/Filters";
 import SelectFilter from "../../../components/Filters/SelectFilter";
+import { TableActionButtons } from "./components";
 
 const Candidates = () => {
-  const history = useHistory();
-
-  const candidateDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
-    var { id } = e.target as HTMLButtonElement;
-    history.push(`/admin/users/candidate-details/${id}`);
-  };
-
   const [
     getFilteredCandidates,
     { data: candidates = [], isLoading, isFetching },
@@ -74,27 +67,6 @@ const Candidates = () => {
       email: emailFilter,
     };
     getFilteredCandidates({ limit: 150, select: "*", filters });
-  };
-
-  const formatActionButtonCell = (_: undefined, row: ICandidate) => {
-    const { reqId } = row;
-    let candidateId = reqId.toString();
-
-    return (
-      <div>
-        <Button
-          id={candidateId}
-          className="btn-icon btn-2"
-          type="button"
-          color="info"
-          onClick={candidateDetails}
-        >
-          <span id={candidateId} className="btn-inner--icon">
-            <i id={candidateId} className="ni ni-badge" />
-          </span>
-        </Button>
-      </div>
-    );
   };
 
   const handleChange = (newValue: OnChangeValue<any, true>) => {
@@ -292,6 +264,7 @@ const Candidates = () => {
                 <ToolkitProvider
                   data={candidates}
                   keyField="id"
+                  bootstrap4
                   columns={[
                     {
                       dataField: "firstName",
@@ -345,7 +318,7 @@ const Candidates = () => {
                     {
                       dataField: "action",
                       text: "",
-                      formatter: formatActionButtonCell,
+                      formatter: TableActionButtons,
                     },
                   ]}
                 >
@@ -355,7 +328,6 @@ const Candidates = () => {
                         <BootstrapTable
                           {...props.baseProps}
                           keyField="reqId"
-                          bootstrap4={true}
                           pagination={pagination}
                           bordered={false}
                           selectRow={selectRow}
