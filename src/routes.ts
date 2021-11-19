@@ -27,12 +27,17 @@ import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
 import { IRoute } from "./types/types";
-import { AddNewCVPage, ImportCVPage } from "./views/pages/cv";
+import {
+  AddNewCVPage,
+  DetailsPage,
+  ExportPage,
+  ImportCVPage,
+  WorkflowPage,
+} from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { HomePage } from "./views/pages/home";
 import { InternshipPage } from "./views/pages/internships";
-import { OfferPage } from "./views/pages/offers";
 import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
 
 const routes: IRoute[] = [
@@ -70,6 +75,7 @@ const routes: IRoute[] = [
       // },
     ],
   },
+
   // CV
   {
     collapse: true,
@@ -102,27 +108,28 @@ const routes: IRoute[] = [
             path: "/cv-export",
             name: "Export",
             miniName: "CS",
-            component: CandidatesPage,
+            component: ExportPage,
             layout: "/admin",
           },
           {
             path: "/cv-details",
             name: "Details",
             miniName: "CS",
-            component: CandidatesPage,
+            component: DetailsPage,
             layout: "/admin",
           },
           {
             path: "/cv-workflow",
             name: "Workflow",
             miniName: "CS",
-            component: CandidatesPage,
+            component: WorkflowPage,
             layout: "/admin",
           },
         ],
       },
     ],
   },
+
   // Interview
   {
     collapse: true,
@@ -130,22 +137,39 @@ const routes: IRoute[] = [
     icon: "ni ni-chart-pie-35 text-info",
     state: "interviewCollapse",
     views: [
+      // @todo add dashboard route
       {
-        path: "/add-cv",
-        name: "Add CV",
-        miniName: "AC",
-        component: ChartsPage,
-        layout: "/admin",
-      },
-      {
-        path: "/search-cv",
-        name: "Search CV",
+        collapse: true,
+        state: "interviewSearchCollapse",
+        name: "Search",
         miniName: "SC",
-        component: CandidatesPage,
-        layout: "/admin",
+        views: [
+          {
+            path: "/interview-export",
+            name: "Export",
+            miniName: "CS",
+            component: ExportPage,
+            layout: "/admin",
+          },
+          {
+            path: "/interview-details",
+            name: "Details",
+            miniName: "CS",
+            component: DetailsPage,
+            layout: "/admin",
+          },
+          {
+            path: "/interview-workflow",
+            name: "Workflow",
+            miniName: "CS",
+            component: WorkflowPage,
+            layout: "/admin",
+          },
+        ],
       },
     ],
   },
+
   // Offer
   {
     collapse: true,
@@ -153,19 +177,35 @@ const routes: IRoute[] = [
     state: "offerCollapse",
     icon: "ni ni-chart-pie-35 text-info",
     views: [
+      // @todo add dashboard route
       {
-        path: "/offer",
-        name: "Offer",
-        miniName: "O",
-        component: OfferPage,
-        layout: "/admin",
-      },
-      {
-        path: "/dashboard",
-        name: "Dashboard",
+        collapse: true,
+        state: "offerSearchCollapse",
+        name: "Search",
         miniName: "SC",
-        component: WorldOverviewPage,
-        layout: "/admin",
+        views: [
+          {
+            path: "/offer-export",
+            name: "Export",
+            miniName: "CS",
+            component: ExportPage,
+            layout: "/admin",
+          },
+          {
+            path: "/offer-details",
+            name: "Details",
+            miniName: "CS",
+            component: DetailsPage,
+            layout: "/admin",
+          },
+          {
+            path: "/offer-workflow",
+            name: "Workflow",
+            miniName: "CS",
+            component: WorkflowPage,
+            layout: "/admin",
+          },
+        ],
       },
     ],
   },
@@ -178,18 +218,12 @@ const routes: IRoute[] = [
     state: "internshipCollapse",
     icon: "ni ni-chart-pie-35 text-info",
     views: [
+      // @todo add dashboard route
       {
         path: "/internship",
-        name: "Internship",
-        miniName: "I",
+        name: "Search",
+        miniName: "Search",
         component: InternshipPage,
-        layout: "/admin",
-      },
-      {
-        path: "/dashboard",
-        name: "Dashboard",
-        miniName: "I",
-        component: WorldOverviewPage,
         layout: "/admin",
       },
     ],
