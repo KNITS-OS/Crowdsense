@@ -14,29 +14,29 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { useEffect, useState } from "react";
-// react library for routing
-import {
-  useLocation,
-  NavLink as NavLinkRRD,
-  Link,
-} from "react-router-dom";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+import { useEffect, useState } from "react";
 // react library that creates nice scrollbar on windows devices
 import PerfectScrollbar from "react-perfect-scrollbar";
+// react library for routing
+import {
+  Link,
+  NavLink as NavLinkRRD,
+  useLocation,
+} from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
-  NavbarBrand,
+  Nav,
   Navbar,
+  NavbarBrand,
   NavItem,
   NavLink,
-  Nav,
 } from "reactstrap";
-import { IRoute, IView } from "types/types";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
+import { IRoute } from "types/types";
 
 interface Props {
   /**
@@ -79,7 +79,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
   const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
   useEffect(() => {
-    setState(getCollapseStates(routes));
+    setState(getViewCollapseInitialState(routes));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -105,24 +105,23 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
       document.body.classList.remove("g-sidenav-show");
     }
   };
-  /**
-   * this creates the intial state of this component
-   * based on the collapse routesthat it gets through routes
-   */
-  const getCollapseStates = (routes: IRoute[]) => {
-    let initialState = {};
-    routes.map(route => {
-      if (route.collapse && route.state && route.views) {
-        initialState = {
-          [route.state]: getViewCollapseInitialState(route.views),
-          // ...getViewCollapseStates(route.views),
-          ...initialState,
-        };
-      }
-      return null;
-    });
-    return initialState;
-  };
+
+  // // this creates the intial state of this component based on the collapse routes
+  // // that it gets through props.routes
+  // const getCollapseStates = (routes: IRoute[]) => {
+  //   let initialState = {};
+  //   routes.map((prop, key) => {
+  //     if (prop.collapse) {
+  //       initialState = {
+  //         [prop.state]: getCollapseInitialState(prop.views),
+  //         ...getCollapseStates(prop.views),
+  //         ...initialState,
+  //       };
+  //     }
+  //     return null;
+  //   });
+  //   return initialState;
+  // };
 
   /**
    * this verifies if any of the collapses should be default opened on a rerender of this component
@@ -150,7 +149,12 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
   //   return false;
   // };
 
-  const getViewCollapseInitialState = (routes: IView[]) => {
+  /**
+   * this creates the intial state of this component
+   * based on the collapse routes that it gets through routes
+   */
+
+  const getViewCollapseInitialState = (routes: IRoute[]) => {
     for (let i = 0; i < routes.length; i++) {
       let routePath = routes[i].path;
       if (routePath) {

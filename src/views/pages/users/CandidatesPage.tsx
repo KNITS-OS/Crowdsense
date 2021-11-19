@@ -108,6 +108,7 @@ const Candidates = () => {
       <>
         <Row>
           <Col md="10">
+            {/* https://react-select.com/creatable */}
             <CreatableSelect
               isMulti
               onChange={handleChange}

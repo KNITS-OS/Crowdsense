@@ -27,6 +27,7 @@ import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
 import { IRoute } from "./types/types";
+import { AddNewCVPage, ImportCVPage } from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { HomePage } from "./views/pages/home";
@@ -52,10 +53,11 @@ const routes: IRoute[] = [
     icon: "ni ni-chart-pie-35 text-info",
     state: "candidatesCollapse",
     views: [
+      // @todo add dashboard route
       {
-        path: "/candidates",
-        name: "Candidates",
-        miniName: "CA",
+        path: "/candidates-search",
+        name: "Search",
+        miniName: "CS",
         component: CandidatesPage,
         layout: "/admin",
       },
@@ -68,26 +70,56 @@ const routes: IRoute[] = [
       // },
     ],
   },
-  // Curriculum
+  // CV
   {
     collapse: true,
     name: "CV",
     icon: "ni ni-chart-pie-35 text-info",
-    state: "curriculumCollapse",
+    state: "cvCollapse",
     views: [
+      // @todo add dashboard route
       {
-        path: "/add-cv",
-        name: "Add CV",
-        miniName: "AC",
-        component: ChartsPage,
+        path: "/add-new-cv",
+        name: "Add New",
+        miniName: "AD",
+        component: AddNewCVPage,
         layout: "/admin",
       },
       {
-        path: "/search-cv",
-        name: "Search CV",
-        miniName: "SC",
-        component: CandidatesPage,
+        path: "/import-cv",
+        name: "Import",
+        miniName: "I",
+        component: ImportCVPage,
         layout: "/admin",
+      },
+      {
+        collapse: true,
+        state: "cvSearchCollapse",
+        name: "Search",
+        miniName: "SC",
+        views: [
+          {
+            path: "/cv-export",
+            name: "Export",
+            miniName: "CS",
+            component: CandidatesPage,
+            layout: "/admin",
+          },
+          {
+            path: "/cv-details",
+            name: "Details",
+            miniName: "CS",
+            component: CandidatesPage,
+            layout: "/admin",
+          },
+          {
+            path: "/cv-workflow",
+            name: "Workflow",
+            miniName: "CS",
+            component: CandidatesPage,
+            layout: "/admin",
+          },
+        ],
       },
     ],
   },

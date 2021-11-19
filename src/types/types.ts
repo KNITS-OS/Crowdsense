@@ -12,11 +12,11 @@ export interface IView {
 }
 
 export interface IRoute {
-  collapse: boolean;
+  collapse?: boolean;
   name?: string;
   icon?: string;
   state?: string;
-  views?: IView[];
+  views?: IRoute[];
   miniName?: string;
   global?: boolean;
   path?: string;
