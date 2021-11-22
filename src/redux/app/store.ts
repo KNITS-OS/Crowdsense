@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sidenavReducer from "redux/features/sidenav/sidenavSlice";
 import { candidatesApiSlice } from "../features/candidates/candidatesApiSlice";
+import { sidenavSlice } from "../features/sidenav/sidenavSlice";
+import { workflowSlice } from "../features/workflow/workflowSlice";
 export const store = configureStore({
   reducer: {
-    sidenav: sidenavReducer,
+    [sidenavSlice.name]: sidenavSlice.reducer,
     [candidatesApiSlice.reducerPath]: candidatesApiSlice.reducer,
+    [workflowSlice.name]: workflowSlice.reducer,
   },
   // add special capabilites to the store
   // like tracking cache lifetimes
