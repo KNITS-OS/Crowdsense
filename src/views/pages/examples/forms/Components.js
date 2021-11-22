@@ -23,8 +23,6 @@ import ReactDatetime from "react-datetime";
 import Select2 from "react-select2-wrapper";
 // plugin that creates slider
 import Slider from "nouislider";
-// react plugin that creates text editor
-import ReactQuill from "react-quill";
 // javascript plugin that creates nice dropzones for files
 import Dropzone from "dropzone";
 // reactstrap components
@@ -73,7 +71,6 @@ function Components() {
     "200.00",
     "400.00",
   ]);
-  const [reactQuillText, setReactQuillText] = React.useState("");
   const slider1Ref = React.useRef(null);
   const slider2Ref = React.useRef(null);
   React.useEffect(() => {
@@ -466,38 +463,6 @@ function Components() {
                         </FormGroup>
                       </Col>
                     </Row>
-                  </Form>
-                </CardBody>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <h3 className="mb-0">Text editor</h3>
-                </CardHeader>
-                <CardBody>
-                  <Form>
-                    <div
-                      data-quill-placeholder="Quill WYSIWYG"
-                      data-toggle="quill"
-                    />
-                    <ReactQuill
-                      value={reactQuillText}
-                      onChange={value => setReactQuillText(value)}
-                      theme="snow"
-                      modules={{
-                        toolbar: [
-                          ["bold", "italic"],
-                          ["link", "blockquote", "code", "image"],
-                          [
-                            {
-                              list: "ordered",
-                            },
-                            {
-                              list: "bullet",
-                            },
-                          ],
-                        ],
-                      }}
-                    />
                   </Form>
                 </CardBody>
               </Card>

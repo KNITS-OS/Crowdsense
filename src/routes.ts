@@ -229,15 +229,22 @@ const routes: IRoute[] = [
       },
     ],
   },
-  // Docx
+
+  // Docx & Slate
   {
-    collapse: false,
-    path: "/docx",
-    name: "Docx",
-    miniName: "DO",
-    component: DocxExamplePage,
-    layout: "/admin",
+    collapse: true,
+    name: "Docx & Slate",
     icon: "ni ni-chart-pie-35 text-info",
+    state: "docxCollapse",
+    views: [
+      {
+        path: "/docx",
+        name: "Docx",
+        miniName: "DO",
+        component: DocxExamplePage,
+        layout: "/admin",
+      },
+    ],
   },
   // Dashboard
   {

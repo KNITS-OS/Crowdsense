@@ -17,7 +17,6 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fullcalendar/common/main.min.css";
 import "@fullcalendar/daygrid/main.min.css";
-import "quill/dist/quill.core.css";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 // plugins styles from node_modules
