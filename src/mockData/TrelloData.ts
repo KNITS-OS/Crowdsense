@@ -49,9 +49,6 @@ export const fullBoardExample: ITrello = {
       disallowAddingCard: false,
       id: "PLANNED",
       label: "20/70",
-      style: {
-        width: 280,
-      },
       title: "Disallowed adding card",
     },
     {
@@ -68,9 +65,6 @@ export const fullBoardExample: ITrello = {
       currentPage: 1,
       id: "WIP",
       label: "10/20",
-      style: {
-        width: 280,
-      },
       title: "Work In Progress",
     },
     {
@@ -93,9 +87,6 @@ export const fullBoardExample: ITrello = {
       currentPage: 1,
       id: "COMPLETED",
       label: "2/5",
-      style: {
-        width: 280,
-      },
       title: "Completed",
     },
     {
@@ -111,9 +102,6 @@ export const fullBoardExample: ITrello = {
       currentPage: 1,
       id: "REPEAT",
       label: "1/1",
-      style: {
-        width: 280,
-      },
       title: "Repeat",
     },
     {
@@ -129,9 +117,6 @@ export const fullBoardExample: ITrello = {
       currentPage: 1,
       id: "ARCHIVED",
       label: "1/1",
-      style: {
-        width: 280,
-      },
       title: "Archived",
     },
   ],

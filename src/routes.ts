@@ -32,13 +32,13 @@ import {
   DetailsPage,
   ExportPage,
   ImportCVPage,
-  WorkflowPage,
 } from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { HomePage } from "./views/pages/home";
 import { InternshipPage } from "./views/pages/internships";
 import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
+import { WorkflowPage } from "./views/pages/workflow";
 
 const routes: IRoute[] = [
   //Home

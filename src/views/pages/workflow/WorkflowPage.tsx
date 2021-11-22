@@ -1,6 +1,12 @@
 import Board from "react-trello";
 import { Container } from "reactstrap";
 import { fullBoardExample } from "mockData";
+import {
+  trelloBoardDefaults,
+  trelloCardDefaults,
+  trelloLaneDefaults,
+  trelloTagDefaults,
+} from ".";
 
 const WorkflowPage = () => {
   return (
@@ -13,13 +19,10 @@ const WorkflowPage = () => {
           editable
           canAddLanes
           editLaneTitle
-          style={{
-            fontSize: 18,
-            padding: "60px",
-            height: "90vh",
-            backgroundColor: "white",
-          }}
-          laneStyle={{}}
+          style={trelloBoardDefaults}
+          laneStyle={trelloLaneDefaults.style}
+          cardStyle={trelloCardDefaults.style}
+          tagStyle={trelloTagDefaults}
         />
       </Container>
     </>

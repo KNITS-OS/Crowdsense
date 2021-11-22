@@ -196,7 +196,11 @@ export interface ITrelloLane {
   currentPage?: number;
   disallowAddingCard?: boolean;
   titleStyle?: CSSProperties;
-  lableStyle?: CSSProperties;
+  labelStyle?: CSSProperties;
+  /**
+   * Pass CSS style props for cards in this lane
+   */
+  cardStyle?: CSSProperties;
   target?: string;
   current?: string;
 }
