@@ -1,5 +1,5 @@
 import { ChartData, ChartOptions } from "chart.js";
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export type LayoutType = "/admin" | "/auth" | "/rtl";
 export type StringOrUndefined = string | undefined;
@@ -157,4 +157,49 @@ export interface ICreateCandidateFinalState {
   rating: ICandidateRating | "";
   comment: string;
   submissionDate: string;
+}
+
+export interface ITrelloTags {
+  bgcolor: string;
+  color: string;
+  title: string;
+}
+
+export interface ITrelloCard {
+  id: string;
+  laneId: string;
+  label: string;
+  title: string;
+  description?: string;
+  cardColor?: string;
+  body?: string;
+  style?: CSSProperties;
+  cardStyle?: CSSProperties;
+  dueOn?: string;
+  escalationText?: string;
+  metadata?: {
+    id?: string;
+    completedAt?: string;
+    shortCode?: string;
+  };
+  name?: string;
+  subTitle?: string;
+  tags?: ITrelloTags[];
+}
+
+export interface ITrelloLane {
+  id: string;
+  cards: ITrelloCard[];
+  title: string;
+  label?: string;
+  style?: CSSProperties;
+  currentPage?: number;
+  disallowAddingCard?: boolean;
+  titleStyle?: CSSProperties;
+  lableStyle?: CSSProperties;
+  target?: string;
+  current?: string;
+}
+export interface ITrello {
+  lanes: ITrelloLane[];
 }

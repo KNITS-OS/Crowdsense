@@ -1,10 +1,12 @@
-export const fullBoardExample = {
+import { ITrello } from "types/types";
+
+export const fullBoardExample: ITrello = {
   lanes: [
     {
       cards: [
         {
-          description: "2 Gallons of milk at the Deli store",
           id: "Milk",
+          description: "2 Gallons of milk at the Deli store",
           label: "15 mins",
           laneId: "PLANNED",
           title: "Buy milk",
