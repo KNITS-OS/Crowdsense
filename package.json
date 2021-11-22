@@ -16,7 +16,9 @@
     "bootstrap": "4.6.0",
     "chart.js": "^3.6.0",
     "classnames": "^2.3.1",
+    "docx": "^7.1.2",
     "dropzone": "5.7.2",
+    "file-saver": "^2.0.5",
     "list.js": "2.3.1",
     "moment": "2.29.1",
     "node-sass": "4.14.1",
@@ -81,6 +83,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.3.1",
+    "@types/file-saver": "^2.0.4",
     "@types/react-bootstrap-table-next": "^4.0.16",
     "@types/react-bootstrap-table2-paginator": "^2.1.2",
     "@types/react-bootstrap-table2-toolkit": "^2.1.5",

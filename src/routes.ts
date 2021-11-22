@@ -34,6 +34,7 @@ import {
   ImportCVPage,
 } from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
+import { DocxExamplePage } from "./views/pages/Docx";
 import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { HomePage } from "./views/pages/home";
 import { InternshipPage } from "./views/pages/internships";
@@ -41,7 +42,7 @@ import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
 import { WorkflowPage } from "./views/pages/workflow";
 
 const routes: IRoute[] = [
-  //Home
+  // Home
   {
     collapse: false,
     path: "/home",
@@ -227,6 +228,16 @@ const routes: IRoute[] = [
         layout: "/admin",
       },
     ],
+  },
+  // Docx
+  {
+    collapse: false,
+    path: "/docx",
+    name: "Docx",
+    miniName: "DO",
+    component: DocxExamplePage,
+    layout: "/admin",
+    icon: "ni ni-chart-pie-35 text-info",
   },
   // Dashboard
   {
