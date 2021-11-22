@@ -175,20 +175,6 @@ const CreateCandidatePage = () => {
                   <div className="pl-lg-4">
                     <Row>
                       <Col lg="6">
-                        {/* <FormGroup>
-                          <Label
-                            className="form-control-label"
-                            for="input-rating"
-                          >
-                            Rating
-                          </Label>
-                          <FormInput
-                            id="input-rating"
-                            name="rating"
-                            value={values.rating}
-                            onChange={handleInputChange}
-                          />
-                        </FormGroup> */}
                         <FormGroup>
                           <FormLabel label="Rating" id="rating" />
                           <Select

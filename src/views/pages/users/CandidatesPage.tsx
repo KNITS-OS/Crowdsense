@@ -64,6 +64,7 @@ const Candidates = () => {
       email: emailFilter,
     };
     getFilteredCandidates({ limit: 150, select: "*", filters });
+    setSelectedRows([]);
   };
 
   const selectRow: SelectRowProps<ICandidate> = {
@@ -75,6 +76,13 @@ const Candidates = () => {
         setSelectedRows(oldRows =>
           oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
         );
+      }
+    },
+    onSelectAll: (isSelect, rows) => {
+      if (isSelect) {
+        setSelectedRows(rows);
+      } else {
+        setSelectedRows([]);
       }
     },
   };
