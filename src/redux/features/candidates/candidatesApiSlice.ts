@@ -22,7 +22,7 @@ interface IGetCandidateArgs {
 
 interface IGetCandidatesByFiltersArgs {
   select: string;
-  filters: ICandidateFilters;
+  filters: ICandidateFilters | null;
   limit?: number;
 }
 
@@ -86,15 +86,22 @@ export const candidatesApiSlice = createApi({
             method: "GET",
           };
         },
+        // provides a list of "Candidates" by "id"
+        // if any mutation is executed that "invalidate"'s any of these tags, this query will re-run to be always up to date
+        // this 'LIST' id is a "virtual id" we just made up to be able to invalidate this query specifically
         providesTags: result =>
+          // is result available?
           result
-            ? [
+            ? // successful query
+              [
                 ...result.map(
-                  ({ reqId }) => ({ type: "Candidates", reqId } as const),
+                  ({ reqId }) =>
+                    ({ type: "Candidates", id: reqId } as const),
                 ),
                 { type: "Candidates", id: "LIST" },
               ]
-            : [{ type: "Candidates", id: "LIST" }],
+            : // an error occurred, but we still want to refetch this query when `{ type: 'Candidates', id: 'LIST' }` is invalidated
+              [{ type: "Candidates", id: "LIST" }],
       }),
       createCandidate: builder.mutation<
         ICandidate,
@@ -107,7 +114,9 @@ export const candidatesApiSlice = createApi({
             body: args,
           };
         },
-        invalidatesTags: [{ type: "Candidates" }],
+        // invalidates all Candidate type queries providing id LIST
+        // so that the new candidate would be shown in the table
+        invalidatesTags: [{ type: "Candidates", id: "LIST" }],
       }),
 
       updateCandidate: builder.mutation<ICandidate, IUpdateCandidateArgs>({
@@ -122,9 +131,8 @@ export const candidatesApiSlice = createApi({
             body: { ...body },
           };
         },
-        // @todo update cache instead of fetching again
         invalidatesTags: (result, error, { reqId }) => [
-          { type: "Candidates", reqId },
+          { type: "Candidates", id: reqId },
         ],
       }),
       deleteCandidate: builder.mutation<
@@ -138,7 +146,7 @@ export const candidatesApiSlice = createApi({
           };
         },
         invalidatesTags: (result, error, reqId) => [
-          { type: "Candidates", reqId },
+          { type: "Candidates", id: reqId },
         ],
       }),
       getCandidateTags: builder.query<ITag[], IGetCandidateTagsArgs>({

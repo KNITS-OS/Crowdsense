@@ -27,5 +27,3 @@ export const sidenavSlice = createSlice({
 });
 
 export const { toggleSidenav } = sidenavSlice.actions;
-
-export default sidenavSlice.reducer;
