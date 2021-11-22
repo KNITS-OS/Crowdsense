@@ -1,4 +1,6 @@
 // core components
+import { InputFilter } from "components/Filters";
+import SelectFilter from "components/Filters/SelectFilter";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import { useState } from "react";
@@ -6,7 +8,9 @@ import BootstrapTable, {
   SelectRowProps,
 } from "react-bootstrap-table-next";
 // react component for creating dynamic tables
-import ToolkitProvider from "react-bootstrap-table2-toolkit";
+import ToolkitProvider, {
+  CSVExport,
+} from "react-bootstrap-table2-toolkit";
 // reactstrap components
 import {
   Button,
@@ -19,15 +23,15 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
+import { useAppDispatch } from "redux/app/hooks";
 import {
   useLazyGetFilteredCandidatesQuery,
   useUpdateCandidateMutation,
 } from "redux/features/candidates/candidatesApiSlice";
+import { addCandidatesToCVWorkflow } from "redux/features/workflow/workflowSlice";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import { getSelectRating, getSelectStatus, pagination } from "utils";
-import { InputFilter } from "../../../components/Filters";
-import SelectFilter from "../../../components/Filters/SelectFilter";
 import {
   TableActionButtons,
   TableRatingCell,
@@ -42,6 +46,10 @@ const Candidates = () => {
   const { alert } = useAlert();
   const [updateCandidate] = useUpdateCandidateMutation();
 
+  const dispatch = useAppDispatch();
+
+  const { ExportCSVButton } = CSVExport;
+
   const [name, setName] = useState("");
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState("");
@@ -49,21 +57,18 @@ const Candidates = () => {
   const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
 
   const findByFilters = () => {
-    const fullNameFilter = addFilter({
-      param: name,
-      filter: "like",
-    });
+    const nameFilter = addFilter({ param: name, filter: "like" });
     const statusFilter = addFilter({ param: status, filter: "eq" });
     const ratingFilter = addFilter({ param: rating, filter: "eq" });
     const emailFilter = addFilter({ param: email, filter: "like" });
 
     const filters: ICandidateFilters = {
-      fullName: fullNameFilter,
+      fullName: nameFilter,
       status: statusFilter,
       rating: ratingFilter,
       email: emailFilter,
     };
-    getFilteredCandidates({ limit: 150, select: "*", filters });
+    getFilteredCandidates({ limit: 100, select: "*", filters });
     setSelectedRows([]);
   };
 
@@ -87,8 +92,8 @@ const Candidates = () => {
     },
   };
 
-  const handleMove = () => {
-    console.log(selectedRows);
+  const moveCandidatesToCVWorkflow = () => {
+    dispatch(addCandidatesToCVWorkflow(selectedRows));
   };
 
   return (
@@ -190,21 +195,8 @@ const Candidates = () => {
           <Col>
             <Card>
               <CardHeader>
-                <Row
-                  style={{
-                    alignItems: "center",
-                  }}
-                >
-                  <Col md="10">
-                    <h3 className="mb-0">Candidates</h3>
-                    <p className="text-sm mb-0">
-                      Candidates for internship
-                    </p>
-                  </Col>
-                  <Col md="2">
-                    <Button onClick={handleMove}>Move</Button>
-                  </Col>
-                </Row>
+                <h3 className="mb-0">Candidates</h3>
+                <p className="text-sm mb-0">Candidates for internship</p>
               </CardHeader>
               {isLoading || isFetching ? (
                 <div
@@ -219,11 +211,15 @@ const Candidates = () => {
                   data={candidates}
                   keyField="id"
                   bootstrap4
+                  exportCSV
                   columns={[
                     {
                       dataField: "firstName",
                       text: "First Name",
                       editable: false,
+                      headerStyle: () => {
+                        return { width: "8rem" };
+                      },
                     },
                     {
                       dataField: "fullName",
@@ -235,6 +231,9 @@ const Candidates = () => {
                       dataField: "email",
                       text: "email",
                       editable: false,
+                      headerStyle: () => {
+                        return { width: "14rem" };
+                      },
                     },
                     {
                       dataField: "submissionDate",
@@ -248,16 +247,6 @@ const Candidates = () => {
                       sort: true,
                       editable: false,
                     },
-                    // {
-                    //   dataField: "rating",
-                    //   text: "Rating",
-                    //   sort: true,
-                    //   editable: true,
-                    //   editor: {
-                    //     type: "select",
-                    //     options: getSelectRating,
-                    //   },
-                    // },
                     {
                       dataField: "rating",
                       text: "Rating",
@@ -269,23 +258,61 @@ const Candidates = () => {
                       dataField: "tags",
                       text: "Tags",
                       formatter: TableTagsCell,
+                      headerStyle: () => {
+                        return { width: "19rem" };
+                      },
                     },
                     {
                       dataField: "action",
                       text: "",
                       formatter: (_, row) => TableActionButtons({ row }),
+                      // style: { width: "50px", margin: "0 auto" },
                     },
                   ]}
                 >
                   {props => {
                     return (
                       <div className="py-4 table-responsive">
+                        {/* make a flex div and all the items should be aligned to right */}
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            marginBottom: "20px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              marginRight: "10px",
+                            }}
+                          >
+                            <Button
+                              className="btn btn-success"
+                              onClick={moveCandidatesToCVWorkflow}
+                            >
+                              Workflow
+                            </Button>
+                          </div>
+                          <div>
+                            <ExportCSVButton
+                              {...props.csvProps}
+                              style={{
+                                backgroundColor: "#00a8ff",
+                                borderColor: "#00a8ff",
+                              }}
+                            >
+                              Export
+                            </ExportCSVButton>
+                          </div>
+                        </div>
+
                         <BootstrapTable
                           {...props.baseProps}
                           keyField="reqId"
                           pagination={pagination}
                           bordered={false}
                           selectRow={selectRow}
+                          bootstrap4
                           // cellEdit={cellEditFactory({
                           //   mode: "dbclick",
                           //   blurToSave: true,
