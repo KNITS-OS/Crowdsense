@@ -1,41 +1,86 @@
-import { AnyObject, Plate, TNode } from "@udecode/plate-core";
-import { Document, HeadingLevel, Packer, Paragraph } from "docx";
+import {
+  createBasicElementPlugins,
+  createBasicMarkPlugins,
+  createEditorPlugins,
+  createHistoryPlugin,
+  createLinkPlugin,
+  createReactPlugin,
+  Plate,
+  serializeHTMLFromNodes,
+} from "@udecode/plate";
 import { saveAs } from "file-saver";
-import { Button } from "reactstrap";
+import { asBlob } from "html-docx-js-typescript";
 import { useState } from "react";
+import { Button } from "reactstrap";
+
+// let components = createPlateComponents({
+//   // customize your components by plugin key
+// });
+
+// const options = createPlateOptions({
+//   // customize your options by plugin key
+// });
+
+const plugins = [
+  createReactPlugin(),
+  createHistoryPlugin(),
+  createLinkPlugin(),
+  ...createBasicElementPlugins(),
+  ...createBasicMarkPlugins(),
+];
 
 const DocxExamplePage = () => {
-  const [values, setValues] = useState<TNode<AnyObject>[]>([]);
+  const [editorValue, setEditorValue] = useState([
+    { type: "paragraph", children: [{ text: "" }] },
+  ]);
+  const editor = createEditorPlugins();
+  const [htmlValue, setHtmlValue] = useState(
+    serializeHTMLFromNodes(editor, { plugins, nodes: editorValue }),
+  );
 
-  const paragraphs = values.map((value, index) => {
-    return new Paragraph({
-      text: value.children.text,
-      heading: HeadingLevel.TITLE,
-    });
-  });
-  console.log(values);
+  const handleChange = (newValue: any) => {
+    setEditorValue(newValue);
+    const htmlState =
+      newValue &&
+      serializeHTMLFromNodes(editor, { plugins, nodes: newValue });
+    setHtmlValue(htmlState);
+  };
 
-  const document = new Document({
-    sections: [
-      {
-        children: paragraphs,
-      },
-    ],
-  });
+  // const valueFromHtml = deserializeHTMLToDocumentFragment(editor, {
+  //   plugins: plugins,
+  //   element: htmlValue,
+  // });
+
   const generateWordFile = async () => {
-    // const doc = new Packer().createDoc(
-    const blob = await Packer.toBlob(document);
-    saveAs(blob, "new.docx");
+    const blob = await asBlob(`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Document</title>
+    </head>
+    <body>
+    ${htmlValue}
+    </body>
+    </html>`);
+
+    saveAs(blob as Blob, "file.docx"); // save as docx file
   };
 
   return (
     <div>
       <Plate
-        id="playground"
-        editableProps={{ placeholder: "Type..." }}
-        onChange={e => setValues(e)}
-      ></Plate>
-      <Button onClick={generateWordFile}>Generate</Button>
+        id="text editor"
+        plugins={plugins}
+        // components={components}
+        // options={options}
+        editableProps={{
+          placeholder: "Enter some rich text…",
+          spellCheck: false,
+        }}
+        onChange={handleChange}
+        initialValue={editorValue}
+      />
+      <Button onClick={generateWordFile}>Save</Button>
     </div>
   );
 };
