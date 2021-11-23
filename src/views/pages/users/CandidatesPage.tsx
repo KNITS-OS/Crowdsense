@@ -26,7 +26,7 @@ import {
 import { useAppDispatch } from "redux/app/hooks";
 import {
   useLazyGetFilteredCandidatesQuery,
-  useUpdateCandidateMutation,
+  // useUpdateCandidateMutation,
 } from "redux/features/candidates/candidatesApiSlice";
 import { addCandidatesToCVWorkflow } from "redux/features/workflow/workflowSlice";
 import { addFilter } from "redux/filters";
@@ -44,8 +44,20 @@ const Candidates = () => {
     { data: candidates = [], isLoading, isFetching },
   ] = useLazyGetFilteredCandidatesQuery();
   const { alert } = useAlert();
-  const [updateCandidate] = useUpdateCandidateMutation();
+  // const [updateCandidate] = useUpdateCandidateMutation();
 
+  const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
+    const candidateIndex = candidates.findIndex(
+      candidate => candidate.reqId === reqId,
+    );
+
+    let candidate = candidates[candidateIndex];
+    candidate.rating = body.rating;
+  };
+
+  const updateCandidates = () => {
+    console.log(candidates);
+  };
   const dispatch = useAppDispatch();
 
   const { ExportCSVButton } = CSVExport;
@@ -94,6 +106,9 @@ const Candidates = () => {
 
   const moveCandidatesToCVWorkflow = () => {
     dispatch(addCandidatesToCVWorkflow(selectedRows));
+  };
+  const updateTable = () => {
+    updateCandidates();
   };
 
   return (
@@ -252,7 +267,10 @@ const Candidates = () => {
                       text: "Rating",
                       sort: true,
                       formatter: (_, row) =>
-                        TableRatingCell({ row, updateCandidate }),
+                        TableRatingCell({
+                          row,
+                          updateCandidate,
+                        }),
                     },
                     {
                       dataField: "tags",
@@ -281,6 +299,18 @@ const Candidates = () => {
                             marginBottom: "20px",
                           }}
                         >
+                          <div
+                            style={{
+                              marginRight: "10px",
+                            }}
+                          >
+                            <Button
+                              className="btn btn-success"
+                              onClick={updateTable}
+                            >
+                              Update
+                            </Button>
+                          </div>
                           <div
                             style={{
                               marginRight: "10px",

@@ -4,17 +4,19 @@ import { ICandidate } from "../../../../types/types";
 
 interface Props {
   row: ICandidate;
-  updateCandidate: any;
+  // updateCandidate: any;
+  updateCandidate: (reqId: string, body: Partial<ICandidate>) => void;
 }
 
 const TableRatingCell = ({ row, updateCandidate }: Props) => {
   if (!row.rating) row.rating = 0;
 
   const handleRatingChange = (newRating: number) => {
-    updateCandidate({
-      reqId: row.reqId,
-      body: { rating: newRating },
-    });
+    updateCandidate(row.reqId, { rating: newRating });
+    // updateCandidate({
+    //   reqId: row.reqId,
+    //   body: { rating: newRating },
+    // });
   };
 
   return (

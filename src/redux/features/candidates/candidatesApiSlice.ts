@@ -30,6 +30,9 @@ interface IUpdateCandidateArgs {
   reqId: string;
   body: Partial<ICandidate>;
 }
+interface IUpdateCandidatesArgs {
+  body: Partial<ICandidate>[];
+}
 
 interface IGetCandidateTagsArgs {
   reqId: string;
@@ -40,6 +43,7 @@ export const candidatesApiSlice = createApi({
   reducerPath: "candidates",
   baseQuery,
   tagTypes: ["Candidates"],
+  // refetchOnMountOrArgChange: true,
   endpoints(builder) {
     return {
       getAllCandidates: builder.query<ICandidate[], IGetEmployeesArgs>({
@@ -89,19 +93,12 @@ export const candidatesApiSlice = createApi({
         // provides a list of "Candidates" by "id"
         // if any mutation is executed that "invalidate"'s any of these tags, this query will re-run to be always up to date
         // this 'LIST' id is a "virtual id" we just made up to be able to invalidate this query specifically
-        providesTags: result =>
-          // is result available?
-          result
-            ? // successful query
-              [
-                ...result.map(
-                  ({ reqId }) =>
-                    ({ type: "Candidates", id: reqId } as const),
-                ),
-                { type: "Candidates", id: "LIST" },
-              ]
-            : // an error occurred, but we still want to refetch this query when `{ type: 'Candidates', id: 'LIST' }` is invalidated
-              [{ type: "Candidates", id: "LIST" }],
+        providesTags: (result = []) => [
+          "Candidates",
+          ...result.map(
+            ({ reqId }) => ({ type: "Candidates", id: reqId } as const),
+          ),
+        ],
       }),
       createCandidate: builder.mutation<
         ICandidate,
@@ -131,9 +128,35 @@ export const candidatesApiSlice = createApi({
             body: { ...body },
           };
         },
-        invalidatesTags: (result, error, { reqId }) => [
-          { type: "Candidates", id: reqId },
-        ],
+        // invalidatesTags: (result, error, { reqId }) => [
+        //   { type: "Candidates", id: reqId },
+        // ],
+        onQueryStarted({ reqId, ...patch }, { dispatch, queryFulfilled }) {
+          const patchResult = dispatch(
+            candidatesApiSlice.util.updateQueryData(
+              "getFilteredCandidates",
+              { select: "*", filters: null },
+              draft => {
+                Object.assign(draft, patch);
+              },
+            ),
+          );
+          queryFulfilled.catch(patchResult.undo);
+        },
+      }),
+      updateCandidates: builder.mutation<
+        ICandidate[],
+        IUpdateCandidatesArgs
+      >({
+        query(args) {
+          const { body } = args;
+          return {
+            url: `${candidatesTable}`,
+            method: "PATCH",
+            body: { ...body },
+          };
+        },
+        invalidatesTags: () => [{ type: "Candidates", id: "LIST" }],
       }),
       deleteCandidate: builder.mutation<
         { success: boolean; reqId: string },
