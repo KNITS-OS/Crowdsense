@@ -16,6 +16,7 @@
     "@udecode/plate": "^7.0.3",
     "@udecode/plate-core": "^7.0.2",
     "@udecode/plate-html-serializer": "^7.0.2",
+    "axios": "^0.24.0",
     "bootstrap": "4.6.0",
     "chart.js": "^3.6.0",
     "classnames": "^2.3.1",

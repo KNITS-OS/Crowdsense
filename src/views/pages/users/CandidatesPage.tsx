@@ -24,14 +24,15 @@ import {
   Spinner,
 } from "reactstrap";
 import { useAppDispatch } from "redux/app/hooks";
-import {
-  useLazyGetFilteredCandidatesQuery,
-  // useUpdateCandidateMutation,
-} from "redux/features/candidates/candidatesApiSlice";
 import { addCandidatesToCVWorkflow } from "redux/features/workflow/workflowSlice";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
-import { getSelectRating, getSelectStatus, pagination } from "utils";
+import {
+  axiosInstance,
+  getSelectRating,
+  getSelectStatus,
+  pagination,
+} from "utils";
 import {
   TableActionButtons,
   TableRatingCell,
@@ -39,13 +40,13 @@ import {
 } from "./components";
 
 const Candidates = () => {
-  const [
-    getFilteredCandidates,
-    { data: candidates = [], isLoading, isFetching },
-  ] = useLazyGetFilteredCandidatesQuery();
+  // const [
+  //   getFilteredCandidates,
+  //   { data: candidates = [], isLoading, isFetching },
+  // ] = useLazyGetFilteredCandidatesQuery();
   const { alert } = useAlert();
   // const [updateCandidate] = useUpdateCandidateMutation();
-
+  const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
     const candidateIndex = candidates.findIndex(
       candidate => candidate.reqId === reqId,
@@ -68,7 +69,7 @@ const Candidates = () => {
   const [email, setEmail] = useState("");
   const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
 
-  const findByFilters = () => {
+  const findByFilters = async () => {
     const nameFilter = addFilter({ param: name, filter: "like" });
     const statusFilter = addFilter({ param: status, filter: "eq" });
     const ratingFilter = addFilter({ param: rating, filter: "eq" });
@@ -80,7 +81,17 @@ const Candidates = () => {
       rating: ratingFilter,
       email: emailFilter,
     };
-    getFilteredCandidates({ limit: 100, select: "*", filters });
+    console.log(filters);
+
+    let { data } = await axiosInstance.get("/candidates", {
+      params: {
+        select: "*",
+        ...filters,
+      },
+    });
+    setCandidates(data);
+    // getFilteredCandidates({ limit: 100, select: "*", filters });
+
     setSelectedRows([]);
   };
 
@@ -213,7 +224,8 @@ const Candidates = () => {
                 <h3 className="mb-0">Candidates</h3>
                 <p className="text-sm mb-0">Candidates for internship</p>
               </CardHeader>
-              {isLoading || isFetching ? (
+              {false ? (
+                // {isLoading || isFetching ? (
                 <div
                   style={{
                     textAlign: "center",
