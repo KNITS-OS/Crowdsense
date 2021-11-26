@@ -3,7 +3,7 @@ import { InputFilter } from "components/Filters";
 import SelectFilter from "components/Filters/SelectFilter";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BootstrapTable, {
   SelectRowProps,
 } from "react-bootstrap-table-next";
@@ -40,21 +40,33 @@ import {
 } from "./components";
 
 const Candidates = () => {
-  // const [
-  //   getFilteredCandidates,
-  //   { data: candidates = [], isLoading, isFetching },
-  // ] = useLazyGetFilteredCandidatesQuery();
   const { alert } = useAlert();
-  // const [updateCandidate] = useUpdateCandidateMutation();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
     const candidateIndex = candidates.findIndex(
       candidate => candidate.reqId === reqId,
     );
+    // update the candidate rating in the state
 
-    let candidate = candidates[candidateIndex];
-    candidate.rating = body.rating;
+    const updatedCandidate = {
+      ...candidates[candidateIndex],
+      ...body,
+    };
+    console.log("updatedCandidate", updatedCandidate);
+    console.log("body", body);
+
+    // set the updated candidate in the state
+    const updatedCandidates = [...candidates];
+    updatedCandidates[candidateIndex] = updatedCandidate;
+
+    setCandidates(updatedCandidates);
+    // let candidate = candidates[candidateIndex];
+    // candidate.rating = body.rating;
   };
+
+  useEffect(() => {
+    console.log("candidates", candidates);
+  }, [candidates]);
 
   const updateCandidates = () => {
     console.log(candidates);
