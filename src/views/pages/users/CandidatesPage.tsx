@@ -42,30 +42,29 @@ import {
 const Candidates = () => {
   const { alert } = useAlert();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
+
   const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
     const candidateIndex = candidates.findIndex(
       candidate => candidate.reqId === reqId,
     );
-    // update the candidate rating in the state
 
-    const updatedCandidate = {
-      ...candidates[candidateIndex],
+    let oldCandidate = candidates[candidateIndex];
+
+    const updatedCandidate: ICandidate = {
+      ...oldCandidate,
       ...body,
     };
-    console.log("updatedCandidate", updatedCandidate);
-    console.log("body", body);
 
-    // set the updated candidate in the state
-    const updatedCandidates = [...candidates];
-    updatedCandidates[candidateIndex] = updatedCandidate;
+    setCandidates(oldCandidates => {
+      // replace the old candidate with the new one
+      oldCandidates.splice(candidateIndex, 1, updatedCandidate);
 
-    setCandidates(updatedCandidates);
-    // let candidate = candidates[candidateIndex];
-    // candidate.rating = body.rating;
+      return [...oldCandidates];
+    });
   };
 
   useEffect(() => {
-    console.log("candidates", candidates);
+    console.log("useEffect candidates", candidates);
   }, [candidates]);
 
   const updateCandidates = () => {
@@ -99,6 +98,7 @@ const Candidates = () => {
       params: {
         select: "*",
         ...filters,
+        limit: 10,
       },
     });
     setCandidates(data);
@@ -253,7 +253,7 @@ const Candidates = () => {
                   exportCSV
                   columns={[
                     {
-                      dataField: "firstName",
+                      dataField: "reqId",
                       text: "First Name",
                       editable: false,
                       headerStyle: () => {
