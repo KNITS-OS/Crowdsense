@@ -3,7 +3,7 @@ import { InputFilter } from "components/Filters";
 import SelectFilter from "components/Filters/SelectFilter";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BootstrapTable, {
   SelectRowProps,
 } from "react-bootstrap-table-next";
@@ -57,18 +57,18 @@ const Candidates = () => {
 
     setCandidates(oldCandidates => {
       // replace the old candidate with the new one
+      // @todo add them to the update candidates list and when the
+      // user presses update, send them all at once
       oldCandidates.splice(candidateIndex, 1, updatedCandidate);
 
       return [...oldCandidates];
     });
   };
 
-  useEffect(() => {
-    console.log("useEffect candidates", candidates);
-  }, [candidates]);
-
-  const updateCandidates = () => {
-    console.log(candidates);
+  const updateCandidates = async () => {
+    await axiosInstance.patch("/candidates", {
+      ...candidates,
+    });
   };
   const dispatch = useAppDispatch();
 
@@ -130,8 +130,8 @@ const Candidates = () => {
   const moveCandidatesToCVWorkflow = () => {
     dispatch(addCandidatesToCVWorkflow(selectedRows));
   };
-  const updateTable = () => {
-    updateCandidates();
+  const updateTable = async () => {
+    await updateCandidates();
   };
 
   return (
