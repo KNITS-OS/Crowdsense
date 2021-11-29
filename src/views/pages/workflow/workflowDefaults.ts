@@ -17,7 +17,7 @@ export const trelloCardDefaults: Partial<ITrelloCard> = {
 
 export const trelloLaneDefaults: Partial<ITrelloLane> = {
   style: {
-    backgroundColor: "#eee5",
+    backgroundColor: "#fff",
   },
   titleStyle: {},
   labelStyle: {},

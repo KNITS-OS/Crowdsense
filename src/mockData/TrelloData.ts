@@ -3,6 +3,11 @@ import { ITrello } from "types/types";
 export const fullBoardExample: ITrello = {
   lanes: [
     {
+      currentPage: 1,
+      disallowAddingCard: false,
+      id: "PLANNED",
+      label: "20/70",
+      title: "Disallowed adding card",
       cards: [
         {
           id: "Milk",
@@ -45,13 +50,12 @@ export const fullBoardExample: ITrello = {
           title: "Pay Rent",
         },
       ],
-      currentPage: 1,
-      disallowAddingCard: false,
-      id: "PLANNED",
-      label: "20/70",
-      title: "Disallowed adding card",
     },
     {
+      currentPage: 1,
+      id: "WIP",
+      label: "10/20",
+      title: "Work In Progress",
       cards: [
         {
           description:
@@ -62,12 +66,12 @@ export const fullBoardExample: ITrello = {
           title: "Clean House",
         },
       ],
-      currentPage: 1,
-      id: "WIP",
-      label: "10/20",
-      title: "Work In Progress",
     },
     {
+      currentPage: 1,
+      id: "COMPLETED",
+      label: "2/5",
+      title: "Completed",
       cards: [
         {
           description: "Use Headspace app",
@@ -84,40 +88,26 @@ export const fullBoardExample: ITrello = {
           title: "Maintain Daily Journal",
         },
       ],
-      currentPage: 1,
-      id: "COMPLETED",
-      label: "2/5",
-      title: "Completed",
+    },
+  ],
+};
+
+export const cvWorkflowExample: ITrello = {
+  lanes: [
+    {
+      id: "CV Review",
+      title: "CV Review",
+      cards: [],
     },
     {
-      cards: [
-        {
-          description: "Track using fitbit",
-          id: "Repeat1",
-          label: "30 mins",
-          laneId: "REPEAT",
-          title: "Morning Jog",
-        },
-      ],
-      currentPage: 1,
-      id: "REPEAT",
-      label: "1/1",
-      title: "Repeat",
+      id: "CV Reviewed",
+      title: "CV Reviewed",
+      cards: [],
     },
     {
-      cards: [
-        {
-          description: "Completed 10km on cycle",
-          id: "Archived1",
-          label: "300 mins",
-          laneId: "ARCHIVED",
-          title: "Go Trekking",
-        },
-      ],
-      currentPage: 1,
-      id: "ARCHIVED",
-      label: "1/1",
-      title: "Archived",
+      id: "Ready for interview",
+      title: "Ready for interview",
+      cards: [],
     },
   ],
 };

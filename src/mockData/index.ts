@@ -1,3 +1,3 @@
 export { default as candidates } from "./candidates.json";
-export { fullBoardExample } from "./TrelloData";
+export { fullBoardExample, cvWorkflowExample } from "./TrelloData";
 export { defaultTags } from "./TagsData";
