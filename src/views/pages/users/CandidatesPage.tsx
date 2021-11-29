@@ -42,6 +42,9 @@ import {
 const Candidates = () => {
   const { alert } = useAlert();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
+  const [updatedCandidates, setUpdatedCandidates] = useState<ICandidate[]>(
+    [],
+  );
 
   const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
     const candidateIndex = candidates.findIndex(
@@ -55,10 +58,13 @@ const Candidates = () => {
       ...body,
     };
 
+    setUpdatedCandidates(oldUpdatedCandidates => [
+      ...oldUpdatedCandidates,
+      updatedCandidate,
+    ]);
+
     setCandidates(oldCandidates => {
       // replace the old candidate with the new one
-      // @todo add them to the update candidates list and when the
-      // user presses update, send them all at once
       oldCandidates.splice(candidateIndex, 1, updatedCandidate);
 
       return [...oldCandidates];
@@ -66,9 +72,12 @@ const Candidates = () => {
   };
 
   const updateCandidates = async () => {
-    await axiosInstance.patch("/candidates", {
-      ...candidates,
+    await axiosInstance.post("/candidates", [...updatedCandidates], {
+      headers: {
+        prefer: "resolution=merge-duplicates",
+      },
     });
+    setUpdatedCandidates([]);
   };
   const dispatch = useAppDispatch();
 
@@ -98,12 +107,12 @@ const Candidates = () => {
       params: {
         select: "*",
         ...filters,
-        limit: 10,
+        // limit: 10,
       },
     });
     setCandidates(data);
     // getFilteredCandidates({ limit: 100, select: "*", filters });
-
+    setUpdatedCandidates([]);
     setSelectedRows([]);
   };
 
@@ -253,7 +262,7 @@ const Candidates = () => {
                   exportCSV
                   columns={[
                     {
-                      dataField: "reqId",
+                      dataField: "firstName",
                       text: "First Name",
                       editable: false,
                       headerStyle: () => {
