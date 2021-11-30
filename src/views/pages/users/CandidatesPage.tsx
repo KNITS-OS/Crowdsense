@@ -11,6 +11,7 @@ import BootstrapTable, {
 import ToolkitProvider, {
   CSVExport,
 } from "react-bootstrap-table2-toolkit";
+import { useHistory } from "react-router";
 // reactstrap components
 import {
   Button,
@@ -23,8 +24,6 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import { useAppDispatch } from "redux/app/hooks";
-import { addCandidatesToCVWorkflow } from "redux/features/workflow/workflowSlice";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateFilters } from "types/types";
 import {
@@ -41,6 +40,7 @@ import {
 
 const Candidates = () => {
   const { alert } = useAlert();
+  const history = useHistory();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [updatedCandidates, setUpdatedCandidates] = useState<ICandidate[]>(
     [],
@@ -79,7 +79,7 @@ const Candidates = () => {
     });
     setUpdatedCandidates([]);
   };
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const { ExportCSVButton } = CSVExport;
 
@@ -101,7 +101,6 @@ const Candidates = () => {
       rating: ratingFilter,
       email: emailFilter,
     };
-    console.log(filters);
 
     let { data } = await axiosInstance.get("/candidates", {
       params: {
@@ -137,7 +136,14 @@ const Candidates = () => {
   };
 
   const moveCandidatesToCVWorkflow = () => {
-    dispatch(addCandidatesToCVWorkflow(selectedRows));
+    // dispatch(addCandidatesToCVWorkflow(selectedRows));
+    const candidateIds = selectedRows.map(candidate => candidate.reqId);
+
+    if (candidateIds.length > 0) {
+      history.push(`/admin/cv-workflow/${candidateIds.toString()}`);
+    } else {
+      history.push(`/admin/cv-workflow/null`);
+    }
   };
   const updateTable = async () => {
     await updateCandidates();

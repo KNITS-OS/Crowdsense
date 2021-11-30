@@ -121,7 +121,7 @@ const routes: IRoute[] = [
             layout: "/admin",
           },
           {
-            path: "/cv-workflow",
+            path: "/cv-workflow/:candidateIds",
             name: "Workflow",
             miniName: "CS",
             component: WorkflowPageCV,

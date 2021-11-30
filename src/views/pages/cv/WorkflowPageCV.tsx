@@ -5,40 +5,93 @@ import { useEffect, useState } from "react";
 import { axiosInstance } from "utils";
 import { addFilter } from "redux/filters";
 import { trelloDefaults } from "variables";
+import { useParams } from "react-router";
+
+interface RouteParams {
+  candidateIds: string | undefined;
+}
 
 const WorkflowPageCV = () => {
-  const [cvCandidates, setCVCandidates] = useState<ICandidate[]>([]);
+  const { candidateIds } = useParams<RouteParams>();
+  const table = "/candidates2";
+  console.log("candidateIds", candidateIds);
+
+  const [cvReviewCandidates, setCVReviewCandidates] = useState<
+    ICandidate[]
+  >([]);
+  const [cvReviewedCandidates, setCVReviewedCandidates] = useState<
+    ICandidate[]
+  >([]);
+
   useEffect(() => {
-    fetchCVWorkflowCandidates();
+    const fetchCVWorkflowCandidates = async () => {
+      const statusFilter = addFilter({
+        param: "CV Review,CV Reviewed",
+        filter: "in",
+      });
+
+      const filters = {
+        status: statusFilter,
+      };
+
+      let { data } = await axiosInstance.get<ICandidate[]>(table, {
+        params: {
+          select: "*",
+          ...filters,
+        },
+      });
+
+      // cards that contain the word "CV Review" in status
+      const cvReviewCards = data.filter(
+        candidate => candidate.status === "CV Review",
+      );
+
+      // cards that contain the word "CV Reviewed" in status
+      const cvReviewedCards = data.filter(
+        candidate => candidate.status === "CV Reviewed",
+      );
+
+      console.log("data", data);
+
+      console.log("cvReviewCards", cvReviewCards);
+      console.log("cvReviewedCards", cvReviewedCards);
+
+      setCVReviewCandidates(cvReviewCards);
+      setCVReviewedCandidates(cvReviewedCards);
+    };
+
+    const fetchCVWorkflowCandidatesByIds = async () => {
+      const statusFilter = addFilter({
+        param: "CV Review, CV Reviewed",
+        filter: "in",
+      });
+
+      const filters = {
+        status: statusFilter,
+      };
+      let { data } = await axiosInstance.get(table, {
+        params: {
+          select: "*",
+          ...filters,
+        },
+      });
+      setCVReviewCandidates(data);
+    };
+
+    if (candidateIds === "null") {
+      fetchCVWorkflowCandidates();
+    } else {
+      fetchCVWorkflowCandidatesByIds();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const fetchCVWorkflowCandidates = async () => {
-    const statusFilter = addFilter({
-      param: "CV Review, CV Reviewed, Ready for interview",
-      filter: "in",
-    });
-
-    const filters = {
-      status: statusFilter,
-    };
-    let { data } = await axiosInstance.get("/candidates2", {
-      params: {
-        select: "*",
-        ...filters,
-      },
-    });
-    setCVCandidates(data);
-  };
-  const cvReviewCards = cvCandidates.filter(
-    candidate => candidate.status === "CV Review",
-  );
 
   const cvWorkflowExample: ITrello = {
     lanes: [
       {
         id: "CV Review",
         title: "CV Review",
-        cards: cvReviewCards.map(candidate => ({
+        cards: cvReviewCandidates.map(candidate => ({
           laneId: "CV Review",
           id: candidate.reqId,
           title: candidate.firstName,
@@ -49,7 +102,13 @@ const WorkflowPageCV = () => {
       {
         id: "CV Reviewed",
         title: "CV Reviewed",
-        cards: [],
+        cards: cvReviewedCandidates.map(candidate => ({
+          laneId: "CV Reviewed",
+          id: candidate.reqId,
+          title: candidate.firstName,
+          label: "CV Reviewed",
+          description: candidate.email,
+        })),
       },
       {
         id: "Ready for interview",
@@ -58,6 +117,7 @@ const WorkflowPageCV = () => {
       },
     ],
   };
+
   return (
     <>
       <Container fluid>
