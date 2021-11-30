@@ -32,6 +32,7 @@ import {
   DetailsPage,
   ExportPage,
   ImportCVPage,
+  WorkflowPageCV,
 } from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import { DocxExamplePage } from "./views/pages/Docx";
@@ -123,7 +124,7 @@ const routes: IRoute[] = [
             path: "/cv-workflow",
             name: "Workflow",
             miniName: "CS",
-            component: WorkflowPage,
+            component: WorkflowPageCV,
             layout: "/admin",
           },
         ],
