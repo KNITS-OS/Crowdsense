@@ -37,9 +37,6 @@ const addFilter = ({ param, filter }: Props) => {
     }
   }
 
-  console.log("finalFilter");
-  console.log(finalFilter);
-
   return finalFilter;
 };
 

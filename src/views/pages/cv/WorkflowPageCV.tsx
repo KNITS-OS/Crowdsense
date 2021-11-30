@@ -24,10 +24,10 @@ const WorkflowPageCV = () => {
   >([]);
 
   useEffect(() => {
-    const fetchCVWorkflowCandidates = async () => {
+    const fetchCVReviewedCandidates = async () => {
       const statusFilter = addFilter({
-        param: ["CV Review", "CV Reviewed"],
-        filter: "in",
+        param: "CV Reviewed",
+        filter: "eq",
       });
 
       const filters = {
@@ -41,33 +41,52 @@ const WorkflowPageCV = () => {
         },
       });
 
-      // cards that contain the word "CV Review" in status
-      const cvReviewCards = data.filter(
-        candidate => candidate.status === "CV Review",
-      );
-
-      // cards that contain the word "CV Reviewed" in status
-      const cvReviewedCards = data.filter(
-        candidate => candidate.status === "CV Reviewed",
-      );
-
-      console.log("data", data);
-
-      console.log("cvReviewCards", cvReviewCards);
-      console.log("cvReviewedCards", cvReviewedCards);
-
-      setCVReviewCandidates(cvReviewCards);
-      setCVReviewedCandidates(cvReviewedCards);
+      setCVReviewedCandidates(data);
     };
 
-    const fetchCVWorkflowCandidatesByIds = async () => {
+    const fetchAllCVReviewCandidates = async () => {
       const statusFilter = addFilter({
-        param: ["CV Review", "CV Reviewed"],
+        param: "CV Review",
+        filter: "eq",
+      });
+
+      const filters = {
+        status: statusFilter,
+      };
+
+      let { data } = await axiosInstance.get<ICandidate[]>(table, {
+        params: {
+          select: "*",
+          ...filters,
+        },
+      });
+
+      // // cards that contain the word "CV Review" in status
+      // const cvReviewCards = data.filter(
+      //   candidate => candidate.status === "CV Review",
+      // );
+
+      // // cards that contain the word "CV Reviewed" in status
+      // const cvReviewedCards = data.filter(
+      //   candidate => candidate.status === "CV Reviewed",
+      // );
+
+      setCVReviewCandidates(data);
+    };
+
+    const fetchCVReviewCandidatesByIds = async () => {
+      const statusFilter = addFilter({
+        param: "CV Review",
+        filter: "eq",
+      });
+      const reqIdFilter = addFilter({
+        param: [candidateIds] as any,
         filter: "in",
       });
 
       const filters = {
         status: statusFilter,
+        reqId: reqIdFilter,
       };
       let { data } = await axiosInstance.get(table, {
         params: {
@@ -78,10 +97,12 @@ const WorkflowPageCV = () => {
       setCVReviewCandidates(data);
     };
 
+    fetchCVReviewedCandidates();
+
     if (candidateIds === "null" || candidateIds === ":candidateIds") {
-      fetchCVWorkflowCandidates();
+      fetchAllCVReviewCandidates();
     } else {
-      fetchCVWorkflowCandidatesByIds();
+      fetchCVReviewCandidatesByIds();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -102,7 +102,7 @@ const Candidates = () => {
       email: emailFilter,
     };
 
-    let { data } = await axiosInstance.get("/candidates", {
+    let { data } = await axiosInstance.get("/candidates2", {
       params: {
         select: "*",
         ...filters,
