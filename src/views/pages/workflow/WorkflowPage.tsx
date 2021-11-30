@@ -1,15 +1,10 @@
 import Board from "react-trello";
 import { Container } from "reactstrap";
-import {
-  trelloBoardDefaults,
-  trelloCardDefaults,
-  trelloLaneDefaults,
-  trelloTagDefaults,
-} from ".";
 import { ICandidate, ITrello } from "types/types";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "utils";
-import { addFilter } from "../../../redux/filters";
+import { addFilter } from "redux/filters";
+import { trelloDefaults } from "variables";
 
 const WorkflowPage = () => {
   const [cvCandidates, setCVCandidates] = useState<ICandidate[]>([]);
@@ -72,10 +67,10 @@ const WorkflowPage = () => {
           draggable
           editable
           laneDraggable={false}
-          style={trelloBoardDefaults}
-          laneStyle={trelloLaneDefaults.style}
-          cardStyle={trelloCardDefaults.style}
-          tagStyle={trelloTagDefaults}
+          style={trelloDefaults.trelloBoardDefaults}
+          laneStyle={trelloDefaults.trelloLaneDefaults.style}
+          cardStyle={trelloDefaults.trelloCardDefaults.style}
+          tagStyle={trelloDefaults.trelloTagDefaults}
         />
       </Container>
     </>

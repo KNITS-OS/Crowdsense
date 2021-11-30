@@ -32,7 +32,7 @@ import {
   doughnutChartExample,
   pieChartExample,
   multiBarChartExample,
-} from "variables/charts";
+} from "variables";
 
 const ChartsPage = () => {
   return (

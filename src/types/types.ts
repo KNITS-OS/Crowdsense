@@ -30,13 +30,13 @@ export type ICandidateStatus =
   // CV Page has candidates with these statuses
   | "CV Review"
   | "CV Reviewed"
-  | "Ready for interview"
   // Interview Page has candidates with these statuses
+  | "Ready for interview"
   | "Interview Booked"
   | "Interview performed"
   | "Interview Offered"
-  | "Ready to Offer"
   // Offer Page has candidates with these statuses
+  | "Ready to Offer"
   | "Offer sent"
   | "Offer Accepted"
   | "Offer Declined"
