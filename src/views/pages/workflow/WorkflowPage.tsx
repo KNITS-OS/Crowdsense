@@ -14,7 +14,7 @@ const WorkflowPage = () => {
   }, []);
   const fetchCVWorkflowCandidates = async () => {
     const statusFilter = addFilter({
-      param: "CV Review, CV Reviewed, Ready for interview",
+      param: ["CV Review", "CV Reviewed", "Ready for interview"],
       filter: "in",
     });
 

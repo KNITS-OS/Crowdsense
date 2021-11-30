@@ -12,7 +12,7 @@ import {
  *
  */
 interface Props {
-  param: string;
+  param: string[] | string;
   filter: ISimpleFilter | ILikeFilter | IArrayFilter;
 }
 
@@ -20,16 +20,25 @@ const addFilter = ({ param, filter }: Props) => {
   let finalFilter: StringOrUndefined = undefined;
 
   if (param) {
-    if (filter === "like" || filter === "ilike") {
+    if (
+      typeof param === "string" &&
+      (filter === "like" || filter === "ilike")
+    ) {
       finalFilter = `${filter}.%${param}%`;
-    } else if (filter === "in") {
+    } else if (Array.isArray(param) && filter === "in") {
       finalFilter = `${filter}.(${param})`;
-    } else if (filter === "cs" || filter === "cd") {
+    } else if (
+      Array.isArray(param) &&
+      (filter === "cs" || filter === "cd")
+    ) {
       finalFilter = `${filter}.{${param}}`;
     } else {
       finalFilter = `${filter}.${param}`;
     }
   }
+
+  console.log("finalFilter");
+  console.log(finalFilter);
 
   return finalFilter;
 };

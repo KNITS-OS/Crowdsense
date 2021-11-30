@@ -26,7 +26,7 @@ const WorkflowPageCV = () => {
   useEffect(() => {
     const fetchCVWorkflowCandidates = async () => {
       const statusFilter = addFilter({
-        param: "CV Review,CV Reviewed",
+        param: ["CV Review", "CV Reviewed"],
         filter: "in",
       });
 
@@ -62,7 +62,7 @@ const WorkflowPageCV = () => {
 
     const fetchCVWorkflowCandidatesByIds = async () => {
       const statusFilter = addFilter({
-        param: "CV Review, CV Reviewed",
+        param: ["CV Review", "CV Reviewed"],
         filter: "in",
       });
 
@@ -78,7 +78,7 @@ const WorkflowPageCV = () => {
       setCVReviewCandidates(data);
     };
 
-    if (candidateIds === "null") {
+    if (candidateIds === "null" || candidateIds === ":candidateIds") {
       fetchCVWorkflowCandidates();
     } else {
       fetchCVWorkflowCandidatesByIds();
