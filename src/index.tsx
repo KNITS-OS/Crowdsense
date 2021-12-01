@@ -36,6 +36,7 @@ import { AdminLayout, AuthLayout } from "./layouts";
 import { store } from "./redux/app/store";
 import "./variables/chartDefaults";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import "./assets/css/custom.css";
 
 ReactDOM.render(
   <Provider store={store}>
