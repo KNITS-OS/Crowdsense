@@ -1,14 +1,26 @@
 import {
   ICandidateRating,
   ICandidateStatus,
-  IKNCareerStatus,
   OptionType,
 } from "types/types";
 
-export const selectStatusArray: ICandidateStatus[] | IKNCareerStatus[] = [
-  "Closed",
-  "In Review",
-  "New",
+export const selectStatusArray: ICandidateStatus[] = [
+  // CV Page has candidates with these statuses
+  "CV Review",
+  "CV Reviewed",
+  // Interview Page has candidates with these statuses
+  "Ready for interview",
+  "Interview Booked",
+  "Interview performed",
+  "Interview Offered",
+  // Offer Page has candidates with these statuses
+  "Ready to Offer",
+  "Offer sent",
+  "Offer Accepted",
+  "Offer Declined",
+  // All Pages have candidates with these statuses
+  "Declined By Candidate",
+  "Declined By Reviewer",
 ];
 
 export const getSelectStatus: OptionType[] = selectStatusArray.map(

@@ -1,5 +1,4 @@
 import Board from "react-trello";
-import { Container } from "reactstrap";
 import { ICandidate, ITrello } from "types/types";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "utils";
@@ -141,19 +140,19 @@ const WorkflowPageCV = () => {
 
   return (
     <>
-      <Container fluid>
-        {/* https://github.com/rcdexta/react-trello#properties */}
-        <Board
-          data={cvWorkflowExample}
-          draggable
-          editable
-          laneDraggable={false}
-          style={trelloDefaults.trelloBoardDefaults}
-          laneStyle={trelloDefaults.trelloLaneDefaults.style}
-          cardStyle={trelloDefaults.trelloCardDefaults.style}
-          tagStyle={trelloDefaults.trelloTagDefaults}
-        />
-      </Container>
+      {/* <Container fluid> */}
+      {/* https://github.com/rcdexta/react-trello#properties */}
+      <Board
+        data={cvWorkflowExample}
+        draggable
+        editable
+        laneDraggable={false}
+        style={trelloDefaults.trelloBoardDefaults}
+        laneStyle={trelloDefaults.trelloLaneDefaults.style}
+        cardStyle={trelloDefaults.trelloCardDefaults.style}
+        tagStyle={trelloDefaults.trelloTagDefaults}
+      />
+      {/* </Container> */}
     </>
   );
 };

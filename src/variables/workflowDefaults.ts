@@ -12,18 +12,19 @@ export const trelloDefaults: ITrelloDefaults = {
   trelloBoardDefaults: {
     fontSize: 18,
     padding: "60px",
-    height: "90vh",
-    backgroundColor: "#eee",
+    maxHeight: "91.5vh",
+    backgroundColor: "#003369",
   },
   trelloCardDefaults: {
     style: {
-      backgroundColor: "#eec",
+      backgroundColor: "#ffffff",
     },
     cardStyle: {},
   },
   trelloLaneDefaults: {
     style: {
-      backgroundColor: "#fff",
+      backgroundColor: "##ebecf0",
+      maxHeight: "80vh",
     },
     titleStyle: {},
     labelStyle: {},
