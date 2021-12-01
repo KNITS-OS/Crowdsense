@@ -10,8 +10,8 @@ interface ITrelloDefaults {
 
 export const trelloDefaults: ITrelloDefaults = {
   trelloBoardDefaults: {
-    fontSize: 18,
-    padding: "60px",
+    paddingLeft: "30px",
+    paddingRight: "30px",
     maxHeight: "91.5vh",
     backgroundColor: "#003369",
   },

@@ -168,8 +168,8 @@ export interface ITrelloTags {
 export interface ITrelloCard {
   id: string;
   laneId: string;
-  label: string;
   title: string;
+  label?: string;
   description?: string;
   cardColor?: string;
   body?: string;

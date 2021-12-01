@@ -4,3 +4,7 @@
   margin-right: 0 !important;
   margin-left: 0 !important;
 }
+
+.smooth-dnd-container {
+  margin-right: 4px;
+}

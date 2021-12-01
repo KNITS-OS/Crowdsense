@@ -49,6 +49,7 @@ const Candidates = () => {
   const [updatedCandidates, setUpdatedCandidates] = useState<ICandidate[]>(
     [],
   );
+  const table = "candidates2";
 
   const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
     const candidateIndex = candidates.findIndex(
@@ -76,7 +77,7 @@ const Candidates = () => {
   };
 
   const updateCandidates = async () => {
-    await axiosInstance.post("/candidates", [...updatedCandidates], {
+    await axiosInstance.post(table, [...updatedCandidates], {
       headers: {
         prefer: "resolution=merge-duplicates",
       },
@@ -106,7 +107,7 @@ const Candidates = () => {
       email: emailFilter,
     };
 
-    let { data } = await axiosInstance.get("/candidates2", {
+    let { data } = await axiosInstance.get(table, {
       params: {
         select: "*",
         ...filters,
@@ -131,9 +132,6 @@ const Candidates = () => {
   const selectRow: SelectRowProps<ICandidate> = {
     mode: "checkbox",
     onSelect: (row, isSelect) => {
-      console.log(isSelect);
-      console.log(row.status);
-
       if (isSelect && row.status !== "CV Review") {
         alert(
           "Oops, You can not select a candidate that doesn't have CV Review status",
