@@ -26,7 +26,7 @@ const GradientEmptyHeader = () => {
           backgroundPosition: "center top",
         }}
       >
-        <span className="mask bg-gradient-info opacity-8" />
+        <span className="mask bg-gradient-primary opacity-8" />
       </div>
     </>
   );

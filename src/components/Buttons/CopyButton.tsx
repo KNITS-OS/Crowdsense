@@ -10,7 +10,7 @@ const CopyButton = ({ elementId }: Props) => {
   return (
     <Button
       className="buttons-copy buttons-html5"
-      color="default"
+      color="primary"
       size="sm"
       id="copy-tooltip"
       onClick={() =>

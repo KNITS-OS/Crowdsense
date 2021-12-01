@@ -55,7 +55,7 @@ const AlternativeHeader = () => {
               <Col className="text-right" lg="6" xs="5">
                 <Button
                   className="btn-neutral"
-                  color=""
+                  color="primary"
                   href="#pablo"
                   onClick={e => e.preventDefault()}
                   size="sm"
@@ -64,7 +64,7 @@ const AlternativeHeader = () => {
                 </Button>
                 <Button
                   className="btn-neutral"
-                  color=""
+                  color="primary"
                   href="#pablo"
                   onClick={e => e.preventDefault()}
                   size="sm"

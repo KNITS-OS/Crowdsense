@@ -45,7 +45,7 @@ const ProfileHeader = () => {
               </p>
               <Button
                 className="btn-neutral"
-                color="default"
+                color="primary"
                 href="#pablo"
                 onClick={e => e.preventDefault()}
               >

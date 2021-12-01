@@ -15,7 +15,7 @@ const TableActionButtons = ({ row }: Props) => {
   return (
     <>
       <Link to={`/admin/users/candidate-details/${candidateId}`}>
-        <Button className="btn-icon btn-2" type="button" color="info">
+        <Button className="btn-icon btn-2" color="primary">
           <span className="btn-inner--icon">
             <i className="ni ni-badge" />
           </span>

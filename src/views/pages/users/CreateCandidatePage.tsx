@@ -91,8 +91,7 @@ const CreateCandidatePage = () => {
                 <Row className="align-items-center py-4">
                   <Col lg="12" xs="7" className="text-right">
                     <Button
-                      type="button"
-                      color="info"
+                      color="primary"
                       onClick={() => history.push("/admin/candidates")}
                     >
                       Back to Search

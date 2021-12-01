@@ -19,6 +19,7 @@
 import classnames from "classnames";
 // reactstrap components
 import {
+  Button,
   Col,
   Collapse,
   Container,
@@ -85,7 +86,7 @@ const AdminNavbar = ({ theme }: Props) => {
       <Navbar
         className={classnames(
           "navbar-top navbar-expand border-bottom",
-          { "navbar-dark bg-info": theme === "dark" },
+          { "navbar-dark bg-primary": theme === "dark" },
           { "navbar-light bg-secondary": theme === "light" },
         )}
       >
@@ -108,14 +109,14 @@ const AdminNavbar = ({ theme }: Props) => {
                   <Input placeholder="Search" type="text" />
                 </InputGroup>
               </FormGroup>
-              <button
+              <Button
                 aria-label="Close"
                 className="close"
-                type="button"
+                color="primary"
                 onClick={closeSearch}
               >
                 <span aria-hidden={true}>×</span>
-              </button>
+              </Button>
             </Form>
 
             <Nav className="align-items-center ml-md-auto" navbar>
@@ -150,7 +151,7 @@ const AdminNavbar = ({ theme }: Props) => {
                 >
                   <div className="px-3 py-3">
                     <h6 className="text-sm text-muted m-0">
-                      You have <strong className="text-info">13</strong>{" "}
+                      You have <strong className="text-primary">13</strong>{" "}
                       notifications.
                     </h6>
                   </div>
@@ -319,7 +320,7 @@ const AdminNavbar = ({ theme }: Props) => {
                   </ListGroup>
 
                   <DropdownItem
-                    className="text-center text-info font-weight-bold py-3"
+                    className="text-center text-primary font-weight-bold py-3"
                     href="#pablo"
                     onClick={e => e.preventDefault()}
                   >

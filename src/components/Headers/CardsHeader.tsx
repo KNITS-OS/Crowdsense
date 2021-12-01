@@ -66,7 +66,7 @@ const CardsHeader = ({ name, parentName }: Props) => {
               <Col className="text-right" lg="6" xs="5">
                 <Button
                   className="btn-neutral"
-                  color="default"
+                  color="primary"
                   href="#pablo"
                   onClick={e => e.preventDefault()}
                   size="sm"
@@ -75,7 +75,7 @@ const CardsHeader = ({ name, parentName }: Props) => {
                 </Button>
                 <Button
                   className="btn-neutral"
-                  color="default"
+                  color="primary"
                   href="#pablo"
                   onClick={e => e.preventDefault()}
                   size="sm"

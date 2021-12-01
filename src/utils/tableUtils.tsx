@@ -1,4 +1,5 @@
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { Label } from "reactstrap";
 
 export const pagination = paginationFactory({
   page: 1,
@@ -7,7 +8,7 @@ export const pagination = paginationFactory({
   withFirstAndLast: false,
   sizePerPageRenderer: ({ onSizePerPageChange }) => (
     <div className="dataTables_length" id="datatable-basic_length">
-      <label>
+      <Label>
         Show{" "}
         {
           <select
@@ -25,7 +26,7 @@ export const pagination = paginationFactory({
           </select>
         }{" "}
         entries.
-      </label>
+      </Label>
     </div>
   ),
 });

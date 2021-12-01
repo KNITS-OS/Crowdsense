@@ -71,7 +71,7 @@ function OnboardEmployeePage() {
                 <div className="d-flex justify-content-between">
                   <Button
                     className="mr-4"
-                    color="info"
+                    color="primary"
                     href="#pablo"
                     onClick={e => e.preventDefault()}
                     size="sm"
@@ -80,7 +80,7 @@ function OnboardEmployeePage() {
                   </Button>
                   <Button
                     className="float-right"
-                    color="default"
+                    color="primary"
                     href="#pablo"
                     onClick={e => e.preventDefault()}
                     size="sm"

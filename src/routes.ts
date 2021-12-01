@@ -51,13 +51,13 @@ const routes: IRoute[] = [
     miniName: "HO",
     component: HomePage,
     layout: "/admin",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
   },
   // Candidates
   {
     collapse: true,
     name: "Candidates",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     state: "candidatesCollapse",
     views: [
       // @todo add dashboard route
@@ -82,7 +82,7 @@ const routes: IRoute[] = [
   {
     collapse: true,
     name: "CV",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     state: "cvCollapse",
     views: [
       // @todo add dashboard route
@@ -136,7 +136,7 @@ const routes: IRoute[] = [
   {
     collapse: true,
     name: "Interview",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     state: "interviewCollapse",
     views: [
       // @todo add dashboard route
@@ -177,7 +177,7 @@ const routes: IRoute[] = [
     collapse: true,
     name: "Offer",
     state: "offerCollapse",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     views: [
       // @todo add dashboard route
       {
@@ -218,7 +218,7 @@ const routes: IRoute[] = [
     name: "Internship",
     miniName: "IN",
     state: "internshipCollapse",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     views: [
       // @todo add dashboard route
       {
@@ -235,7 +235,7 @@ const routes: IRoute[] = [
   {
     collapse: true,
     name: "Docx & Slate",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     state: "docxCollapse",
     views: [
       {
@@ -251,7 +251,7 @@ const routes: IRoute[] = [
   {
     collapse: true,
     name: "Dashboard",
-    icon: "ni ni-chart-pie-35 text-info",
+    icon: "ni ni-chart-pie-35 text-primary",
     state: "dashboardCollapse",
     views: [
       {
@@ -289,7 +289,7 @@ const routes: IRoute[] = [
   {
     collapse: true,
     name: "Examples",
-    icon: "ni ni-briefcase-24 text-info",
+    icon: "ni ni-briefcase-24 text-primary",
     state: "exampleCollapse",
     layout: "/admin",
     views: [

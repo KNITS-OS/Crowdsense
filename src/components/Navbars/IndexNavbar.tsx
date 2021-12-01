@@ -45,7 +45,7 @@ const AdminNavbar = () => {
           <NavbarBrand to="/" tag={Link}>
             <img alt="..." src={CareLogoMin} />
           </NavbarBrand>
-          <button
+          <Button
             aria-controls="navbar-collapse"
             aria-expanded={false}
             aria-label="Toggle navigation"
@@ -53,10 +53,10 @@ const AdminNavbar = () => {
             data-target="#navbar-collapse"
             data-toggle="collapse"
             id="navbar-collapse"
-            type="button"
+            color="primary"
           >
             <span className="navbar-toggler-icon" />
-          </button>
+          </Button>
           <UncontrolledCollapse
             className="navbar-custom-collapse"
             navbar
@@ -73,7 +73,7 @@ const AdminNavbar = () => {
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
-                  <button
+                  <Button
                     aria-controls="navbar-collapse"
                     aria-expanded={false}
                     aria-label="Toggle navigation"
@@ -81,11 +81,11 @@ const AdminNavbar = () => {
                     data-target="#navbar-collapse"
                     data-toggle="collapse"
                     id="navbar-collapse"
-                    type="button"
+                    color="primary"
                   >
                     <span />
                     <span />
-                  </button>
+                  </Button>
                 </Col>
               </Row>
             </div>
@@ -185,7 +185,7 @@ const AdminNavbar = () => {
               <NavItem className="d-none d-lg-block ml-lg-4">
                 <Button
                   className="btn-neutral btn-icon"
-                  color="default"
+                  color="primary"
                   href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-navbar"
                   target="_blank"
                 >

@@ -469,7 +469,7 @@ function Elements() {
                       </Label>
                       <Col md="10">
                         <Input
-                          defaultValue="#5e72e4"
+                          defaultValue="#003369"
                           id="example-color-input"
                           type="color"
                         />

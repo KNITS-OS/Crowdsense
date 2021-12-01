@@ -55,8 +55,7 @@ const Employees = () => {
         <Button
           id={row.id}
           className="btn-icon btn-2"
-          type="button"
-          color="info"
+          color="primary"
           onClick={goToEmployeeDetails}
         >
           <span id={row.id} className="btn-inner--icon">

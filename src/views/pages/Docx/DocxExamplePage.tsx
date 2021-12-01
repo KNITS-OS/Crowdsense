@@ -80,7 +80,9 @@ const DocxExamplePage = () => {
         onChange={handleChange}
         initialValue={editorValue}
       />
-      <Button onClick={generateWordFile}>Save</Button>
+      <Button onClick={generateWordFile} color="primary">
+        Save
+      </Button>
     </div>
   );
 };

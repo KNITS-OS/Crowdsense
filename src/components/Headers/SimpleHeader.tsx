@@ -60,10 +60,10 @@ const TimelineHeader = ({ name, parentName }: Props) => {
                 </Breadcrumb>
               </Col>
               <Col className="mt-3 mt-md-0 text-md-right" lg="6" xs="5">
-                <Button className="btn-neutral" color="default" size="sm">
+                <Button className="btn-neutral" color="primary" size="sm">
                   New
                 </Button>
-                <Button className="btn-neutral" color="default" size="sm">
+                <Button className="btn-neutral" color="primary" size="sm">
                   Filters
                 </Button>
               </Col>

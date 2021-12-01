@@ -78,7 +78,7 @@ const WorldOverviewPage = () => {
                       "stroke-width": 0,
                     },
                     hover: {
-                      fill: "#11cdef",
+                      fill: "#0099da",
                       // @ts-ignore
                       "stroke-width": 0,
                       border: 0,

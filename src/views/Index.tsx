@@ -68,7 +68,7 @@ const Index = () => {
                         <div className="icon icon-shape bg-gradient-info text-white rounded-circle mb-4">
                           <i className="ni ni-check-bold" />
                         </div>
-                        <h4 className="h3 text-info text-uppercase">
+                        <h4 className="h3 text-primary text-uppercase">
                           Based on React and Reactstrap
                         </h4>
                         <p className="description mt-3">
@@ -275,7 +275,7 @@ const Index = () => {
                     have many options to choose from.
                   </p>
                   <Link
-                    className="font-weight-bold text-info mt-5"
+                    className="font-weight-bold text-primary mt-5"
                     to="/admin/widgets"
                   >
                     Explore widgets
@@ -298,7 +298,7 @@ const Index = () => {
                 </p>
                 <div className="btn-wrapper">
                   <Button
-                    color="info"
+                    color="primary"
                     href="https://demos.creative-tim.com/argon-dashboard-pro-react/#/documentation/icons?ref=adpr-index-page"
                     target="_blank"
                   >
@@ -306,7 +306,7 @@ const Index = () => {
                   </Button>
                   <Button
                     className="mt-3 mt-md-0"
-                    color="default"
+                    color="primary"
                     href="https://nucleoapp.com/?ref=1712"
                     target="_blank"
                   >
@@ -366,7 +366,7 @@ const Index = () => {
                 <div className="btn-wrapper">
                   <Button
                     className="btn-neutral mb-3 mb-sm-0"
-                    color="default"
+                    color="primary"
                     href="https://www.creative-tim.com/product/argon-dashboard-react?ref=adpr-index-page"
                     target="_blank"
                   >
@@ -376,7 +376,7 @@ const Index = () => {
                   </Button>
                   <Button
                     className="btn-icon mb-3 mb-sm-0"
-                    color="info"
+                    color="primary"
                     href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-page"
                     target="_blank"
                   >

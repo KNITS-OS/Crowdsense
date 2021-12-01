@@ -72,7 +72,7 @@ const MapCustom = () => {
         {
           featureType: "water",
           elementType: "all",
-          stylers: [{ color: "#5e72e4" }, { visibility: "on" }],
+          stylers: [{ color: "#003369" }, { visibility: "on" }],
         },
       ],
     };

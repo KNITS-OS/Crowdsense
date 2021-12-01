@@ -43,7 +43,7 @@ const IndexHeader = () => {
                   <div className="mt-5">
                     <Button
                       className="btn-neutral my-2"
-                      color="default"
+                      color="primary"
                       to="/admin/dashboard"
                       tag={Link}
                     >
@@ -51,7 +51,7 @@ const IndexHeader = () => {
                     </Button>
                     <Button
                       className="my-2"
-                      color="default"
+                      color="primary"
                       href="https://www.creative-tim.com/product/argon-dashboard-react?ref=adpr-auth-navbar"
                     >
                       Purchase now

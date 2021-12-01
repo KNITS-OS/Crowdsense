@@ -106,7 +106,7 @@ const Candidates = () => {
       params: {
         select: "*",
         ...filters,
-        // limit: 10,
+        limit: 10,
       },
     });
     setCandidates(data);
@@ -231,8 +231,8 @@ const Candidates = () => {
                           marginLeft: "32px",
                           height: "40px",
                         }}
-                        className="btn btn-info"
-                        type="button"
+                        className="btn btn-primary"
+                        color="primary"
                         onClick={findByFilters}
                       >
                         Search
@@ -336,6 +336,7 @@ const Candidates = () => {
                             display: "flex",
                             justifyContent: "flex-end",
                             marginBottom: "20px",
+                            marginRight: "20px",
                           }}
                         >
                           <div
@@ -366,8 +367,8 @@ const Candidates = () => {
                             <ExportCSVButton
                               {...props.csvProps}
                               style={{
-                                backgroundColor: "#00a8ff",
-                                borderColor: "#00a8ff",
+                                backgroundColor: "#003369",
+                                borderColor: "#003369",
                               }}
                             >
                               Export

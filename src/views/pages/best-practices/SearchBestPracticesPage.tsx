@@ -178,7 +178,7 @@ const ReactBSTables = () => {
                             <ReactToPrint
                               trigger={() => (
                                 <Button
-                                  color="default"
+                                  color="primary"
                                   size="sm"
                                   className="buttons-copy buttons-html5"
                                   id="print-tooltip"

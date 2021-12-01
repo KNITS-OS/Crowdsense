@@ -92,7 +92,7 @@ const CandidateDetailsPage = () => {
                     </Button>
                     <Button
                       type="button"
-                      color="info"
+                      color="primary"
                       onClick={() =>
                         history.push("/admin/candidates-search")
                       }
