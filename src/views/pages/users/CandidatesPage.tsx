@@ -25,7 +25,11 @@ import {
   Spinner,
 } from "reactstrap";
 import { addFilter } from "redux/filters";
-import { ICandidate, ICandidateFilters } from "types/types";
+import {
+  ICandidate,
+  ICandidateFilters,
+  ICandidateStatus,
+} from "types/types";
 import {
   axiosInstance,
   getSelectRating,
@@ -39,7 +43,7 @@ import {
 } from "./components";
 
 const Candidates = () => {
-  const { alert } = useAlert();
+  const { alert: alertHook } = useAlert();
   const history = useHistory();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [updatedCandidates, setUpdatedCandidates] = useState<ICandidate[]>(
@@ -106,7 +110,7 @@ const Candidates = () => {
       params: {
         select: "*",
         ...filters,
-        limit: 10,
+        limit: 50,
       },
     });
     setCandidates(data);
@@ -115,20 +119,44 @@ const Candidates = () => {
     setSelectedRows([]);
   };
 
+  /**
+   * @description - This function is used to get all candidates with given status from given rows
+   * @returns - Array of candidates with given status
+   */
+  const getRowsWithStatus = (
+    status: ICandidateStatus,
+    rows: ICandidate[],
+  ) => rows.filter(row => row.status === status);
+
   const selectRow: SelectRowProps<ICandidate> = {
     mode: "checkbox",
     onSelect: (row, isSelect) => {
-      if (isSelect) {
+      console.log(isSelect);
+      console.log(row.status);
+
+      if (isSelect && row.status !== "CV Review") {
+        alert(
+          "Oops, You can not select a candidate that doesn't have CV Review status",
+        );
+        return false;
+      } else if (isSelect) {
         setSelectedRows(oldRows => [...oldRows, row]);
+        return true;
       } else {
         setSelectedRows(oldRows =>
           oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
         );
+        return true;
       }
     },
+    // @ts-ignore
     onSelectAll: (isSelect, rows) => {
       if (isSelect) {
-        setSelectedRows(rows);
+        setSelectedRows(getRowsWithStatus("CV Review", rows));
+        // selects only rows with "CV Review" status
+        return rows
+          .filter(row => row.status === "CV Review")
+          .map(row => row.reqId);
       } else {
         setSelectedRows([]);
       }
@@ -151,7 +179,7 @@ const Candidates = () => {
 
   return (
     <div>
-      {alert}
+      {alertHook}
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
