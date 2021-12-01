@@ -111,7 +111,7 @@ const Candidates = () => {
       params: {
         select: "*",
         ...filters,
-        limit: 50,
+        limit: 100,
       },
     });
     setCandidates(data);

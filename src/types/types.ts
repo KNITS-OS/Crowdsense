@@ -165,6 +165,37 @@ export interface ITrelloTags {
   title: string;
 }
 
+export type ITableColumn = "candidates" | "candidates2" | "tags";
+
+export interface IUpdateCandidateStatusParams {
+  table: ITableColumn;
+  reqId: string;
+  status: ICandidateStatus;
+}
+
+export interface IEventBusPublish {
+  type: string;
+  laneId: ICandidateStatus;
+  cardId: string;
+}
+export interface IEventBus {
+  publish: ({ type, laneId, cardId }: IEventBusPublish) => void;
+}
+
+export interface IRemoveCandidateOnLastLaneParams {
+  workflow: ITrello;
+  laneId: ICandidateStatus;
+  cardId: string;
+  eventBus: IEventBus;
+}
+
+export interface IFetchOrderedCandidatesByStatusParams {
+  status: ICandidateStatus;
+  table: ITableColumn;
+  order: "firstName" | "lastName" | "country" | "rating";
+  asc?: boolean;
+}
+
 export interface ITrelloCard {
   id: string;
   laneId: string;
