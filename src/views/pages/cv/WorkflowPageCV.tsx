@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { addFilter } from "redux/filters";
-import { ICandidate, ITrello } from "types/types";
+import { ICandidate } from "types/types";
 import { axiosInstance } from "utils";
 import { fetchOrderedCandidatesByStatus } from "utils/workflowUtils";
-import { TrelloBoard } from "../../../components/Trello";
+import { TrelloBoard } from "components/Trello";
 
 interface RouteParams {
   candidateIds: string;
@@ -78,7 +78,7 @@ const WorkflowPageCV = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const cvWorkflow: ITrello = {
+  const cvWorkflow: ReactTrello.BoardData = {
     lanes: [
       {
         id: "CV Review",

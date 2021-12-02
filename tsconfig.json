@@ -10,10 +10,12 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "moduleResolution": "node",
+    "declaration": true,
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    // "typeRoots": ["./src/types/*", "node_modules/@types"],
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -28,9 +30,11 @@
     "isolatedModules": true,
     "noEmit": true
     // "paths": {
-    //   "*": ["src/*"]
+    //   "*": ["*", "src/types/*"]
     // }
   },
+  "include": ["src"],
+  // "include": ["src", "src/types/*", "src/**/*.ts"],
   "exclude": [
     "node_modules",
     "webpack",
@@ -41,6 +45,5 @@
     "src/mock-data",
     "acceptance-tests",
     "src/setupTests.ts"
-  ],
-  "include": ["src"]
+  ]
 }

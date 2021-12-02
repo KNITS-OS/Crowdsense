@@ -40,7 +40,6 @@ import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMembe
 import { HomePage } from "./views/pages/home";
 import { InternshipPage } from "./views/pages/internships";
 import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
-import { WorkflowPage } from "./views/pages/workflow";
 
 const routes: IRoute[] = [
   // Home
@@ -164,7 +163,7 @@ const routes: IRoute[] = [
             path: "/interview-workflow",
             name: "Workflow",
             miniName: "CS",
-            component: WorkflowPage,
+            component: WorkflowPageCV,
             layout: "/admin",
           },
         ],
@@ -204,7 +203,7 @@ const routes: IRoute[] = [
             path: "/offer-workflow",
             name: "Workflow",
             miniName: "CS",
-            component: WorkflowPage,
+            component: WorkflowPageCV,
             layout: "/admin",
           },
         ],

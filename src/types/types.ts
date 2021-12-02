@@ -1,5 +1,5 @@
 import { ChartData, ChartOptions } from "chart.js";
-import { CSSProperties, ReactNode } from "react";
+import { ReactNode } from "react";
 
 export type LayoutType = "/admin" | "/auth" | "/rtl";
 export type StringOrUndefined = string | undefined;
@@ -173,20 +173,11 @@ export interface IUpdateCandidateStatusParams {
   status: ICandidateStatus;
 }
 
-export interface IEventBusPublish {
-  type: string;
-  laneId: ICandidateStatus;
-  cardId: string;
-}
-export interface IEventBus {
-  publish: ({ type, laneId, cardId }: IEventBusPublish) => void;
-}
-
 export interface IRemoveCandidateOnLastLaneParams {
-  workflow: ITrello;
+  workflow: ReactTrello.BoardData;
   laneId: ICandidateStatus;
   cardId: string;
-  eventBus: IEventBus;
+  eventBus: ReactTrello.EventBus;
 }
 
 export interface IFetchOrderedCandidatesByStatusParams {
@@ -194,47 +185,4 @@ export interface IFetchOrderedCandidatesByStatusParams {
   table: ITableColumn;
   order: "firstName" | "lastName" | "country" | "rating";
   asc?: boolean;
-}
-
-export interface ITrelloCard {
-  id: string;
-  laneId: string;
-  title: string;
-  label?: string;
-  description?: string;
-  cardColor?: string;
-  body?: string;
-  style?: CSSProperties;
-  cardStyle?: CSSProperties;
-  dueOn?: string;
-  escalationText?: string;
-  metadata?: {
-    id?: string;
-    completedAt?: string;
-    shortCode?: string;
-  };
-  name?: string;
-  subTitle?: string;
-  tags?: ITrelloTags[];
-}
-
-export interface ITrelloLane {
-  id: string;
-  cards: ITrelloCard[];
-  title: string;
-  label?: string;
-  style?: CSSProperties;
-  currentPage?: number;
-  disallowAddingCard?: boolean;
-  titleStyle?: CSSProperties;
-  labelStyle?: CSSProperties;
-  /**
-   * Pass CSS style props for cards in this lane
-   */
-  cardStyle?: CSSProperties;
-  target?: string;
-  current?: string;
-}
-export interface ITrello {
-  lanes: ITrelloLane[];
 }

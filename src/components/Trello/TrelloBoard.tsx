@@ -1,21 +1,16 @@
 import { useState } from "react";
-import Board from "react-trello";
-import {
-  ICandidateStatus,
-  IEventBus,
-  ITableColumn,
-  ITrello,
-} from "types/types";
+import { ICandidateStatus, ITableColumn } from "types/types";
 import { removeCandidateOnLastLane, updateCandidateStatus } from "utils";
 import { trelloDefaults } from "variables";
+import Board from "react-trello";
 
 interface Props {
-  workflow: ITrello;
+  workflow: any;
   table: ITableColumn;
 }
 
 const TrelloBoard = ({ workflow, table }: Props) => {
-  const [eventBus, setEventBus] = useState<IEventBus>();
+  const [eventBus, setEventBus] = useState<any>();
   return (
     // https://github.com/rcdexta/react-trello#properties
     <Board
