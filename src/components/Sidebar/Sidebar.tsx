@@ -153,7 +153,6 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
    * this creates the intial state of this component
    * based on the collapse routes that it gets through routes
    */
-
   const getViewCollapseInitialState = (routes: IRoute[]) => {
     for (let i = 0; i < routes.length; i++) {
       let routePath = routes[i].path;
@@ -224,35 +223,37 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
         );
       }
       return (
-        <NavItem
-          // @ts-ignore
-          className={activeRoute(route.layout + route.path)}
-          key={key}
-        >
-          <NavLink
-            // @ts-ignore
-            to={route.layout + route.path}
-            activeClassName=""
-            onClick={closeSidenav}
-            tag={NavLinkRRD}
-          >
-            {route.icon !== undefined ? (
-              <>
-                <i className={route.icon} />
-                <span className="nav-link-text">{route.name}</span>
-              </>
-            ) : // @ts-ignore
-            route.miniName !== undefined ? (
-              <>
-                {/* @ts-ignore */}
-                <span className="sidenav-mini-icon">{route.miniName}</span>
-                <span className="sidenav-normal"> {route.name} </span>
-              </>
-            ) : (
-              route.name
-            )}
-          </NavLink>
-        </NavItem>
+        <>
+          {route.layout ? (
+            <NavItem
+              className={activeRoute(route.layout + route.path)}
+              key={key}
+            >
+              <NavLink
+                to={route.layout + route.path}
+                activeClassName=""
+                onClick={closeSidenav}
+                tag={NavLinkRRD}
+              >
+                {route.icon !== undefined ? (
+                  <>
+                    <i className={route.icon} />
+                    <span className="nav-link-text">{route.name}</span>
+                  </>
+                ) : route.miniName !== undefined ? (
+                  <>
+                    <span className="sidenav-mini-icon">
+                      {route.miniName}
+                    </span>
+                    <span className="sidenav-normal"> {route.name} </span>
+                  </>
+                ) : (
+                  route.name
+                )}
+              </NavLink>
+            </NavItem>
+          ) : null}
+        </>
       );
     });
   };

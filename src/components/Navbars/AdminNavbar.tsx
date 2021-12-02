@@ -15,7 +15,6 @@
 
 */
 // nodejs library that concatenates classes
-// @ts-ignore
 import classnames from "classnames";
 // reactstrap components
 import {

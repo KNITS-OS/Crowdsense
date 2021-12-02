@@ -148,15 +148,18 @@ const Candidates = () => {
       }
     },
     // @ts-ignore
+    // because i return a string array, but this likes to receive a number array
     onSelectAll: (isSelect, rows) => {
       if (isSelect) {
         setSelectedRows(getRowsWithStatus("CV Review", rows));
+
         // selects only rows with "CV Review" status
         return rows
           .filter(row => row.status === "CV Review")
           .map(row => row.reqId);
       } else {
         setSelectedRows([]);
+        return;
       }
     },
   };
