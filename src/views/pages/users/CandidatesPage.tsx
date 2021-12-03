@@ -23,13 +23,11 @@ import {
   Row,
 } from "reactstrap";
 import { addFilter } from "redux/filters";
-import {
-  ICandidate,
-  ICandidateFilters,
-  ICandidateStatus,
-} from "types/types";
+import { ICandidate, ICandidateFilters } from "types/types";
 import {
   axiosInstance,
+  defaultColumns,
+  getRowsByStatus,
   getSelectRating,
   getSelectStatus,
   moveCandidatesToWorkflow,
@@ -42,15 +40,28 @@ import {
 } from "./components";
 
 const Candidates = () => {
+  const table = "candidates2";
   const { alert: alertHook } = useAlert();
   const history = useHistory();
+  const { ExportCSVButton } = CSVExport;
+
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
+
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("");
+  const [rating, setRating] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
+
+  /**
+   * @description - see which candidates need to be updated
+   */
   const [updatedCandidates, setUpdatedCandidates] = useState<ICandidate[]>(
     [],
   );
-  const table = "candidates2";
 
-  const updateCandidate = (reqId: string, body: Partial<ICandidate>) => {
+  const updateCandidateUI = (reqId: string, body: Partial<ICandidate>) => {
     const candidateIndex = candidates.findIndex(
       candidate => candidate.reqId === reqId,
     );
@@ -83,15 +94,6 @@ const Candidates = () => {
     });
     setUpdatedCandidates([]);
   };
-  // const dispatch = useAppDispatch();
-
-  const { ExportCSVButton } = CSVExport;
-
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState("");
-  const [rating, setRating] = useState("");
-  const [email, setEmail] = useState("");
-  const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
 
   const findByFilters = async () => {
     const nameFilter = addFilter({ param: name, filter: "like" });
@@ -119,15 +121,6 @@ const Candidates = () => {
     setSelectedRows([]);
   };
 
-  /**
-   * @description - This function is used to get all candidates with given status from given rows
-   * @returns - Array of candidates with given status
-   */
-  const getRowsWithStatus = (
-    status: ICandidateStatus,
-    rows: ICandidate[],
-  ) => rows.filter(row => row.status === status);
-
   const selectRow: SelectRowProps<ICandidate> = {
     mode: "checkbox",
     onSelect: (row, isSelect) => {
@@ -150,7 +143,7 @@ const Candidates = () => {
     // because i return a string array, but this likes to receive a number array
     onSelectAll: (isSelect, rows) => {
       if (isSelect) {
-        setSelectedRows(getRowsWithStatus("CV Review", rows));
+        setSelectedRows(getRowsByStatus("CV Review", rows));
 
         // selects only rows with "CV Review" status
         return rows
@@ -162,21 +155,6 @@ const Candidates = () => {
       }
     },
   };
-
-  // const moveCandidatesToWorkflow = (
-  //   route: IWorkflowRoutes,
-  //   selectedRows: ICandidate[],
-  // ) => {
-  //   // dispatch(addCandidatesToCVWorkflow(selectedRows));
-  //   const candidateIds = selectedRows.map(candidate => candidate.reqId);
-
-  //   // if user selected any candidates
-  //   if (candidateIds.length > 0) {
-  //     history.push(`${route}/${candidateIds.toString()}`);
-  //   } else {
-  //     history.push(`${route}/null`);
-  //   }
-  // };
 
   const updateTable = async () => {
     await updateCandidates();
@@ -209,7 +187,7 @@ const Candidates = () => {
                       setValue={setName}
                     />
                   </Col>
-                  <Col md="3">
+                  <Col md="2.5">
                     <InputFilter
                       id="email"
                       placeholder="Email"
@@ -217,7 +195,7 @@ const Candidates = () => {
                       setValue={setEmail}
                     />
                   </Col>
-                  <Col md="2">
+                  <Col md="3">
                     <SelectFilter
                       id="status"
                       label="Status"
@@ -233,7 +211,7 @@ const Candidates = () => {
                       options={getSelectRating}
                     />
                   </Col>
-                  <Col md="2">
+                  <Col md="1.5">
                     <FormGroup style={{ marginBottom: 0 }}>
                       <Button
                         className="btn btn-primary"
@@ -282,44 +260,11 @@ const Candidates = () => {
               </CardHeader>
               <ToolkitProvider
                 data={candidates}
-                keyField="id"
+                keyField="reqId"
                 bootstrap4
                 exportCSV
                 columns={[
-                  {
-                    dataField: "firstName",
-                    text: "First Name",
-                    editable: false,
-                    headerStyle: () => {
-                      return { width: "8rem" };
-                    },
-                  },
-                  {
-                    dataField: "fullName",
-                    text: "Full Name",
-                    sort: true,
-                    editable: false,
-                  },
-                  {
-                    dataField: "email",
-                    text: "email",
-                    editable: false,
-                    headerStyle: () => {
-                      return { width: "14rem" };
-                    },
-                  },
-                  {
-                    dataField: "submissionDate",
-                    text: "Submission Date",
-                    sort: true,
-                    editable: false,
-                  },
-                  {
-                    dataField: "status",
-                    text: "Current Status",
-                    sort: true,
-                    editable: false,
-                  },
+                  ...defaultColumns,
                   {
                     dataField: "rating",
                     text: "Rating",
@@ -327,7 +272,7 @@ const Candidates = () => {
                     formatter: (_, row) =>
                       TableRatingCell({
                         row,
-                        updateCandidate,
+                        updateCandidateUI,
                       }),
                   },
                   {
@@ -342,14 +287,12 @@ const Candidates = () => {
                     dataField: "action",
                     text: "",
                     formatter: (_, row) => TableActionButtons({ row }),
-                    // style: { width: "50px", margin: "0 auto" },
                   },
                 ]}
               >
                 {props => {
                   return (
                     <div className="py-4 table-responsive">
-                      {/* make a flex div and all the items should be aligned to right */}
                       <div
                         style={{
                           display: "flex",
@@ -408,10 +351,6 @@ const Candidates = () => {
                         bordered={false}
                         selectRow={selectRow}
                         bootstrap4
-                        // cellEdit={cellEditFactory({
-                        //   mode: "dbclick",
-                        //   blurToSave: true,
-                        // })}
                       />
                     </div>
                   );
