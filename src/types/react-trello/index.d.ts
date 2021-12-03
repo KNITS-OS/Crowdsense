@@ -33,6 +33,12 @@ declare namespace ReactTrello {
     publish: ({ type, laneId, cardId }: EventBusPublish) => void;
   }
 
+  interface Tag {
+    title: string;
+    bgcolor: string;
+    color: string;
+  }
+
   interface DraggableCard {
     id: string;
     laneId: string;
@@ -52,7 +58,7 @@ declare namespace ReactTrello {
     };
     name?: string;
     subTitle?: string;
-    tags?: ITrelloTags[];
+    tags?: Array<Tag>;
   }
 
   interface Lane {

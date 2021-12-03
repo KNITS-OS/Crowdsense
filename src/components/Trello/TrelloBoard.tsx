@@ -1,8 +1,8 @@
 import { useState } from "react";
+import Board from "react-trello";
 import { ICandidateStatus, ITableColumn } from "types/types";
 import { removeCandidateOnLastLane, updateCandidateStatus } from "utils";
 import { trelloDefaults } from "variables";
-import Board from "react-trello";
 
 interface Props {
   workflow: any;

@@ -159,12 +159,6 @@ export interface ICreateCandidateFinalState {
   submissionDate: string;
 }
 
-export interface ITrelloTags {
-  bgcolor: string;
-  color: string;
-  title: string;
-}
-
 export type ITableColumn = "candidates" | "candidates2" | "tags";
 
 export interface IUpdateCandidateStatusParams {
