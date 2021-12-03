@@ -9,7 +9,7 @@ interface RouteParams {
   candidateIds: string;
 }
 
-const WorkflowPageCV = () => {
+const CVWorkflowPage = () => {
   const { candidateIds } = useParams<RouteParams>();
   console.log(candidateIds);
 
@@ -118,4 +118,4 @@ const WorkflowPageCV = () => {
     </>
   );
 };
-export default WorkflowPageCV;
+export default CVWorkflowPage;

@@ -29,16 +29,20 @@ import Profile from "views/pages/examples/pages/Profile";
 import { IRoute } from "./types/types";
 import {
   AddNewCVPage,
-  DetailsPage,
-  ExportPage,
   ImportCVPage,
-  WorkflowPageCV,
+  CVSearchPage,
+  CVWorkflowPage,
 } from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import { DocxExamplePage } from "./views/pages/Docx";
 import EditCareMemberPage from "./views/pages/examples/pages/users/EditCareMemberPage";
 import { HomePage } from "./views/pages/home";
 import { InternshipPage } from "./views/pages/internships";
+import {
+  InterviewSearchPage,
+  InterviewWorkflowPage,
+} from "./views/pages/interview";
+import { OfferWorkflowPage, SearchOfferPage } from "./views/pages/offers";
 import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
 
 const routes: IRoute[] = [
@@ -99,36 +103,22 @@ const routes: IRoute[] = [
         component: ImportCVPage,
         layout: "/admin",
       },
+
       {
-        collapse: true,
-        state: "cvSearchCollapse",
         name: "Search",
         miniName: "SC",
-        views: [
-          {
-            path: "/cv-export",
-            name: "Export",
-            miniName: "CS",
-            component: ExportPage,
-            layout: "/admin",
-          },
-          {
-            path: "/cv-details",
-            name: "Details",
-            miniName: "CS",
-            component: DetailsPage,
-            layout: "/admin",
-          },
-          {
-            path: "/cv-workflow/:candidateIds",
-            name: "Workflow",
-            miniName: "CS",
-            component: WorkflowPageCV,
-            layout: "/admin",
-          },
-        ],
+        path: "/cv-search",
+        component: CVSearchPage,
+        layout: "/admin",
       },
     ],
+  },
+  {
+    collapse: false,
+    global: true,
+    path: "/cv-search/workflow/:candidateIds",
+    component: CVWorkflowPage,
+    layout: "/admin",
   },
 
   // Interview
@@ -138,37 +128,21 @@ const routes: IRoute[] = [
     icon: "ni ni-chart-pie-35 text-primary",
     state: "interviewCollapse",
     views: [
-      // @todo add dashboard route
       {
-        collapse: true,
-        state: "interviewSearchCollapse",
         name: "Search",
         miniName: "SC",
-        views: [
-          {
-            path: "/interview-export",
-            name: "Export",
-            miniName: "CS",
-            component: ExportPage,
-            layout: "/admin",
-          },
-          {
-            path: "/interview-details",
-            name: "Details",
-            miniName: "CS",
-            component: DetailsPage,
-            layout: "/admin",
-          },
-          {
-            path: "/interview-workflow",
-            name: "Workflow",
-            miniName: "CS",
-            component: WorkflowPageCV,
-            layout: "/admin",
-          },
-        ],
+        path: "/interview-search",
+        component: InterviewSearchPage,
+        layout: "/admin",
       },
     ],
+  },
+  {
+    collapse: false,
+    global: true,
+    path: "/interview-search/workflow/:candidateIds",
+    component: InterviewWorkflowPage,
+    layout: "/admin",
   },
 
   // Offer
@@ -178,37 +152,21 @@ const routes: IRoute[] = [
     state: "offerCollapse",
     icon: "ni ni-chart-pie-35 text-primary",
     views: [
-      // @todo add dashboard route
       {
-        collapse: true,
-        state: "offerSearchCollapse",
         name: "Search",
         miniName: "SC",
-        views: [
-          {
-            path: "/offer-export",
-            name: "Export",
-            miniName: "CS",
-            component: ExportPage,
-            layout: "/admin",
-          },
-          {
-            path: "/offer-details",
-            name: "Details",
-            miniName: "CS",
-            component: DetailsPage,
-            layout: "/admin",
-          },
-          {
-            path: "/offer-workflow",
-            name: "Workflow",
-            miniName: "CS",
-            component: WorkflowPageCV,
-            layout: "/admin",
-          },
-        ],
+        path: "/offer-search",
+        component: SearchOfferPage,
+        layout: "/admin",
       },
     ],
+  },
+  {
+    collapse: false,
+    global: true,
+    path: "/offer-search/workflow/:candidateIds",
+    component: OfferWorkflowPage,
+    layout: "/admin",
   },
 
   // Internship
@@ -273,7 +231,7 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: "/users/candidate-details/:id",
+    path: "/candidate-details/:id",
     component: CandidateDetailsPage,
     layout: "/admin",
   },

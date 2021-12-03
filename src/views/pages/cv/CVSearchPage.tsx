@@ -1,15 +1,9 @@
-// core components
-import { CandidateFilters } from "components/Filters";
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { useAlert } from "context";
 import { useState } from "react";
 import BootstrapTable, {
   SelectRowProps,
 } from "react-bootstrap-table-next";
-// react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
-// reactstrap components
 import {
   Button,
   Card,
@@ -19,7 +13,10 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import { ICandidate, ISelectRowConfig } from "types/types";
+import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
+import { CandidateFilters } from "components/Filters";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { ICandidate, ISelectRowConfig, ITableColumn } from "types/types";
 import {
   axiosInstance,
   defaultColumns,
@@ -27,21 +24,18 @@ import {
   moveCandidatesToWorkflow,
   pagination,
 } from "utils";
-import DefaultExportCSVButton from "../../../components/Buttons/DefaultExportCSVButton";
-import { candidatesWithAllStatuses } from "../../../utils/selectUtils";
+import { candidatesWithCVStatus } from "utils/selectUtils";
 import {
   TableActionButtons,
   TableRatingCell,
   TableTagsCell,
-} from "./components";
+} from "../users/components";
 
-const Candidates = () => {
-  const table = "candidates2";
-  const { alert: alertHook } = useAlert();
+const CVSearchPage = () => {
+  const table: ITableColumn = "candidates2";
   const history = useHistory();
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
-
   const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
 
   /**
@@ -86,49 +80,45 @@ const Candidates = () => {
   };
 
   const candidateSelectRowConfig: ISelectRowConfig = {
-    status: "CV Review",
+    status: "CV Reviewed",
   };
 
-  const candidateSelectRow: SelectRowProps<ICandidate> = {
-    mode: "checkbox",
-    onSelect: (row, isSelect) => {
-      if (isSelect && row.status !== candidateSelectRowConfig.status) {
-        alert(
-          "Oops, You can not select a candidate that doesn't have CV Review status",
-        );
-        return false;
-      } else if (isSelect) {
-        setSelectedRows(oldRows => [...oldRows, row]);
-        return true;
-      } else {
-        setSelectedRows(oldRows =>
-          oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
-        );
-        return true;
-      }
-    },
-    // @ts-ignore
-    // because this code returns a string array, but onSelectAll likes to receive a number array
-    onSelectAll: (isSelect, rows) => {
-      if (isSelect) {
-        setSelectedRows(
-          getRowsByStatus([candidateSelectRowConfig.status], rows),
-        );
+  const candidateSelectRow = () => {
+    return {
+      mode: "checkbox",
+      onSelect: (row, isSelect) => {
+        // if select is true
+        if (isSelect) {
+          // adds this selected row to the selectedRows array
+          setSelectedRows(oldRows => [...oldRows, row]);
+          // select
+          return true;
+        } else {
+          // removes this selected row from the selectedRows array
+          setSelectedRows(oldRows =>
+            oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
+          );
+          // unselect
+          return true;
+        }
+      },
 
-        // selects only rows with candidateSelectRowConfig.status status
-        return rows
-          .filter(row => row.status === candidateSelectRowConfig.status)
-          .map(row => row.reqId);
-      } else {
-        setSelectedRows([]);
-        return;
-      }
-    },
+      onSelectAll: (isSelect, rows) => {
+        if (isSelect) {
+          setSelectedRows(
+            getRowsByStatus([candidateSelectRowConfig.status], rows),
+          );
+          return;
+        } else {
+          setSelectedRows([]);
+          return;
+        }
+      },
+    } as SelectRowProps<ICandidate>;
   };
 
   return (
     <div>
-      {alertHook}
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
         <Row>
@@ -140,7 +130,7 @@ const Candidates = () => {
               </CardHeader>
               <CardBody>
                 <CandidateFilters
-                  defaultStatuses={candidatesWithAllStatuses}
+                  defaultStatuses={candidatesWithCVStatus}
                   setCandidates={setCandidates}
                   setSelectedRows={setSelectedRows}
                   setUpdatedCandidates={setUpdatedCandidates}
@@ -264,7 +254,7 @@ const Candidates = () => {
                         keyField="reqId"
                         pagination={pagination}
                         bordered={false}
-                        selectRow={candidateSelectRow}
+                        selectRow={candidateSelectRow()}
                         // selectRow={() => selectRow()}
                         bootstrap4
                       />
@@ -279,5 +269,4 @@ const Candidates = () => {
     </div>
   );
 };
-
-export default Candidates;
+export default CVSearchPage;

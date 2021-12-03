@@ -74,6 +74,6 @@ export const defaultColumns = [
  * @returns - Array of candidates with given status
  */
 export const getRowsByStatus = (
-  status: ICandidateStatus,
+  statuses: ICandidateStatus[],
   rows: ICandidate[],
-) => rows.filter(row => row.status === status);
+) => rows.filter(row => statuses.map(status => row.status === status));

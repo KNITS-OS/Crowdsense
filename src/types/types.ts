@@ -26,23 +26,44 @@ export interface IRoute {
 
 export type Theme = "light" | "dark";
 
-export type ICandidateStatus =
-  // CV Page has candidates with these statuses
-  | "CV Review"
-  | "CV Reviewed"
-  // Interview Page has candidates with these statuses
+/**
+ * @description CV Page has candidates with these statuses
+ */
+export type ICandidateCVStatus = "CV Review" | "CV Reviewed";
+
+/**
+ * @description Interview Page has candidates with these statuses
+ */
+export type ICandidateInterviewStatus =
   | "Ready for interview"
   | "Interview Booked"
   | "Interview performed"
-  | "Interview Offered"
-  // Offer Page has candidates with these statuses
+  | "Interview Offered";
+
+/**
+ * @description Offer Page has candidates with these statuses
+ */
+export type ICandidateOfferStatus =
   | "Ready to Offer"
   | "Offer sent"
   | "Offer Accepted"
-  | "Offer Declined"
-  // All Pages have candidates with these statuses
+  | "Offer Declined";
+
+/**
+ * @description All Pages have candidates with these statuses
+ */
+export type ICandidateDeclinedStatus =
   | "Declined By Candidate"
   | "Declined By Reviewer";
+
+/**
+ * @description All Statuses
+ */
+export type ICandidateStatus =
+  | ICandidateCVStatus
+  | ICandidateInterviewStatus
+  | ICandidateOfferStatus
+  | ICandidateDeclinedStatus;
 
 export interface ITag {
   id: number;
@@ -162,6 +183,10 @@ export interface ICreateCandidateFinalState {
 export type ITableColumn = "candidates" | "candidates2" | "tags";
 
 export type IWorkflowRoutes = "/admin/cv-workflow";
+
+export type ISelectRowConfig = {
+  status: ICandidateStatus;
+};
 
 export interface IUpdateCandidateStatusParams {
   table: ITableColumn;
