@@ -161,6 +161,8 @@ export interface ICreateCandidateFinalState {
 
 export type ITableColumn = "candidates" | "candidates2" | "tags";
 
+export type IWorkflowRoutes = "/admin/cv-workflow";
+
 export interface IUpdateCandidateStatusParams {
   table: ITableColumn;
   reqId: string;

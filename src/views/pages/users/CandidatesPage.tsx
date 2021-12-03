@@ -1,6 +1,5 @@
 // core components
-import { InputFilter } from "components/Filters";
-import SelectFilter from "components/Filters/SelectFilter";
+import { InputFilter, SelectFilter } from "components/Filters";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import { useState } from "react";
@@ -22,7 +21,6 @@ import {
   Container,
   FormGroup,
   Row,
-  Spinner,
 } from "reactstrap";
 import { addFilter } from "redux/filters";
 import {
@@ -34,6 +32,7 @@ import {
   axiosInstance,
   getSelectRating,
   getSelectStatus,
+  moveCandidatesToWorkflow,
   pagination,
 } from "utils";
 import {
@@ -164,16 +163,21 @@ const Candidates = () => {
     },
   };
 
-  const moveCandidatesToCVWorkflow = () => {
-    // dispatch(addCandidatesToCVWorkflow(selectedRows));
-    const candidateIds = selectedRows.map(candidate => candidate.reqId);
+  // const moveCandidatesToWorkflow = (
+  //   route: IWorkflowRoutes,
+  //   selectedRows: ICandidate[],
+  // ) => {
+  //   // dispatch(addCandidatesToCVWorkflow(selectedRows));
+  //   const candidateIds = selectedRows.map(candidate => candidate.reqId);
 
-    if (candidateIds.length > 0) {
-      history.push(`/admin/cv-workflow/${candidateIds.toString()}`);
-    } else {
-      history.push(`/admin/cv-workflow/null`);
-    }
-  };
+  //   // if user selected any candidates
+  //   if (candidateIds.length > 0) {
+  //     history.push(`${route}/${candidateIds.toString()}`);
+  //   } else {
+  //     history.push(`${route}/null`);
+  //   }
+  // };
+
   const updateTable = async () => {
     await updateCandidates();
   };
@@ -191,43 +195,57 @@ const Candidates = () => {
                 <p className="text-sm mb-0">Filters</p>
               </CardHeader>
               <CardBody>
-                <Row>
-                  <Col md="10">
-                    <Row>
-                      <Col md="3">
-                        <InputFilter
-                          id="name"
-                          placeholder="Name"
-                          value={name}
-                          setValue={setName}
-                        />
-                      </Col>
-                      <Col md="3">
-                        <InputFilter
-                          id="email"
-                          placeholder="Email"
-                          value={email}
-                          setValue={setEmail}
-                        />
-                      </Col>
-                      <Col md="3">
-                        <SelectFilter
-                          id="status"
-                          label="Status"
-                          setValue={setStatus}
-                          options={getSelectStatus}
-                        />
-                      </Col>
-                      <Col md="3">
-                        <SelectFilter
-                          id="rating"
-                          label="Rating"
-                          setValue={setRating}
-                          options={getSelectRating}
-                        />
-                      </Col>
-                    </Row>
-                    {/* <Col md="2">
+                <Row
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <Col md="3">
+                    <InputFilter
+                      id="name"
+                      placeholder="Name"
+                      value={name}
+                      setValue={setName}
+                    />
+                  </Col>
+                  <Col md="3">
+                    <InputFilter
+                      id="email"
+                      placeholder="Email"
+                      value={email}
+                      setValue={setEmail}
+                    />
+                  </Col>
+                  <Col md="2">
+                    <SelectFilter
+                      id="status"
+                      label="Status"
+                      setValue={setStatus}
+                      options={getSelectStatus}
+                    />
+                  </Col>
+                  <Col md="2">
+                    <SelectFilter
+                      id="rating"
+                      label="Rating"
+                      setValue={setRating}
+                      options={getSelectRating}
+                    />
+                  </Col>
+                  <Col md="2">
+                    <FormGroup style={{ marginBottom: 0 }}>
+                      <Button
+                        className="btn btn-primary"
+                        color="primary"
+                        onClick={findByFilters}
+                      >
+                        Search
+                      </Button>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                {/* <Col md="2">
                     <FormGroup>
                       <label
                         className="form-control-label"
@@ -251,24 +269,6 @@ const Candidates = () => {
                       />
                     </FormGroup>
                   </Col> */}
-                  </Col>
-                  <Col md="2">
-                    <FormGroup>
-                      <Button
-                        style={{
-                          marginTop: "32px",
-                          marginLeft: "32px",
-                          height: "40px",
-                        }}
-                        className="btn btn-primary"
-                        color="primary"
-                        onClick={findByFilters}
-                      >
-                        Search
-                      </Button>
-                    </FormGroup>
-                  </Col>
-                </Row>
               </CardBody>
             </Card>
           </Col>
@@ -280,148 +280,143 @@ const Candidates = () => {
                 <h3 className="mb-0">Candidates</h3>
                 <p className="text-sm mb-0">Candidates for internship</p>
               </CardHeader>
-              {false ? (
-                // {isLoading || isFetching ? (
-                <div
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  <Spinner />
-                </div>
-              ) : (
-                <ToolkitProvider
-                  data={candidates}
-                  keyField="id"
-                  bootstrap4
-                  exportCSV
-                  columns={[
-                    {
-                      dataField: "firstName",
-                      text: "First Name",
-                      editable: false,
-                      headerStyle: () => {
-                        return { width: "8rem" };
-                      },
+              <ToolkitProvider
+                data={candidates}
+                keyField="id"
+                bootstrap4
+                exportCSV
+                columns={[
+                  {
+                    dataField: "firstName",
+                    text: "First Name",
+                    editable: false,
+                    headerStyle: () => {
+                      return { width: "8rem" };
                     },
-                    {
-                      dataField: "fullName",
-                      text: "Full Name",
-                      sort: true,
-                      editable: false,
+                  },
+                  {
+                    dataField: "fullName",
+                    text: "Full Name",
+                    sort: true,
+                    editable: false,
+                  },
+                  {
+                    dataField: "email",
+                    text: "email",
+                    editable: false,
+                    headerStyle: () => {
+                      return { width: "14rem" };
                     },
-                    {
-                      dataField: "email",
-                      text: "email",
-                      editable: false,
-                      headerStyle: () => {
-                        return { width: "14rem" };
-                      },
+                  },
+                  {
+                    dataField: "submissionDate",
+                    text: "Submission Date",
+                    sort: true,
+                    editable: false,
+                  },
+                  {
+                    dataField: "status",
+                    text: "Current Status",
+                    sort: true,
+                    editable: false,
+                  },
+                  {
+                    dataField: "rating",
+                    text: "Rating",
+                    sort: true,
+                    formatter: (_, row) =>
+                      TableRatingCell({
+                        row,
+                        updateCandidate,
+                      }),
+                  },
+                  {
+                    dataField: "tags",
+                    text: "Tags",
+                    formatter: TableTagsCell,
+                    headerStyle: () => {
+                      return { width: "19rem" };
                     },
-                    {
-                      dataField: "submissionDate",
-                      text: "Submission Date",
-                      sort: true,
-                      editable: false,
-                    },
-                    {
-                      dataField: "status",
-                      text: "Current Status",
-                      sort: true,
-                      editable: false,
-                    },
-                    {
-                      dataField: "rating",
-                      text: "Rating",
-                      sort: true,
-                      formatter: (_, row) =>
-                        TableRatingCell({
-                          row,
-                          updateCandidate,
-                        }),
-                    },
-                    {
-                      dataField: "tags",
-                      text: "Tags",
-                      formatter: TableTagsCell,
-                      headerStyle: () => {
-                        return { width: "19rem" };
-                      },
-                    },
-                    {
-                      dataField: "action",
-                      text: "",
-                      formatter: (_, row) => TableActionButtons({ row }),
-                      // style: { width: "50px", margin: "0 auto" },
-                    },
-                  ]}
-                >
-                  {props => {
-                    return (
-                      <div className="py-4 table-responsive">
-                        {/* make a flex div and all the items should be aligned to right */}
+                  },
+                  {
+                    dataField: "action",
+                    text: "",
+                    formatter: (_, row) => TableActionButtons({ row }),
+                    // style: { width: "50px", margin: "0 auto" },
+                  },
+                ]}
+              >
+                {props => {
+                  return (
+                    <div className="py-4 table-responsive">
+                      {/* make a flex div and all the items should be aligned to right */}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          marginBottom: "20px",
+                          marginRight: "20px",
+                        }}
+                      >
                         <div
                           style={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            marginBottom: "20px",
-                            marginRight: "20px",
+                            marginRight: "10px",
                           }}
                         >
-                          <div
-                            style={{
-                              marginRight: "10px",
-                            }}
+                          <Button
+                            className="btn btn-success"
+                            onClick={updateTable}
                           >
-                            <Button
-                              className="btn btn-success"
-                              onClick={updateTable}
-                            >
-                              Update
-                            </Button>
-                          </div>
-                          <div
-                            style={{
-                              marginRight: "10px",
-                            }}
-                          >
-                            <Button
-                              className="btn btn-success"
-                              onClick={moveCandidatesToCVWorkflow}
-                            >
-                              Workflow
-                            </Button>
-                          </div>
-                          <div>
-                            <ExportCSVButton
-                              {...props.csvProps}
-                              style={{
-                                backgroundColor: "#003369",
-                                borderColor: "#003369",
-                              }}
-                            >
-                              Export
-                            </ExportCSVButton>
-                          </div>
+                            Update
+                          </Button>
                         </div>
-
-                        <BootstrapTable
-                          {...props.baseProps}
-                          keyField="reqId"
-                          pagination={pagination}
-                          bordered={false}
-                          selectRow={selectRow}
-                          bootstrap4
-                          // cellEdit={cellEditFactory({
-                          //   mode: "dbclick",
-                          //   blurToSave: true,
-                          // })}
-                        />
+                        <div
+                          style={{
+                            marginRight: "10px",
+                          }}
+                        >
+                          <Button
+                            className="btn btn-success"
+                            onClick={() =>
+                              moveCandidatesToWorkflow(
+                                "/admin/cv-workflow",
+                                selectedRows,
+                                history,
+                              )
+                            }
+                          >
+                            Workflow
+                          </Button>
+                        </div>
+                        <div>
+                          <ExportCSVButton
+                            {...props.csvProps}
+                            style={{
+                              backgroundColor: "#003369",
+                              borderColor: "#003369",
+                            }}
+                          >
+                            Export
+                          </ExportCSVButton>
+                        </div>
                       </div>
-                    );
-                  }}
-                </ToolkitProvider>
-              )}
+
+                      <BootstrapTable
+                        {...props.baseProps}
+                        keyField="reqId"
+                        pagination={pagination}
+                        bordered={false}
+                        selectRow={selectRow}
+                        bootstrap4
+                        // cellEdit={cellEditFactory({
+                        //   mode: "dbclick",
+                        //   blurToSave: true,
+                        // })}
+                      />
+                    </div>
+                  );
+                }}
+              </ToolkitProvider>
             </Card>
           </Col>
         </Row>

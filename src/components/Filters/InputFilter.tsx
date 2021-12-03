@@ -9,7 +9,7 @@ interface Props {
 
 const InputFilter = ({ id, value, setValue, placeholder }: Props) => {
   return (
-    <FormGroup>
+    <FormGroup style={{ marginBottom: 0 }}>
       <Label className="form-control-label" htmlFor={id}>
         {placeholder}
       </Label>

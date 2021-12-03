@@ -4,6 +4,7 @@ import {
   IRemoveCandidateOnLastLaneParams,
   IUpdateCandidateStatusParams,
   IFetchOrderedCandidatesByStatusParams,
+  IWorkflowRoutes,
 } from "types/types";
 import { addFilter } from "redux/filters";
 
@@ -85,4 +86,25 @@ export const fetchOrderedCandidatesByStatus = async ({
   });
 
   return res;
+};
+
+/**
+ * @description Move selected candidates to given workflow page
+ * @param route given route, where the workflow is
+ * @param selectedRows array of selected candidates
+ */
+export const moveCandidatesToWorkflow = (
+  route: IWorkflowRoutes,
+  selectedRows: ICandidate[],
+  history: any,
+) => {
+  // dispatch(addCandidatesToCVWorkflow(selectedRows));
+  const candidateIds = selectedRows.map(candidate => candidate.reqId);
+
+  // if user selected any candidates
+  if (candidateIds.length > 0) {
+    history.push(`${route}/${candidateIds.toString()}`);
+  } else {
+    history.push(`${route}/null`);
+  }
 };

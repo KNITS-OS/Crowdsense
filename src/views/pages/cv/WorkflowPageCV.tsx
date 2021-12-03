@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { addFilter } from "redux/filters";
 import { ICandidate } from "types/types";
-import { axiosInstance } from "utils";
-import { fetchOrderedCandidatesByStatus } from "utils/workflowUtils";
+import { axiosInstance, fetchOrderedCandidatesByStatus } from "utils";
 import { TrelloBoard } from "components/Trello";
 
 interface RouteParams {

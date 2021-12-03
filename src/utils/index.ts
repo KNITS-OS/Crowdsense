@@ -5,4 +5,6 @@ export { default as axiosInstance } from "./axiosInstance";
 export {
   updateCandidateStatus,
   removeCandidateOnLastLane,
+  moveCandidatesToWorkflow,
+  fetchOrderedCandidatesByStatus,
 } from "./workflowUtils";
