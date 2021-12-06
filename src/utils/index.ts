@@ -12,5 +12,7 @@ export {
   checkStatusParam,
   createLane,
   workflowRoute,
-  defaultLanes,
+  declineLanes,
+  updateCandidateLane,
+  createDefaultLanes,
 } from "./workflowUtils";

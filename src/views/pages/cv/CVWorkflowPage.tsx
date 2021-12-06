@@ -1,45 +1,59 @@
 import { TrelloBoard } from "components/Trello";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { ICandidate } from "types/types";
-import { checkStatusParam, createLane, defaultLanes } from "utils";
+import { ITableColumn, IWorkflowCandidates } from "types/types";
+import {
+  checkStatusParam,
+  createDefaultLanes,
+  createLane,
+  declineLanes,
+  updateCandidateLane,
+} from "utils";
+import {
+  CV_REVIEW,
+  CV_REVIEWED,
+  READY_FOR_INTERVIEW,
+} from "../../../variables";
 
 interface RouteParams {
-  CVReview: string;
-  CVReviewed: string;
+  CVReviewIds: string;
+  CVReviewedIds: string;
 }
 
 const CVWorkflowPage = () => {
-  const { CVReview, CVReviewed } = useParams<RouteParams>();
+  const table: ITableColumn = "candidates2";
+  const { CVReviewIds, CVReviewedIds } = useParams<RouteParams>();
 
-  const table = "candidates2";
-
-  const [cvReviewCandidates, setCVReviewCandidates] = useState<
-    ICandidate[]
-  >([]);
-  const [cvReviewedCandidates, setCVReviewedCandidates] = useState<
-    ICandidate[]
-  >([]);
+  const [candidateLanes, setCandidateLanes] = useState<
+    IWorkflowCandidates[]
+  >([
+    { status: CV_REVIEW, candidates: [] },
+    { status: CV_REVIEWED, candidates: [] },
+  ]);
 
   useEffect(() => {
     const getCVReviewData = async () => {
       const data = await checkStatusParam({
         order: "firstName",
-        status: "CV Review",
-        statusParam: CVReview,
+        status: CV_REVIEW,
+        statusParam: CVReviewIds,
         table,
       });
-      setCVReviewCandidates(data);
+      setCandidateLanes(oldLanes =>
+        updateCandidateLane(oldLanes, CV_REVIEWED, data),
+      );
     };
 
     const getCVReviewedData = async () => {
       const data = await checkStatusParam({
         order: "firstName",
-        status: "CV Reviewed",
-        statusParam: CVReviewed,
+        status: CV_REVIEWED,
+        statusParam: CVReviewedIds,
         table,
       });
-      setCVReviewedCandidates(data);
+      setCandidateLanes(oldLanes =>
+        updateCandidateLane(oldLanes, CV_REVIEWED, data),
+      );
     };
 
     getCVReviewData();
@@ -47,18 +61,17 @@ const CVWorkflowPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const cvWorkflow: ReactTrello.BoardData = {
+  const workflow: ReactTrello.BoardData = {
     lanes: [
-      createLane(cvReviewCandidates, "CV Review"),
-      createLane(cvReviewedCandidates, "CV Reviewed"),
-      createLane([], "Ready for interview"),
-      ...defaultLanes(),
+      ...createDefaultLanes(candidateLanes),
+      createLane([], READY_FOR_INTERVIEW),
+      ...declineLanes(),
     ],
   };
 
   return (
     <>
-      <TrelloBoard workflow={cvWorkflow} table={table} />
+      <TrelloBoard workflow={workflow} table={table} />
     </>
   );
 };

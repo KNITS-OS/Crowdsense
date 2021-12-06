@@ -35,17 +35,17 @@ export type ICandidateCVStatus = "CV Review" | "CV Reviewed";
  * @description Interview Page has candidates with these statuses
  */
 export type ICandidateInterviewStatus =
-  | "Ready for interview"
+  | "Ready For Interview"
   | "Interview Booked"
-  | "Interview performed"
+  | "Interview Performed"
   | "Interview Offered";
 
 /**
  * @description Offer Page has candidates with these statuses
  */
 export type ICandidateOfferStatus =
-  | "Ready to Offer"
-  | "Offer sent"
+  | "Ready To Offer"
+  | "Offer Sent"
   | "Offer Accepted"
   | "Offer Declined";
 
@@ -64,6 +64,11 @@ export type ICandidateStatus =
   | ICandidateInterviewStatus
   | ICandidateOfferStatus
   | ICandidateDeclinedStatus;
+
+export interface IWorkflowCandidates {
+  status: ICandidateStatus;
+  candidates: ICandidate[];
+}
 
 export interface ITag {
   id: number;

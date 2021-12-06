@@ -56,7 +56,6 @@ const TableActions = ({
               selectedRows,
               defaultStatuses,
             );
-
             history.push(queryString);
           }}
         >

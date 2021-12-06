@@ -3,6 +3,7 @@ import {
   ICandidateStatus,
   ICheckStatusParams,
   IRemoveCandidateOnLastLaneParams,
+  IWorkflowCandidates,
   IWorkflowRoutes,
 } from "types/types";
 import {
@@ -92,7 +93,7 @@ export const workflowRoute = (
 ) => {
   let routeString = `${workflowPath}`;
   statuses.forEach(status => {
-    routeString += `/:${status.replace(/ /g, "")}`;
+    routeString += `/:${status.replace(/ /g, "")}Ids`;
   });
 
   return routeString;
@@ -144,9 +145,36 @@ export const createLane = (
   };
 };
 
-export const defaultLanes = () => {
+export const createDefaultLanes = (candidates: IWorkflowCandidates[]) => {
+  let lanes: Array<ReactTrello.Lane> = [];
+  candidates.forEach(candidate => {
+    lanes.push(createLane(candidate.candidates, candidate.status));
+  });
+  return lanes;
+};
+
+export const declineLanes = () => {
   return [
     createLane([], "Declined By Reviewer"),
     createLane([], "Declined By Candidate"),
   ];
+};
+
+export const updateCandidateLane = (
+  oldLanes: IWorkflowCandidates[],
+  status: ICandidateStatus,
+  data: any,
+) => {
+  let laneIndex = oldLanes.findIndex(lane => lane.status === status);
+  let oldLane = oldLanes[laneIndex];
+
+  let updatedLane: IWorkflowCandidates = {
+    ...oldLane,
+    candidates: data,
+  };
+
+  // replace the old lane with the new one
+  oldLanes.splice(laneIndex, 1, updatedLane);
+
+  return [...oldLanes];
 };

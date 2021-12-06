@@ -13,17 +13,17 @@ export const candidatesWithCVStatus: ICandidateCVStatus[] = [
   "CV Reviewed",
 ];
 export const candidatesWithInterviewStatus: ICandidateInterviewStatus[] = [
-  "Interview Booked",
-  "Interview performed",
+  "Ready For Interview",
   "Interview Offered",
-  "Ready for interview",
+  "Interview Booked",
+  "Interview Performed",
 ];
 
 export const candidatesWithOfferStatus: ICandidateOfferStatus[] = [
-  "Offer sent",
+  "Ready To Offer",
+  "Offer Sent",
   "Offer Accepted",
   "Offer Declined",
-  "Ready to Offer",
 ];
 
 export const candidatesWithDeclinedStatus: ICandidateDeclinedStatus[] = [
