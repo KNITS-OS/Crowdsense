@@ -1,3 +1,4 @@
+import { SelectRowProps } from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Label } from "reactstrap";
 import { ICandidate, ICandidateStatus } from "types/types";
@@ -77,3 +78,38 @@ export const getRowsByStatus = (
   statuses: ICandidateStatus[],
   rows: ICandidate[],
 ) => rows.filter(row => statuses.map(status => row.status === status));
+
+export const selectCandidateRow = (
+  setSelectedRows: React.Dispatch<React.SetStateAction<ICandidate[]>>,
+) => {
+  return {
+    mode: "checkbox",
+    onSelect: (row, isSelect) => {
+      // if select is true
+      if (isSelect) {
+        // adds this selected row to the selectedRows array
+        setSelectedRows(oldRows => [...oldRows, row]);
+        // select
+        return true;
+      } else {
+        // removes this selected row from the selectedRows array
+        setSelectedRows(oldRows =>
+          oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
+        );
+        // unselect
+        return true;
+      }
+    },
+
+    // onSelectAll: (isSelect, rows) => {
+    //   if (isSelect) {
+    //     setSelectedRows(rows);
+    //     return;
+    //   } else {
+    //     setSelectedRows([]);
+    //     return;
+    //   }
+    // },
+    hideSelectAll: true,
+  } as SelectRowProps<ICandidate>;
+};

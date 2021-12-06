@@ -2,9 +2,7 @@ import { CandidateFilters } from "components/Filters";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { TableActions } from "components/Table";
 import { useState } from "react";
-import BootstrapTable, {
-  SelectRowProps,
-} from "react-bootstrap-table-next";
+import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import {
   Card,
@@ -15,7 +13,7 @@ import {
   Row,
 } from "reactstrap";
 import { ICandidate, ITableColumn } from "types/types";
-import { defaultColumns, pagination } from "utils";
+import { defaultColumns, pagination, selectCandidateRow } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithCVStatus } from "utils/selectUtils";
 import {
@@ -65,38 +63,6 @@ const CVSearchPage = () => {
   const updateCandidates = async () => {
     await updateCandidatesMutation(table, updatedCandidates);
     setUpdatedCandidates([]);
-  };
-
-  const candidateSelectRow = () => {
-    return {
-      mode: "checkbox",
-      onSelect: (row, isSelect) => {
-        // if select is true
-        if (isSelect) {
-          // adds this selected row to the selectedRows array
-          setSelectedRows(oldRows => [...oldRows, row]);
-          // select
-          return true;
-        } else {
-          // removes this selected row from the selectedRows array
-          setSelectedRows(oldRows =>
-            oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
-          );
-          // unselect
-          return true;
-        }
-      },
-
-      onSelectAll: (isSelect, rows) => {
-        if (isSelect) {
-          setSelectedRows(rows);
-          return;
-        } else {
-          setSelectedRows([]);
-          return;
-        }
-      },
-    } as SelectRowProps<ICandidate>;
   };
 
   return (
@@ -177,8 +143,7 @@ const CVSearchPage = () => {
                         keyField="reqId"
                         pagination={pagination}
                         bordered={false}
-                        selectRow={candidateSelectRow()}
-                        // selectRow={() => selectRow()}
+                        selectRow={selectCandidateRow(setSelectedRows)}
                         bootstrap4
                       />
                     </div>

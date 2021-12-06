@@ -1,4 +1,9 @@
-export { pagination, defaultColumns, getRowsByStatus } from "./tableUtils";
+export {
+  pagination,
+  defaultColumns,
+  getRowsByStatus,
+  selectCandidateRow,
+} from "./tableUtils";
 export { getSelectStatus, getSelectRating } from "./selectUtils";
 export { baseQuery } from "./rtkQueryConfig";
 export {
