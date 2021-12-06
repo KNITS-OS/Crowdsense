@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Board from "react-trello";
 import { ICandidateStatus, ITableColumn } from "types/types";
-import { removeCandidateOnLastLane, updateCandidateStatus } from "utils";
+import { removeCandidateOnLastLane } from "utils";
 import { trelloDefaults } from "variables";
+import { updateCandidateStatusMutation } from "../../utils/axios";
 
 interface Props {
   workflow: any;
@@ -31,7 +32,7 @@ const TrelloBoard = ({ workflow, table }: Props) => {
         cardId: string,
         index: number,
       ) => {
-        updateCandidateStatus({
+        updateCandidateStatusMutation({
           table,
           reqId: cardId,
           status: toLaneId,

@@ -1,1 +1,1 @@
-export { default as CandidatesTableToolkit } from "./CandidatesTableToolkit";
+export { default as TableActions } from "./TableActions";

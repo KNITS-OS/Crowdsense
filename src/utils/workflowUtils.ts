@@ -1,34 +1,14 @@
-import { axiosInstance } from ".";
 import {
   ICandidate,
+  ICandidateStatus,
+  ICheckStatusParams,
   IRemoveCandidateOnLastLaneParams,
-  IUpdateCandidateStatusParams,
-  IFetchOrderedCandidatesByStatusParams,
   IWorkflowRoutes,
 } from "types/types";
-import { addFilter } from "redux/filters";
-
-/**
- * @description Update the status of a candidate
- */
-export const updateCandidateStatus = async ({
-  table,
-  reqId,
-  status,
-}: IUpdateCandidateStatusParams) => {
-  await axiosInstance.post(
-    table,
-    {
-      reqId,
-      status,
-    },
-    {
-      headers: {
-        prefer: "resolution=merge-duplicates",
-      },
-    },
-  );
-};
+import {
+  getCandidatesByStatus,
+  getCandidatesByStatusAndIds,
+} from "./axios";
 
 /**
  * @description Remove the candidate when card gets moved to the last lane
@@ -51,60 +31,94 @@ export const removeCandidateOnLastLane = ({
 };
 
 /**
- * @description Fetches Ordered Candidates By Status
- * @param asc default true
+ * @description Move selected candidates to given workflow page
+ * @param route given route, where the workflow is
+ * @param selectedCandidates array of selected candidates
  */
-export const fetchOrderedCandidatesByStatus = async ({
-  status,
+export const moveCandidatesToWorkflow = (
+  workflowRoute: IWorkflowRoutes,
+  selectedCandidates: ICandidate[],
+  defaultStatuses: ICandidateStatus[],
+) => {
+  let queryString = `${workflowRoute}/`;
+
+  defaultStatuses
+    .map(status => {
+      return {
+        status,
+        candidateIds: selectedCandidates
+          .map(candidate => {
+            if (candidate.status === status) return candidate.reqId;
+            else return null;
+          })
+          .filter(candidate => candidate !== null),
+      };
+    })
+    .forEach(element => {
+      if (element.candidateIds.length > 0) {
+        // queryString += `${
+        //   element.status
+        // }=${element.candidateIds.toString()}&`;
+        queryString += `${element.candidateIds.toString()}/`;
+      } else {
+        queryString += `null/`;
+      }
+    });
+
+  return queryString;
+};
+
+export const workflowRoute = (
+  workflowPath: IWorkflowRoutes,
+  statuses: ICandidateStatus[],
+) => {
+  let routeString = `${workflowPath}`;
+  statuses.forEach(status => {
+    routeString += `/:${status.replace(" ", "")}`;
+  });
+  console.log("routestring", routeString);
+
+  return routeString;
+};
+
+export const checkStatusParam = async ({
+  statusParam,
   table,
+  status,
   order,
-  asc = true,
-}: IFetchOrderedCandidatesByStatusParams) => {
-  const statusFilter = addFilter({
-    param: status,
-    filter: "eq",
-  });
-
-  let finalOrder;
-
-  if (asc) {
-    finalOrder = `${order}.asc`;
+}: ICheckStatusParams) => {
+  let res;
+  if (statusParam === "null") {
+    const { data } = await getCandidatesByStatus({ order, status, table });
+    res = data;
   } else {
-    finalOrder = `${order}.desc`;
+    const { data } = await getCandidatesByStatusAndIds({
+      table,
+      candidateIds: statusParam,
+      status,
+      order,
+    });
+    res = data;
   }
-
-  const filters = {
-    status: statusFilter,
-    order: finalOrder,
-  };
-
-  let res = await axiosInstance.get<ICandidate[]>(table, {
-    params: {
-      select: "*",
-      ...filters,
-    },
-  });
-
   return res;
 };
 
-/**
- * @description Move selected candidates to given workflow page
- * @param route given route, where the workflow is
- * @param selectedRows array of selected candidates
- */
-export const moveCandidatesToWorkflow = (
-  route: IWorkflowRoutes,
-  selectedRows: ICandidate[],
-  history: any,
+const createCards = (data: ICandidate[], laneId: ICandidateStatus) =>
+  data.map(candidate => ({
+    laneId,
+    id: candidate.reqId,
+    title: candidate.firstName,
+    description: candidate.email,
+    label: candidate.country,
+  }));
+export const createLane = (
+  data: ICandidate[],
+  laneId: ICandidateStatus,
 ) => {
-  // dispatch(addCandidatesToCVWorkflow(selectedRows));
-  const candidateIds = selectedRows.map(candidate => candidate.reqId);
-
-  // if user selected any candidates
-  if (candidateIds.length > 0) {
-    history.push(`${route}/${candidateIds.toString()}`);
-  } else {
-    history.push(`${route}/null`);
-  }
+  return {
+    id: laneId,
+    title: laneId,
+    disallowAddingCard: true,
+    cards: createCards(data, laneId),
+  };
 };

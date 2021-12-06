@@ -1,3 +1,41 @@
+:root {
+  --blue: #003369;
+  --indigo: #5603ad;
+  --purple: #8965e0;
+  --pink: #f3a4b5;
+  --red: #ed2939;
+  --orange: #fb6340;
+  --yellow: #ffd600;
+  --green: #08c792;
+  --teal: #0099da;
+  --cyan: #2bffc6;
+  --white: #fff;
+  --gray: #8898aa;
+  --gray-dark: #32325d;
+  --light: #ced4da;
+  --lighter: #e9ecef;
+  --primary: #003369;
+  --secondary: #f6f5f0;
+  --success: #08c792;
+  --info: #0099da;
+  --warning: #fb6340;
+  --danger: #ed2939;
+  --light: #adb5bd;
+  --dark: #212529;
+  --default: #172b4d;
+  --white: #fff;
+  --neutral: #fff;
+  --darker: black;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: Open Sans, sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -8,3 +46,78 @@
 .smooth-dnd-container {
   margin-right: 4px;
 }
+
+.smooth-dnd-draggable-wrapper .a {
+  color: var(--darker) !important;
+}
+
+.smooth-dnd-draggable-wrapper:nth-child(1) .react-trello-lane {
+  border-top: 6px solid #0052cc !important;
+}
+.smooth-dnd-draggable-wrapper:nth-child(1)
+  .react-trello-lane
+  .header
+  .span {
+  color: #0052cc !important;
+}
+/* .smooth-dnd-draggable-wrapper:nth-child(2) {
+    .react-trello-lane {
+      border-top: 6px solid #172b4d !important;
+      header {
+        span {
+          color: #172b4d !important;
+        }
+      }
+    }
+  }
+  .smooth-dnd-draggable-wrapper:nth-child(3) {
+    .react-trello-lane {
+      border-top: 6px solid #00b8d9 !important;
+      header {
+        span {
+          color: #00b8d9 !important;
+        }
+      }
+    }
+  }
+  .smooth-dnd-draggable-wrapper:nth-child(4) {
+    .react-trello-lane {
+      border-top: 6px solid #6554c0 !important;
+      header {
+        span {
+          color: #6554c0 !important;
+        }
+      }
+    }
+  }
+  .smooth-dnd-draggable-wrapper:nth-child(5) {
+    .react-trello-lane {
+      border-top: 6px solid #36b37e !important;
+      header {
+        span {
+          color: #36b37e !important;
+        }
+      }
+    }
+  }
+  .smooth-dnd-draggable-wrapper:nth-child(6) {
+    .react-trello-lane {
+      border-top: 6px solid #ffab00 !important;
+      header {
+        span {
+          color: #ffab00 !important;
+        }
+      }
+    }
+  }
+  .smooth-dnd-draggable-wrapper:nth-child(n + 7) {
+    .react-trello-lane {
+      border-top: 6px solid #403294 !important;
+      header {
+        span {
+          color: #403294 !important;
+        }
+      }
+    }
+  }
+ */

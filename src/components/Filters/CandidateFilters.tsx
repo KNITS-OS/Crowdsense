@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button, Col, FormGroup, Row } from "reactstrap";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateStatus, ITableColumn } from "types/types";
-import { axiosInstance, getSelectRating, getSelectStatus } from "utils";
+import { getSelectRating, getSelectStatus } from "utils";
 import { InputFilter, SelectFilter } from ".";
+import { getDataByFiltersQuery } from "../../utils/axios";
 
 type SetCandidatesType = React.Dispatch<
   React.SetStateAction<ICandidate[]>
@@ -14,6 +15,9 @@ interface Props {
   setCandidates: SetCandidatesType;
   setUpdatedCandidates: SetCandidatesType;
   setSelectedRows: SetCandidatesType;
+  /**
+   * @description Defines what candidates are selected (based on status)
+   */
   defaultStatuses: ICandidateStatus[];
 }
 
@@ -54,13 +58,8 @@ const CandidateFilters = ({
       email: emailFilter,
     };
 
-    let { data } = await axiosInstance.get(table, {
-      params: {
-        select: "*",
-        ...filters,
-        limit: 100,
-      },
-    });
+    const { data } = await getDataByFiltersQuery(table, filters, "*", 100);
+
     setCandidates(data);
     // getFilteredCandidates({ limit: 100, select: "*", filters });
     setUpdatedCandidates([]);

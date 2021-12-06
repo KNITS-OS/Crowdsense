@@ -1,11 +1,12 @@
+import { CandidateFilters } from "components/Filters";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { TableActions } from "components/Table";
 import { useState } from "react";
 import BootstrapTable, {
   SelectRowProps,
 } from "react-bootstrap-table-next";
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
-import { useHistory } from "react-router";
 import {
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -13,17 +14,9 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
-import { CandidateFilters } from "components/Filters";
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { ICandidate, ISelectRowConfig, ITableColumn } from "types/types";
-import {
-  axiosInstance,
-  defaultColumns,
-  getRowsByStatus,
-  moveCandidatesToWorkflow,
-  pagination,
-} from "utils";
+import { ICandidate, ITableColumn } from "types/types";
+import { defaultColumns, pagination } from "utils";
+import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithCVStatus } from "utils/selectUtils";
 import {
   TableActionButtons,
@@ -33,7 +26,6 @@ import {
 
 const CVSearchPage = () => {
   const table: ITableColumn = "candidates2";
-  const history = useHistory();
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
@@ -71,16 +63,8 @@ const CVSearchPage = () => {
   };
 
   const updateCandidates = async () => {
-    await axiosInstance.post(table, [...updatedCandidates], {
-      headers: {
-        prefer: "resolution=merge-duplicates",
-      },
-    });
+    await updateCandidatesMutation(table, updatedCandidates);
     setUpdatedCandidates([]);
-  };
-
-  const candidateSelectRowConfig: ISelectRowConfig = {
-    status: "CV Reviewed",
   };
 
   const candidateSelectRow = () => {
@@ -105,9 +89,7 @@ const CVSearchPage = () => {
 
       onSelectAll: (isSelect, rows) => {
         if (isSelect) {
-          setSelectedRows(
-            getRowsByStatus([candidateSelectRowConfig.status], rows),
-          );
+          setSelectedRows(rows);
           return;
         } else {
           setSelectedRows([]);
@@ -136,30 +118,6 @@ const CVSearchPage = () => {
                   setUpdatedCandidates={setUpdatedCandidates}
                   table="candidates2"
                 />
-                {/* <Col md="2">
-                    <FormGroup>
-                      <label
-                        className="form-control-label"
-                        htmlFor="example3cols2Input"
-                      >
-                        Hire Date From
-                      </label>
-                      <ReactDatetime
-                        inputProps={{
-                          placeholder: "Hire date",
-                        }}
-                        onChange={
-                          (dateAsMoment: any) =>
-                            console.log(dateAsMoment.format("D-MM-YYYY"))
-
-                          // setSearchHiringDate(
-                          //   dateAsMoment.format("D-MM-YYYY"),
-                          // )
-                        }
-                        timeFormat={false}
-                      />
-                    </FormGroup>
-                  </Col> */}
               </CardBody>
             </Card>
           </Col>
@@ -206,48 +164,13 @@ const CVSearchPage = () => {
                 {props => {
                   return (
                     <div className="py-4 table-responsive">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          marginBottom: "20px",
-                          marginRight: "20px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            marginRight: "10px",
-                          }}
-                        >
-                          <Button
-                            className="btn btn-success"
-                            onClick={updateCandidates}
-                          >
-                            Update
-                          </Button>
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "10px",
-                          }}
-                        >
-                          <Button
-                            className="btn btn-success"
-                            onClick={() =>
-                              moveCandidatesToWorkflow(
-                                "/admin/cv-workflow",
-                                selectedRows,
-                                history,
-                              )
-                            }
-                          >
-                            Workflow
-                          </Button>
-                        </div>
-                        <div>
-                          <DefaultExportCSVButton props={props} />
-                        </div>
-                      </div>
+                      <TableActions
+                        defaultStatuses={candidatesWithCVStatus}
+                        selectedRows={selectedRows}
+                        workflowRoute="/admin/cv-workflow"
+                        toolkitProps={props}
+                        updateCandidates={updateCandidates}
+                      />
 
                       <BootstrapTable
                         {...props.baseProps}

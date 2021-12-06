@@ -1,17 +1,16 @@
+import { TrelloBoard } from "components/Trello";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { addFilter } from "redux/filters";
 import { ICandidate } from "types/types";
-import { axiosInstance, fetchOrderedCandidatesByStatus } from "utils";
-import { TrelloBoard } from "components/Trello";
+import { checkStatusParam, createLane } from "utils";
 
 interface RouteParams {
-  candidateIds: string;
+  CVReview: string;
+  CVReviewed: string;
 }
 
 const CVWorkflowPage = () => {
-  const { candidateIds } = useParams<RouteParams>();
-  console.log(candidateIds);
+  const { CVReview, CVReviewed } = useParams<RouteParams>();
 
   const table = "candidates2";
 
@@ -23,92 +22,36 @@ const CVWorkflowPage = () => {
   >([]);
 
   useEffect(() => {
-    const fetchCVReviewCandidatesByIds = async (candidateIds: string) => {
-      const statusFilter = addFilter({
-        param: "CV Review",
-        filter: "eq",
-      });
-      const reqIdFilter = addFilter({
-        param: [candidateIds],
-        filter: "in",
-      });
-
-      const filters = {
-        status: statusFilter,
-        reqId: reqIdFilter,
-      };
-
-      let { data } = await axiosInstance.get(table, {
-        params: {
-          select: "*",
-          ...filters,
-        },
-      });
-      setCVReviewCandidates(data);
-    };
-
-    const fetchAllCVReviewCandidates = async () => {
-      const { data } = await fetchOrderedCandidatesByStatus({
-        table,
+    const getCVReviewData = async () => {
+      const data = await checkStatusParam({
         order: "firstName",
         status: "CV Review",
+        statusParam: CVReview,
+        table,
       });
-
       setCVReviewCandidates(data);
     };
 
-    const fetchCVReviewedCandidates = async () => {
-      const { data } = await fetchOrderedCandidatesByStatus({
-        table,
+    const getCVReviewedData = async () => {
+      const data = await checkStatusParam({
         order: "firstName",
         status: "CV Reviewed",
+        statusParam: CVReviewed,
+        table,
       });
-
       setCVReviewedCandidates(data);
     };
 
-    fetchCVReviewedCandidates();
-
-    if (candidateIds === "null" || candidateIds === ":candidateIds") {
-      fetchAllCVReviewCandidates();
-    } else {
-      fetchCVReviewCandidatesByIds(candidateIds);
-    }
+    getCVReviewData();
+    getCVReviewedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cvWorkflow: ReactTrello.BoardData = {
     lanes: [
-      {
-        id: "CV Review",
-        title: "CV Review",
-        disallowAddingCard: true,
-        cards: cvReviewCandidates.map(candidate => ({
-          laneId: "CV Review",
-          id: candidate.reqId,
-          title: candidate.firstName,
-          description: candidate.email,
-          label: candidate.country,
-        })),
-      },
-      {
-        id: "CV Reviewed",
-        title: "CV Reviewed",
-        disallowAddingCard: true,
-        cards: cvReviewedCandidates.map(candidate => ({
-          laneId: "CV Reviewed",
-          id: candidate.reqId,
-          title: candidate.firstName,
-          description: candidate.email,
-          label: candidate.country,
-        })),
-      },
-      {
-        id: "Ready for interview",
-        title: "Ready for interview",
-        disallowAddingCard: true,
-        cards: [],
-      },
+      createLane(cvReviewCandidates, "CV Review"),
+      createLane(cvReviewedCandidates, "CV Reviewed"),
+      createLane([], "Ready for interview"),
     ],
   };
 

@@ -27,6 +27,8 @@ import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
 import { IRoute } from "./types/types";
+import { candidatesWithCVStatus } from "./utils/selectUtils";
+import { workflowRoute } from "./utils/workflowUtils";
 import {
   AddNewCVPage,
   ImportCVPage,
@@ -116,7 +118,7 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: "/cv-search/workflow/:candidateIds",
+    path: workflowRoute("/cv-workflow", candidatesWithCVStatus),
     component: CVWorkflowPage,
     layout: "/admin",
   },

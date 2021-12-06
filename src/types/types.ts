@@ -182,7 +182,7 @@ export interface ICreateCandidateFinalState {
 
 export type ITableColumn = "candidates" | "candidates2" | "tags";
 
-export type IWorkflowRoutes = "/admin/cv-workflow";
+export type IWorkflowRoutes = "/admin/cv-workflow" | "/cv-workflow";
 
 export type ISelectRowConfig = {
   status: ICandidateStatus;
@@ -201,9 +201,29 @@ export interface IRemoveCandidateOnLastLaneParams {
   eventBus: ReactTrello.EventBus;
 }
 
-export interface IFetchOrderedCandidatesByStatusParams {
+export type ICandidateOrder =
+  | "firstName"
+  | "lastName"
+  | "country"
+  | "rating";
+
+export interface IGetCandidatesByStatusParams {
   status: ICandidateStatus;
   table: ITableColumn;
-  order: "firstName" | "lastName" | "country" | "rating";
+  order: ICandidateOrder;
   asc?: boolean;
+}
+export interface IGetCandidatesByStatusAndIdsParams {
+  table: ITableColumn;
+  candidateIds: string;
+  status: ICandidateStatus;
+  order: ICandidateOrder;
+  asc?: boolean;
+}
+
+export interface ICheckStatusParams {
+  statusParam: string;
+  table: ITableColumn;
+  status: ICandidateStatus;
+  order: ICandidateOrder;
 }

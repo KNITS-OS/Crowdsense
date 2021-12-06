@@ -8,10 +8,8 @@ import BootstrapTable, {
 } from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
-import { useHistory } from "react-router";
 // reactstrap components
 import {
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -20,15 +18,9 @@ import {
   Row,
 } from "reactstrap";
 import { ICandidate, ISelectRowConfig } from "types/types";
-import {
-  axiosInstance,
-  defaultColumns,
-  getRowsByStatus,
-  moveCandidatesToWorkflow,
-  pagination,
-} from "utils";
-import DefaultExportCSVButton from "../../../components/Buttons/DefaultExportCSVButton";
-import { candidatesWithAllStatuses } from "../../../utils/selectUtils";
+import { defaultColumns, getRowsByStatus, pagination } from "utils";
+import { updateCandidatesMutation } from "utils/axios";
+import { candidatesWithAllStatuses } from "utils/selectUtils";
 import {
   TableActionButtons,
   TableRatingCell,
@@ -38,10 +30,10 @@ import {
 const Candidates = () => {
   const table = "candidates2";
   const { alert: alertHook } = useAlert();
-  const history = useHistory();
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
 
+  // @ts-ignore
   const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
 
   /**
@@ -76,12 +68,9 @@ const Candidates = () => {
     });
   };
 
+  // @ts-ignore
   const updateCandidates = async () => {
-    await axiosInstance.post(table, [...updatedCandidates], {
-      headers: {
-        prefer: "resolution=merge-duplicates",
-      },
-    });
+    await updateCandidatesMutation(table, updatedCandidates);
     setUpdatedCandidates([]);
   };
 
@@ -146,30 +135,6 @@ const Candidates = () => {
                   setUpdatedCandidates={setUpdatedCandidates}
                   table="candidates2"
                 />
-                {/* <Col md="2">
-                    <FormGroup>
-                      <label
-                        className="form-control-label"
-                        htmlFor="example3cols2Input"
-                      >
-                        Hire Date From
-                      </label>
-                      <ReactDatetime
-                        inputProps={{
-                          placeholder: "Hire date",
-                        }}
-                        onChange={
-                          (dateAsMoment: any) =>
-                            console.log(dateAsMoment.format("D-MM-YYYY"))
-
-                          // setSearchHiringDate(
-                          //   dateAsMoment.format("D-MM-YYYY"),
-                          // )
-                        }
-                        timeFormat={false}
-                      />
-                    </FormGroup>
-                  </Col> */}
               </CardBody>
             </Card>
           </Col>
@@ -216,48 +181,13 @@ const Candidates = () => {
                 {props => {
                   return (
                     <div className="py-4 table-responsive">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          marginBottom: "20px",
-                          marginRight: "20px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            marginRight: "10px",
-                          }}
-                        >
-                          <Button
-                            className="btn btn-success"
-                            onClick={updateCandidates}
-                          >
-                            Update
-                          </Button>
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "10px",
-                          }}
-                        >
-                          <Button
-                            className="btn btn-success"
-                            onClick={() =>
-                              moveCandidatesToWorkflow(
-                                "/admin/cv-workflow",
-                                selectedRows,
-                                history,
-                              )
-                            }
-                          >
-                            Workflow
-                          </Button>
-                        </div>
-                        <div>
-                          <DefaultExportCSVButton props={props} />
-                        </div>
-                      </div>
+                      {/* <TableActions
+                        toolkitProps={props}
+                        selectedRows={selectedRows}
+                        updateCandidates={updateCandidates}
+                        workflowRoute="/admin/cv-workflow"
+
+                      /> */}
 
                       <BootstrapTable
                         {...props.baseProps}
