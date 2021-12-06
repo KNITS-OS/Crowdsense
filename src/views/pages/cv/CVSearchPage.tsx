@@ -40,6 +40,7 @@ const CVSearchPage = () => {
           setSelectedRows={setSelectedRows}
           updatedCandidates={updatedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
+          table={table}
         />
       </Container>
     </div>

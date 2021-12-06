@@ -16,7 +16,11 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import { ICandidate, ISelectRowConfig } from "types/types";
+import {
+  ICandidate,
+  ISelectRowConfig,
+  IUpdateCandidateUIParams,
+} from "types/types";
 import { defaultColumns, getRowsByStatus, pagination } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithAllStatuses } from "utils/selectUtils";
@@ -43,7 +47,10 @@ const Candidates = () => {
     [],
   );
 
-  const updateCandidateUI = (reqId: string, body: Partial<ICandidate>) => {
+  const updateCandidateUI = ({
+    reqId,
+    body,
+  }: IUpdateCandidateUIParams) => {
     const candidateIndex = candidates.findIndex(
       candidate => candidate.reqId === reqId,
     );

@@ -1,2 +1,2 @@
-export { default as SearchOfferPage } from "./SearchOfferPage";
+export { default as OfferSearchPage } from "./OfferSearchPage";
 export { default as OfferWorkflowPage } from "./OfferWorkflowPage";

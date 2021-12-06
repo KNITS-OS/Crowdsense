@@ -48,7 +48,7 @@ import {
   InterviewSearchPage,
   InterviewWorkflowPage,
 } from "./views/pages/interview";
-import { OfferWorkflowPage, SearchOfferPage } from "./views/pages/offers";
+import { OfferWorkflowPage, OfferSearchPage } from "./views/pages/offers";
 import { CandidateDetailsPage, CandidatesPage } from "./views/pages/users";
 
 const routes: IRoute[] = [
@@ -165,7 +165,7 @@ const routes: IRoute[] = [
         name: "Search",
         miniName: "SC",
         path: "/offer-search",
-        component: SearchOfferPage,
+        component: OfferSearchPage,
         layout: "/admin",
       },
     ],

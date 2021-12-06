@@ -27,6 +27,7 @@ interface Props {
   setSelectedRows: IUseSetCandidate;
   updatedCandidates: ICandidate[];
   setUpdatedCandidates: IUseSetCandidate;
+  table: ITableColumn;
 }
 
 const CandidatesTable = ({
@@ -38,9 +39,8 @@ const CandidatesTable = ({
   setSelectedRows,
   updatedCandidates,
   setUpdatedCandidates,
+  table,
 }: Props) => {
-  const table: ITableColumn = "candidates2";
-
   const updateCandidateUI = ({
     reqId,
     body,

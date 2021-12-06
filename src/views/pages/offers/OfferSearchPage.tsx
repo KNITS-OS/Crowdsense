@@ -3,10 +3,10 @@ import { CandidatesTable } from "components/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate, ITableColumn } from "types/types";
-import { candidatesWithInterviewStatus } from "utils/selectUtils";
+import { candidatesWithOfferStatus } from "utils/selectUtils";
 import { BoxHeader } from "../../../components/Headers";
 
-const InterviewSearchPage = () => {
+const OfferSearchPage = () => {
   const table: ITableColumn = "candidates2";
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
@@ -24,7 +24,7 @@ const InterviewSearchPage = () => {
       <BoxHeader />
       <Container className="mt--6" fluid>
         <CandidateFilters
-          defaultStatuses={candidatesWithInterviewStatus}
+          defaultStatuses={candidatesWithOfferStatus}
           setCandidates={setCandidates}
           setSelectedRows={setSelectedRows}
           setUpdatedCandidates={setUpdatedCandidates}
@@ -32,8 +32,8 @@ const InterviewSearchPage = () => {
         />
 
         <CandidatesTable
-          defaultStatuses={candidatesWithInterviewStatus}
-          workflowRoute="/admin/interview-workflow"
+          defaultStatuses={candidatesWithOfferStatus}
+          workflowRoute="/admin/offer-workflow"
           candidates={candidates}
           setCandidates={setCandidates}
           selectedRows={selectedRows}
@@ -46,4 +46,4 @@ const InterviewSearchPage = () => {
     </div>
   );
 };
-export default InterviewSearchPage;
+export default OfferSearchPage;
