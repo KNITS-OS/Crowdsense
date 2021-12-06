@@ -82,7 +82,7 @@ const CVSearchPage = () => {
                   setCandidates={setCandidates}
                   setSelectedRows={setSelectedRows}
                   setUpdatedCandidates={setUpdatedCandidates}
-                  table="candidates2"
+                  table={table}
                 />
               </CardBody>
             </Card>
@@ -134,8 +134,8 @@ const CVSearchPage = () => {
                         defaultStatuses={candidatesWithCVStatus}
                         selectedRows={selectedRows}
                         workflowRoute="/admin/cv-workflow"
-                        toolkitProps={props}
                         updateCandidates={updateCandidates}
+                        toolkitProps={props}
                       />
 
                       <BootstrapTable

@@ -27,7 +27,11 @@ import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
 import { IRoute } from "./types/types";
-import { candidatesWithCVStatus } from "./utils/selectUtils";
+import {
+  candidatesWithCVStatus,
+  candidatesWithInterviewStatus,
+  candidatesWithOfferStatus,
+} from "./utils/selectUtils";
 import { workflowRoute } from "./utils/workflowUtils";
 import {
   AddNewCVPage,
@@ -142,7 +146,10 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: "/interview-search/workflow/:candidateIds",
+    path: workflowRoute(
+      "/interview-workflow",
+      candidatesWithInterviewStatus,
+    ),
     component: InterviewWorkflowPage,
     layout: "/admin",
   },
@@ -166,7 +173,7 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: "/offer-search/workflow/:candidateIds",
+    path: workflowRoute("/offer-workflow", candidatesWithOfferStatus),
     component: OfferWorkflowPage,
     layout: "/admin",
   },

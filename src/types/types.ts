@@ -182,7 +182,13 @@ export interface ICreateCandidateFinalState {
 
 export type ITableColumn = "candidates" | "candidates2" | "tags";
 
-export type IWorkflowRoutes = "/admin/cv-workflow" | "/cv-workflow";
+export type IWorkflowRoutes =
+  | "/admin/cv-workflow"
+  | "/cv-workflow"
+  | "/admin/interview-workflow"
+  | "/interview-workflow"
+  | "/admin/offer-workflow"
+  | "/offer-workflow";
 
 export type ISelectRowConfig = {
   status: ICandidateStatus;

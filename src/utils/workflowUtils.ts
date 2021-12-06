@@ -53,7 +53,7 @@ export const removeCandidateFromLane = ({
  * @param route given route, where the workflow is
  * @param selectedCandidates array of selected candidates
  */
-export const moveCandidatesToWorkflow = (
+export const createQueryStringForWorkflow = (
   workflowRoute: IWorkflowRoutes,
   selectedCandidates: ICandidate[],
   defaultStatuses: ICandidateStatus[],

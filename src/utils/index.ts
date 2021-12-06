@@ -8,7 +8,7 @@ export { getSelectStatus, getSelectRating } from "./selectUtils";
 export { baseQuery } from "./rtkQueryConfig";
 export {
   removeCandidateFromLane,
-  moveCandidatesToWorkflow,
+  createQueryStringForWorkflow,
   checkStatusParam,
   createLane,
   workflowRoute,

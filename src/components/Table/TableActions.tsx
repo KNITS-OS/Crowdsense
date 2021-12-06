@@ -6,7 +6,7 @@ import {
   ICandidateStatus,
   IWorkflowRoutes,
 } from "../../types/types";
-import { moveCandidatesToWorkflow } from "../../utils";
+import { createQueryStringForWorkflow } from "../../utils";
 import DefaultExportCSVButton from "../Buttons/DefaultExportCSVButton";
 
 interface Props {
@@ -51,12 +51,11 @@ const TableActions = ({
         <Button
           className="btn btn-success"
           onClick={() => {
-            const queryString = moveCandidatesToWorkflow(
+            const queryString = createQueryStringForWorkflow(
               workflowRoute,
               selectedRows,
               defaultStatuses,
             );
-            console.log(queryString);
 
             history.push(queryString);
           }}
