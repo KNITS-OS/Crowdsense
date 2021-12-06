@@ -1,17 +1,17 @@
 import { Rating } from "react-simple-star-rating";
-import { Row, Col } from "reactstrap";
-import { ICandidate } from "../../../../types/types";
+import { Col, Row } from "reactstrap";
+import { ICandidate, IUpdateCandidateUIParams } from "types/types";
 
 interface Props {
   row: ICandidate;
-  updateCandidateUI: (reqId: string, body: Partial<ICandidate>) => void;
+  updateCandidateUI: ({ reqId, body }: IUpdateCandidateUIParams) => void;
 }
 
 const TableRatingCell = ({ row, updateCandidateUI }: Props) => {
   if (!row.rating) row.rating = 0;
 
   const handleRatingChange = (newRating: number) => {
-    updateCandidateUI(row.reqId, { rating: newRating });
+    updateCandidateUI({ reqId: row.reqId, body: { rating: newRating } });
   };
 
   return (

@@ -200,6 +200,15 @@ export interface IUpdateCandidateStatusParams {
   status: ICandidateStatus;
 }
 
+export interface IUpdateCandidateUIParams {
+  reqId: string;
+  body: Partial<ICandidate>;
+}
+
+export type IUseSetCandidate = React.Dispatch<
+  React.SetStateAction<ICandidate[]>
+>;
+
 export interface IRemoveCandidateOnLastLaneParams {
   workflow: ReactTrello.BoardData;
   laneId: ICandidateStatus;

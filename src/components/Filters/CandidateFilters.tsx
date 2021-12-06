@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Button, Col, FormGroup, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  FormGroup,
+  Row,
+} from "reactstrap";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateStatus, ITableColumn } from "types/types";
 import { getSelectRating, getSelectStatus } from "utils";
@@ -67,59 +75,71 @@ const CandidateFilters = ({
   };
 
   return (
-    <Row
-      style={{
-        justifyContent: "center",
-        alignItems: "flex-end",
-      }}
-    >
-      <Col md="3">
-        <InputFilter
-          id="name"
-          placeholder="Name"
-          value={name}
-          setValue={setName}
-        />
-      </Col>
-      <Col md="2">
-        <InputFilter
-          id="email"
-          placeholder="Email"
-          value={email}
-          setValue={setEmail}
-        />
-      </Col>
-      <Col md="3">
-        <SelectFilter
-          id="status"
-          label="Status"
-          setValue={setStatus}
-          options={getSelectStatus(defaultStatuses)}
-        />
-      </Col>
-      <Col md="2">
-        <SelectFilter
-          id="rating"
-          label="Rating"
-          setValue={setRating}
-          options={getSelectRating}
-        />
-      </Col>
-      <Col
-        md="2"
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <FormGroup style={{ marginBottom: 0 }}>
-          <Button
-            className="btn btn-primary"
-            color="primary"
-            onClick={findByFilters}
-          >
-            Search
-          </Button>
-        </FormGroup>
+    <Row>
+      <Col>
+        <Card>
+          <CardHeader>
+            <h3 className="mb-0">Search Candidates</h3>
+            <p className="text-sm mb-0">Filters</p>
+          </CardHeader>
+          <CardBody>
+            <Row
+              style={{
+                justifyContent: "center",
+                alignItems: "flex-end",
+              }}
+            >
+              <Col md="3">
+                <InputFilter
+                  id="name"
+                  placeholder="Name"
+                  value={name}
+                  setValue={setName}
+                />
+              </Col>
+              <Col md="2">
+                <InputFilter
+                  id="email"
+                  placeholder="Email"
+                  value={email}
+                  setValue={setEmail}
+                />
+              </Col>
+              <Col md="3">
+                <SelectFilter
+                  id="status"
+                  label="Status"
+                  setValue={setStatus}
+                  options={getSelectStatus(defaultStatuses)}
+                />
+              </Col>
+              <Col md="2">
+                <SelectFilter
+                  id="rating"
+                  label="Rating"
+                  setValue={setRating}
+                  options={getSelectRating}
+                />
+              </Col>
+              <Col
+                md="2"
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <FormGroup style={{ marginBottom: 0 }}>
+                  <Button
+                    className="btn btn-primary"
+                    color="primary"
+                    onClick={findByFilters}
+                  >
+                    Search
+                  </Button>
+                </FormGroup>
+              </Col>
+            </Row>
+          </CardBody>
+        </Card>
       </Col>
     </Row>
   );
