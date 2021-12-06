@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Board from "react-trello";
 import { ICandidateStatus, ITableColumn } from "types/types";
-import { removeCandidateOnLastLane } from "utils";
+import { removeCandidateFromLane } from "utils";
 import { trelloDefaults } from "variables";
 import { updateCandidateStatusMutation } from "../../utils/axios";
 
 interface Props {
-  workflow: any;
+  workflow: ReactTrello.BoardData;
   table: ITableColumn;
 }
 
@@ -39,7 +39,7 @@ const TrelloBoard = ({ workflow, table }: Props) => {
         });
 
         if (eventBus) {
-          removeCandidateOnLastLane({
+          removeCandidateFromLane({
             workflow,
             laneId: toLaneId,
             cardId,

@@ -2,7 +2,7 @@ import { TrelloBoard } from "components/Trello";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { ICandidate } from "types/types";
-import { checkStatusParam, createLane } from "utils";
+import { checkStatusParam, createLane, defaultLanes } from "utils";
 
 interface RouteParams {
   CVReview: string;
@@ -52,6 +52,7 @@ const CVWorkflowPage = () => {
       createLane(cvReviewCandidates, "CV Review"),
       createLane(cvReviewedCandidates, "CV Reviewed"),
       createLane([], "Ready for interview"),
+      ...defaultLanes(),
     ],
   };
 

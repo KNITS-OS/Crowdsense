@@ -13,15 +13,33 @@ import {
 /**
  * @description Remove the candidate when card gets moved to the last lane
  */
-export const removeCandidateOnLastLane = ({
+export const removeCandidateFromLane = ({
   laneId,
   workflow,
   cardId,
   eventBus,
 }: IRemoveCandidateOnLastLaneParams) => {
-  // check if its the last lane
-  if (laneId === workflow.lanes[workflow.lanes.length - 1].id) {
+  // declined by candidate
+  const lastLaneId1 = workflow.lanes[workflow.lanes.length - 1].id;
+  // declined by reviewer
+  const lastLaneId2 = workflow.lanes[workflow.lanes.length - 2].id;
+  // to next workflow
+  const lastLaneId3 = workflow.lanes[workflow.lanes.length - 3].id;
+
+  if (laneId === lastLaneId1) {
     // if true, remove the card
+    eventBus.publish({
+      type: "REMOVE_CARD",
+      laneId,
+      cardId,
+    });
+  } else if (laneId === lastLaneId2) {
+    eventBus.publish({
+      type: "REMOVE_CARD",
+      laneId,
+      cardId,
+    });
+  } else if (laneId === lastLaneId3) {
     eventBus.publish({
       type: "REMOVE_CARD",
       laneId,
@@ -111,6 +129,7 @@ const createCards = (data: ICandidate[], laneId: ICandidateStatus) =>
     description: candidate.email,
     label: candidate.country,
   }));
+
 export const createLane = (
   data: ICandidate[],
   laneId: ICandidateStatus,
@@ -121,4 +140,11 @@ export const createLane = (
     disallowAddingCard: true,
     cards: createCards(data, laneId),
   };
+};
+
+export const defaultLanes = () => {
+  return [
+    createLane([], "Declined By Reviewer"),
+    createLane([], "Declined By Candidate"),
+  ];
 };
