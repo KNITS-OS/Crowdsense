@@ -19,19 +19,18 @@
 import {
   Badge,
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
+  Col,
   Container,
   Row,
-  Col,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../components/Headers";
 
 const EmailHistoryPage = () => {
   return (
     <>
-      <SimpleHeader name="Timeline" parentName="Pages" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col lg="6">

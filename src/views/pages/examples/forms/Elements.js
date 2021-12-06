@@ -18,23 +18,22 @@ import React from "react";
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
-  Label,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
+  CardHeader,
   Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Row,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Elements() {
   return (
     <>
-      <SimpleHeader name="Form elements" parentName="Forms" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Card className="mb-4">
           <CardHeader>

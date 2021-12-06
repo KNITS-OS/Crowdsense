@@ -15,10 +15,10 @@
 
 */
 
-import { Card, CardBody, Col, Container, Row } from "reactstrap";
-import SimpleHeader from "components/Headers/SimpleHeader";
 import { VectorMap } from "@react-jvectormap/core";
 import worldMill from "@react-jvectormap/world/dist/worldMill.json";
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
+import { BoxHeader } from "../../../components/Headers";
 
 const mapData = {
   AU: 760,
@@ -37,7 +37,7 @@ const mapData = {
 const WorldOverviewPage = () => {
   return (
     <>
-      <SimpleHeader name="Vector maps" parentName="Maps" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col>

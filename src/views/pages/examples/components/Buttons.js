@@ -15,25 +15,23 @@
 
 */
 import React from "react";
-
 // reactstrap components
 import {
   Button,
   ButtonGroup,
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
+  Col,
   Container,
   Row,
-  Col,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Buttons() {
   return (
     <>
-      <SimpleHeader name="Buttons" parentName="Components" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row className="justify-content-center">
           <Col className="card-wrapper ct-example" lg="8">

@@ -15,36 +15,34 @@
 
 */
 import React from "react";
-
 // reactstrap components
 import {
   Badge,
   Button,
   Card,
-  CardHeader,
   CardFooter,
-  DropdownMenu,
+  CardHeader,
+  Col,
+  Container,
   DropdownItem,
+  DropdownMenu,
   DropdownToggle,
-  UncontrolledDropdown,
   Media,
   Pagination,
   PaginationItem,
   PaginationLink,
   Progress,
-  Table,
-  Container,
   Row,
-  Col,
+  Table,
+  UncontrolledDropdown,
   UncontrolledTooltip,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Tables() {
   return (
     <>
-      <SimpleHeader name="Tables" parentName="Tables" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">

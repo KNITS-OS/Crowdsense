@@ -14,39 +14,38 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+// react plugin that creates an input with badges
+import TagsInput from "components/TagsInput/TagsInput";
+// javascript plugin that creates nice dropzones for files
+import Dropzone from "dropzone";
+// plugin that creates slider
+import Slider from "nouislider";
+import React from "react";
 // react plugin used to create datetimepicker
 import ReactDatetime from "react-datetime";
 // react plugin used to create DropdownMenu for selecting items
 import Select2 from "react-select2-wrapper";
-// plugin that creates slider
-import Slider from "nouislider";
-// javascript plugin that creates nice dropzones for files
-import Dropzone from "dropzone";
 // reactstrap components
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
+  CardHeader,
+  Col,
+  Container,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
-  ListGroupItem,
   ListGroup,
-  Container,
+  ListGroupItem,
   Row,
-  Col,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
-// react plugin that creates an input with badges
-import TagsInput from "components/TagsInput/TagsInput";
+import { BoxHeader } from "../../../../components/Headers";
 
 Dropzone.autoDiscover = false;
 
@@ -193,7 +192,7 @@ function Components() {
 
   return (
     <>
-      <SimpleHeader name="Form components" parentName="Forms" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col lg="6">

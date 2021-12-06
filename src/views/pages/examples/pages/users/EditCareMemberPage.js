@@ -15,26 +15,22 @@
 
 */
 import React from "react";
-
+import { useParams } from "react-router-dom";
 // reactstrap components
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
+  CardHeader,
   Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Row,
 } from "reactstrap";
-
-import { useParams } from "react-router-dom";
+import { BoxHeader } from "../../../../../components/Headers";
 import { employees } from "./EmployeesData";
-
-// core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 
 function EditCareMemberPage(props) {
   let { id } = useParams(); //see in routes path: "/users/employee-details/:id",
@@ -42,7 +38,7 @@ function EditCareMemberPage(props) {
 
   return (
     <>
-      <GradientEmptyHeader name="Employees" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col className="order-xl-1" xl="12">

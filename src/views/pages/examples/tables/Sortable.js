@@ -14,31 +14,30 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // javascript plugin that creates a sortable object from a dom object
 import List from "list.js";
+import React from "react";
 // reactstrap components
 import {
   Badge,
   Card,
-  CardHeader,
   CardFooter,
-  DropdownMenu,
+  CardHeader,
+  Container,
   DropdownItem,
+  DropdownMenu,
   DropdownToggle,
-  UncontrolledDropdown,
   Media,
   Pagination,
   PaginationItem,
   PaginationLink,
   Progress,
-  Table,
-  Container,
   Row,
+  Table,
+  UncontrolledDropdown,
   UncontrolledTooltip,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Sortable() {
   const firstListRef = React.useRef(null);
@@ -60,7 +59,7 @@ function Sortable() {
   }, []);
   return (
     <>
-      <SimpleHeader name="Sortable Tables" parentName="Tables" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">
@@ -82,7 +81,11 @@ function Sortable() {
                         Status
                       </th>
                       <th scope="col">Users</th>
-                      <th className="sort" data-sort="completion" scope="col">
+                      <th
+                        className="sort"
+                        data-sort="completion"
+                        scope="col"
+                      >
                         Completion
                       </th>
                       <th scope="col" />
@@ -95,7 +98,7 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
@@ -125,12 +128,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip649644480"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -144,12 +148,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip271118748"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -163,12 +168,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip456883903"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -182,12 +188,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip427983389"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -203,7 +210,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">60%</span>
                           <div>
-                            <Progress max="100" value="60" color="warning" />
+                            <Progress
+                              max="100"
+                              value="60"
+                              color="warning"
+                            />
                           </div>
                         </div>
                       </td>
@@ -217,22 +228,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -246,12 +260,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/angular.jpg").default
+                                require("assets/img/theme/angular.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -275,12 +290,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip308604570"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -294,12 +310,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip463448556"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -313,12 +330,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip474990624"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -332,12 +350,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip371113692"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -353,7 +372,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">100%</span>
                           <div>
-                            <Progress max="100" value="100" color="success" />
+                            <Progress
+                              max="100"
+                              value="100"
+                              color="success"
+                            />
                           </div>
                         </div>
                       </td>
@@ -367,22 +390,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -396,12 +422,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/sketch.jpg").default
+                                require("assets/img/theme/sketch.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -425,12 +452,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip178353307"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -444,12 +472,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip110940759"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -463,12 +492,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip721474482"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -482,12 +512,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip248059973"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -503,7 +534,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">72%</span>
                           <div>
-                            <Progress max="100" value="72" color="danger" />
+                            <Progress
+                              max="100"
+                              value="72"
+                              color="danger"
+                            />
                           </div>
                         </div>
                       </td>
@@ -517,22 +552,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -546,12 +584,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/react.jpg").default
+                                require("assets/img/theme/react.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -575,12 +614,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip338716581"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -594,12 +634,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip384272281"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -613,12 +654,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip714277819"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -632,12 +674,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip352802795"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -667,22 +710,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -696,11 +742,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
-                              src={require("assets/img/theme/vue.jpg").default}
+                              src={
+                                require("assets/img/theme/vue.jpg").default
+                              }
                             />
                           </a>
                           <Media>
@@ -723,12 +771,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip261050883"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -742,12 +791,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip704196347"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -761,12 +811,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip455439475"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -780,12 +831,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip948033723"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -801,7 +853,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">100%</span>
                           <div>
-                            <Progress max="100" value="100" color="success" />
+                            <Progress
+                              max="100"
+                              value="100"
+                              color="success"
+                            />
                           </div>
                         </div>
                       </td>
@@ -815,22 +871,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -850,7 +909,7 @@ function Sortable() {
                     <PaginationItem className="disabled">
                       <PaginationLink
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                         tabIndex="-1"
                       >
                         <i className="fas fa-angle-left" />
@@ -860,7 +919,7 @@ function Sortable() {
                     <PaginationItem className="active">
                       <PaginationLink
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         1
                       </PaginationLink>
@@ -868,7 +927,7 @@ function Sortable() {
                     <PaginationItem>
                       <PaginationLink
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         2 <span className="sr-only">(current)</span>
                       </PaginationLink>
@@ -876,7 +935,7 @@ function Sortable() {
                     <PaginationItem>
                       <PaginationLink
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         3
                       </PaginationLink>
@@ -884,7 +943,7 @@ function Sortable() {
                     <PaginationItem>
                       <PaginationLink
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <i className="fas fa-angle-right" />
                         <span className="sr-only">Next</span>
@@ -927,12 +986,13 @@ function Sortable() {
                       <a
                         className="avatar rounded-circle mr-3"
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
                           src={
-                            require("assets/img/theme/bootstrap.jpg").default
+                            require("assets/img/theme/bootstrap.jpg")
+                              .default
                           }
                         />
                       </a>
@@ -956,56 +1016,76 @@ function Sortable() {
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip875701525"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-1.jpg").default}
+                          src={
+                            require("assets/img/theme/team-1.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip875701525">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip875701525"
+                      >
                         Ryan Tompson
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip493102457"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-2.jpg").default}
+                          src={
+                            require("assets/img/theme/team-2.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip493102457">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip493102457"
+                      >
                         Romina Hadid
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip574236797"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-3.jpg").default}
+                          src={
+                            require("assets/img/theme/team-3.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip574236797">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip574236797"
+                      >
                         Alexander Smith
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip49218996"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-4.jpg").default}
+                          src={
+                            require("assets/img/theme/team-4.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip49218996">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip49218996"
+                      >
                         Jessica Doe
                       </UncontrolledTooltip>
                     </div>
@@ -1031,19 +1111,19 @@ function Sortable() {
                       <DropdownMenu className="dropdown-menu-arrow" right>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Another action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Something else here
                         </DropdownItem>
@@ -1057,11 +1137,13 @@ function Sortable() {
                       <a
                         className="avatar rounded-circle mr-3"
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/angular.jpg").default}
+                          src={
+                            require("assets/img/theme/angular.jpg").default
+                          }
                         />
                       </a>
                       <Media>
@@ -1084,56 +1166,76 @@ function Sortable() {
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip719286793"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-1.jpg").default}
+                          src={
+                            require("assets/img/theme/team-1.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip719286793">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip719286793"
+                      >
                         Ryan Tompson
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip833013259"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-2.jpg").default}
+                          src={
+                            require("assets/img/theme/team-2.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip833013259">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip833013259"
+                      >
                         Romina Hadid
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip259638111"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-3.jpg").default}
+                          src={
+                            require("assets/img/theme/team-3.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip259638111">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip259638111"
+                      >
                         Alexander Smith
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip353573264"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-4.jpg").default}
+                          src={
+                            require("assets/img/theme/team-4.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip353573264">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip353573264"
+                      >
                         Jessica Doe
                       </UncontrolledTooltip>
                     </div>
@@ -1159,19 +1261,19 @@ function Sortable() {
                       <DropdownMenu className="dropdown-menu-arrow" right>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Another action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Something else here
                         </DropdownItem>
@@ -1185,11 +1287,13 @@ function Sortable() {
                       <a
                         className="avatar rounded-circle mr-3"
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/sketch.jpg").default}
+                          src={
+                            require("assets/img/theme/sketch.jpg").default
+                          }
                         />
                       </a>
                       <Media>
@@ -1212,56 +1316,76 @@ function Sortable() {
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip254060307"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-1.jpg").default}
+                          src={
+                            require("assets/img/theme/team-1.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip254060307">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip254060307"
+                      >
                         Ryan Tompson
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip991744191"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-2.jpg").default}
+                          src={
+                            require("assets/img/theme/team-2.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip991744191">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip991744191"
+                      >
                         Romina Hadid
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip353476826"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-3.jpg").default}
+                          src={
+                            require("assets/img/theme/team-3.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip353476826">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip353476826"
+                      >
                         Alexander Smith
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip877941415"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-4.jpg").default}
+                          src={
+                            require("assets/img/theme/team-4.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip877941415">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip877941415"
+                      >
                         Jessica Doe
                       </UncontrolledTooltip>
                     </div>
@@ -1287,19 +1411,19 @@ function Sortable() {
                       <DropdownMenu className="dropdown-menu-arrow" right>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Another action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Something else here
                         </DropdownItem>
@@ -1313,11 +1437,13 @@ function Sortable() {
                       <a
                         className="avatar rounded-circle mr-3"
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/react.jpg").default}
+                          src={
+                            require("assets/img/theme/react.jpg").default
+                          }
                         />
                       </a>
                       <Media>
@@ -1340,56 +1466,76 @@ function Sortable() {
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip19030294"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-1.jpg").default}
+                          src={
+                            require("assets/img/theme/team-1.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip19030294">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip19030294"
+                      >
                         Ryan Tompson
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip604086456"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-2.jpg").default}
+                          src={
+                            require("assets/img/theme/team-2.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip604086456">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip604086456"
+                      >
                         Romina Hadid
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip510726994"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-3.jpg").default}
+                          src={
+                            require("assets/img/theme/team-3.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip510726994">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip510726994"
+                      >
                         Alexander Smith
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip876582678"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-4.jpg").default}
+                          src={
+                            require("assets/img/theme/team-4.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip876582678">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip876582678"
+                      >
                         Jessica Doe
                       </UncontrolledTooltip>
                     </div>
@@ -1415,19 +1561,19 @@ function Sortable() {
                       <DropdownMenu className="dropdown-menu-arrow" right>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Another action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Something else here
                         </DropdownItem>
@@ -1441,7 +1587,7 @@ function Sortable() {
                       <a
                         className="avatar rounded-circle mr-3"
                         href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
@@ -1468,56 +1614,76 @@ function Sortable() {
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip783780957"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-1.jpg").default}
+                          src={
+                            require("assets/img/theme/team-1.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip783780957">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip783780957"
+                      >
                         Ryan Tompson
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip977578127"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-2.jpg").default}
+                          src={
+                            require("assets/img/theme/team-2.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip977578127">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip977578127"
+                      >
                         Romina Hadid
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip452431268"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-3.jpg").default}
+                          src={
+                            require("assets/img/theme/team-3.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip452431268">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip452431268"
+                      >
                         Alexander Smith
                       </UncontrolledTooltip>
                       <a
                         className="avatar avatar-sm rounded-circle"
                         href="#pablo"
                         id="tooltip885071416"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                       >
                         <img
                           alt="..."
-                          src={require("assets/img/theme/team-4.jpg").default}
+                          src={
+                            require("assets/img/theme/team-4.jpg").default
+                          }
                         />
                       </a>
-                      <UncontrolledTooltip delay={0} target="tooltip885071416">
+                      <UncontrolledTooltip
+                        delay={0}
+                        target="tooltip885071416"
+                      >
                         Jessica Doe
                       </UncontrolledTooltip>
                     </div>
@@ -1543,19 +1709,19 @@ function Sortable() {
                       <DropdownMenu className="dropdown-menu-arrow" right>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Another action
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={e => e.preventDefault()}
                         >
                           Something else here
                         </DropdownItem>
@@ -1588,7 +1754,11 @@ function Sortable() {
                         Status
                       </th>
                       <th scope="col">Users</th>
-                      <th className="sort" data-sort="completion" scope="col">
+                      <th
+                        className="sort"
+                        data-sort="completion"
+                        scope="col"
+                      >
                         Completion
                       </th>
                       <th scope="col" />
@@ -1601,7 +1771,7 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
@@ -1631,12 +1801,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip467950995"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1650,12 +1821,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip25513321"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1669,12 +1841,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip588943797"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1688,12 +1861,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip856456467"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1709,7 +1883,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">60%</span>
                           <div>
-                            <Progress max="100" value="60" color="warning" />
+                            <Progress
+                              max="100"
+                              value="60"
+                              color="warning"
+                            />
                           </div>
                         </div>
                       </td>
@@ -1723,22 +1901,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -1752,12 +1933,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/angular.jpg").default
+                                require("assets/img/theme/angular.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1781,12 +1963,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip610334941"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1800,12 +1983,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip213291473"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1819,12 +2003,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip40804711"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1838,12 +2023,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip901162322"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1859,7 +2045,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">100%</span>
                           <div>
-                            <Progress max="100" value="100" color="success" />
+                            <Progress
+                              max="100"
+                              value="100"
+                              color="success"
+                            />
                           </div>
                         </div>
                       </td>
@@ -1873,22 +2063,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -1902,12 +2095,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/sketch.jpg").default
+                                require("assets/img/theme/sketch.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1931,12 +2125,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip798929192"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1950,12 +2145,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip690674952"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1969,12 +2165,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip497303045"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -1988,12 +2185,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip659692799"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2009,7 +2207,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">72%</span>
                           <div>
-                            <Progress max="100" value="72" color="danger" />
+                            <Progress
+                              max="100"
+                              value="72"
+                              color="danger"
+                            />
                           </div>
                         </div>
                       </td>
@@ -2023,22 +2225,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -2052,12 +2257,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/react.jpg").default
+                                require("assets/img/theme/react.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2081,12 +2287,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip828557605"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2100,12 +2307,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip177731438"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2119,12 +2327,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip483706952"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2138,12 +2347,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip310356273"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2173,22 +2383,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>
@@ -2202,11 +2415,13 @@ function Sortable() {
                           <a
                             className="avatar rounded-circle mr-3"
                             href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
-                              src={require("assets/img/theme/vue.jpg").default}
+                              src={
+                                require("assets/img/theme/vue.jpg").default
+                              }
                             />
                           </a>
                           <Media>
@@ -2229,12 +2444,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip946916389"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-1.jpg").default
+                                require("assets/img/theme/team-1.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2248,12 +2464,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip571882927"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-2.jpg").default
+                                require("assets/img/theme/team-2.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2267,12 +2484,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip363766624"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-3.jpg").default
+                                require("assets/img/theme/team-3.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2286,12 +2504,13 @@ function Sortable() {
                             className="avatar avatar-sm rounded-circle"
                             href="#pablo"
                             id="tooltip282084973"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                           >
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/team-4.jpg").default
+                                require("assets/img/theme/team-4.jpg")
+                                  .default
                               }
                             />
                           </a>
@@ -2307,7 +2526,11 @@ function Sortable() {
                         <div className="d-flex align-items-center">
                           <span className="completion mr-2">100%</span>
                           <div>
-                            <Progress max="100" value="100" color="success" />
+                            <Progress
+                              max="100"
+                              value="100"
+                              color="success"
+                            />
                           </div>
                         </div>
                       </td>
@@ -2321,22 +2544,25 @@ function Sortable() {
                           >
                             <i className="fas fa-ellipsis-v" />
                           </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownMenu
+                            className="dropdown-menu-arrow"
+                            right
+                          >
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Another action
                             </DropdownItem>
                             <DropdownItem
                               href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              onClick={e => e.preventDefault()}
                             >
                               Something else here
                             </DropdownItem>

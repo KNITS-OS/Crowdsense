@@ -15,23 +15,21 @@
 
 */
 import React from "react";
-
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
+  Col,
   Container,
   Row,
-  Col,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Grid() {
   return (
     <>
-      <SimpleHeader name="Grid" parentName="Components" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row className="justify-content-center">
           <Col className="card-wrapper" lg="8">

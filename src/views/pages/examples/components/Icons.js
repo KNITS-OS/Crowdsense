@@ -20,21 +20,20 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
+  Col,
   Container,
   Row,
-  Col,
   UncontrolledTooltip,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Icons() {
   const [copiedText, setCopiedText] = React.useState(null);
   return (
     <>
-      <SimpleHeader name="Icons" parentName="Components" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row className="justify-content-center">
           <Col lg="8">

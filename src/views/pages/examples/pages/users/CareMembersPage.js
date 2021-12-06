@@ -15,7 +15,6 @@
 
 */
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import React from "react";
 // react component for creating dynamic tables
@@ -24,6 +23,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 // reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
+import { BoxHeader } from "../../../../../components/Headers";
 import { employees } from "./EmployeesData";
 
 const { SearchBar } = Search;
@@ -69,7 +69,7 @@ function CareMembersPage(props) {
   return (
     <>
       {alert}
-      <GradientEmptyHeader name="Employees" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">

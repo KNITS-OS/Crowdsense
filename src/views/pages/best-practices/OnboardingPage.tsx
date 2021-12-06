@@ -15,7 +15,6 @@
 
 */
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader";
 import { useAlert } from "context";
 import React from "react";
 // react component for creating dynamic tables
@@ -35,6 +34,7 @@ import { pagination } from "utils";
 import { dataTable } from "variables/general";
 import { PrintButton } from "../../../components/Buttons";
 import CopyButton from "../../../components/Buttons/CopyButton";
+import { BoxHeader } from "../../../components/Headers";
 
 const { SearchBar } = Search;
 
@@ -46,7 +46,7 @@ const ReactBSTables = () => {
   return (
     <>
       {alert}
-      <SimpleHeader name="React Tables" parentName="Tables" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">

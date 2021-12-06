@@ -14,33 +14,32 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
-// react plugin for creating notifications over the dashboard
-import NotificationAlert from "react-notification-alert";
+import React from "react";
 // react component used to create sweet alerts
 import ReactBSAlert from "react-bootstrap-sweetalert";
+// react plugin for creating notifications over the dashboard
+import NotificationAlert from "react-notification-alert";
 // reactstrap components
 import {
-  UncontrolledAlert,
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
+  CardHeader,
+  Col,
+  Container,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
   Modal,
-  Container,
   Row,
-  Col,
+  UncontrolledAlert,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Notifications() {
   const [focusedEmail, setFocusedEmail] = React.useState(false);
@@ -163,7 +162,7 @@ function Notifications() {
       <div className="rna-wrapper">
         <NotificationAlert ref={notificationAlertRef} />
       </div>
-      <SimpleHeader name="Notifications" parentName="Components" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row className="justify-content-center">
           <Col className="card-wrapper" lg="8">

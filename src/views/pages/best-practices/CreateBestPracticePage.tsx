@@ -15,14 +15,14 @@
 
 */
 // core components
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 // reactstrap components
 import { Col, Container, FormGroup, Input, Row } from "reactstrap";
+import { BoxHeader } from "../../../components/Headers";
 
 const CreateBestPracticePage = () => {
   return (
     <>
-      <GradientEmptyHeader />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col className="order-xl-1" xl="12">

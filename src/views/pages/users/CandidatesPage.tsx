@@ -1,6 +1,5 @@
 // core components
 import { CandidateFilters } from "components/Filters";
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useAlert } from "context";
 import { useState } from "react";
 import BootstrapTable, {
@@ -21,6 +20,7 @@ import { ICandidate, ISelectRowConfig } from "types/types";
 import { defaultColumns, getRowsByStatus, pagination } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithAllStatuses } from "utils/selectUtils";
+import { BoxHeader } from "../../../components/Headers";
 import {
   TableActionButtons,
   TableRatingCell,
@@ -118,7 +118,7 @@ const Candidates = () => {
   return (
     <div>
       {alertHook}
-      <GradientEmptyHeader />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col>

@@ -1,4 +1,3 @@
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { LabeledFormInput } from "components/Input";
 import { useState } from "react";
 import { useHistory } from "react-router";
@@ -20,6 +19,7 @@ import {
   ICreateCandidateFinalState,
   ICreateCandidateInitialState,
 } from "types/types";
+import { BoxHeader } from "../../../components/Headers";
 import { FormLabel } from "../../../components/Labels";
 import { getSelectRating } from "../../../utils";
 
@@ -77,7 +77,7 @@ const CreateCandidatePage = () => {
 
   return (
     <>
-      <GradientEmptyHeader />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col className="order-xl-1" xl="12">

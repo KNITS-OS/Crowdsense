@@ -1,4 +1,3 @@
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
@@ -16,6 +15,7 @@ import {
   Spinner,
 } from "reactstrap";
 import { useGetCandidateQuery } from "redux/features/candidates/candidatesApiSlice";
+import { BoxHeader } from "../../../components/Headers";
 import { LabeledFormInput } from "../../../components/Input";
 import { defaultTags } from "../../../mockData";
 import { ITag } from "../../../types/types";
@@ -69,7 +69,7 @@ const CandidateDetailsPage = () => {
 
   return (
     <>
-      <GradientEmptyHeader />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         {isError && <div>Couldn't fetch data</div>}
         <Row>

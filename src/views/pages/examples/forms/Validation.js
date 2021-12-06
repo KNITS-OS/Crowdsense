@@ -14,27 +14,26 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+import React from "react";
 // reactstrap components
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
+  CardHeader,
+  Col,
+  Container,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
-  Container,
   Row,
-  Col,
 } from "reactstrap";
-// core components
-import SimpleHeader from "components/Headers/SimpleHeader";
+import { BoxHeader } from "../../../../components/Headers";
 
 function Validation() {
   const [focused, setFocused] = React.useState(false);
@@ -91,7 +90,7 @@ function Validation() {
   };
   return (
     <>
-      <SimpleHeader name="Form validation" parentName="Forms" />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <div className="col">

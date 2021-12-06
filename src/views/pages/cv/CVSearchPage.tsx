@@ -1,5 +1,4 @@
 import { CandidateFilters } from "components/Filters";
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { TableActions } from "components/Table";
 import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
@@ -16,6 +15,7 @@ import { ICandidate, ITableColumn } from "types/types";
 import { defaultColumns, pagination, selectCandidateRow } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithCVStatus } from "utils/selectUtils";
+import { BoxHeader } from "../../../components/Headers";
 import {
   TableActionButtons,
   TableRatingCell,
@@ -67,7 +67,7 @@ const CVSearchPage = () => {
 
   return (
     <div>
-      <GradientEmptyHeader />
+      <BoxHeader />
       <Container className="mt--6" fluid>
         <Row>
           <Col>
