@@ -92,9 +92,8 @@ export const workflowRoute = (
 ) => {
   let routeString = `${workflowPath}`;
   statuses.forEach(status => {
-    routeString += `/:${status.replace(" ", "")}`;
+    routeString += `/:${status.replace(/ /g, "")}`;
   });
-  console.log("routestring", routeString);
 
   return routeString;
 };
