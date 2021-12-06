@@ -121,7 +121,10 @@ export const checkStatusParam = async ({
   return res;
 };
 
-const createCards = (data: ICandidate[], laneId: ICandidateStatus) =>
+const createCards = (
+  data: ICandidate[],
+  laneId: ICandidateStatus,
+): ReactTrello.Card[] =>
   data.map(candidate => ({
     laneId,
     id: candidate.reqId,
@@ -133,7 +136,7 @@ const createCards = (data: ICandidate[], laneId: ICandidateStatus) =>
 export const createLane = (
   data: ICandidate[],
   laneId: ICandidateStatus,
-) => {
+): ReactTrello.Lane => {
   return {
     id: laneId,
     title: laneId,

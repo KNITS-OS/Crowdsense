@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 
 interface ITrelloDefaults {
   trelloBoardDefaults: CSSProperties;
-  trelloCardDefaults: Partial<ReactTrello.DraggableCard>;
+  trelloCardDefaults: Partial<ReactTrello.Card>;
   trelloLaneDefaults: Partial<ReactTrello.Lane>;
   trelloTagDefaults: CSSProperties;
 }

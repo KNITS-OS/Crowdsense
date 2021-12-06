@@ -39,7 +39,7 @@ declare namespace ReactTrello {
     color: string;
   }
 
-  interface DraggableCard {
+  interface Card {
     id: string;
     laneId: string;
     title: string;
@@ -63,7 +63,7 @@ declare namespace ReactTrello {
 
   interface Lane {
     id: string;
-    cards: Array<DraggableCard>;
+    cards: Array<Card>;
     title: string;
     label?: string;
     style?: CSSProperties;
@@ -150,7 +150,7 @@ declare namespace ReactTrello {
     /**
      * Called when a new card is added: onCardAdd(card, laneId)
      */
-    onCardAdd?: (card: DraggableCard, laneId: string) => void;
+    onCardAdd?: (card: Card, laneId: string) => void;
     /**
      * Pass custom element to replace the Add Card link at the end of the lane (when board is editable)
      */
