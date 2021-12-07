@@ -1,0 +1,61 @@
+.react-trello-lane:nth-child(1) {
+  border-top: 6px solid #c5c6bf !important;
+  header {
+    span {
+      color: #c5c6bf !important;
+    }
+  }
+}
+
+.react-trello-lane:nth-child(2) {
+  border-top: 6px solid #003369 !important;
+  header {
+    span {
+      color: #003369 !important;
+    }
+  }
+}
+.react-trello-lane:nth-child(3) {
+  border-top: 6px solid #0099da !important;
+  header {
+    span {
+      color: #0099da !important;
+    }
+  }
+}
+.react-trello-lane:nth-child(5) {
+  border-top: 6px solid #929288 !important;
+  header {
+    span {
+      color: #929288 !important;
+    }
+  }
+}
+
+.react-trello-lane:nth-last-child(3) {
+  border-top: 6px solid #08c792 !important;
+  header {
+    span {
+      color: #08c792 !important;
+    }
+  }
+}
+
+.react-trello-lane:nth-child(4) {
+  border-top: 6px solid #373832 !important;
+  header {
+    span {
+      color: #373832 !important;
+    }
+  }
+}
+
+.react-trello-lane:nth-last-child(1),
+.react-trello-lane:nth-last-child(2) {
+  border-top: 6px solid #ed2939 !important;
+  header {
+    span {
+      color: #ed2939 !important;
+    }
+  }
+}
