@@ -13,6 +13,14 @@ export {
   OFFER_SENT,
   READY_FOR_INTERVIEW,
   READY_TO_OFFER,
+  candidatesWithAllStatuses,
+  candidatesWithCVStatus,
+  candidatesWithDeclinedStatus,
+  candidatesWithInterviewStatus,
+  candidatesWithOfferStatus,
+  cvWorkflowState,
+  interviewWorkflowState,
+  offerWorkflowState,
 } from "./statusVariables";
 export {
   barChartExample,

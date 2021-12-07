@@ -3,8 +3,8 @@ import { CandidatesTable } from "components/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate, ITableColumn } from "types/types";
-import { candidatesWithOfferStatus } from "utils/selectUtils";
-import { BoxHeader } from "../../../components/Headers";
+import { BoxHeader } from "components/Headers";
+import { candidatesWithOfferStatus } from "variables";
 
 const OfferSearchPage = () => {
   const table: ITableColumn = "candidates2";

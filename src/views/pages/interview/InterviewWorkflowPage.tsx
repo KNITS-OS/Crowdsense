@@ -4,18 +4,16 @@ import { useParams } from "react-router";
 import { ITableColumn, IWorkflowCandidates } from "types/types";
 import {
   checkStatusParam,
-  createLane,
-  declineLanes,
-  createDefaultLanes,
-  updateCandidateLane,
+  interviewWorkflow,
+  setCandidateLane,
 } from "utils";
 import {
+  interviewWorkflowState,
   INTERVIEW_BOOKED,
   INTERVIEW_OFFERED,
   INTERVIEW_PERFORMED,
   READY_FOR_INTERVIEW,
-  READY_TO_OFFER,
-} from "../../../variables";
+} from "variables";
 
 interface RouteParams {
   ReadyForInterviewIds: string;
@@ -35,12 +33,7 @@ const InterviewWorkflowPage = () => {
 
   const [candidateLanes, setCandidateLanes] = useState<
     IWorkflowCandidates[]
-  >([
-    { status: READY_FOR_INTERVIEW, candidates: [] },
-    { status: INTERVIEW_OFFERED, candidates: [] },
-    { status: INTERVIEW_BOOKED, candidates: [] },
-    { status: INTERVIEW_PERFORMED, candidates: [] },
-  ]);
+  >(interviewWorkflowState);
 
   useEffect(() => {
     const getReadyForInterviewData = async () => {
@@ -51,7 +44,7 @@ const InterviewWorkflowPage = () => {
         table,
       });
       setCandidateLanes(oldLanes =>
-        updateCandidateLane(oldLanes, READY_FOR_INTERVIEW, data),
+        setCandidateLane(oldLanes, READY_FOR_INTERVIEW, data),
       );
     };
 
@@ -63,7 +56,7 @@ const InterviewWorkflowPage = () => {
         table,
       });
       setCandidateLanes(oldLanes =>
-        updateCandidateLane(oldLanes, INTERVIEW_OFFERED, data),
+        setCandidateLane(oldLanes, INTERVIEW_OFFERED, data),
       );
     };
 
@@ -75,7 +68,7 @@ const InterviewWorkflowPage = () => {
         table,
       });
       setCandidateLanes(oldLanes =>
-        updateCandidateLane(oldLanes, INTERVIEW_BOOKED, data),
+        setCandidateLane(oldLanes, INTERVIEW_BOOKED, data),
       );
     };
 
@@ -87,7 +80,7 @@ const InterviewWorkflowPage = () => {
         table,
       });
       setCandidateLanes(oldLanes =>
-        updateCandidateLane(oldLanes, INTERVIEW_PERFORMED, data),
+        setCandidateLane(oldLanes, INTERVIEW_PERFORMED, data),
       );
     };
 
@@ -99,17 +92,12 @@ const InterviewWorkflowPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const workflow: ReactTrello.BoardData = {
-    lanes: [
-      ...createDefaultLanes(candidateLanes),
-      createLane([], READY_TO_OFFER),
-      ...declineLanes(),
-    ],
-  };
-
   return (
     <>
-      <TrelloBoard workflow={workflow} table={table} />
+      <TrelloBoard
+        workflow={interviewWorkflow(candidateLanes)}
+        table={table}
+      />
     </>
   );
 };

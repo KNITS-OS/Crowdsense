@@ -3,8 +3,8 @@ import { CandidatesTable } from "components/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate, ITableColumn } from "types/types";
-import { candidatesWithCVStatus } from "utils/selectUtils";
-import { BoxHeader } from "../../../components/Headers";
+import { BoxHeader } from "components/Headers";
+import { candidatesWithCVStatus } from "variables";
 
 const CVSearchPage = () => {
   const table: ITableColumn = "candidates2";

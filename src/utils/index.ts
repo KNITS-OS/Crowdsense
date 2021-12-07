@@ -13,6 +13,9 @@ export {
   createLane,
   workflowRoute,
   declineLanes,
-  updateCandidateLane,
+  setCandidateLane,
   createDefaultLanes,
+  cvWorkflow,
+  interviewWorkflow,
+  offerWorkflow,
 } from "./workflowUtils";

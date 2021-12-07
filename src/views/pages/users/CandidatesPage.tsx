@@ -23,8 +23,8 @@ import {
 } from "types/types";
 import { defaultColumns, getRowsByStatus, pagination } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
-import { candidatesWithAllStatuses } from "utils/selectUtils";
-import { BoxHeader } from "../../../components/Headers";
+import { BoxHeader } from "components/Headers";
+import { candidatesWithAllStatuses } from "variables";
 import {
   TableActionButtons,
   TableRatingCell,

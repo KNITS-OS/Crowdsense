@@ -6,6 +6,7 @@ import {
   IWorkflowCandidates,
   IWorkflowRoutes,
 } from "types/types";
+import { READY_FOR_INTERVIEW, READY_TO_OFFER } from "../variables";
 import {
   getCandidatesByStatus,
   getCandidatesByStatusAndIds,
@@ -40,7 +41,10 @@ export const removeCandidateFromLane = ({
       laneId,
       cardId,
     });
-  } else if (laneId === lastLaneId3) {
+  } else if (
+    laneId === lastLaneId3 &&
+    (laneId === READY_FOR_INTERVIEW || laneId === READY_TO_OFFER)
+  ) {
     eventBus.publish({
       type: "REMOVE_CARD",
       laneId,
@@ -87,6 +91,12 @@ export const createQueryStringForWorkflow = (
   return queryString;
 };
 
+/**
+ *
+ * @param workflowPath
+ * @param statuses
+ * @returns "cv-workflow/:CVReviewIds/:CVReviewedIds" based on the order that was passed into statuses
+ */
 export const workflowRoute = (
   workflowPath: IWorkflowRoutes,
   statuses: ICandidateStatus[],
@@ -95,6 +105,7 @@ export const workflowRoute = (
   statuses.forEach(status => {
     routeString += `/:${status.replace(/ /g, "")}Ids`;
   });
+  console.log(routeString);
 
   return routeString;
 };
@@ -160,14 +171,20 @@ export const declineLanes = () => {
   ];
 };
 
-export const updateCandidateLane = (
+/**
+ * @description this function is called when the page is rendered (useEffect[]).
+ * To put the data from api into trelloBoard lane based on the status
+ */
+export const setCandidateLane = (
   oldLanes: IWorkflowCandidates[],
   status: ICandidateStatus,
   data: any,
 ) => {
+  // find the index of a lane that matches the status
   let laneIndex = oldLanes.findIndex(lane => lane.status === status);
   let oldLane = oldLanes[laneIndex];
 
+  // create a updatedLane object that has the old status and new candidates data
   let updatedLane: IWorkflowCandidates = {
     ...oldLane,
     candidates: data,
@@ -177,4 +194,36 @@ export const updateCandidateLane = (
   oldLanes.splice(laneIndex, 1, updatedLane);
 
   return [...oldLanes];
+};
+
+export const cvWorkflow = (
+  candidateLanes: IWorkflowCandidates[],
+): ReactTrello.BoardData => {
+  return {
+    lanes: [
+      ...createDefaultLanes(candidateLanes),
+      createLane([], READY_FOR_INTERVIEW),
+      ...declineLanes(),
+    ],
+  };
+};
+
+export const interviewWorkflow = (
+  candidateLanes: IWorkflowCandidates[],
+): ReactTrello.BoardData => {
+  return {
+    lanes: [
+      ...createDefaultLanes(candidateLanes),
+      createLane([], READY_TO_OFFER),
+      ...declineLanes(),
+    ],
+  };
+};
+
+export const offerWorkflow = (
+  candidateLanes: IWorkflowCandidates[],
+): ReactTrello.BoardData => {
+  return {
+    lanes: [...createDefaultLanes(candidateLanes), ...declineLanes()],
+  };
 };
