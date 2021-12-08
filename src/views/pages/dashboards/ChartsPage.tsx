@@ -23,6 +23,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import CardsHeader from "components/Headers/CardsHeader";
 
 import {
   barChartExample,
@@ -32,12 +33,11 @@ import {
   pieChartExample,
   multiBarChartExample,
 } from "variables";
-import { BoxHeader } from "components/Headers";
 
 const ChartsPage = () => {
   return (
     <>
-      <BoxHeader />
+      <CardsHeader name="Charts" parentName="Charts" />
       <Container className="mt--6" fluid>
         <Row>
           <Col xl="6">

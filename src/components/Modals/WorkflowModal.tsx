@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import {
   Button,
-  Card,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Row,
 } from "reactstrap";
 import {
   ICandidate,
@@ -15,6 +15,7 @@ import {
 import { getSelectStatus } from "../../utils";
 import { updateCandidatesMutation } from "../../utils/axios";
 import { candidatesWithAllStatuses } from "../../variables";
+import { WorkflowCard } from "../Cards";
 import { SelectFilter } from "../Filters";
 
 interface Props {
@@ -35,14 +36,12 @@ const WorkflowModal = ({
   const [updatedCandidates, setUpdatedCandidates] =
     useState(selectedCandidates);
 
-  console.log("selectedCandidates", selectedCandidates);
-
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
   const closeModal = () => {
     setIsOpen(false);
-    setUpdatedCandidates([]);
+    setUpdatedCandidates(selectedCandidates);
   };
   useEffect(() => {
     const updateCandidatesState = () => {
@@ -89,7 +88,7 @@ const WorkflowModal = ({
       <Button className="btn btn-success" onClick={toggleModal}>
         Workflow
       </Button>
-      <Modal isOpen={isOpen}>
+      <Modal isOpen={isOpen} size="lg">
         <ModalHeader
           close={
             <button className="close" onClick={closeModal}>
@@ -100,21 +99,19 @@ const WorkflowModal = ({
           Candidates
         </ModalHeader>
         <ModalBody>
-          <SelectFilter
-            id="status"
-            label="Status"
-            setValue={setStatus}
-            options={getSelectStatus(candidatesWithAllStatuses)}
-          />
-          {updatedCandidates.map(candidate => {
-            return (
-              <Card>
-                <div>{candidate.fullName}</div>
-                <div>{candidate.status}</div>
-                <div>{candidate.rating}</div>
-              </Card>
-            );
-          })}
+          <div style={{ marginBottom: "1rem" }}>
+            <SelectFilter
+              id="status"
+              label="Status"
+              setValue={setStatus}
+              options={getSelectStatus(candidatesWithAllStatuses)}
+            />
+          </div>
+          <Row>
+            {updatedCandidates.map((candidate, index) => (
+              <WorkflowCard key={index} candidate={candidate} />
+            ))}
+          </Row>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={updateMultibleCandidates}>
