@@ -10,7 +10,9 @@ const OfferSearchPage = () => {
   const table: ITableColumn = "candidates2";
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
-  const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
+  const [selectedCandidates, setSelectedCandidates] = useState<
+    ICandidate[]
+  >([]);
 
   /**
    * @description - see which candidates need to be updated
@@ -26,7 +28,7 @@ const OfferSearchPage = () => {
         <CandidateFilters
           defaultStatuses={candidatesWithOfferStatus}
           setCandidates={setCandidates}
-          setSelectedRows={setSelectedRows}
+          setSelectedCandidates={setSelectedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
           table={table}
         />
@@ -36,8 +38,8 @@ const OfferSearchPage = () => {
           workflowRoute="/admin/offer-workflow"
           candidates={candidates}
           setCandidates={setCandidates}
-          selectedRows={selectedRows}
-          setSelectedRows={setSelectedRows}
+          selectedCandidates={selectedCandidates}
+          setSelectedCandidates={setSelectedCandidates}
           updatedCandidates={updatedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
           table={table}

@@ -10,7 +10,7 @@ import { createQueryStringForWorkflow } from "../../utils";
 import DefaultExportCSVButton from "../Buttons/DefaultExportCSVButton";
 
 interface Props {
-  selectedRows: ICandidate[];
+  selectedCandidates: ICandidate[];
   updateCandidates: () => Promise<void>;
   toolkitProps: ToolkitContextType;
   workflowRoute: IWorkflowRoutes;
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const TableActions = ({
-  selectedRows,
+  selectedCandidates,
   updateCandidates,
   toolkitProps,
   workflowRoute,
@@ -53,7 +53,7 @@ const TableActions = ({
           onClick={() => {
             const queryString = createQueryStringForWorkflow(
               workflowRoute,
-              selectedRows,
+              selectedCandidates,
               defaultStatuses,
             );
             history.push(queryString);

@@ -22,7 +22,7 @@ interface Props {
   table: ITableColumn;
   setCandidates: SetCandidatesType;
   setUpdatedCandidates: SetCandidatesType;
-  setSelectedRows: SetCandidatesType;
+  setSelectedCandidates: SetCandidatesType;
   /**
    * @description Defines what candidates are selected (based on status)
    */
@@ -32,7 +32,7 @@ interface Props {
 const CandidateFilters = ({
   table,
   setCandidates,
-  setSelectedRows,
+  setSelectedCandidates,
   setUpdatedCandidates,
   defaultStatuses,
 }: Props) => {
@@ -71,7 +71,7 @@ const CandidateFilters = ({
     setCandidates(data);
     // getFilteredCandidates({ limit: 100, select: "*", filters });
     setUpdatedCandidates([]);
-    setSelectedRows([]);
+    setSelectedCandidates([]);
   };
 
   return (

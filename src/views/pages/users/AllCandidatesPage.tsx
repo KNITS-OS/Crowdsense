@@ -1,14 +1,14 @@
 // core components
 import { CandidateFilters } from "components/Filters";
+import { BoxHeader } from "components/Headers";
 import { useAlert } from "context";
 import { useState } from "react";
-import BootstrapTable, {
-  SelectRowProps,
-} from "react-bootstrap-table-next";
+import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 // reactstrap components
 import {
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -16,29 +16,26 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import {
-  ICandidate,
-  ISelectRowConfig,
-  IUpdateCandidateUIParams,
-} from "types/types";
-import { defaultColumns, getRowsByStatus, pagination } from "utils";
+import { ICandidate, IUpdateCandidateUIParams } from "types/types";
+import { defaultColumns, pagination, selectCandidateRow } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
-import { BoxHeader } from "components/Headers";
 import { candidatesWithAllStatuses } from "variables";
+import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
 import {
   TableActionButtons,
   TableRatingCell,
   TableTagsCell,
 } from "./components";
+import { WorkflowModal } from "../../../components/Modals";
 
-const Candidates = () => {
+const AllCandidatesPage = () => {
   const table = "candidates2";
   const { alert: alertHook } = useAlert();
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
-
-  // @ts-ignore
-  const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
+  const [selectedCandidates, setSelectedCandidates] = useState<
+    ICandidate[]
+  >([]);
 
   /**
    * @description - see which candidates need to be updated
@@ -75,51 +72,9 @@ const Candidates = () => {
     });
   };
 
-  // @ts-ignore
   const updateCandidates = async () => {
     await updateCandidatesMutation(table, updatedCandidates);
     setUpdatedCandidates([]);
-  };
-
-  const candidateSelectRowConfig: ISelectRowConfig = {
-    status: "CV Review",
-  };
-
-  const candidateSelectRow: SelectRowProps<ICandidate> = {
-    mode: "checkbox",
-    onSelect: (row, isSelect) => {
-      if (isSelect && row.status !== candidateSelectRowConfig.status) {
-        alert(
-          "Oops, You can not select a candidate that doesn't have CV Review status",
-        );
-        return false;
-      } else if (isSelect) {
-        setSelectedRows(oldRows => [...oldRows, row]);
-        return true;
-      } else {
-        setSelectedRows(oldRows =>
-          oldRows.filter(oldRow => oldRow.reqId !== row.reqId),
-        );
-        return true;
-      }
-    },
-    // @ts-ignore
-    // because this code returns a string array, but onSelectAll likes to receive a number array
-    onSelectAll: (isSelect, rows) => {
-      if (isSelect) {
-        setSelectedRows(
-          getRowsByStatus([candidateSelectRowConfig.status], rows),
-        );
-
-        // selects only rows with candidateSelectRowConfig.status status
-        return rows
-          .filter(row => row.status === candidateSelectRowConfig.status)
-          .map(row => row.reqId);
-      } else {
-        setSelectedRows([]);
-        return;
-      }
-    },
   };
 
   return (
@@ -138,9 +93,9 @@ const Candidates = () => {
                 <CandidateFilters
                   defaultStatuses={candidatesWithAllStatuses}
                   setCandidates={setCandidates}
-                  setSelectedRows={setSelectedRows}
+                  setSelectedCandidates={setSelectedCandidates}
                   setUpdatedCandidates={setUpdatedCandidates}
-                  table="candidates2"
+                  table={table}
                 />
               </CardBody>
             </Card>
@@ -188,21 +143,51 @@ const Candidates = () => {
                 {props => {
                   return (
                     <div className="py-4 table-responsive">
-                      {/* <TableActions
-                        toolkitProps={props}
-                        selectedRows={selectedRows}
-                        updateCandidates={updateCandidates}
-                        workflowRoute="/admin/cv-workflow"
-
-                      /> */}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          marginBottom: "20px",
+                          marginRight: "20px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            marginRight: "10px",
+                          }}
+                        >
+                          <Button
+                            className="btn btn-success"
+                            onClick={updateCandidates}
+                          >
+                            Update
+                          </Button>
+                        </div>
+                        <div
+                          style={{
+                            marginRight: "10px",
+                          }}
+                        >
+                          <WorkflowModal
+                            table={table}
+                            selectedCandidates={selectedCandidates}
+                            candidates={candidates}
+                            setCandidates={setCandidates}
+                          />
+                        </div>
+                        <div>
+                          <DefaultExportCSVButton props={props} />
+                        </div>
+                      </div>
 
                       <BootstrapTable
                         {...props.baseProps}
                         keyField="reqId"
                         pagination={pagination}
                         bordered={false}
-                        selectRow={candidateSelectRow}
-                        // selectRow={() => selectRow()}
+                        selectRow={selectCandidateRow(
+                          setSelectedCandidates,
+                        )}
                         bootstrap4
                       />
                     </div>
@@ -217,4 +202,4 @@ const Candidates = () => {
   );
 };
 
-export default Candidates;
+export default AllCandidatesPage;

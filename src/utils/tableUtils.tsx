@@ -101,15 +101,22 @@ export const selectCandidateRow = (
       }
     },
 
-    // onSelectAll: (isSelect, rows) => {
-    //   if (isSelect) {
-    //     setSelectedRows(rows);
-    //     return;
-    //   } else {
-    //     setSelectedRows([]);
-    //     return;
-    //   }
-    // },
-    hideSelectAll: true,
+    onSelectAll: (isSelect, rows) => {
+      // if select is true
+      if (isSelect) {
+        // adds this selected row to the selectedRows array
+        setSelectedRows(oldRows => [...oldRows, ...rows]);
+        // select
+        return;
+      } else {
+        // removes this selected row from the selectedRows array
+        setSelectedRows(oldRows =>
+          // if rows array includes oldRow remove it from state
+          oldRows.filter(oldRow => !rows.includes(oldRow)),
+        );
+        // unselect
+        return;
+      }
+    },
   } as SelectRowProps<ICandidate>;
 };

@@ -23,8 +23,8 @@ interface Props {
   workflowRoute: IWorkflowRoutes;
   candidates: ICandidate[];
   setCandidates: IUseSetCandidate;
-  selectedRows: ICandidate[];
-  setSelectedRows: IUseSetCandidate;
+  selectedCandidates: ICandidate[];
+  setSelectedCandidates: IUseSetCandidate;
   updatedCandidates: ICandidate[];
   setUpdatedCandidates: IUseSetCandidate;
   table: ITableColumn;
@@ -35,8 +35,8 @@ const CandidatesTable = ({
   workflowRoute,
   candidates,
   setCandidates,
-  selectedRows,
-  setSelectedRows,
+  selectedCandidates,
+  setSelectedCandidates,
   updatedCandidates,
   setUpdatedCandidates,
   table,
@@ -119,7 +119,7 @@ const CandidatesTable = ({
                 <div className="py-4 table-responsive">
                   <TableActions
                     defaultStatuses={defaultStatuses}
-                    selectedRows={selectedRows}
+                    selectedCandidates={selectedCandidates}
                     workflowRoute={workflowRoute}
                     updateCandidates={updateCandidates}
                     toolkitProps={props}
@@ -130,7 +130,7 @@ const CandidatesTable = ({
                     keyField="reqId"
                     pagination={pagination}
                     bordered={false}
-                    selectRow={selectCandidateRow(setSelectedRows)}
+                    selectRow={selectCandidateRow(setSelectedCandidates)}
                     bootstrap4
                   />
                 </div>

@@ -10,7 +10,9 @@ const InterviewSearchPage = () => {
   const table: ITableColumn = "candidates2";
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
-  const [selectedRows, setSelectedRows] = useState<ICandidate[]>([]);
+  const [selectedCandidates, setSelectedCandidates] = useState<
+    ICandidate[]
+  >([]);
 
   /**
    * @description - see which candidates need to be updated
@@ -26,7 +28,7 @@ const InterviewSearchPage = () => {
         <CandidateFilters
           defaultStatuses={candidatesWithInterviewStatus}
           setCandidates={setCandidates}
-          setSelectedRows={setSelectedRows}
+          setSelectedCandidates={setSelectedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
           table={table}
         />
@@ -36,8 +38,8 @@ const InterviewSearchPage = () => {
           workflowRoute="/admin/interview-workflow"
           candidates={candidates}
           setCandidates={setCandidates}
-          selectedRows={selectedRows}
-          setSelectedRows={setSelectedRows}
+          selectedCandidates={selectedCandidates}
+          setSelectedCandidates={setSelectedCandidates}
           updatedCandidates={updatedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
           table={table}

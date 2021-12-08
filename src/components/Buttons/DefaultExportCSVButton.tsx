@@ -7,6 +7,7 @@ interface Props {
   props: ToolkitContextType;
 }
 
+// @todo should this export all candidates or selected ones
 const DefaultExportCSVButton = ({ props }: Props) => {
   const { ExportCSVButton } = CSVExport;
   return (

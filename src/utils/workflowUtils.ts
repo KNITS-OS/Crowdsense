@@ -54,7 +54,7 @@ export const removeCandidateFromLane = ({
 };
 
 /**
- * @description Move selected candidates to given workflow page
+ * @description creates a query string from given candidate ids
  * @param route given route, where the workflow is
  * @param selectedCandidates array of selected candidates
  */
@@ -105,7 +105,6 @@ export const workflowRoute = (
   statuses.forEach(status => {
     routeString += `/:${status.replace(/ /g, "")}Ids`;
   });
-  console.log(routeString);
 
   return routeString;
 };
