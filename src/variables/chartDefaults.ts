@@ -39,15 +39,16 @@ defaults.elements.line.borderCapStyle = "round";
 defaults.elements.bar.backgroundColor = colors.theme["warning"];
 defaults.elements.bar.borderRadius = 10;
 
-// arc
+// arc (pie and doughnut)
 defaults.elements.arc.backgroundColor = colors.theme["primary"];
 defaults.elements.arc.borderColor =
   mode === "dark" ? colors.gray[800] : colors.white;
-defaults.elements.arc.borderWidth = 4;
+// defaults.elements.arc.borderWidth = 4;
+defaults.elements.arc.hoverOffset = 6;
 
 // tooltip
-defaults.plugins.tooltip.mode = "index";
-defaults.plugins.tooltip.intersect = false;
+defaults.plugins.tooltip.mode = "nearest";
+defaults.plugins.tooltip.intersect = true;
 
 // scale grid
 defaults.scale.grid.drawBorder = false;

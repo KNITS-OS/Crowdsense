@@ -21,7 +21,7 @@ import {
   IDoughnutChart,
   ILineChart,
   IPieChart,
-} from "../types/types";
+} from "types/types";
 
 // Only for demo purposes - return a random number to generate datasets
 var randomScalingFactor = function () {
@@ -35,6 +35,7 @@ export const lineChartExample: ILineChart = {
       {
         label: "Sales",
         data: [25, 20, 30, 22, 17, 29],
+        pointRadius: 4,
       },
     ],
   },
@@ -42,6 +43,9 @@ export const lineChartExample: ILineChart = {
     plugins: {
       tooltip: {
         intersect: false,
+      },
+      decimation: {
+        enabled: true,
       },
     },
   },
@@ -53,12 +57,20 @@ export const barChartExample: IBarChart = {
     datasets: [
       {
         label: "Performance",
+        backgroundColor: colors.theme["danger"],
         data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
         maxBarThickness: 10,
       },
     ],
   },
-  options: {},
+  options: {
+    plugins: {
+      tooltip: {
+        mode: "index",
+        intersect: false,
+      },
+    },
+  },
 };
 
 export const dotChartExample: ILineChart = {
