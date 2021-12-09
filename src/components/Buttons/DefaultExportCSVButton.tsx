@@ -7,15 +7,15 @@ interface Props {
   props: ToolkitContextType;
 }
 
-// @todo should this export all candidates or selected ones
+// @todo find out if this should export all candidates or only selected ones
 const DefaultExportCSVButton = ({ props }: Props) => {
   const { ExportCSVButton } = CSVExport;
   return (
     <ExportCSVButton
       {...props.csvProps}
       style={{
-        backgroundColor: "#003369",
-        borderColor: "#003369",
+        backgroundColor: "#0099da",
+        borderColor: "#0099da",
       }}
     >
       Export

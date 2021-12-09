@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Rating } from "react-simple-star-rating";
 import {
   Button,
   Card,
@@ -6,11 +7,12 @@ import {
   CardHeader,
   Col,
   FormGroup,
+  Label,
   Row,
 } from "reactstrap";
 import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateStatus, ITableColumn } from "types/types";
-import { getSelectRating, getSelectStatus } from "utils";
+import { getSelectStatus } from "utils";
 import { InputFilter, SelectFilter } from ".";
 import { getDataByFiltersQuery } from "../../utils/axios";
 
@@ -38,7 +40,7 @@ const CandidateFilters = ({
 }: Props) => {
   const [name, setName] = useState("");
   const [status, setStatus] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState<number | undefined>();
   const [email, setEmail] = useState("");
 
   const findByFilters = async () => {
@@ -48,7 +50,10 @@ const CandidateFilters = ({
       param: defaultStatuses,
       filter: "in",
     });
-    const ratingFilter = addFilter({ param: rating, filter: "eq" });
+    const ratingFilter = addFilter({
+      param: rating,
+      filter: "eq",
+    });
     const emailFilter = addFilter({ param: email, filter: "like" });
 
     let finalStatusFilter = () => {
@@ -72,6 +77,10 @@ const CandidateFilters = ({
     // getFilteredCandidates({ limit: 100, select: "*", filters });
     setUpdatedCandidates([]);
     setSelectedCandidates([]);
+  };
+
+  const handleRatingChange = (newRating: number) => {
+    setRating(newRating);
   };
 
   return (
@@ -114,12 +123,23 @@ const CandidateFilters = ({
                 />
               </Col>
               <Col md="2">
-                <SelectFilter
-                  id="rating"
-                  label="Rating"
-                  setValue={setRating}
-                  options={getSelectRating}
-                />
+                <FormGroup style={{ marginBottom: 0 }}>
+                  <Col>
+                    <Label className="form-control-label" htmlFor="rating">
+                      Rating
+                    </Label>
+                  </Col>
+                  <Col>
+                    <Rating
+                      key="rating"
+                      onClick={newRating =>
+                        handleRatingChange(newRating / 20)
+                      }
+                      ratingValue={rating === undefined ? 0 : rating}
+                      size={30}
+                    />
+                  </Col>
+                </FormGroup>
               </Col>
               <Col
                 md="2"
@@ -128,13 +148,15 @@ const CandidateFilters = ({
                 }}
               >
                 <FormGroup style={{ marginBottom: 0 }}>
-                  <Button
-                    className="btn btn-primary"
-                    color="primary"
-                    onClick={findByFilters}
-                  >
-                    Search
-                  </Button>
+                  <Col>
+                    <Button
+                      className="btn btn-primary"
+                      color="primary"
+                      onClick={findByFilters}
+                    >
+                      Search
+                    </Button>
+                  </Col>
                 </FormGroup>
               </Col>
             </Row>

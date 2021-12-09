@@ -85,8 +85,12 @@ const WorkflowModal = ({
 
   return (
     <>
-      <Button className="btn btn-success" onClick={toggleModal}>
-        Workflow
+      <Button
+        className="btn btn-primary"
+        color="primary"
+        onClick={toggleModal}
+      >
+        Workflow Modal
       </Button>
       <Modal isOpen={isOpen} size="lg">
         <ModalHeader

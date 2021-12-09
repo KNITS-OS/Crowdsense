@@ -49,7 +49,8 @@ const TableActions = ({
         }}
       >
         <Button
-          className="btn btn-success"
+          className="btn btn-primary"
+          color="primary"
           onClick={() => {
             const queryString = createQueryStringForWorkflow(
               workflowRoute,

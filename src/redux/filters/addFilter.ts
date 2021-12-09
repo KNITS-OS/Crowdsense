@@ -12,7 +12,7 @@ import {
  *
  */
 interface Props {
-  param: string[] | string;
+  param: string[] | string | number | undefined;
   filter: ISimpleFilter | ILikeFilter | IArrayFilter;
 }
 
