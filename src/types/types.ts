@@ -207,8 +207,7 @@ export type IRoutePaths =
   | "/internship"
   | "/docx"
   | "/statistics"
-  | "/world-view"
-  | "/care-member-details/:id";
+  | "/world-view";
 
 export type ISelectRowConfig = {
   status: ICandidateStatus;

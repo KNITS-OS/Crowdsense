@@ -179,17 +179,15 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
    * this function creates the links and collapses that appear in the sidebar (left menu)
    */
   const createLinks = (routes: IRoute[]) => {
-    return routes.map((route, key) => {
-      if (route.global) {
-        return null;
-      }
+    return routes.map(route => {
+      if (route.global) return null;
+
       if (route.collapse && route.state && route.views) {
-        var st = {};
+        let st = {};
         st[route["state"]] = !state[route.state];
         return (
-          <NavItem key={key}>
+          <NavItem key={route.path}>
             <NavLink
-              href="#pablo"
               data-toggle="collapse"
               aria-expanded={state[route.state]}
               className={classnames({
@@ -227,7 +225,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
           {route.layout ? (
             <NavItem
               className={activeRoute(route.layout + route.path)}
-              key={key}
+              key={route.path}
             >
               <NavLink
                 to={route.layout + route.path}
@@ -245,7 +243,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
                     <span className="sidenav-mini-icon">
                       {route.miniName}
                     </span>
-                    <span className="sidenav-normal"> {route.name} </span>
+                    <span className="sidenav-normal">{route.name}</span>
                   </>
                 ) : (
                   route.name
@@ -328,6 +326,7 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
       </div>
     </div>
   );
+
   return (
     <Navbar
       className={
