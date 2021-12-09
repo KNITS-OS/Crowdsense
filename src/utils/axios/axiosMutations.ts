@@ -3,6 +3,7 @@ import {
   ICandidate,
   ITableColumn,
   IUpdateCandidateStatusParams,
+  IUpdateCandidateParams,
 } from "types/types";
 
 /**
@@ -40,6 +41,28 @@ export const updateCandidateStatusMutation = async ({
     {
       reqId,
       status,
+    },
+    {
+      headers: {
+        prefer: "resolution=merge-duplicates",
+      },
+    },
+  );
+};
+
+/**
+ * @description Update the status of a candidate
+ */
+export const updateCandidateMutation = async ({
+  table,
+  reqId,
+  body,
+}: IUpdateCandidateParams) => {
+  await axiosInstance.post(
+    table,
+    {
+      reqId,
+      ...body,
     },
     {
       headers: {

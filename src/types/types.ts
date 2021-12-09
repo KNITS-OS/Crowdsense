@@ -206,6 +206,11 @@ export interface IUpdateCandidateStatusParams {
   reqId: string;
   status: ICandidateStatus;
 }
+export interface IUpdateCandidateParams {
+  table: ITableColumn;
+  reqId: string;
+  body: Partial<ICandidate>;
+}
 
 export interface IUpdateCandidateUIParams {
   reqId: string;

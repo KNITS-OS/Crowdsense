@@ -19,7 +19,7 @@ const TableRatingCell = ({ row, updateCandidateUI }: Props) => {
       <Row>
         <Col md="10">
           <Rating
-            onClick={newRating => handleRatingChange(newRating)}
+            onClick={newRating => handleRatingChange(newRating / 20)}
             ratingValue={row.rating}
             size={25}
           />

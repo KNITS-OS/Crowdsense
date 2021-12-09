@@ -2,6 +2,7 @@ export { default as axiosInstance } from "./axiosInstance";
 export {
   updateCandidatesMutation,
   updateCandidateStatusMutation,
+  updateCandidateMutation,
 } from "./axiosMutations";
 export {
   getDataByFiltersQuery,

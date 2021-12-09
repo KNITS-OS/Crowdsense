@@ -14,20 +14,23 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { SelectFilter } from "../../../components/Filters";
-import { BoxHeader } from "../../../components/Headers";
-import { LabeledFormInput } from "../../../components/Input";
-import { defaultTags } from "../../../mockData";
-import { addFilter } from "../../../redux/filters";
+import { SelectFilter } from "components/Filters";
+import { BoxHeader } from "components/Headers";
+import { LabeledFormInput } from "components/Input";
+import { defaultTags } from "mockData";
+import { addFilter } from "redux/filters";
 import {
   ICandidate,
   ICandidateStatus,
   ITableColumn,
   ITag,
-} from "../../../types/types";
-import { getSelectStatus } from "../../../utils";
-import { getCandidateByIdQuery } from "../../../utils/axios";
-import { candidatesWithAllStatuses } from "../../../variables";
+} from "types/types";
+import { getSelectStatus } from "utils";
+import {
+  getCandidateByIdQuery,
+  updateCandidateMutation,
+} from "utils/axios";
+import { candidatesWithAllStatuses } from "variables";
 
 interface RouteParams {
   id: string;
@@ -81,7 +84,9 @@ const CandidateDetailsPage = () => {
     setCandidate({ ...candidate, rating: newRating });
   };
 
-  console.log("can", candidate);
+  const updateCandidate = () => {
+    updateCandidateMutation({ table, reqId: id, body: candidate });
+  };
 
   return (
     <>
@@ -110,7 +115,14 @@ const CandidateDetailsPage = () => {
                       color="primary"
                       onClick={() => history.goBack()}
                     >
-                      Back to Search
+                      Back
+                    </Button>
+                    <Button
+                      type="button"
+                      color="success"
+                      onClick={updateCandidate}
+                    >
+                      Update
                     </Button>
                   </Col>
                 </Row>
@@ -222,7 +234,7 @@ const CandidateDetailsPage = () => {
                         <FormGroup className="mb-0">
                           <Rating
                             onClick={newRating =>
-                              handleRatingChange(newRating)
+                              handleRatingChange(newRating / 20)
                             }
                             ratingValue={rating}
                             size={30}
