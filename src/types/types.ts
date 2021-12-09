@@ -195,7 +195,20 @@ export type IWorkflowRoutes =
   | "/admin/offer-workflow"
   | "/offer-workflow";
 
-export type IRoutesPaths = "/candidate-details/:id";
+export type IRoutePaths =
+  | "/candidate-details/:id"
+  | "/home"
+  | "/candidates-search"
+  | "/add-new-cv"
+  | "/import-cv"
+  | "/cv-search"
+  | "/interview-search"
+  | "/offer-search"
+  | "/internship"
+  | "/docx"
+  | "/statistics"
+  | "/world-view"
+  | "/care-member-details/:id";
 
 export type ISelectRowConfig = {
   status: ICandidateStatus;

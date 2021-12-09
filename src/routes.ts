@@ -250,7 +250,7 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: "/users/care-member-details/:id",
+    path: "/care-member-details/:id",
     component: EditCareMemberPage,
     layout: "/admin",
   },
