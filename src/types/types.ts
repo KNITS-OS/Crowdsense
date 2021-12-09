@@ -185,7 +185,7 @@ export interface ICreateCandidateFinalState {
   submissionDate: string;
 }
 
-export type ITableColumn = "candidates" | "candidates2" | "tags";
+export type ITableColumn = "candidates" | "tags";
 
 export type IWorkflowRoutes =
   | "/admin/cv-workflow"
@@ -202,12 +202,10 @@ export type ISelectRowConfig = {
 };
 
 export interface IUpdateCandidateStatusParams {
-  table: ITableColumn;
   reqId: string;
   status: ICandidateStatus;
 }
 export interface IUpdateCandidateParams {
-  table: ITableColumn;
   reqId: string;
   body: Partial<ICandidate>;
 }
@@ -236,12 +234,10 @@ export type ICandidateOrder =
 
 export interface IGetCandidatesByStatusParams {
   status: ICandidateStatus;
-  table: ITableColumn;
   order: ICandidateOrder;
   asc?: boolean;
 }
 export interface IGetCandidatesByStatusAndIdsParams {
-  table: ITableColumn;
   candidateIds: string;
   status: ICandidateStatus;
   order: ICandidateOrder;
@@ -250,7 +246,6 @@ export interface IGetCandidatesByStatusAndIdsParams {
 
 export interface ICheckStatusParams {
   statusParam: string;
-  table: ITableColumn;
   status: ICandidateStatus;
   order: ICandidateOrder;
 }

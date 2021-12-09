@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Board from "react-trello";
-import { ICandidateStatus, ITableColumn } from "types/types";
+import { ICandidateStatus } from "types/types";
 import { removeCandidateFromLane } from "utils";
 import { trelloDefaults } from "variables";
 import { updateCandidateStatusMutation } from "../../utils/axios";
 
 interface Props {
   workflow: ReactTrello.BoardData;
-  table: ITableColumn;
 }
 
-const TrelloBoard = ({ workflow, table }: Props) => {
+const CandidatesTrelloBoard = ({ workflow }: Props) => {
   const [eventBus, setEventBus] = useState<any>();
   return (
     // https://github.com/rcdexta/react-trello#properties
@@ -33,7 +32,6 @@ const TrelloBoard = ({ workflow, table }: Props) => {
         index: number,
       ) => {
         updateCandidateStatusMutation({
-          table,
           reqId: cardId,
           status: toLaneId,
         });
@@ -50,4 +48,4 @@ const TrelloBoard = ({ workflow, table }: Props) => {
     />
   );
 };
-export default TrelloBoard;
+export default CandidatesTrelloBoard;

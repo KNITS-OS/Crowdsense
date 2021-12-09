@@ -1,7 +1,6 @@
-import { TrelloBoard } from "components/Trello";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { ITableColumn, IWorkflowCandidates } from "types/types";
+import { IWorkflowCandidates } from "types/types";
 import {
   checkStatusParam,
   interviewWorkflow,
@@ -14,6 +13,7 @@ import {
   INTERVIEW_PERFORMED,
   READY_FOR_INTERVIEW,
 } from "variables";
+import CandidatesTrelloBoard from "../../../components/Trello/CandidatesTrelloBoard";
 
 interface RouteParams {
   ReadyForInterviewIds: string;
@@ -23,7 +23,6 @@ interface RouteParams {
 }
 
 const InterviewWorkflowPage = () => {
-  const table: ITableColumn = "candidates2";
   const {
     ReadyForInterviewIds,
     InterviewBookedIds,
@@ -41,7 +40,6 @@ const InterviewWorkflowPage = () => {
         order: "firstName",
         status: READY_FOR_INTERVIEW,
         statusParam: ReadyForInterviewIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, READY_FOR_INTERVIEW, data),
@@ -53,7 +51,6 @@ const InterviewWorkflowPage = () => {
         order: "firstName",
         status: INTERVIEW_OFFERED,
         statusParam: InterviewOfferedIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, INTERVIEW_OFFERED, data),
@@ -65,7 +62,6 @@ const InterviewWorkflowPage = () => {
         order: "firstName",
         status: INTERVIEW_BOOKED,
         statusParam: InterviewBookedIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, INTERVIEW_BOOKED, data),
@@ -77,7 +73,6 @@ const InterviewWorkflowPage = () => {
         order: "firstName",
         status: INTERVIEW_PERFORMED,
         statusParam: InterviewPerformedIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, INTERVIEW_PERFORMED, data),
@@ -94,9 +89,8 @@ const InterviewWorkflowPage = () => {
 
   return (
     <>
-      <TrelloBoard
+      <CandidatesTrelloBoard
         workflow={interviewWorkflow(candidateLanes)}
-        table={table}
       />
     </>
   );

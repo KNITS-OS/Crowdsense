@@ -4,7 +4,6 @@ import { Card, CardHeader, Col, Row } from "reactstrap";
 import {
   ICandidate,
   ICandidateStatus,
-  ITableColumn,
   IUpdateCandidateUIParams,
   IUseSetCandidate,
   IWorkflowRoutes,
@@ -27,7 +26,6 @@ interface Props {
   setSelectedCandidates: IUseSetCandidate;
   updatedCandidates: ICandidate[];
   setUpdatedCandidates: IUseSetCandidate;
-  table: ITableColumn;
 }
 
 const CandidatesTable = ({
@@ -39,7 +37,6 @@ const CandidatesTable = ({
   setSelectedCandidates,
   updatedCandidates,
   setUpdatedCandidates,
-  table,
 }: Props) => {
   const updateCandidateUI = ({
     reqId,
@@ -70,7 +67,7 @@ const CandidatesTable = ({
   };
 
   const updateCandidates = async () => {
-    await updateCandidatesMutation(table, updatedCandidates);
+    await updateCandidatesMutation(updatedCandidates);
     setUpdatedCandidates([]);
   };
 

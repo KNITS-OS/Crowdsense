@@ -6,9 +6,7 @@ import {
   ITag,
 } from "types/types";
 import { baseQuery } from "utils/rtkQueryConfig";
-
-const candidatesTable = "candidates2";
-const tagsTable = "tags";
+import { candidatesTable, tagsTable } from "variables/tableVariables";
 
 interface IGetEmployeesArgs {
   select: string;

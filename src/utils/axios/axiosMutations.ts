@@ -1,20 +1,19 @@
 import { axiosInstance } from ".";
 import {
   ICandidate,
-  ITableColumn,
   IUpdateCandidateStatusParams,
   IUpdateCandidateParams,
 } from "types/types";
+import { candidatesTable } from "variables";
 
 /**
  * @description Update multible candidates
  */
 export const updateCandidatesMutation = async (
-  table: ITableColumn,
   updatedCandidates: ICandidate[],
 ) => {
   const { data } = await axiosInstance.post(
-    table,
+    candidatesTable,
     [...updatedCandidates],
     {
       headers: {
@@ -32,12 +31,11 @@ export const updateCandidatesMutation = async (
  * @description Update the status of a candidate
  */
 export const updateCandidateStatusMutation = async ({
-  table,
   reqId,
   status,
 }: IUpdateCandidateStatusParams) => {
   await axiosInstance.post(
-    table,
+    candidatesTable,
     {
       reqId,
       status,
@@ -54,12 +52,11 @@ export const updateCandidateStatusMutation = async ({
  * @description Update the status of a candidate
  */
 export const updateCandidateMutation = async ({
-  table,
   reqId,
   body,
 }: IUpdateCandidateParams) => {
   await axiosInstance.post(
-    table,
+    candidatesTable,
     {
       reqId,
       ...body,

@@ -1,15 +1,15 @@
-import { TrelloBoard } from "components/Trello";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { ITableColumn, IWorkflowCandidates } from "types/types";
+import { IWorkflowCandidates } from "types/types";
 import { checkStatusParam, offerWorkflow, setCandidateLane } from "utils";
 import {
   offerWorkflowState,
-  READY_TO_OFFER,
-  OFFER_SENT,
   OFFER_ACCEPTED,
   OFFER_DECLINED,
+  OFFER_SENT,
+  READY_TO_OFFER,
 } from "variables";
+import CandidatesTrelloBoard from "../../../components/Trello/CandidatesTrelloBoard";
 
 interface RouteParams {
   ReadyToOfferIds: string;
@@ -19,7 +19,6 @@ interface RouteParams {
 }
 
 const OfferWorkflowPage = () => {
-  const table: ITableColumn = "candidates2";
   const {
     ReadyToOfferIds,
     OfferSentIds,
@@ -36,7 +35,6 @@ const OfferWorkflowPage = () => {
         order: "firstName",
         status: READY_TO_OFFER,
         statusParam: ReadyToOfferIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, READY_TO_OFFER, data),
@@ -48,7 +46,6 @@ const OfferWorkflowPage = () => {
         order: "firstName",
         status: OFFER_SENT,
         statusParam: OfferSentIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, OFFER_SENT, data),
@@ -60,7 +57,6 @@ const OfferWorkflowPage = () => {
         order: "firstName",
         status: OFFER_ACCEPTED,
         statusParam: OfferAcceptedIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, OFFER_ACCEPTED, data),
@@ -72,7 +68,6 @@ const OfferWorkflowPage = () => {
         order: "firstName",
         status: OFFER_DECLINED,
         statusParam: OfferDeclinedIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, OFFER_DECLINED, data),
@@ -89,10 +84,7 @@ const OfferWorkflowPage = () => {
 
   return (
     <>
-      <TrelloBoard
-        workflow={offerWorkflow(candidateLanes)}
-        table={table}
-      />
+      <CandidatesTrelloBoard workflow={offerWorkflow(candidateLanes)} />
     </>
   );
 };

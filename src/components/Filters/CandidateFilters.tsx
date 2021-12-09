@@ -11,17 +11,17 @@ import {
   Row,
 } from "reactstrap";
 import { addFilter } from "redux/filters";
-import { ICandidate, ICandidateStatus, ITableColumn } from "types/types";
+import { ICandidate, ICandidateStatus } from "types/types";
 import { getSelectStatus } from "utils";
 import { InputFilter, SelectFilter } from ".";
 import { getDataByFiltersQuery } from "../../utils/axios";
+import { candidatesTable } from "../../variables";
 
 type SetCandidatesType = React.Dispatch<
   React.SetStateAction<ICandidate[]>
 >;
 
 interface Props {
-  table: ITableColumn;
   setCandidates: SetCandidatesType;
   setUpdatedCandidates: SetCandidatesType;
   setSelectedCandidates: SetCandidatesType;
@@ -32,7 +32,6 @@ interface Props {
 }
 
 const CandidateFilters = ({
-  table,
   setCandidates,
   setSelectedCandidates,
   setUpdatedCandidates,
@@ -71,7 +70,12 @@ const CandidateFilters = ({
       email: emailFilter,
     };
 
-    const { data } = await getDataByFiltersQuery(table, filters, "*", 100);
+    const { data } = await getDataByFiltersQuery(
+      candidatesTable,
+      filters,
+      "*",
+      100,
+    );
 
     setCandidates(data);
     // getFilteredCandidates({ limit: 100, select: "*", filters });

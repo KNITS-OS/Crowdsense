@@ -29,7 +29,6 @@ import {
 import { WorkflowModal } from "../../../components/Modals";
 
 const AllCandidatesSearchPage = () => {
-  const table = "candidates2";
   const { alert: alertHook } = useAlert();
 
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
@@ -73,7 +72,7 @@ const AllCandidatesSearchPage = () => {
   };
 
   const updateCandidates = async () => {
-    await updateCandidatesMutation(table, updatedCandidates);
+    await updateCandidatesMutation(updatedCandidates);
     setUpdatedCandidates([]);
   };
 
@@ -95,7 +94,6 @@ const AllCandidatesSearchPage = () => {
                   setCandidates={setCandidates}
                   setSelectedCandidates={setSelectedCandidates}
                   setUpdatedCandidates={setUpdatedCandidates}
-                  table={table}
                 />
               </CardBody>
             </Card>
@@ -169,7 +167,6 @@ const AllCandidatesSearchPage = () => {
                           }}
                         >
                           <WorkflowModal
-                            table={table}
                             selectedCandidates={selectedCandidates}
                             candidates={candidates}
                             setCandidates={setCandidates}

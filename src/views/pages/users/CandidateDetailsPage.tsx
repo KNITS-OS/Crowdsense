@@ -1,3 +1,7 @@
+import { SelectFilter } from "components/Filters";
+import { BoxHeader } from "components/Headers";
+import { LabeledFormInput } from "components/Input";
+import { defaultTags } from "mockData";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
@@ -14,17 +18,8 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { SelectFilter } from "components/Filters";
-import { BoxHeader } from "components/Headers";
-import { LabeledFormInput } from "components/Input";
-import { defaultTags } from "mockData";
 import { addFilter } from "redux/filters";
-import {
-  ICandidate,
-  ICandidateStatus,
-  ITableColumn,
-  ITag,
-} from "types/types";
+import { ICandidate, ICandidateStatus, ITag } from "types/types";
 import { getSelectStatus } from "utils";
 import {
   getCandidateByIdQuery,
@@ -37,7 +32,6 @@ interface RouteParams {
 }
 
 const CandidateDetailsPage = () => {
-  const table: ITableColumn = "candidates2";
   let { id } = useParams<RouteParams>();
   const [tags, setTags] = useState<ITag[]>([]);
   const [candidate, setCandidate] = useState<ICandidate | null>(null);
@@ -56,7 +50,7 @@ const CandidateDetailsPage = () => {
         reqId: idFilter,
       };
 
-      const { data } = await getCandidateByIdQuery(table, "*", filters);
+      const { data } = await getCandidateByIdQuery("*", filters);
 
       setCandidate(data[0]);
     };
@@ -85,7 +79,7 @@ const CandidateDetailsPage = () => {
   };
 
   const updateCandidate = () => {
-    updateCandidateMutation({ table, reqId: id, body: candidate });
+    updateCandidateMutation({ reqId: id, body: candidate });
   };
 
   return (

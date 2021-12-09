@@ -6,6 +6,7 @@ import {
   ITableColumn,
 } from "types/types";
 import { axiosInstance } from ".";
+import { candidatesTable } from "../../variables";
 
 /**
  * @description Gets data using filters
@@ -43,7 +44,6 @@ const addAscDescOrder = (order: ICandidateOrder, asc: boolean = true) => {
  * @param asc default true
  */
 export const getCandidatesByStatusAndIds = async ({
-  table,
   candidateIds,
   status,
   order,
@@ -64,7 +64,7 @@ export const getCandidatesByStatusAndIds = async ({
     order: finalOrder,
   };
 
-  const res = await getDataByFiltersQuery(table, filters, "*");
+  const res = await getDataByFiltersQuery(candidatesTable, filters, "*");
 
   return res;
 };
@@ -75,7 +75,6 @@ export const getCandidatesByStatusAndIds = async ({
  */
 export const getCandidatesByStatus = async ({
   status,
-  table,
   order,
 }: IGetCandidatesByStatusParams) => {
   const statusFilter = addFilter({
@@ -89,7 +88,7 @@ export const getCandidatesByStatus = async ({
     order: finalOrder,
   };
 
-  const res = await getDataByFiltersQuery(table, filters, "*");
+  const res = await getDataByFiltersQuery(candidatesTable, filters, "*");
 
   return res;
 };
@@ -98,11 +97,10 @@ export const getCandidatesByStatus = async ({
  * @description Gets Candidate By Id
  */
 export const getCandidateByIdQuery = async (
-  table: ITableColumn,
   select: string,
   filters: any,
 ) => {
-  let { data } = await axiosInstance.get(table, {
+  let { data } = await axiosInstance.get(candidatesTable, {
     params: {
       select,
       ...filters,

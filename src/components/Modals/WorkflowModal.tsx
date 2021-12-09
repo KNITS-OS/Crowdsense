@@ -7,11 +7,7 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-import {
-  ICandidate,
-  ICandidateStatus,
-  ITableColumn,
-} from "../../types/types";
+import { ICandidate, ICandidateStatus } from "../../types/types";
 import { getSelectStatus } from "../../utils";
 import { updateCandidatesMutation } from "../../utils/axios";
 import { candidatesWithAllStatuses } from "../../variables";
@@ -19,14 +15,12 @@ import { WorkflowCard } from "../Cards";
 import { SelectFilter } from "../Filters";
 
 interface Props {
-  table: ITableColumn;
   selectedCandidates: ICandidate[];
   candidates: ICandidate[];
   setCandidates: React.Dispatch<React.SetStateAction<ICandidate[]>>;
 }
 
 const WorkflowModal = ({
-  table,
   selectedCandidates,
   candidates,
   setCandidates,
@@ -64,7 +58,7 @@ const WorkflowModal = ({
   }, [selectedCandidates]);
 
   const updateMultibleCandidates = async () => {
-    await updateCandidatesMutation(table, updatedCandidates);
+    await updateCandidatesMutation(updatedCandidates);
 
     // @todo two ways. update state like this or refetch everything
     updatedCandidates.forEach(updatedCandidate => {

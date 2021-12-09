@@ -30,3 +30,4 @@ export {
   multiBarChartExample,
   pieChartExample,
 } from "./charts";
+export { candidatesTable, tagsTable } from "./tableVariables";

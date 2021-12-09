@@ -1,9 +1,9 @@
-import { TrelloBoard } from "components/Trello";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { ITableColumn, IWorkflowCandidates } from "types/types";
+import { IWorkflowCandidates } from "types/types";
 import { checkStatusParam, cvWorkflow, setCandidateLane } from "utils";
 import { cvWorkflowState, CV_REVIEW, CV_REVIEWED } from "variables";
+import { CandidatesTrelloBoard } from "../../../components/Trello";
 
 interface RouteParams {
   CVReviewIds: string;
@@ -11,7 +11,6 @@ interface RouteParams {
 }
 
 const CVWorkflowPage = () => {
-  const table: ITableColumn = "candidates2";
   const { CVReviewIds, CVReviewedIds } = useParams<RouteParams>();
 
   const [candidateLanes, setCandidateLanes] =
@@ -23,7 +22,6 @@ const CVWorkflowPage = () => {
         order: "firstName",
         status: CV_REVIEW,
         statusParam: CVReviewIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, CV_REVIEW, data),
@@ -35,7 +33,6 @@ const CVWorkflowPage = () => {
         order: "firstName",
         status: CV_REVIEWED,
         statusParam: CVReviewedIds,
-        table,
       });
       setCandidateLanes(oldLanes =>
         setCandidateLane(oldLanes, CV_REVIEWED, data),
@@ -49,7 +46,7 @@ const CVWorkflowPage = () => {
 
   return (
     <>
-      <TrelloBoard workflow={cvWorkflow(candidateLanes)} table={table} />
+      <CandidatesTrelloBoard workflow={cvWorkflow(candidateLanes)} />
     </>
   );
 };

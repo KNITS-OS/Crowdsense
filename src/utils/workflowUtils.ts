@@ -111,17 +111,15 @@ export const workflowRoute = (
 
 export const checkStatusParam = async ({
   statusParam,
-  table,
   status,
   order,
 }: ICheckStatusParams) => {
   let res;
   if (statusParam === "null") {
-    const { data } = await getCandidatesByStatus({ order, status, table });
+    const { data } = await getCandidatesByStatus({ order, status });
     res = data;
   } else {
     const { data } = await getCandidatesByStatusAndIds({
-      table,
       candidateIds: statusParam,
       status,
       order,

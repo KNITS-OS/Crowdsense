@@ -2,13 +2,11 @@ import { CandidateFilters } from "components/Filters";
 import { CandidatesTable } from "components/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
-import { ICandidate, ITableColumn } from "types/types";
+import { ICandidate } from "types/types";
 import { BoxHeader } from "components/Headers";
 import { candidatesWithCVStatus } from "variables";
 
 const CVSearchPage = () => {
-  const table: ITableColumn = "candidates2";
-
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
@@ -30,7 +28,6 @@ const CVSearchPage = () => {
           setCandidates={setCandidates}
           setSelectedCandidates={setSelectedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
-          table={table}
         />
 
         <CandidatesTable
@@ -42,7 +39,6 @@ const CVSearchPage = () => {
           setSelectedCandidates={setSelectedCandidates}
           updatedCandidates={updatedCandidates}
           setUpdatedCandidates={setUpdatedCandidates}
-          table={table}
         />
       </Container>
     </div>
