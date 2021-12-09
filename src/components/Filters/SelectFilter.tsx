@@ -7,9 +7,16 @@ interface Props {
   label: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   options: OptionType[];
+  defaultValue?: OptionType;
 }
 
-const SelectFilter = ({ setValue, options, id, label }: Props) => {
+const SelectFilter = ({
+  setValue,
+  options,
+  id,
+  label,
+  defaultValue,
+}: Props) => {
   return (
     <FormGroup style={{ marginBottom: 0 }}>
       <Label className="form-control-label" htmlFor={id}>
@@ -18,6 +25,7 @@ const SelectFilter = ({ setValue, options, id, label }: Props) => {
       <Select
         id={id}
         options={options}
+        defaultValue={defaultValue}
         onChange={item => item && setValue(item.value)}
       />
     </FormGroup>

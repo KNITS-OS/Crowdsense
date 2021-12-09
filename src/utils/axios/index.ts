@@ -7,4 +7,5 @@ export {
   getDataByFiltersQuery,
   getCandidatesByStatus,
   getCandidatesByStatusAndIds,
+  getCandidateByIdQuery,
 } from "./axiosQueries";

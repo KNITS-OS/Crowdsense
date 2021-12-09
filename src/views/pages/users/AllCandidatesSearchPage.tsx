@@ -28,7 +28,7 @@ import {
 } from "./components";
 import { WorkflowModal } from "../../../components/Modals";
 
-const AllCandidatesPage = () => {
+const AllCandidatesSearchPage = () => {
   const table = "candidates2";
   const { alert: alertHook } = useAlert();
 
@@ -202,4 +202,4 @@ const AllCandidatesPage = () => {
   );
 };
 
-export default AllCandidatesPage;
+export default AllCandidatesSearchPage;

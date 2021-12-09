@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
+import { Rating } from "react-simple-star-rating";
 import {
   Button,
   Card,
@@ -12,48 +13,57 @@ import {
   Form,
   FormGroup,
   Row,
-  Spinner,
 } from "reactstrap";
-import { useGetCandidateQuery } from "redux/features/candidates/candidatesApiSlice";
+import { SelectFilter } from "../../../components/Filters";
 import { BoxHeader } from "../../../components/Headers";
 import { LabeledFormInput } from "../../../components/Input";
 import { defaultTags } from "../../../mockData";
-import { ITag } from "../../../types/types";
+import { addFilter } from "../../../redux/filters";
+import {
+  ICandidate,
+  ICandidateStatus,
+  ITableColumn,
+  ITag,
+} from "../../../types/types";
+import { getSelectStatus } from "../../../utils";
+import { getCandidateByIdQuery } from "../../../utils/axios";
+import { candidatesWithAllStatuses } from "../../../variables";
 
 interface RouteParams {
   id: string;
 }
 
 const CandidateDetailsPage = () => {
+  const table: ITableColumn = "candidates2";
   let { id } = useParams<RouteParams>();
   const [tags, setTags] = useState<ITag[]>([]);
-  const {
-    data = [],
-    isError,
-    isLoading,
-    isFetching,
-  } = useGetCandidateQuery({ id, select: "*" });
-  const history = useHistory();
+  const [candidate, setCandidate] = useState<ICandidate | null>(null);
 
-  let candidate = data[0];
-  if (isLoading || isFetching) {
-    return (
-      <div
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <Spinner />
-      </div>
-    );
-  }
+  const history = useHistory();
 
   const handleTagChange = (newValue: any) => {
     setTags(newValue);
   };
 
+  useEffect(() => {
+    const getCandidate = async () => {
+      const idFilter = addFilter({ param: id, filter: "eq" });
+
+      const filters = {
+        reqId: idFilter,
+      };
+
+      const { data } = await getCandidateByIdQuery(table, "*", filters);
+
+      setCandidate(data[0]);
+    };
+    getCandidate();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (!candidate) {
-    return <div>No candidate found</div>;
+    return "Candidate Not Found";
   }
 
   const {
@@ -67,11 +77,16 @@ const CandidateDetailsPage = () => {
     country,
   } = candidate;
 
+  const handleRatingChange = (newRating: number) => {
+    setCandidate({ ...candidate, rating: newRating });
+  };
+
+  console.log("can", candidate);
+
   return (
     <>
       <BoxHeader />
       <Container className="mt--6" fluid>
-        {isError && <div>Couldn't fetch data</div>}
         <Row>
           <Col className="order-xl-1" xl="12">
             <Card>
@@ -93,9 +108,7 @@ const CandidateDetailsPage = () => {
                     <Button
                       type="button"
                       color="primary"
-                      onClick={() =>
-                        history.push("/admin/candidates-search")
-                      }
+                      onClick={() => history.goBack()}
                     >
                       Back to Search
                     </Button>
@@ -177,24 +190,42 @@ const CandidateDetailsPage = () => {
                     Evaluation
                   </h6>
                   <div className="pl-lg-4">
-                    <Row>
+                    <Row
+                      style={{
+                        alignItems: "center",
+                      }}
+                    >
                       <Col lg="6">
                         <FormGroup>
-                          <LabeledFormInput
-                            id="input-status"
+                          <SelectFilter
+                            id="status"
                             label="Status"
-                            name="status"
-                            value={status}
+                            setValue={value =>
+                              setCandidate({
+                                ...candidate,
+                                status: value as ICandidateStatus,
+                              })
+                            }
+                            defaultValue={{ label: status, value: status }}
+                            options={getSelectStatus(
+                              candidatesWithAllStatuses,
+                            )}
                           />
                         </FormGroup>
                       </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <LabeledFormInput
-                            id="input-rating"
-                            label="Rating"
-                            name="rating"
-                            value={rating}
+                      <Col
+                        lg="6"
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        <FormGroup className="mb-0">
+                          <Rating
+                            onClick={newRating =>
+                              handleRatingChange(newRating)
+                            }
+                            ratingValue={rating}
+                            size={30}
                           />
                         </FormGroup>
                       </Col>
@@ -215,6 +246,12 @@ const CandidateDetailsPage = () => {
                             label="Comment"
                             name="comment"
                             value={comment}
+                            onChange={e => {
+                              setCandidate({
+                                ...candidate,
+                                comment: e.target.value,
+                              });
+                            }}
                           />
                         </FormGroup>
                       </Col>

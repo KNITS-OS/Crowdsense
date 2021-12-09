@@ -195,6 +195,8 @@ export type IWorkflowRoutes =
   | "/admin/offer-workflow"
   | "/offer-workflow";
 
+export type IRoutesPaths = "/candidate-details/:id";
+
 export type ISelectRowConfig = {
   status: ICandidateStatus;
 };

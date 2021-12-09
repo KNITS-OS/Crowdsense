@@ -51,7 +51,7 @@ import {
 import { OfferWorkflowPage, OfferSearchPage } from "./views/pages/offers";
 import {
   CandidateDetailsPage,
-  AllCandidatesPage,
+  AllCandidatesSearchPage,
 } from "./views/pages/users";
 
 const routes: IRoute[] = [
@@ -77,7 +77,7 @@ const routes: IRoute[] = [
         path: "/candidates-search",
         name: "Search",
         miniName: "CS",
-        component: AllCandidatesPage,
+        component: AllCandidatesSearchPage,
         layout: "/admin",
       },
       // {

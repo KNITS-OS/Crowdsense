@@ -13,15 +13,13 @@ const TableActionButtons = ({ row }: Props) => {
   let candidateId = reqId.toString();
 
   return (
-    <>
-      <Link to={`/admin/users/candidate-details/${candidateId}`}>
-        <Button className="btn-icon btn-2" color="primary">
-          <span className="btn-inner--icon">
-            <i className="ni ni-badge" />
-          </span>
-        </Button>
-      </Link>
-    </>
+    <Link to={`/admin/candidate-details/${candidateId}`}>
+      <Button className="btn-icon btn-2" color="primary">
+        <span className="btn-inner--icon">
+          <i className="ni ni-badge" />
+        </span>
+      </Button>
+    </Link>
   );
 };
 export default TableActionButtons;

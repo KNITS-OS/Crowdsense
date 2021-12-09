@@ -7,7 +7,7 @@ import {
 } from "types/types";
 import { baseQuery } from "utils/rtkQueryConfig";
 
-const candidatesTable = "candidates";
+const candidatesTable = "candidates2";
 const tagsTable = "tags";
 
 interface IGetEmployeesArgs {

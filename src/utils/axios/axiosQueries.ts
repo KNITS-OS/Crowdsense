@@ -93,3 +93,21 @@ export const getCandidatesByStatus = async ({
 
   return res;
 };
+
+/**
+ * @description Gets Candidate By Id
+ */
+export const getCandidateByIdQuery = async (
+  table: ITableColumn,
+  select: string,
+  filters: any,
+) => {
+  let { data } = await axiosInstance.get(table, {
+    params: {
+      select,
+      ...filters,
+    },
+  });
+
+  return { data };
+};
