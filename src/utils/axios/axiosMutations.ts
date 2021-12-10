@@ -1,10 +1,6 @@
-import { axiosInstance } from ".";
-import {
-  ICandidate,
-  IUpdateCandidateStatusParams,
-  IUpdateCandidateParams,
-} from "types/types";
+import { ICandidate, IUpdateCandidateParams } from "types/types";
 import { candidatesTable } from "variables";
+import { axiosInstance } from ".";
 
 /**
  * @description Update multible candidates
@@ -25,27 +21,6 @@ export const updateCandidatesMutation = async (
   return {
     data,
   };
-};
-
-/**
- * @description Update the status of a candidate
- */
-export const updateCandidateStatusMutation = async ({
-  reqId,
-  status,
-}: IUpdateCandidateStatusParams) => {
-  await axiosInstance.post(
-    candidatesTable,
-    {
-      reqId,
-      status,
-    },
-    {
-      headers: {
-        prefer: "resolution=merge-duplicates",
-      },
-    },
-  );
 };
 
 /**

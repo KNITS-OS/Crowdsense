@@ -3,7 +3,7 @@ import Board from "react-trello";
 import { ICandidateStatus } from "types/types";
 import { removeCandidateFromLane } from "utils";
 import { trelloDefaults } from "variables";
-import { updateCandidateStatusMutation } from "../../utils/axios";
+import { updateCandidateMutation } from "../../utils/axios";
 
 interface Props {
   workflow: ReactTrello.BoardData;
@@ -26,14 +26,16 @@ const CandidatesTrelloBoard = ({ workflow }: Props) => {
       // https://github.com/rcdexta/react-trello#publish-events
       eventBusHandle={setEventBus}
       onCardMoveAcrossLanes={async (
-        fromLaneId: ICandidateStatus,
+        _: ICandidateStatus,
         toLaneId: ICandidateStatus,
         cardId: string,
-        index: number,
+        __: number,
       ) => {
-        updateCandidateStatusMutation({
+        updateCandidateMutation({
           reqId: cardId,
-          status: toLaneId,
+          body: {
+            status: toLaneId,
+          },
         });
 
         if (eventBus) {

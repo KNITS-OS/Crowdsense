@@ -44,6 +44,7 @@ const CandidateFilters = ({
 
   const findByFilters = async () => {
     const nameFilter = addFilter({ param: name, filter: "like" });
+    const emailFilter = addFilter({ param: email, filter: "like" });
     const statusFilter = addFilter({ param: status, filter: "eq" });
     const statusesFilter = addFilter({
       param: defaultStatuses,
@@ -53,8 +54,9 @@ const CandidateFilters = ({
       param: rating,
       filter: "eq",
     });
-    const emailFilter = addFilter({ param: email, filter: "like" });
 
+    // status filter will be added to the query if it is not empty
+    // otherwise search using all statuses
     let finalStatusFilter = () => {
       if (statusFilter) {
         return statusFilter;

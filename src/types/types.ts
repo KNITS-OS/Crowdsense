@@ -213,10 +213,6 @@ export type ISelectRowConfig = {
   status: ICandidateStatus;
 };
 
-export interface IUpdateCandidateStatusParams {
-  reqId: string;
-  status: ICandidateStatus;
-}
 export interface IUpdateCandidateParams {
   reqId: string;
   body: Partial<ICandidate>;

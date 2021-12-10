@@ -6,7 +6,7 @@ import {
   ITableColumn,
 } from "types/types";
 import { axiosInstance } from ".";
-import { candidatesTable } from "../../variables";
+import { candidatesTable } from "variables";
 
 /**
  * @description Gets data using filters
@@ -28,7 +28,7 @@ export const getDataByFiltersQuery = async (
   return { data };
 };
 
-const addAscDescOrder = (order: ICandidateOrder, asc: boolean = true) => {
+const addOrder = (order: ICandidateOrder, asc: boolean = true) => {
   let finalOrder;
 
   if (asc) {
@@ -56,7 +56,7 @@ export const getCandidatesByStatusAndIds = async ({
     param: [candidateIds],
     filter: "in",
   });
-  const finalOrder = addAscDescOrder(order);
+  const finalOrder = addOrder(order);
 
   const filters = {
     status: statusFilter,
@@ -82,7 +82,7 @@ export const getCandidatesByStatus = async ({
     filter: "eq",
   });
 
-  const finalOrder = addAscDescOrder(order);
+  const finalOrder = addOrder(order);
   const filters = {
     status: statusFilter,
     order: finalOrder,
