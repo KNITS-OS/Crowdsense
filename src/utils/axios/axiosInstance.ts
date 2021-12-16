@@ -11,6 +11,8 @@ if (process.env.REACT_APP_BACKEND_ENV === "supabase") {
 } else {
   axiosInstance.defaults.headers.common["Access-Control-Allow-Origin"] =
     "*";
+  axiosInstance.defaults.headers.common["Access-Control-Allow-Methods"] =
+    "*";
 }
 
 export default axiosInstance;
