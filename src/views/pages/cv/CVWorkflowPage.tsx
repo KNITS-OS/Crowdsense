@@ -19,7 +19,6 @@ const CVWorkflowPage = () => {
   useEffect(() => {
     const getCVReviewData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: CV_REVIEW,
         statusParam: CVReviewIds,
       });
@@ -30,7 +29,6 @@ const CVWorkflowPage = () => {
 
     const getCVReviewedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: CV_REVIEWED,
         statusParam: CVReviewedIds,
       });

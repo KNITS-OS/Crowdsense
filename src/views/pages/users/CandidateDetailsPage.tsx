@@ -50,7 +50,7 @@ const CandidateDetailsPage = () => {
         reqId: idFilter,
       };
 
-      const { data } = await getCandidateByIdQuery("*", filters);
+      const { data } = await getCandidateByIdQuery(filters);
 
       setCandidate(data[0]);
     };

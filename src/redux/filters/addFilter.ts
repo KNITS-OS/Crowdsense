@@ -20,20 +20,24 @@ const addFilter = ({ param, filter }: Props) => {
   let finalFilter: StringOrUndefined = undefined;
 
   if (param) {
-    if (
-      typeof param === "string" &&
-      (filter === "like" || filter === "ilike")
-    ) {
-      finalFilter = `${filter}.%${param}%`;
-    } else if (Array.isArray(param) && filter === "in") {
-      finalFilter = `${filter}.(${param})`;
-    } else if (
-      Array.isArray(param) &&
-      (filter === "cs" || filter === "cd")
-    ) {
-      finalFilter = `${filter}.{${param}}`;
+    if (process.env.REACT_APP_BACKEND_ENV === "spring") {
+      finalFilter = `${param}`;
     } else {
-      finalFilter = `${filter}.${param}`;
+      if (
+        typeof param === "string" &&
+        (filter === "like" || filter === "ilike")
+      ) {
+        finalFilter = `${filter}.%${param}%`;
+      } else if (Array.isArray(param) && filter === "in") {
+        finalFilter = `${filter}.(${param})`;
+      } else if (
+        Array.isArray(param) &&
+        (filter === "cs" || filter === "cd")
+      ) {
+        finalFilter = `${filter}.{${param}}`;
+      } else {
+        finalFilter = `${filter}.${param}`;
+      }
     }
   }
 

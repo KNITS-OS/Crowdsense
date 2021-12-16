@@ -72,15 +72,9 @@ const CandidateFilters = ({
       email: emailFilter,
     };
 
-    const { data } = await getDataByFiltersQuery(
-      candidatesTable,
-      filters,
-      "*",
-      100,
-    );
+    const { data } = await getDataByFiltersQuery(candidatesTable, filters);
 
     setCandidates(data);
-    // getFilteredCandidates({ limit: 100, select: "*", filters });
     setUpdatedCandidates([]);
     setSelectedCandidates([]);
   };

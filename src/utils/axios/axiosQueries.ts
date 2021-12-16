@@ -14,14 +14,10 @@ import { candidatesTable } from "variables";
 export const getDataByFiltersQuery = async (
   table: ITableColumn,
   filters: any,
-  select: string,
-  limit?: number,
 ) => {
   let { data } = await axiosInstance.get(table, {
     params: {
-      select,
       ...filters,
-      limit,
     },
   });
 
@@ -58,13 +54,22 @@ export const getCandidatesByStatusAndIds = async ({
   });
   const finalOrder = addOrder(order);
 
-  const filters = {
-    status: statusFilter,
-    reqId: reqIdFilter,
-    order: finalOrder,
-  };
+  let filters;
 
-  const res = await getDataByFiltersQuery(candidatesTable, filters, "*");
+  if (process.env.REACT_APP_BACKEND_ENV === "spring") {
+    filters = {
+      status: statusFilter,
+      reqId: reqIdFilter,
+    };
+  } else {
+    filters = {
+      status: statusFilter,
+      reqId: reqIdFilter,
+      order: finalOrder,
+    };
+  }
+
+  const res = await getDataByFiltersQuery(candidatesTable, filters);
 
   return res;
 };
@@ -83,12 +88,21 @@ export const getCandidatesByStatus = async ({
   });
 
   const finalOrder = addOrder(order);
-  const filters = {
-    status: statusFilter,
-    order: finalOrder,
-  };
 
-  const res = await getDataByFiltersQuery(candidatesTable, filters, "*");
+  let filters;
+
+  if (process.env.REACT_APP_BACKEND_ENV === "spring") {
+    filters = {
+      status: statusFilter,
+    };
+  } else {
+    filters = {
+      status: statusFilter,
+      order: finalOrder,
+    };
+  }
+
+  const res = await getDataByFiltersQuery(candidatesTable, filters);
 
   return res;
 };
@@ -96,13 +110,9 @@ export const getCandidatesByStatus = async ({
 /**
  * @description Gets Candidate By Id
  */
-export const getCandidateByIdQuery = async (
-  select: string,
-  filters: any,
-) => {
+export const getCandidateByIdQuery = async (filters: any) => {
   let { data } = await axiosInstance.get(candidatesTable, {
     params: {
-      select,
       ...filters,
     },
   });

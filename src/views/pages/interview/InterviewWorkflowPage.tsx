@@ -37,7 +37,6 @@ const InterviewWorkflowPage = () => {
   useEffect(() => {
     const getReadyForInterviewData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: READY_FOR_INTERVIEW,
         statusParam: ReadyForInterviewIds,
       });
@@ -48,7 +47,6 @@ const InterviewWorkflowPage = () => {
 
     const getInterviewOfferedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: INTERVIEW_OFFERED,
         statusParam: InterviewOfferedIds,
       });
@@ -59,7 +57,6 @@ const InterviewWorkflowPage = () => {
 
     const getInterviewBookedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: INTERVIEW_BOOKED,
         statusParam: InterviewBookedIds,
       });
@@ -70,7 +67,6 @@ const InterviewWorkflowPage = () => {
 
     const getInterviewPerformedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: INTERVIEW_PERFORMED,
         statusParam: InterviewPerformedIds,
       });

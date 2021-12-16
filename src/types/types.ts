@@ -235,6 +235,7 @@ export interface IRemoveCandidateOnLastLaneParams {
 }
 
 export type ICandidateOrder =
+  | "fullName"
   | "firstName"
   | "lastName"
   | "country"
@@ -255,5 +256,4 @@ export interface IGetCandidatesByStatusAndIdsParams {
 export interface ICheckStatusParams {
   statusParam: string;
   status: ICandidateStatus;
-  order: ICandidateOrder;
 }

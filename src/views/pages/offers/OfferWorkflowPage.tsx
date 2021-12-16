@@ -32,7 +32,6 @@ const OfferWorkflowPage = () => {
   useEffect(() => {
     const getReadyForOfferData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: READY_TO_OFFER,
         statusParam: ReadyToOfferIds,
       });
@@ -43,7 +42,6 @@ const OfferWorkflowPage = () => {
 
     const getOfferOfferedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: OFFER_SENT,
         statusParam: OfferSentIds,
       });
@@ -54,7 +52,6 @@ const OfferWorkflowPage = () => {
 
     const getOfferBookedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: OFFER_ACCEPTED,
         statusParam: OfferAcceptedIds,
       });
@@ -65,7 +62,6 @@ const OfferWorkflowPage = () => {
 
     const getOfferPerformedData = async () => {
       const data = await checkStatusParam({
-        order: "firstName",
         status: OFFER_DECLINED,
         statusParam: OfferDeclinedIds,
       });

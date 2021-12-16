@@ -2,6 +2,6 @@ declare namespace NodeJS {
   interface ProcessEnv {
     REACT_APP_API_URL: string;
     REACT_APP_API_KEY: string;
-    REACT_APP_BACKEND_ENV: string;
+    REACT_APP_BACKEND_ENV: "supabase" | "spring";
   }
 }
