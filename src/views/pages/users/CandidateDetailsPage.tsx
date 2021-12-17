@@ -18,7 +18,6 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateStatus, ITag } from "types/types";
 import { getSelectStatus } from "utils";
 import {
@@ -44,15 +43,13 @@ const CandidateDetailsPage = () => {
 
   useEffect(() => {
     const getCandidate = async () => {
-      const idFilter = addFilter({ param: id, filter: "eq" });
+      const { data } = await getCandidateByIdQuery(id);
 
-      const filters = {
-        reqId: idFilter,
-      };
-
-      const { data } = await getCandidateByIdQuery(filters);
-
-      setCandidate(data[0]);
+      if (process.env.REACT_APP_BACKEND_ENV === "spring") {
+        setCandidate(data);
+      } else {
+        setCandidate(data[0]);
+      }
     };
     getCandidate();
 

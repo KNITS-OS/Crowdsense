@@ -110,12 +110,26 @@ export const getCandidatesByStatus = async ({
 /**
  * @description Gets Candidate By Id
  */
-export const getCandidateByIdQuery = async (filters: any) => {
-  let { data } = await axiosInstance.get(candidatesTable, {
-    params: {
-      ...filters,
-    },
-  });
+export const getCandidateByIdQuery = async (id: string) => {
+  const idFilter = addFilter({ param: id, filter: "eq" });
+  let data;
+  const filters = {
+    reqId: idFilter,
+  };
+
+  if (process.env.REACT_APP_BACKEND_ENV === "spring") {
+    let { data: _data } = await axiosInstance.get(
+      `${candidatesTable}/${id}`,
+    );
+    data = _data;
+  } else {
+    let { data: _data } = await axiosInstance.get(candidatesTable, {
+      params: {
+        ...filters,
+      },
+    });
+    data = _data;
+  }
 
   return { data };
 };

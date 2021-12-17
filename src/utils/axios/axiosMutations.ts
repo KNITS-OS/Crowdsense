@@ -29,7 +29,7 @@ export const updateCandidateMutation = async ({
 export const updateCandidatesMutation = async (
   updatedCandidates: ICandidate[],
 ) => {
-  const { data } = await axiosInstance.post(
+  const { data } = await axiosInstance.patch(
     candidatesTable,
     [...updatedCandidates],
     {
