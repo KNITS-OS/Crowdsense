@@ -6,7 +6,6 @@ import {
   ICandidateStatus,
   IWorkflowRoutes,
 } from "../../types/types";
-import { createQueryStringForWorkflow } from "../../utils";
 import DefaultExportCSVButton from "../Buttons/DefaultExportCSVButton";
 
 interface Props {
@@ -22,7 +21,6 @@ const TableActions = ({
   updateCandidates,
   toolkitProps,
   workflowRoute,
-  defaultStatuses,
 }: Props) => {
   const history = useHistory();
   return (
@@ -52,12 +50,10 @@ const TableActions = ({
           className="btn btn-primary"
           color="primary"
           onClick={() => {
-            const queryString = createQueryStringForWorkflow(
-              workflowRoute,
-              selectedCandidates,
-              defaultStatuses,
-            );
-            history.push(queryString);
+            history.push({
+              pathname: workflowRoute,
+              state: selectedCandidates,
+            });
           }}
         >
           Workflow

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate } from "types/types";
 import { BoxHeader } from "components/Headers";
-import { candidatesWithCVStatus } from "variables";
+import { candidatesWithCVStatus, ADMIN_CV_WORKFLOW } from "variables";
 
 const CVSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
@@ -32,7 +32,7 @@ const CVSearchPage = () => {
 
         <CandidatesTable
           defaultStatuses={candidatesWithCVStatus}
-          workflowRoute="/admin/cv-workflow"
+          workflowRoute={ADMIN_CV_WORKFLOW}
           candidates={candidates}
           setCandidates={setCandidates}
           selectedCandidates={selectedCandidates}

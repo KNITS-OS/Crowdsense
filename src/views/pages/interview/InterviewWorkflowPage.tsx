@@ -1,85 +1,34 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { IWorkflowCandidates } from "types/types";
-import {
-  checkStatusParam,
-  interviewWorkflow,
-  setCandidateLane,
-} from "utils";
+import { useHistory, useLocation } from "react-router";
+import { ICandidate, IWorkflowCandidates } from "types/types";
+import { interviewWorkflow } from "utils";
+import { getWorkflowLaneData } from "utils/workflowUtils";
 import {
   interviewWorkflowState,
   INTERVIEW_BOOKED,
   INTERVIEW_OFFERED,
   INTERVIEW_PERFORMED,
   READY_FOR_INTERVIEW,
+  ADMIN_INTERVIEW_WORKFLOW,
 } from "variables";
-import CandidatesTrelloBoard from "../../../components/Trello/CandidatesTrelloBoard";
-
-interface RouteParams {
-  ReadyForInterviewIds: string;
-  InterviewBookedIds: string;
-  InterviewPerformedIds: string;
-  InterviewOfferedIds: string;
-}
+import CandidatesTrelloBoard from "components/Trello/CandidatesTrelloBoard";
 
 const InterviewWorkflowPage = () => {
-  const {
-    ReadyForInterviewIds,
-    InterviewBookedIds,
-    InterviewOfferedIds,
-    InterviewPerformedIds,
-  } = useParams<RouteParams>();
+  const { state }: { state: ICandidate[] } = useLocation();
+  const history = useHistory();
 
   const [candidateLanes, setCandidateLanes] = useState<
     IWorkflowCandidates[]
   >(interviewWorkflowState);
 
   useEffect(() => {
-    const getReadyForInterviewData = async () => {
-      const data = await checkStatusParam({
-        status: READY_FOR_INTERVIEW,
-        statusParam: ReadyForInterviewIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, READY_FOR_INTERVIEW, data),
-      );
-    };
+    getWorkflowLaneData(state, READY_FOR_INTERVIEW, setCandidateLanes);
+    getWorkflowLaneData(state, INTERVIEW_OFFERED, setCandidateLanes);
+    getWorkflowLaneData(state, INTERVIEW_BOOKED, setCandidateLanes);
+    getWorkflowLaneData(state, INTERVIEW_PERFORMED, setCandidateLanes);
 
-    const getInterviewOfferedData = async () => {
-      const data = await checkStatusParam({
-        status: INTERVIEW_OFFERED,
-        statusParam: InterviewOfferedIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, INTERVIEW_OFFERED, data),
-      );
-    };
-
-    const getInterviewBookedData = async () => {
-      const data = await checkStatusParam({
-        status: INTERVIEW_BOOKED,
-        statusParam: InterviewBookedIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, INTERVIEW_BOOKED, data),
-      );
-    };
-
-    const getInterviewPerformedData = async () => {
-      const data = await checkStatusParam({
-        status: INTERVIEW_PERFORMED,
-        statusParam: InterviewPerformedIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, INTERVIEW_PERFORMED, data),
-      );
-    };
-
-    getReadyForInterviewData();
-    getInterviewOfferedData();
-    getInterviewBookedData();
-    getInterviewPerformedData();
-
+    // when user refreshes page the state is lost
+    history.replace(ADMIN_INTERVIEW_WORKFLOW, []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

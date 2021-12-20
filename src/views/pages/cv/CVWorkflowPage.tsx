@@ -1,44 +1,30 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { IWorkflowCandidates } from "types/types";
-import { checkStatusParam, cvWorkflow, setCandidateLane } from "utils";
-import { cvWorkflowState, CV_REVIEW, CV_REVIEWED } from "variables";
-import { CandidatesTrelloBoard } from "../../../components/Trello";
-
-interface RouteParams {
-  CVReviewIds: string;
-  CVReviewedIds: string;
-}
+import { useHistory, useLocation } from "react-router";
+import { ICandidate, IWorkflowCandidates } from "types/types";
+import { cvWorkflow } from "utils";
+import { getWorkflowLaneData } from "utils/workflowUtils";
+import {
+  cvWorkflowState,
+  CV_REVIEW,
+  CV_REVIEWED,
+  ADMIN_CV_WORKFLOW,
+} from "variables";
+import { CandidatesTrelloBoard } from "components/Trello";
 
 const CVWorkflowPage = () => {
-  const { CVReviewIds, CVReviewedIds } = useParams<RouteParams>();
+  const { state }: { state: ICandidate[] } = useLocation();
+  const history = useHistory();
 
   const [candidateLanes, setCandidateLanes] =
     useState<IWorkflowCandidates[]>(cvWorkflowState);
 
   useEffect(() => {
-    const getCVReviewData = async () => {
-      const data = await checkStatusParam({
-        status: CV_REVIEW,
-        statusParam: CVReviewIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, CV_REVIEW, data),
-      );
-    };
+    getWorkflowLaneData(state, CV_REVIEW, setCandidateLanes);
+    getWorkflowLaneData(state, CV_REVIEWED, setCandidateLanes);
 
-    const getCVReviewedData = async () => {
-      const data = await checkStatusParam({
-        status: CV_REVIEWED,
-        statusParam: CVReviewedIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, CV_REVIEWED, data),
-      );
-    };
+    // when user refreshes page the state is lost
+    history.replace(ADMIN_CV_WORKFLOW, []);
 
-    getCVReviewData();
-    getCVReviewedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

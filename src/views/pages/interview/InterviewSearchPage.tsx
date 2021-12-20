@@ -4,7 +4,10 @@ import { CandidatesTable } from "components/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate } from "types/types";
-import { candidatesWithInterviewStatus } from "variables";
+import {
+  candidatesWithInterviewStatus,
+  ADMIN_INTERVIEW_WORKFLOW,
+} from "variables";
 
 const InterviewSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
@@ -32,7 +35,7 @@ const InterviewSearchPage = () => {
 
         <CandidatesTable
           defaultStatuses={candidatesWithInterviewStatus}
-          workflowRoute="/admin/interview-workflow"
+          workflowRoute={ADMIN_INTERVIEW_WORKFLOW}
           candidates={candidates}
           setCandidates={setCandidates}
           selectedCandidates={selectedCandidates}

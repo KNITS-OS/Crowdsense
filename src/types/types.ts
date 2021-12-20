@@ -189,10 +189,10 @@ export type ITableColumn = "candidates" | "tags";
 
 export type IWorkflowRoutes =
   | "/admin/cv-workflow"
-  | "/cv-workflow"
   | "/admin/interview-workflow"
-  | "/interview-workflow"
   | "/admin/offer-workflow"
+  | "/cv-workflow"
+  | "/interview-workflow"
   | "/offer-workflow";
 
 export type IRoutePaths =
@@ -216,6 +216,10 @@ export type ISelectRowConfig = {
 export interface IUpdateCandidateParams {
   reqId: string;
   body: Partial<ICandidate>;
+}
+
+export interface IGetWorkflowCandidatesParams {
+  reqIds: string[];
 }
 
 export interface IUpdateCandidateUIParams {

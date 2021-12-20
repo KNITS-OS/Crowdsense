@@ -18,4 +18,5 @@ export {
   cvWorkflow,
   interviewWorkflow,
   offerWorkflow,
+  getWorkflowLaneData,
 } from "./workflowUtils";

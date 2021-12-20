@@ -1,4 +1,8 @@
-import { ICandidate, IUpdateCandidateParams } from "types/types";
+import {
+  ICandidate,
+  IGetWorkflowCandidatesParams,
+  IUpdateCandidateParams,
+} from "types/types";
 import { candidatesTable } from "variables";
 import { axiosInstance } from ".";
 
@@ -44,4 +48,23 @@ export const updateCandidatesMutation = async (
   return {
     data,
   };
+};
+
+/**
+ * @description Update single candidate
+ */
+export const getWorkflowCandidatesMutation = async ({
+  reqIds,
+}: IGetWorkflowCandidatesParams) => {
+  await axiosInstance.post(
+    candidatesTable,
+    {
+      reqIds,
+    },
+    {
+      headers: {
+        prefer: "resolution=merge-duplicates",
+      },
+    },
+  );
 };

@@ -27,17 +27,16 @@ import Validation from "views/pages/examples/forms/Validation";
 import Pricing from "views/pages/examples/pages/Pricing";
 import Profile from "views/pages/examples/pages/Profile";
 import { IRoute } from "./types/types";
-import { workflowRoute } from "./utils/workflowUtils";
 import {
-  candidatesWithCVStatus,
-  candidatesWithInterviewStatus,
-  candidatesWithOfferStatus,
+  CV_WORKFLOW,
+  INTERVIEW_WORKFLOW,
+  OFFER_WORKFLOW,
 } from "./variables";
 import {
   AddNewCVPage,
-  ImportCVPage,
   CVSearchPage,
   CVWorkflowPage,
+  ImportCVPage,
 } from "./views/pages/cv";
 import { ChartsPage, WorldOverviewPage } from "./views/pages/dashboards";
 import { DocxExamplePage } from "./views/pages/Docx";
@@ -48,10 +47,10 @@ import {
   InterviewSearchPage,
   InterviewWorkflowPage,
 } from "./views/pages/interview";
-import { OfferWorkflowPage, OfferSearchPage } from "./views/pages/offers";
+import { OfferSearchPage, OfferWorkflowPage } from "./views/pages/offers";
 import {
-  CandidateDetailsPage,
   AllCandidatesSearchPage,
+  CandidateDetailsPage,
 } from "./views/pages/users";
 
 const routes: IRoute[] = [
@@ -125,7 +124,8 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: workflowRoute("/cv-workflow", candidatesWithCVStatus),
+    path: CV_WORKFLOW,
+    // path: workflowRoute("/cv-workflow", candidatesWithCVStatus),
     component: CVWorkflowPage,
     layout: "/admin",
   },
@@ -149,10 +149,7 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: workflowRoute(
-      "/interview-workflow",
-      candidatesWithInterviewStatus,
-    ),
+    path: INTERVIEW_WORKFLOW,
     component: InterviewWorkflowPage,
     layout: "/admin",
   },
@@ -176,7 +173,7 @@ const routes: IRoute[] = [
   {
     collapse: false,
     global: true,
-    path: workflowRoute("/offer-workflow", candidatesWithOfferStatus),
+    path: OFFER_WORKFLOW,
     component: OfferWorkflowPage,
     layout: "/admin",
   },

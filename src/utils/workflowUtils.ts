@@ -179,7 +179,7 @@ export const declineLanes = () => {
 export const setCandidateLane = (
   oldLanes: IWorkflowCandidates[],
   status: ICandidateStatus,
-  data: any,
+  data: ICandidate[],
 ) => {
   // find the index of a lane that matches the status
   let laneIndex = oldLanes.findIndex(lane => lane.status === status);
@@ -227,4 +227,25 @@ export const offerWorkflow = (
   return {
     lanes: [...createDefaultLanes(candidateLanes), ...declineLanes()],
   };
+};
+
+export const getWorkflowLaneData = async (
+  state: ICandidate[],
+  status: ICandidateStatus,
+  setCandidateLanes: React.Dispatch<
+    React.SetStateAction<IWorkflowCandidates[]>
+  >,
+) => {
+  let data = state.filter(candidate => candidate.status === status);
+
+  if (data.length === 0) {
+    let res = await getCandidatesByStatus({
+      status,
+      order: "fullName",
+    });
+
+    data = res.data;
+  }
+
+  setCandidateLanes(oldLanes => setCandidateLane(oldLanes, status, data));
 };

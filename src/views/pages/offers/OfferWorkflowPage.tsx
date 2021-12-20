@@ -1,79 +1,33 @@
+import CandidatesTrelloBoard from "components/Trello/CandidatesTrelloBoard";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { IWorkflowCandidates } from "types/types";
-import { checkStatusParam, offerWorkflow, setCandidateLane } from "utils";
+import { useHistory, useLocation } from "react-router";
+import { ICandidate, IWorkflowCandidates } from "types/types";
+import { offerWorkflow } from "utils";
+import { getWorkflowLaneData } from "utils/workflowUtils";
 import {
   offerWorkflowState,
   OFFER_ACCEPTED,
   OFFER_DECLINED,
   OFFER_SENT,
   READY_TO_OFFER,
+  ADMIN_OFFER_WORKFLOW,
 } from "variables";
-import CandidatesTrelloBoard from "../../../components/Trello/CandidatesTrelloBoard";
-
-interface RouteParams {
-  ReadyToOfferIds: string;
-  OfferSentIds: string;
-  OfferAcceptedIds: string;
-  OfferDeclinedIds: string;
-}
 
 const OfferWorkflowPage = () => {
-  const {
-    ReadyToOfferIds,
-    OfferSentIds,
-    OfferAcceptedIds,
-    OfferDeclinedIds,
-  } = useParams<RouteParams>();
+  const { state }: { state: ICandidate[] } = useLocation();
+  const history = useHistory();
 
   const [candidateLanes, setCandidateLanes] =
     useState<IWorkflowCandidates[]>(offerWorkflowState);
 
   useEffect(() => {
-    const getReadyForOfferData = async () => {
-      const data = await checkStatusParam({
-        status: READY_TO_OFFER,
-        statusParam: ReadyToOfferIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, READY_TO_OFFER, data),
-      );
-    };
+    getWorkflowLaneData(state, READY_TO_OFFER, setCandidateLanes);
+    getWorkflowLaneData(state, OFFER_SENT, setCandidateLanes);
+    getWorkflowLaneData(state, OFFER_ACCEPTED, setCandidateLanes);
+    getWorkflowLaneData(state, OFFER_DECLINED, setCandidateLanes);
 
-    const getOfferOfferedData = async () => {
-      const data = await checkStatusParam({
-        status: OFFER_SENT,
-        statusParam: OfferSentIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, OFFER_SENT, data),
-      );
-    };
-
-    const getOfferBookedData = async () => {
-      const data = await checkStatusParam({
-        status: OFFER_ACCEPTED,
-        statusParam: OfferAcceptedIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, OFFER_ACCEPTED, data),
-      );
-    };
-
-    const getOfferPerformedData = async () => {
-      const data = await checkStatusParam({
-        status: OFFER_DECLINED,
-        statusParam: OfferDeclinedIds,
-      });
-      setCandidateLanes(oldLanes =>
-        setCandidateLane(oldLanes, OFFER_DECLINED, data),
-      );
-    };
-
-    getReadyForOfferData();
-    getOfferOfferedData();
-    getOfferBookedData();
-    getOfferPerformedData();
+    // when user refreshes page the state is lost
+    history.replace(ADMIN_OFFER_WORKFLOW, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -4,7 +4,10 @@ import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate } from "types/types";
 import { BoxHeader } from "components/Headers";
-import { candidatesWithOfferStatus } from "variables";
+import {
+  candidatesWithOfferStatus,
+  ADMIN_OFFER_WORKFLOW,
+} from "variables";
 
 const OfferSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
@@ -32,7 +35,7 @@ const OfferSearchPage = () => {
 
         <CandidatesTable
           defaultStatuses={candidatesWithOfferStatus}
-          workflowRoute="/admin/offer-workflow"
+          workflowRoute={ADMIN_OFFER_WORKFLOW}
           candidates={candidates}
           setCandidates={setCandidates}
           selectedCandidates={selectedCandidates}
