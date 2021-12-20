@@ -15,30 +15,42 @@ import { WorkflowCard } from "../Cards";
 import { SelectFilter } from "../Filters";
 
 interface Props {
-  selectedCandidates: ICandidate[];
   candidates: ICandidate[];
   setCandidates: React.Dispatch<React.SetStateAction<ICandidate[]>>;
+  selectedCandidates: ICandidate[];
+  setSelectedCandidates: React.Dispatch<
+    React.SetStateAction<ICandidate[]>
+  >;
+  tableRef: React.MutableRefObject<undefined>;
 }
 
 const WorkflowModal = ({
-  selectedCandidates,
   candidates,
   setCandidates,
+  selectedCandidates,
+  setSelectedCandidates,
+  tableRef,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [updatedCandidates, setUpdatedCandidates] =
     useState(selectedCandidates);
 
+  const unselectRows = () => {
+    setSelectedCandidates([]);
+    // @ts-ignore
+    tableRef.current.selectionContext.selected = [];
+  };
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
   const closeModal = () => {
+    unselectRows();
     setIsOpen(false);
     setUpdatedCandidates(selectedCandidates);
   };
   useEffect(() => {
-    const updateCandidatesState = () => {
+    const updateCandidatesStatus = () => {
       setUpdatedCandidates(oldCandidates =>
         oldCandidates.map(oldCandidate => {
           return {
@@ -48,7 +60,8 @@ const WorkflowModal = ({
         }),
       );
     };
-    updateCandidatesState();
+
+    updateCandidatesStatus();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
@@ -58,6 +71,7 @@ const WorkflowModal = ({
   }, [selectedCandidates]);
 
   const updateMultibleCandidates = async () => {
+    unselectRows();
     await updateCandidatesMutation(updatedCandidates);
 
     // @todo two ways. update state like this or refetch everything
@@ -72,8 +86,7 @@ const WorkflowModal = ({
         return [...oldCandidates];
       });
     });
-    // @todo maybe make them unselected
-
+    unselectRows();
     setIsOpen(false);
   };
 

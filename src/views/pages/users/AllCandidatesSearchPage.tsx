@@ -2,7 +2,7 @@
 import { CandidateFilters } from "components/Filters";
 import { BoxHeader } from "components/Headers";
 import { useAlert } from "context";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
@@ -30,7 +30,9 @@ import { WorkflowModal } from "../../../components/Modals";
 
 const AllCandidatesSearchPage = () => {
   const { alert: alertHook } = useAlert();
+  // make useRef with bootstraptable ref
 
+  const tableRef = useRef();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
@@ -167,9 +169,11 @@ const AllCandidatesSearchPage = () => {
                           }}
                         >
                           <WorkflowModal
-                            selectedCandidates={selectedCandidates}
                             candidates={candidates}
                             setCandidates={setCandidates}
+                            selectedCandidates={selectedCandidates}
+                            setSelectedCandidates={setSelectedCandidates}
+                            tableRef={tableRef}
                           />
                         </div>
                         <div>
@@ -178,6 +182,8 @@ const AllCandidatesSearchPage = () => {
                       </div>
 
                       <BootstrapTable
+                        // @ts-ignore
+                        ref={tableRef}
                         {...props.baseProps}
                         keyField="reqId"
                         pagination={pagination}
