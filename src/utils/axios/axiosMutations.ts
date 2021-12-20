@@ -11,10 +11,12 @@ export const updateCandidateMutation = async ({
 }: IUpdateCandidateParams) => {
   await axiosInstance.patch(
     candidatesTable,
-    {
-      reqId,
-      ...body,
-    },
+    [
+      {
+        reqId,
+        ...body,
+      },
+    ],
     {
       headers: {
         prefer: "resolution=merge-duplicates",
