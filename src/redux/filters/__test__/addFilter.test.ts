@@ -1,16 +1,9 @@
 import { addFilter } from "..";
 
 describe("addFilter Function", () => {
-  const OLD_ENV = process.env;
-
   beforeEach(() => {
-    jest.resetModules(); // Most important - it clears the cache
-    process.env = { ...OLD_ENV }; // Make a copy
+    // https://stackoverflow.com/questions/48033841/test-process-env-with-jest
     process.env.REACT_APP_BACKEND_ENV = "supabase";
-  });
-
-  afterAll(() => {
-    process.env = OLD_ENV; // Restore old environment
   });
 
   test("adding no param and eq filter should return undefined", () => {
