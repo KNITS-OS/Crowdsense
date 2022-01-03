@@ -18,7 +18,6 @@ import {
 } from "reactstrap";
 import { ICandidate, IUpdateCandidateUIParams, Tag } from "types/types";
 import { defaultColumns, pagination, selectCandidateRow } from "utils";
-// @ts-ignore
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithAllStatuses } from "variables";
 import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";

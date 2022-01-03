@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { Card, CardHeader, Col, Row } from "reactstrap";
@@ -7,6 +8,7 @@ import {
   IUpdateCandidateUIParams,
   IUseSetCandidate,
   IWorkflowRoutes,
+  Tag,
 } from "types/types";
 import { defaultColumns, pagination, selectCandidateRow } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
@@ -16,6 +18,7 @@ import {
   TableTagsCell,
 } from "views/pages/candidates/components";
 import { TableActions } from ".";
+import { getAllTags } from "utils/axios/axiosQueries";
 
 interface Props {
   defaultStatuses: ICandidateStatus[];
@@ -65,11 +68,21 @@ const CandidatesTable = ({
       return [...oldCandidates];
     });
   };
+  const [defaultTags, setDefaultTags] = useState<Tag[]>([]);
 
   const updateCandidates = async () => {
     await updateCandidatesMutation(updatedCandidates);
     setUpdatedCandidates([]);
   };
+
+  useEffect(() => {
+    const getDefaultTags = async () => {
+      const { data } = await getAllTags();
+
+      setDefaultTags(data);
+    };
+    getDefaultTags();
+  }, []);
 
   return (
     <Row>
@@ -99,7 +112,12 @@ const CandidatesTable = ({
               {
                 dataField: "tags",
                 text: "Tags",
-                formatter: TableTagsCell,
+                formatter: (_, row) =>
+                  TableTagsCell({
+                    row,
+                    defaultTags,
+                    updateCandidateUI,
+                  }),
                 headerStyle: () => {
                   return { width: "19rem" };
                 },
