@@ -133,3 +133,11 @@ export const getCandidateByIdQuery = async (id: string) => {
 
   return { data };
 };
+
+/**
+ * @description Gets All Tags
+ */
+export const getAllTags = async () => {
+  let { data } = await axiosInstance.get("tags/all");
+  return { data };
+};

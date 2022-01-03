@@ -2,7 +2,7 @@
 import { CandidateFilters } from "components/Filters";
 import { BoxHeader } from "components/Headers";
 import { useAlert } from "context";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
@@ -16,8 +16,9 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import { ICandidate, IUpdateCandidateUIParams } from "types/types";
+import { ICandidate, IUpdateCandidateUIParams, Tag } from "types/types";
 import { defaultColumns, pagination, selectCandidateRow } from "utils";
+// @ts-ignore
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithAllStatuses } from "variables";
 import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
@@ -26,7 +27,8 @@ import {
   TableRatingCell,
   TableTagsCell,
 } from "./components";
-import { WorkflowModal } from "../../../components/Modals";
+import { WorkflowModal } from "components/Modals";
+import { getAllTags } from "utils/axios/axiosQueries";
 
 const AllCandidatesSearchPage = () => {
   const { alert: alertHook } = useAlert();
@@ -37,6 +39,7 @@ const AllCandidatesSearchPage = () => {
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
   >([]);
+  const [defaultTags, setDefaultTags] = useState<Tag[]>([]);
 
   /**
    * @description - see which candidates need to be updated
@@ -75,8 +78,19 @@ const AllCandidatesSearchPage = () => {
 
   const updateCandidates = async () => {
     await updateCandidatesMutation(updatedCandidates);
+    console.log(updatedCandidates);
+
     setUpdatedCandidates([]);
   };
+
+  useEffect(() => {
+    const getDefaultTags = async () => {
+      const { data } = await getAllTags();
+
+      setDefaultTags(data);
+    };
+    getDefaultTags();
+  }, []);
 
   return (
     <div>
@@ -128,7 +142,12 @@ const AllCandidatesSearchPage = () => {
                   {
                     dataField: "tags",
                     text: "Tags",
-                    formatter: TableTagsCell,
+                    formatter: (_, row) =>
+                      TableTagsCell({
+                        row,
+                        defaultTags,
+                        updateCandidateUI,
+                      }),
                     headerStyle: () => {
                       return { width: "19rem" };
                     },

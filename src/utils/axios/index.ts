@@ -8,4 +8,5 @@ export {
   getCandidatesByStatus,
   getCandidatesByStatusAndIds,
   getCandidateByIdQuery,
+  getAllTags,
 } from "./axiosQueries";

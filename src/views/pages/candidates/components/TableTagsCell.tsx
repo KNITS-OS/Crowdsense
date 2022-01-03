@@ -1,11 +1,25 @@
-import { defaultTags } from "mockData";
 import { OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
+import { ICandidate, IUpdateCandidateUIParams, Tag } from "types/types";
 
-const TableTagsCell = () => {
+interface Props {
+  row: ICandidate;
+  defaultTags: Tag[];
+  updateCandidateUI: ({ reqId, body }: IUpdateCandidateUIParams) => void;
+}
+
+const TableTagsCell = ({ row, defaultTags, updateCandidateUI }: Props) => {
   const handleChange = (newValue: OnChangeValue<any, true>) => {
-    console.log(newValue);
-    // setTags(newValue);
+    const newTags = newValue.map(tag => {
+      return { name: tag.label, id: parseInt(tag.value) };
+    });
+
+    updateCandidateUI({
+      reqId: row.reqId,
+      body: {
+        tags: newTags,
+      },
+    });
   };
 
   return (
@@ -19,12 +33,14 @@ const TableTagsCell = () => {
       }}
       isMulti
       onChange={handleChange}
-      // onChange={item => setTags(item)}
-      options={defaultTags}
-      // value={candidateTags.map(tag => ({
-      //   value: tag.value,
-      //   label: tag.label,
-      // }))}
+      options={defaultTags.map(tag => ({
+        label: tag.name,
+        value: tag.id.toString(),
+      }))}
+      value={row.tags.map(tag => ({
+        label: tag.name,
+        value: tag.id.toString(),
+      }))}
     />
   );
 };

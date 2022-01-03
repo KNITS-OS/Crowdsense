@@ -1,10 +1,10 @@
 import { SelectFilter } from "components/Filters";
 import { BoxHeader } from "components/Headers";
 import { LabeledFormInput } from "components/Input";
-import { defaultTags } from "mockData";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
+import { OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { Rating } from "react-simple-star-rating";
 import {
@@ -18,13 +18,14 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { ICandidate, ICandidateStatus, ITag } from "types/types";
+import { ICandidate, ICandidateStatus, Tag } from "types/types";
 import { getSelectStatus } from "utils";
 import {
   getCandidateByIdQuery,
   updateCandidateMutation,
 } from "utils/axios";
 import { candidatesWithAllStatuses } from "variables";
+import { getAllTags } from "utils/axios/axiosQueries";
 
 interface RouteParams {
   id: string;
@@ -32,13 +33,18 @@ interface RouteParams {
 
 const CandidateDetailsPage = () => {
   let { id } = useParams<RouteParams>();
-  const [tags, setTags] = useState<ITag[]>([]);
+
+  const [defaultTags, setDefaultTags] = useState<Tag[]>([]);
   const [candidate, setCandidate] = useState<ICandidate | null>(null);
 
   const history = useHistory();
 
-  const handleTagChange = (newValue: any) => {
-    setTags(newValue);
+  const handleTagChange = (newValue: OnChangeValue<any, true>) => {
+    const newTags = newValue.map(tag => {
+      return { name: tag.label, id: parseInt(tag.value) };
+    });
+    // @ts-ignore
+    setCandidate({ ...candidate, tags: newTags });
   };
 
   useEffect(() => {
@@ -52,6 +58,13 @@ const CandidateDetailsPage = () => {
       }
     };
     getCandidate();
+
+    const getDefaultTags = async () => {
+      const { data } = await getAllTags();
+
+      setDefaultTags(data);
+    };
+    getDefaultTags();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -209,6 +222,7 @@ const CandidateDetailsPage = () => {
                                 status: value as ICandidateStatus,
                               })
                             }
+                            // @ts-ignore
                             defaultValue={{ label: status, value: status }}
                             options={getSelectStatus(
                               candidatesWithAllStatuses,
@@ -264,10 +278,13 @@ const CandidateDetailsPage = () => {
                           <CreatableSelect
                             isMulti
                             onChange={handleTagChange}
-                            options={defaultTags}
-                            value={tags.map(tag => ({
-                              value: tag.value,
-                              label: tag.label,
+                            options={defaultTags.map(tag => ({
+                              label: tag.name,
+                              value: tag.id.toString(),
+                            }))}
+                            value={candidate.tags.map(tag => ({
+                              label: tag.name,
+                              value: tag.id.toString(),
                             }))}
                           />
                         </FormGroup>

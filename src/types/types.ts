@@ -78,6 +78,13 @@ export interface ITag {
   createdAt: Date;
 }
 
+export interface Tag {
+  id: number;
+  name: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 export type IKNCareerStatus = "New" | "Closed" | "In Review";
 
 export type ICandidateRating = 0 | 1 | 2 | 3 | 4 | 5 | number;
@@ -92,6 +99,7 @@ export interface ICandidate {
   country: string;
   rating?: ICandidateRating;
   comment?: string;
+  tags: Tag[];
 }
 
 export interface IEvent {
