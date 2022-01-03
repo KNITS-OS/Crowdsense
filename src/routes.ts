@@ -51,7 +51,7 @@ import { OfferSearchPage, OfferWorkflowPage } from "./views/pages/offers";
 import {
   AllCandidatesSearchPage,
   CandidateDetailsPage,
-} from "./views/pages/users";
+} from "./views/pages/candidates";
 
 const routes: IRoute[] = [
   // Home

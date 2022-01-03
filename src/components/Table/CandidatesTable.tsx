@@ -14,7 +14,7 @@ import {
   TableActionButtons,
   TableRatingCell,
   TableTagsCell,
-} from "views/pages/users/components";
+} from "views/pages/candidates/components";
 import { TableActions } from ".";
 
 interface Props {
