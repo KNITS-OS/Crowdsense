@@ -3,7 +3,7 @@ import {
   IGetWorkflowCandidatesParams,
   IUpdateCandidateParams,
 } from "types/types";
-import { candidatesTable } from "variables";
+import { candidatesTable, tagsTable } from "variables";
 import { axiosInstance } from ".";
 
 /**
@@ -67,4 +67,20 @@ export const getWorkflowCandidatesMutation = async ({
       },
     },
   );
+};
+
+/**
+ * @description Update single candidate
+ */
+export const createTagMutation = async ({ name }: { name: string }) => {
+  const { data } = await axiosInstance.post(
+    tagsTable,
+    { name },
+    {
+      headers: {
+        prefer: "resolution=merge-duplicates",
+      },
+    },
+  );
+  return data;
 };

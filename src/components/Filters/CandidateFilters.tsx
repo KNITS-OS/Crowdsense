@@ -11,11 +11,11 @@ import {
   Row,
 } from "reactstrap";
 import { addFilter } from "redux/filters";
-import { ICandidate, ICandidateStatus } from "types/types";
+import { ICandidate, ICandidateStatus, Tag } from "types/types";
 import { getSelectStatus } from "utils";
-import { InputFilter, SelectFilter } from ".";
-import { getDataByFiltersQuery } from "../../utils/axios";
-import { candidatesTable } from "../../variables";
+import { getDataByFiltersQuery } from "utils/axios";
+import { candidatesTable } from "variables";
+import { CreateableSelectFilter, InputFilter, SelectFilter } from ".";
 
 type SetCandidatesType = React.Dispatch<
   React.SetStateAction<ICandidate[]>
@@ -41,6 +41,8 @@ const CandidateFilters = ({
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState<number | undefined>();
   const [email, setEmail] = useState("");
+  // @ts-ignore
+  const [tags, setTags] = useState<Tag[]>([]);
 
   const findByFilters = async () => {
     const nameFilter = addFilter({ param: name, filter: "like" });
@@ -54,6 +56,10 @@ const CandidateFilters = ({
       param: rating,
       filter: "eq",
     });
+    // const tagsFilter = addFilter({
+    //   param: tags,
+    //   filter: "in",
+    // });
 
     // status filter will be added to the query if it is not empty
     // otherwise search using all statuses
@@ -72,6 +78,7 @@ const CandidateFilters = ({
       email: emailFilter,
     };
 
+    // @todo add tags filter
     const { data } = await getDataByFiltersQuery(candidatesTable, filters);
 
     setCandidates(data);
@@ -120,6 +127,13 @@ const CandidateFilters = ({
                   label="Status"
                   setValue={setStatus}
                   options={getSelectStatus(defaultStatuses)}
+                />
+              </Col>
+              <Col md="3">
+                <CreateableSelectFilter
+                  id="tags"
+                  label="Tags"
+                  setValue={setTags}
                 />
               </Col>
               <Col md="2">
