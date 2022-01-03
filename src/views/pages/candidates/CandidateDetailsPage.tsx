@@ -1,6 +1,7 @@
 import { SelectFilter } from "components/Filters";
 import { BoxHeader } from "components/Headers";
 import { LabeledFormInput } from "components/Input";
+import { useTags } from "hooks";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
@@ -18,14 +19,13 @@ import {
   FormGroup,
   Row,
 } from "reactstrap";
-import { ICandidate, ICandidateStatus, Tag } from "types/types";
+import { ICandidate, ICandidateStatus } from "types/types";
 import { getSelectStatus } from "utils";
 import {
   getCandidateByIdQuery,
   updateCandidateMutation,
 } from "utils/axios";
 import { candidatesWithAllStatuses } from "variables";
-import { getAllTags } from "utils/axios/axiosQueries";
 
 interface RouteParams {
   id: string;
@@ -34,7 +34,7 @@ interface RouteParams {
 const CandidateDetailsPage = () => {
   let { id } = useParams<RouteParams>();
 
-  const [defaultTags, setDefaultTags] = useState<Tag[]>([]);
+  const { defaultTags } = useTags();
   const [candidate, setCandidate] = useState<ICandidate | null>(null);
 
   const history = useHistory();
@@ -58,14 +58,6 @@ const CandidateDetailsPage = () => {
       }
     };
     getCandidate();
-
-    const getDefaultTags = async () => {
-      const { data } = await getAllTags();
-
-      setDefaultTags(data);
-    };
-    getDefaultTags();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

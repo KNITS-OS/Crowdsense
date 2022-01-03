@@ -1,8 +1,11 @@
 // core components
+import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
 import { CandidateFilters } from "components/Filters";
 import { BoxHeader } from "components/Headers";
+import { WorkflowModal } from "components/Modals";
 import { useAlert } from "context";
-import { useEffect, useRef, useState } from "react";
+import { useTags } from "hooks";
+import { useRef, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // react component for creating dynamic tables
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
@@ -16,18 +19,15 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import { ICandidate, IUpdateCandidateUIParams, Tag } from "types/types";
+import { ICandidate, IUpdateCandidateUIParams } from "types/types";
 import { defaultColumns, pagination, selectCandidateRow } from "utils";
 import { updateCandidatesMutation } from "utils/axios";
 import { candidatesWithAllStatuses } from "variables";
-import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
 import {
   TableActionButtons,
   TableRatingCell,
   TableTagsCell,
 } from "./components";
-import { WorkflowModal } from "components/Modals";
-import { getAllTags } from "utils/axios/axiosQueries";
 
 const AllCandidatesSearchPage = () => {
   const { alert: alertHook } = useAlert();
@@ -38,8 +38,7 @@ const AllCandidatesSearchPage = () => {
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
   >([]);
-  const [defaultTags, setDefaultTags] = useState<Tag[]>([]);
-
+  const { defaultTags } = useTags();
   /**
    * @description - see which candidates need to be updated
    */
@@ -77,19 +76,8 @@ const AllCandidatesSearchPage = () => {
 
   const updateCandidates = async () => {
     await updateCandidatesMutation(updatedCandidates);
-    console.log(updatedCandidates);
-
     setUpdatedCandidates([]);
   };
-
-  useEffect(() => {
-    const getDefaultTags = async () => {
-      const { data } = await getAllTags();
-
-      setDefaultTags(data);
-    };
-    getDefaultTags();
-  }, []);
 
   return (
     <div>
