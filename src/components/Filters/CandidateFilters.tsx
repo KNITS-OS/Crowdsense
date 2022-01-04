@@ -157,7 +157,7 @@ const CandidateFilters = ({
                 </FormGroup>
               </Col>
               <Col
-                md="2"
+                md="1"
                 style={{
                   textAlign: "center",
                 }}
