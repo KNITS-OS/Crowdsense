@@ -105,7 +105,7 @@ const CandidateFilters = ({
                 alignItems: "flex-end",
               }}
             >
-              <Col md="3">
+              <Col md="2">
                 <InputFilter
                   id="name"
                   placeholder="Name"
@@ -121,7 +121,7 @@ const CandidateFilters = ({
                   setValue={setEmail}
                 />
               </Col>
-              <Col md="3">
+              <Col md="2">
                 <SelectFilter
                   id="status"
                   label="Status"
@@ -129,7 +129,7 @@ const CandidateFilters = ({
                   options={getSelectStatus(defaultStatuses)}
                 />
               </Col>
-              <Col md="3">
+              <Col md="2">
                 <CreateableSelectFilter
                   id="tags"
                   label="Tags"
