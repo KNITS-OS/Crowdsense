@@ -31,14 +31,13 @@ import {
 
 const AllCandidatesSearchPage = () => {
   const { alert: alertHook } = useAlert();
-  // make useRef with bootstraptable ref
-
   const tableRef = useRef();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
+  const { defaultTags } = useTags();
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
   >([]);
-  const { defaultTags } = useTags();
+
   /**
    * @description - see which candidates need to be updated
    */

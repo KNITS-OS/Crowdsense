@@ -3,7 +3,7 @@ import {
   ICandidate,
   ICandidateFilters,
   ICreateCandidateFinalState,
-  ITag,
+  SelectTag,
 } from "types/types";
 import { baseQuery } from "utils/rtkQueryConfig";
 import { candidatesTable, tagsTable } from "variables/tableVariables";
@@ -170,7 +170,7 @@ export const candidatesApiSlice = createApi({
           { type: "Candidates", id: reqId },
         ],
       }),
-      getCandidateTags: builder.query<ITag[], IGetCandidateTagsArgs>({
+      getCandidateTags: builder.query<SelectTag[], IGetCandidateTagsArgs>({
         query(args) {
           const { reqId } = args;
           return {

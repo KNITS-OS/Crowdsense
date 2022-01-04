@@ -20,10 +20,11 @@ import {
   Row,
 } from "reactstrap";
 import { ICandidate, ICandidateStatus } from "types/types";
-import { getSelectStatus } from "utils";
+import { getSelectStatus, mapTags, convertTag } from "utils";
 import {
   getCandidateByIdQuery,
   updateCandidateMutation,
+  createTagMutation,
 } from "utils/axios";
 import { candidatesWithAllStatuses } from "variables";
 
@@ -34,7 +35,7 @@ interface RouteParams {
 const CandidateDetailsPage = () => {
   let { id } = useParams<RouteParams>();
 
-  const { defaultTags } = useTags();
+  const { defaultTags, setDefaultTags } = useTags();
   const [candidate, setCandidate] = useState<ICandidate | null>(null);
 
   const history = useHistory();
@@ -45,6 +46,14 @@ const CandidateDetailsPage = () => {
     });
     // @ts-ignore
     setCandidate({ ...candidate, tags: newTags });
+  };
+
+  const handleCreate = async (inputValue: string) => {
+    const newTag = await createTagMutation({ name: inputValue });
+
+    // @ts-ignore
+    setCandidate({ ...candidate, tags: [...candidate?.tags, newTag] });
+    setDefaultTags(oldTags => [...oldTags, convertTag(newTag)]);
   };
 
   useEffect(() => {
@@ -270,14 +279,9 @@ const CandidateDetailsPage = () => {
                           <CreatableSelect
                             isMulti
                             onChange={handleTagChange}
-                            options={defaultTags.map(tag => ({
-                              label: tag.name,
-                              value: tag.id.toString(),
-                            }))}
-                            value={candidate.tags.map(tag => ({
-                              label: tag.name,
-                              value: tag.id.toString(),
-                            }))}
+                            onCreateOption={handleCreate}
+                            options={defaultTags}
+                            value={mapTags(candidate.tags)}
                           />
                         </FormGroup>
                       </Col>

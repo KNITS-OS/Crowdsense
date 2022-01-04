@@ -70,12 +70,9 @@ export interface IWorkflowCandidates {
   candidates: ICandidate[];
 }
 
-export interface ITag {
-  id: number;
-  candidateId: string;
+export interface SelectTag {
   value: string;
   label: string;
-  createdAt: Date;
 }
 
 export interface Tag {

@@ -1,3 +1,4 @@
+import { useTags } from "hooks";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider from "react-bootstrap-table2-toolkit";
 import { Card, CardHeader, Col, Row } from "reactstrap";
@@ -16,7 +17,6 @@ import {
   TableTagsCell,
 } from "views/pages/candidates/components";
 import { TableActions } from ".";
-import { useTags } from "hooks";
 
 interface Props {
   defaultStatuses: ICandidateStatus[];

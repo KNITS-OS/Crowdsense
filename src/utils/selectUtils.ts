@@ -2,6 +2,8 @@ import {
   ICandidateRating,
   ICandidateStatus,
   OptionType,
+  SelectTag,
+  Tag,
 } from "types/types";
 
 export const getSelectStatus = (statuses: ICandidateStatus[]) =>
@@ -20,3 +22,20 @@ export const getSelectRating: any = selectRatingArray.map(status => {
     label: status.toString(),
   };
 });
+
+export const mapTags = (tags: Tag[]) => {
+  return tags.map(tag => {
+    return {
+      value: tag.id.toString(),
+      label: tag.name,
+    };
+  });
+};
+
+export const convertTag = (tag: Tag) => {
+  const selectTag: SelectTag = {
+    value: tag.id.toString(),
+    label: tag.name,
+  };
+  return selectTag;
+};

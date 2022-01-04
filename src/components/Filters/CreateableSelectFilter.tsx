@@ -4,15 +4,17 @@ import CreatableSelect from "react-select/creatable";
 import { FormGroup, Label } from "reactstrap";
 import { Tag } from "types/types";
 import { createTagMutation } from "utils/axios";
+import { convertTag, mapTags } from "utils";
 
 interface Props {
   id: string;
   label: string;
+  value: Tag[];
   setValue: React.Dispatch<React.SetStateAction<Tag[]>>;
 }
 
-const CreateableSelectFilter = ({ setValue, id, label }: Props) => {
-  const { defaultTags } = useTags();
+const CreateableSelectFilter = ({ setValue, id, label, value }: Props) => {
+  const { defaultTags, setDefaultTags } = useTags();
 
   const handleChange = (newValue: OnChangeValue<any, true>) => {
     const newTags = newValue.map(tag => {
@@ -23,10 +25,11 @@ const CreateableSelectFilter = ({ setValue, id, label }: Props) => {
   };
 
   const handleCreate = async (inputValue: string) => {
-    const data = await createTagMutation({ name: inputValue });
-    console.log("data here", data);
+    const newTag = await createTagMutation({ name: inputValue });
 
-    setValue(oldValue => [...oldValue, data]);
+    // set new tag as value
+    setValue(oldTags => [...oldTags, newTag]);
+    setDefaultTags(oldTags => [...oldTags, convertTag(newTag)]);
   };
 
   return (
@@ -37,11 +40,9 @@ const CreateableSelectFilter = ({ setValue, id, label }: Props) => {
       <CreatableSelect
         isMulti
         onChange={handleChange}
-        options={defaultTags.map(tag => ({
-          label: tag.name,
-          value: tag.id.toString(),
-        }))}
         onCreateOption={handleCreate}
+        options={defaultTags}
+        value={mapTags(value)}
       />
     </FormGroup>
   );

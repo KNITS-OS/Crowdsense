@@ -4,7 +4,12 @@ export {
   getRowsByStatus,
   selectCandidateRow,
 } from "./tableUtils";
-export { getSelectStatus, getSelectRating } from "./selectUtils";
+export {
+  getSelectStatus,
+  getSelectRating,
+  mapTags,
+  convertTag,
+} from "./selectUtils";
 export { baseQuery } from "./rtkQueryConfig";
 export {
   removeCandidateFromLane,

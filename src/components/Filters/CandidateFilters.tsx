@@ -133,6 +133,7 @@ const CandidateFilters = ({
                 <CreateableSelectFilter
                   id="tags"
                   label="Tags"
+                  value={tags}
                   setValue={setTags}
                 />
               </Col>

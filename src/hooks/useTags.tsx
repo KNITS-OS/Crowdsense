@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
-import { Tag } from "types/types";
+import { SelectTag } from "types/types";
+import { mapTags } from "utils";
 import { getAllTags } from "utils/axios";
 /**
  * @description this hook will return all tags
  */
 const useTags = () => {
-  const [defaultTags, setDefaultTags] = useState<Tag[]>([]);
+  const [defaultTags, setDefaultTags] = useState<SelectTag[]>([]);
+
   useEffect(() => {
     const getDefaultTags = async () => {
       const { data } = await getAllTags();
 
-      setDefaultTags(data);
+      const selectTags: SelectTag[] = mapTags(data);
+
+      setDefaultTags(selectTags);
     };
     getDefaultTags();
   }, []);
+
   return {
     defaultTags,
+    setDefaultTags,
   };
 };
 
