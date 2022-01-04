@@ -41,7 +41,6 @@ const CandidateFilters = ({
   const [status, setStatus] = useState("");
   const [rating, setRating] = useState<number | undefined>();
   const [email, setEmail] = useState("");
-  // @ts-ignore
   const [tags, setTags] = useState<Tag[]>([]);
 
   const findByFilters = async () => {
@@ -56,10 +55,11 @@ const CandidateFilters = ({
       param: rating,
       filter: "eq",
     });
-    // const tagsFilter = addFilter({
-    //   param: tags,
-    //   filter: "in",
-    // });
+    const tagIds = tags.map(tag => tag.id.toString());
+    const tagsFilter = addFilter({
+      param: tagIds,
+      filter: "in",
+    });
 
     // status filter will be added to the query if it is not empty
     // otherwise search using all statuses
@@ -76,9 +76,9 @@ const CandidateFilters = ({
       status: finalStatusFilter(),
       rating: ratingFilter,
       email: emailFilter,
+      tags: tagsFilter,
     };
 
-    // @todo add tags filter
     const { data } = await getDataByFiltersQuery(candidatesTable, filters);
 
     setCandidates(data);
