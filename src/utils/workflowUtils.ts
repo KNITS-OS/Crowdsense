@@ -6,7 +6,11 @@ import {
   IWorkflowCandidates,
   IWorkflowRoutes,
 } from "types/types";
-import { READY_FOR_INTERVIEW, READY_TO_OFFER } from "../variables";
+import {
+  READY_FOR_INTERVIEW,
+  READY_TO_OFFER,
+} from "variables/statusVariables";
+
 import {
   getCandidatesByStatus,
   getCandidatesByStatusAndIds,

@@ -24,7 +24,7 @@ import {
   pagination,
   selectCandidateRow,
 } from "utils";
-import { candidatesWithAllStatuses } from "variables";
+import { candidatesWithAllStatuses } from "variables/statusVariables";
 
 export const AllCandidatesSearchPage = () => {
   const { alert: alertHook } = useAlert();

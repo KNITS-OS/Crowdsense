@@ -3,14 +3,14 @@ import { useLocation, useHistory } from "react-router";
 import { CandidatesTrelloBoard } from "components/Trello";
 import { ICandidate, IWorkflowCandidates } from "types/types";
 import { getWorkflowLaneData, offerWorkflow } from "utils";
+import { ADMIN_OFFER_WORKFLOW } from "variables/routeVariables";
 import {
   offerWorkflowState,
-  READY_TO_OFFER,
-  OFFER_SENT,
   OFFER_ACCEPTED,
   OFFER_DECLINED,
-  ADMIN_OFFER_WORKFLOW,
-} from "variables";
+  OFFER_SENT,
+  READY_TO_OFFER,
+} from "variables/statusVariables";
 
 export const OfferWorkflowPage = () => {
   const { state }: { state: ICandidate[] } = useLocation();

@@ -1,6 +1,7 @@
 import { InterviewSearchPage, InterviewWorkflowPage } from ".";
-import { INTERVIEW_WORKFLOW } from "variables";
+
 import { IRoute } from "types/types";
+import { INTERVIEW_WORKFLOW } from "variables/routeVariables";
 
 export const interviewMenu: IRoute[] = [
   {

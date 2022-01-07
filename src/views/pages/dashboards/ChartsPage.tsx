@@ -24,15 +24,15 @@ import {
   Col,
 } from "reactstrap";
 
+import { BoxHeader } from "components/Headers";
 import {
-  barChartExample,
   lineChartExample,
+  barChartExample,
   dotChartExample,
   doughnutChartExample,
   pieChartExample,
   multiBarChartExample,
-} from "variables";
-import { BoxHeader } from "components/Headers";
+} from "variables/charts";
 
 export const ChartsPage = () => {
   return (

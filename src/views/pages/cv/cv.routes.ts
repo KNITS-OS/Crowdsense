@@ -4,7 +4,7 @@ import {
   CVSearchPage,
   CVWorkflowPage,
 } from ".";
-import { CV_WORKFLOW } from "variables";
+import { CV_WORKFLOW } from "variables/routeVariables";
 import { IRoute } from "types/types";
 
 export const cvMenu: IRoute[] = [

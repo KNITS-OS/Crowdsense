@@ -3,14 +3,14 @@ import { useLocation, useHistory } from "react-router";
 import { CandidatesTrelloBoard } from "components/Trello";
 import { ICandidate, IWorkflowCandidates } from "types/types";
 import { getWorkflowLaneData, interviewWorkflow } from "utils";
+import { ADMIN_INTERVIEW_WORKFLOW } from "variables/routeVariables";
 import {
   interviewWorkflowState,
-  READY_FOR_INTERVIEW,
-  INTERVIEW_OFFERED,
   INTERVIEW_BOOKED,
+  INTERVIEW_OFFERED,
   INTERVIEW_PERFORMED,
-  ADMIN_INTERVIEW_WORKFLOW,
-} from "variables";
+  READY_FOR_INTERVIEW,
+} from "variables/statusVariables";
 
 export const InterviewWorkflowPage = () => {
   const { state }: { state: ICandidate[] } = useLocation();

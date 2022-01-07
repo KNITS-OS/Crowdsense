@@ -5,7 +5,7 @@ import {
   ICreateCandidateFinalState,
   SelectTag,
 } from "types/types";
-import { baseQuery } from "utils/rtkQueryConfig";
+import { baseQuery } from "utils";
 import { candidatesTable, tagsTable } from "variables/tableVariables";
 
 interface IGetEmployeesArgs {

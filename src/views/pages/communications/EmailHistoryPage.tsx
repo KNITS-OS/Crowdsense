@@ -25,7 +25,8 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import { BoxHeader } from "../../../components/Headers";
+
+import { BoxHeader } from "components/Headers";
 
 export const EmailHistoryPage = () => {
   return (

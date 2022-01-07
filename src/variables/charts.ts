@@ -15,7 +15,6 @@
 
 */
 
-import { colors } from ".";
 import {
   IBarChart,
   IDoughnutChart,
@@ -23,10 +22,14 @@ import {
   IPieChart,
 } from "types/types";
 
+import { colors } from "./theme";
+
 // Only for demo purposes - return a random number to generate datasets
 var randomScalingFactor = function () {
   return Math.round(Math.random() * 100);
 };
+
+console.log("colors", colors);
 
 export const lineChartExample: ILineChart = {
   data: {

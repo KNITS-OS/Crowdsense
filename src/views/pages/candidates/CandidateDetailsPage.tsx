@@ -27,7 +27,7 @@ import {
   getSelectStatus,
   mapTags,
 } from "utils";
-import { candidatesWithAllStatuses } from "variables";
+import { candidatesWithAllStatuses } from "variables/statusVariables";
 
 interface RouteParams {
   id: string;

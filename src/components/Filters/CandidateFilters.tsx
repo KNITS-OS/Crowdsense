@@ -14,8 +14,8 @@ import { addFilter } from "redux/filters";
 import { ICandidate, ICandidateStatus, Tag } from "types/types";
 import { getSelectStatus } from "utils";
 import { getDataByFiltersQuery } from "utils/axios";
-import { candidatesTable } from "variables";
 import { CreateableSelectFilter, InputFilter, SelectFilter } from ".";
+import { candidatesTable } from "variables/tableVariables";
 
 type SetCandidatesType = React.Dispatch<
   React.SetStateAction<ICandidate[]>

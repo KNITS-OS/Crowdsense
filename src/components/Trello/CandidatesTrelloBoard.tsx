@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Board from "react-trello";
 import { ICandidateStatus } from "types/types";
-import { removeCandidateFromLane } from "utils";
-import { trelloDefaults } from "variables";
-import { updateCandidateMutation } from "../../utils/axios";
+import { removeCandidateFromLane, updateCandidateMutation } from "utils";
+
+import { trelloDefaults } from "variables/workflowDefaults";
 
 interface Props {
   workflow: ReactTrello.BoardData;

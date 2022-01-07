@@ -6,7 +6,7 @@ import {
   ITableColumn,
 } from "types/types";
 import { axiosInstance } from ".";
-import { candidatesTable } from "variables";
+import { candidatesTable } from "variables/tableVariables";
 
 /**
  * @description Gets data using filters

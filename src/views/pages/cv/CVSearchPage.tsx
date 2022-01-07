@@ -7,7 +7,8 @@ import { BoxHeader } from "components/Headers";
 import { CandidatesTable } from "components/Table";
 
 import { ICandidate } from "types/types";
-import { candidatesWithCVStatus, ADMIN_CV_WORKFLOW } from "variables";
+import { ADMIN_CV_WORKFLOW } from "variables/routeVariables";
+import { candidatesWithCVStatus } from "variables/statusVariables";
 
 export const CVSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);

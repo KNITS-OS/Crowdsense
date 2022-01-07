@@ -6,10 +6,8 @@ import { CandidatesTable } from "components/Table";
 import { BoxHeader } from "components/Headers";
 
 import { ICandidate } from "types/types";
-import {
-  candidatesWithOfferStatus,
-  ADMIN_OFFER_WORKFLOW,
-} from "variables";
+import { ADMIN_OFFER_WORKFLOW } from "variables/routeVariables";
+import { candidatesWithOfferStatus } from "variables/statusVariables";
 
 export const OfferSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);

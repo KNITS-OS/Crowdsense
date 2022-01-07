@@ -3,7 +3,7 @@ import {
   IGetWorkflowCandidatesParams,
   IUpdateCandidateParams,
 } from "types/types";
-import { candidatesTable, tagsTable } from "variables";
+import { candidatesTable, tagsTable } from "variables/tableVariables";
 import { axiosInstance } from ".";
 
 /**

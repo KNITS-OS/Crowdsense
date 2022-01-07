@@ -9,7 +9,8 @@ import {
 } from "reactstrap";
 import { ICandidate, ICandidateStatus } from "types/types";
 import { updateCandidatesMutation, getSelectStatus } from "utils";
-import { candidatesWithAllStatuses } from "variables";
+import { candidatesWithAllStatuses } from "variables/statusVariables";
+
 import { WorkflowCard } from "../Cards";
 import { SelectFilter } from "../Filters";
 

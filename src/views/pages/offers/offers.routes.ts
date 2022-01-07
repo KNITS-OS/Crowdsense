@@ -1,5 +1,5 @@
 import { OfferSearchPage, OfferWorkflowPage } from ".";
-import { OFFER_WORKFLOW } from "variables";
+import { OFFER_WORKFLOW } from "variables/routeVariables";
 import { IRoute } from "types/types";
 
 export const offerMenu: IRoute[] = [

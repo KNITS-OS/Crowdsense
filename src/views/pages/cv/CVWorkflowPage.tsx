@@ -3,13 +3,14 @@ import { useHistory, useLocation } from "react-router";
 import { ICandidate, IWorkflowCandidates } from "types/types";
 import { cvWorkflow } from "utils";
 import { getWorkflowLaneData } from "utils/workflowUtils";
+
+import { CandidatesTrelloBoard } from "components/Trello";
+import { ADMIN_CV_WORKFLOW } from "variables/routeVariables";
 import {
   cvWorkflowState,
   CV_REVIEW,
   CV_REVIEWED,
-  ADMIN_CV_WORKFLOW,
-} from "variables";
-import { CandidatesTrelloBoard } from "components/Trello";
+} from "variables/statusVariables";
 
 export const CVWorkflowPage = () => {
   const { state }: { state: ICandidate[] } = useLocation();

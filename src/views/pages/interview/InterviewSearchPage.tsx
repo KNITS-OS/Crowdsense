@@ -6,10 +6,8 @@ import { BoxHeader } from "components/Headers";
 import { CandidatesTable } from "components/Table";
 
 import { ICandidate } from "types/types";
-import {
-  candidatesWithInterviewStatus,
-  ADMIN_INTERVIEW_WORKFLOW,
-} from "variables";
+import { ADMIN_INTERVIEW_WORKFLOW } from "variables/routeVariables";
+import { candidatesWithInterviewStatus } from "variables/statusVariables";
 
 export const InterviewSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
