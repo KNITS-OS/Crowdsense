@@ -1,12 +1,16 @@
-import { ToolkitContextType } from "react-bootstrap-table2-toolkit";
 import { useHistory } from "react-router";
+
 import { Button } from "reactstrap";
+
+import { ToolkitContextType } from "react-bootstrap-table2-toolkit";
+
 import {
   ICandidate,
   ICandidateStatus,
   IWorkflowRoutes,
-} from "../../../types/types";
-import DefaultExportCSVButton from "../Buttons/DefaultExportCSVButton";
+} from "types/types";
+
+import { DefaultExportCSVButton } from "components/Buttons";
 
 interface Props {
   selectedCandidates: ICandidate[];

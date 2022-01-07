@@ -1,9 +1,11 @@
-import { CandidateFilters } from "components/Filters";
-import { CandidatesTable } from "components/Elements/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
-import { ICandidate } from "types/types";
+
+import { CandidateFilters } from "components/Filters";
+import { CandidatesTable } from "components/Table";
 import { BoxHeader } from "components/Headers";
+
+import { ICandidate } from "types/types";
 import {
   candidatesWithOfferStatus,
   ADMIN_OFFER_WORKFLOW,

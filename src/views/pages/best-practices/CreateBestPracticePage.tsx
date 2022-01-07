@@ -17,7 +17,7 @@
 // core components
 // reactstrap components
 import { Col, Container, FormGroup, Input, Row } from "reactstrap";
-import { BoxHeader } from "../../../components/Headers";
+import { BoxHeader } from "components/Headers";
 
 export const CreateBestPracticePage = () => {
   return (

@@ -1,1 +1,1 @@
-export { default as WorkflowCard } from "./WorkflowCard";
+export * from "./WorkflowCard";

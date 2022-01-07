@@ -1,15 +1,14 @@
-import CandidatesTrelloBoard from "components/Trello/CandidatesTrelloBoard";
-import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useState, useEffect } from "react";
+import { useLocation, useHistory } from "react-router";
+import { CandidatesTrelloBoard } from "components/Trello";
 import { ICandidate, IWorkflowCandidates } from "types/types";
-import { offerWorkflow } from "utils";
-import { getWorkflowLaneData } from "utils/workflowUtils";
+import { getWorkflowLaneData, offerWorkflow } from "utils";
 import {
   offerWorkflowState,
+  READY_TO_OFFER,
+  OFFER_SENT,
   OFFER_ACCEPTED,
   OFFER_DECLINED,
-  OFFER_SENT,
-  READY_TO_OFFER,
   ADMIN_OFFER_WORKFLOW,
 } from "variables";
 

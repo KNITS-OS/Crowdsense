@@ -27,15 +27,14 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-// core components
-import IndexNavbar from "components/Navbars/IndexNavbar";
-import IndexHeader from "components/Headers/IndexHeader";
-import AuthFooter from "components/Elements/Footer/AuthFooter";
+
+import { AuthFooter } from "components/Footers";
+import { IndexHeader } from "components/Headers";
 
 export const Index = () => {
   return (
     <>
-      <IndexNavbar />
+      {/* <IndexNavbar/> */}
       <div className="main-content">
         <IndexHeader />
         <section className="py-6 pb-9 bg-default">

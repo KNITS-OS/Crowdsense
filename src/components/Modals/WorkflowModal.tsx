@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   Modal,
-  ModalBody,
-  ModalFooter,
   ModalHeader,
+  ModalBody,
   Row,
+  ModalFooter,
 } from "reactstrap";
-
 import { ICandidate, ICandidateStatus } from "types/types";
 import { updateCandidatesMutation, getSelectStatus } from "utils";
 import { candidatesWithAllStatuses } from "variables";
-
-import { SelectFilter } from "../../Filters";
 import { WorkflowCard } from "../Cards";
+import { SelectFilter } from "../Filters";
 
 interface Props {
   candidates: ICandidate[];

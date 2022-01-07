@@ -1,6 +1,6 @@
 import { InputType } from "reactstrap/es/Input";
 import { FormInput } from ".";
-import { FormLabel } from "../Elements/Labels";
+import { FormLabel } from "../Labels";
 
 interface Props {
   id: string;

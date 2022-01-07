@@ -15,32 +15,14 @@
 
 */
 // core components
-import { useAlert } from "context";
-import React from "react";
-// react component for creating dynamic tables
-import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-// reactstrap components
-import {
-  ButtonGroup,
-  Card,
-  CardHeader,
-  Col,
-  Container,
-  Row,
-  UncontrolledTooltip,
-} from "reactstrap";
-import { pagination } from "utils";
-import { dataTable } from "variables/general";
-import { PrintButton } from "../../../components/Buttons";
-import CopyButton from "../../../components/Buttons/CopyButton";
-import { BoxHeader } from "../../../components/Headers";
 
-const { SearchBar } = Search;
+import { Card, CardHeader, Container, Row } from "reactstrap";
+
+import { useAlert } from "context";
+
+import { BoxHeader } from "components/Headers";
 
 export const ReactBSTables = () => {
-  const componentRef = React.useRef(null);
-
   const { alert } = useAlert();
 
   return (
@@ -59,7 +41,7 @@ export const ReactBSTables = () => {
                   order to get started fast.
                 </p>
               </CardHeader>
-              <ToolkitProvider
+              {/* <ToolkitProvider
                 data={dataTable}
                 keyField="name"
                 columns={[
@@ -119,7 +101,7 @@ export const ReactBSTables = () => {
                     />
                   </div>
                 )}
-              </ToolkitProvider>
+              </ToolkitProvider> */}
             </Card>
             <Card>
               <CardHeader>
@@ -130,7 +112,7 @@ export const ReactBSTables = () => {
                   order to get started fast.
                 </p>
               </CardHeader>
-              <ToolkitProvider
+              {/* <ToolkitProvider
                 data={dataTable}
                 keyField="name"
                 columns={[
@@ -218,7 +200,7 @@ export const ReactBSTables = () => {
                     />
                   </div>
                 )}
-              </ToolkitProvider>
+              </ToolkitProvider> */}
             </Card>
           </div>
         </Row>

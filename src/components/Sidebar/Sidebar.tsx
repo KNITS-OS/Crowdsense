@@ -184,7 +184,7 @@ export const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
       if (route.global) return null;
 
       if (route.collapse && route.state && route.views) {
-        let st = {};
+        let st: any = {};
         st[route["state"]] = !state[route.state];
         return (
           <NavItem key={route.path}>

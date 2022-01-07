@@ -1,6 +1,8 @@
-import { Rating } from "react-simple-star-rating";
 import { Card, CardBody, Col, Row } from "reactstrap";
-import { ICandidate } from "../../../types/types";
+
+import { Rating } from "react-simple-star-rating";
+
+import { ICandidate } from "types/types";
 
 interface Props {
   candidate: ICandidate;

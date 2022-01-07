@@ -1,6 +1,8 @@
+import { Label } from "reactstrap";
+
 import { SelectRowProps } from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Label } from "reactstrap";
+
 import { ICandidate, ICandidateStatus } from "types/types";
 
 // @todo when changing how many rows per page and pressing search app crashes
@@ -20,7 +22,7 @@ export const pagination = paginationFactory({
               aria-controls="datatable-basic"
               className="form-control form-control-sm"
               onChange={e => {
-                onSizePerPageChange(parseInt(e.target.value), 1);
+                onSizePerPageChange(parseInt(e.target.value));
               }}
             >
               <option value="10">10</option>

@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useState, useEffect } from "react";
+import { useLocation, useHistory } from "react-router";
+import { CandidatesTrelloBoard } from "components/Trello";
 import { ICandidate, IWorkflowCandidates } from "types/types";
-import { interviewWorkflow } from "utils";
-import { getWorkflowLaneData } from "utils/workflowUtils";
+import { getWorkflowLaneData, interviewWorkflow } from "utils";
 import {
   interviewWorkflowState,
-  INTERVIEW_BOOKED,
-  INTERVIEW_OFFERED,
-  INTERVIEW_PERFORMED,
   READY_FOR_INTERVIEW,
+  INTERVIEW_OFFERED,
+  INTERVIEW_BOOKED,
+  INTERVIEW_PERFORMED,
   ADMIN_INTERVIEW_WORKFLOW,
 } from "variables";
-import CandidatesTrelloBoard from "components/Trello/CandidatesTrelloBoard";
 
 export const InterviewWorkflowPage = () => {
   const { state }: { state: ICandidate[] } = useLocation();
