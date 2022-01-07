@@ -1,35 +1,32 @@
-// core components
-import DefaultExportCSVButton from "components/Buttons/DefaultExportCSVButton";
+import { useRef, useState } from "react";
+import BootstrapTable from "react-bootstrap-table-next";
+import ToolkitProvider from "react-bootstrap-table2-toolkit";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+} from "reactstrap";
+import { TableRatingCell, TableTagsCell, TableActionButtons } from ".";
+import { DefaultExportCSVButton } from "components/Buttons";
 import { CandidateFilters } from "components/Filters";
 import { BoxHeader } from "components/Headers";
 import { WorkflowModal } from "components/Modals";
 import { useAlert } from "context";
 import { useTags } from "hooks";
-import { useRef, useState } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-// react component for creating dynamic tables
-import ToolkitProvider from "react-bootstrap-table2-toolkit";
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  Row,
-} from "reactstrap";
 import { ICandidate, IUpdateCandidateUIParams } from "types/types";
-import { defaultColumns, pagination, selectCandidateRow } from "utils";
-import { updateCandidatesMutation } from "utils/axios";
-import { candidatesWithAllStatuses } from "variables";
 import {
-  TableActionButtons,
-  TableRatingCell,
-  TableTagsCell,
-} from "./components";
+  updateCandidatesMutation,
+  defaultColumns,
+  pagination,
+  selectCandidateRow,
+} from "utils";
+import { candidatesWithAllStatuses } from "variables";
 
-const AllCandidatesSearchPage = () => {
+export const AllCandidatesSearchPage = () => {
   const { alert: alertHook } = useAlert();
   const tableRef = useRef();
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
@@ -209,5 +206,3 @@ const AllCandidatesSearchPage = () => {
     </div>
   );
 };
-
-export default AllCandidatesSearchPage;

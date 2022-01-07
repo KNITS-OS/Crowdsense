@@ -1,1 +1,1 @@
-export { default as ApplicationsPage } from "./ApplicationsPage";
+export * from "./ApplicationsPage";

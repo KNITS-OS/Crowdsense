@@ -7,7 +7,7 @@ interface Props {
   updateCandidateUI: ({ reqId, body }: IUpdateCandidateUIParams) => void;
 }
 
-const TableRatingCell = ({ row, updateCandidateUI }: Props) => {
+export const TableRatingCell = ({ row, updateCandidateUI }: Props) => {
   if (!row.rating) row.rating = 0;
 
   const handleRatingChange = (newRating: number) => {
@@ -28,4 +28,3 @@ const TableRatingCell = ({ row, updateCandidateUI }: Props) => {
     </>
   );
 };
-export default TableRatingCell;

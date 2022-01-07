@@ -5,7 +5,7 @@ interface Props {
   elementId: string;
 }
 
-const CopyButton = ({ elementId }: Props) => {
+export const CopyButton = ({ elementId }: Props) => {
   const { copyToClipboardAsTable } = useCopy();
   return (
     <Button
@@ -21,4 +21,3 @@ const CopyButton = ({ elementId }: Props) => {
     </Button>
   );
 };
-export default CopyButton;

@@ -31,7 +31,10 @@ import {
   Button,
 } from "reactstrap";
 
-const AdminNavbar = () => {
+import argonReactWhiteSrc from "../../assets/img/brand/argon-react-white.png";
+import blueSrc from "../../assets/img/brand/blue.png";
+
+export const AuthNavbar = () => {
   return (
     <>
       <Navbar
@@ -41,12 +44,7 @@ const AdminNavbar = () => {
       >
         <Container>
           <NavbarBrand to="/" tag={Link}>
-            <img
-              alt="..."
-              src={
-                require("assets/img/brand/argon-react-white.png").default
-              }
-            />
+            <img alt="..." src={argonReactWhiteSrc} />
           </NavbarBrand>
           <Button
             aria-controls="navbar-collapse"
@@ -69,10 +67,7 @@ const AdminNavbar = () => {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <Link to="/admin/dashboard">
-                    <img
-                      alt="..."
-                      src={require("assets/img/brand/blue.png").default}
-                    />
+                    <img alt="..." src={blueSrc} />
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
@@ -207,5 +202,3 @@ const AdminNavbar = () => {
     </>
   );
 };
-
-export default AdminNavbar;

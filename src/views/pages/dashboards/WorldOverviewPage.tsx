@@ -34,7 +34,7 @@ const mapData = {
   US: 2920,
 };
 
-const WorldOverviewPage = () => {
+export const WorldOverviewPage = () => {
   return (
     <>
       <BoxHeader />
@@ -143,5 +143,3 @@ const WorldOverviewPage = () => {
     </>
   );
 };
-
-export default WorldOverviewPage;

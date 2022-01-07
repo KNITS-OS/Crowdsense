@@ -33,7 +33,7 @@ interface Props {
   parentName: string;
 }
 
-const CardsHeader = ({ name, parentName }: Props) => {
+export const CardsHeader = ({ name, parentName }: Props) => {
   return (
     <>
       <div className="header bg-info pb-6">
@@ -213,5 +213,3 @@ const CardsHeader = ({ name, parentName }: Props) => {
     </>
   );
 };
-
-export default CardsHeader;

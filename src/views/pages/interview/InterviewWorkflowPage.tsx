@@ -13,7 +13,7 @@ import {
 } from "variables";
 import CandidatesTrelloBoard from "components/Trello/CandidatesTrelloBoard";
 
-const InterviewWorkflowPage = () => {
+export const InterviewWorkflowPage = () => {
   const { state }: { state: ICandidate[] } = useLocation();
   const history = useHistory();
 
@@ -40,4 +40,3 @@ const InterviewWorkflowPage = () => {
     </>
   );
 };
-export default InterviewWorkflowPage;

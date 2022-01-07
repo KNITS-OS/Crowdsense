@@ -8,7 +8,7 @@ interface Props {
 }
 
 // @todo find out if this should export all candidates or only selected ones
-const DefaultExportCSVButton = ({ props }: Props) => {
+export const DefaultExportCSVButton = ({ props }: Props) => {
   const { ExportCSVButton } = CSVExport;
   return (
     <ExportCSVButton
@@ -22,4 +22,3 @@ const DefaultExportCSVButton = ({ props }: Props) => {
     </ExportCSVButton>
   );
 };
-export default DefaultExportCSVButton;

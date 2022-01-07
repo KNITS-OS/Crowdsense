@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 // reactstrap components
 import { Button, Card, CardBody, Container, Row, Col } from "reactstrap";
 
-const IndexHeader = () => {
+export const IndexHeader = () => {
   return (
     <>
       <div className="header bg-info pt-5 pb-7">
@@ -135,5 +135,3 @@ const IndexHeader = () => {
     </>
   );
 };
-
-export default IndexHeader;

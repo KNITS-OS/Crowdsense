@@ -34,7 +34,7 @@ import {
 } from "variables";
 import { BoxHeader } from "components/Headers";
 
-const ChartsPage = () => {
+export const ChartsPage = () => {
   return (
     <>
       <BoxHeader />
@@ -157,5 +157,3 @@ const ChartsPage = () => {
     </>
   );
 };
-
-export default ChartsPage;

@@ -29,7 +29,7 @@ const plugins = [
   ...createBasicMarkPlugins(),
 ];
 
-const DocxExamplePage = () => {
+export const DocxExamplePage = () => {
   const [editorValue, setEditorValue] = useState([
     { type: "paragraph", children: [{ text: "" }] },
   ]);
@@ -86,4 +86,3 @@ const DocxExamplePage = () => {
     </div>
   );
 };
-export default DocxExamplePage;

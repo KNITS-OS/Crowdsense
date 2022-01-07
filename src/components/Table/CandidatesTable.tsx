@@ -29,7 +29,7 @@ interface Props {
   setUpdatedCandidates: IUseSetCandidate;
 }
 
-const CandidatesTable = ({
+export const CandidatesTable = ({
   defaultStatuses,
   workflowRoute,
   candidates,
@@ -146,4 +146,3 @@ const CandidatesTable = ({
     </Row>
   );
 };
-export default CandidatesTable;

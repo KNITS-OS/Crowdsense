@@ -1,6 +1,6 @@
 import { InputType } from "reactstrap/es/Input";
 import { FormInput } from ".";
-import { FormLabel } from "../Labels";
+import { FormLabel } from "../Elements/Labels";
 
 interface Props {
   id: string;
@@ -12,7 +12,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const LabeledFormInput = ({
+export const LabeledFormInput = ({
   id,
   name,
   value,
@@ -33,4 +33,3 @@ const LabeledFormInput = ({
     </>
   );
 };
-export default LabeledFormInput;

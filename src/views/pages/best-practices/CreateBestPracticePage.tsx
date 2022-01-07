@@ -19,7 +19,7 @@
 import { Col, Container, FormGroup, Input, Row } from "reactstrap";
 import { BoxHeader } from "../../../components/Headers";
 
-const CreateBestPracticePage = () => {
+export const CreateBestPracticePage = () => {
   return (
     <>
       <BoxHeader />
@@ -36,5 +36,3 @@ const CreateBestPracticePage = () => {
     </>
   );
 };
-
-export default CreateBestPracticePage;

@@ -7,7 +7,12 @@ interface Props {
   placeholder: string;
 }
 
-const InputFilter = ({ id, value, setValue, placeholder }: Props) => {
+export const InputFilter = ({
+  id,
+  value,
+  setValue,
+  placeholder,
+}: Props) => {
   return (
     <FormGroup style={{ marginBottom: 0 }}>
       <Label className="form-control-label" htmlFor={id}>
@@ -25,4 +30,3 @@ const InputFilter = ({ id, value, setValue, placeholder }: Props) => {
     </FormGroup>
   );
 };
-export default InputFilter;

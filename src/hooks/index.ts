@@ -1,2 +1,2 @@
-export { default as useCopy } from "./useCopy";
-export { default as useTags } from "./useTags";
+export * from "./useCopy";
+export * from "./useTags";

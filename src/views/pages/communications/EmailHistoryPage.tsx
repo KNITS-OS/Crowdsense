@@ -27,7 +27,7 @@ import {
 } from "reactstrap";
 import { BoxHeader } from "../../../components/Headers";
 
-const EmailHistoryPage = () => {
+export const EmailHistoryPage = () => {
   return (
     <>
       <BoxHeader />
@@ -342,5 +342,3 @@ const EmailHistoryPage = () => {
     </>
   );
 };
-
-export default EmailHistoryPage;

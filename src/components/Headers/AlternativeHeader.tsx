@@ -24,7 +24,7 @@ import {
   Row,
 } from "reactstrap";
 
-const AlternativeHeader = () => {
+export const AlternativeHeader = () => {
   return (
     <>
       <div className="header pb-6">
@@ -79,5 +79,3 @@ const AlternativeHeader = () => {
     </>
   );
 };
-
-export default AlternativeHeader;

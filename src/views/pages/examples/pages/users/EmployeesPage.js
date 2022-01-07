@@ -29,17 +29,17 @@ import { employees } from "./EmployeesData";
 
 const { SearchBar } = Search;
 
-const Employees = () => {
+export const Employees = () => {
   const history = useHistory();
   const { alert } = useAlert();
 
-  const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
-    var { id } = e.target as HTMLButtonElement;
+  const goToEmployeeDetails = e => {
+    var { id } = e.target;
     history.push(`/admin/users/employee-details/${id}`);
   };
 
-  const employeeRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    var { id } = e.target as HTMLButtonElement;
+  const employeeRemove = e => {
+    var { id } = e.target;
     let empIndex = employees.findIndex(emp => emp.id !== parseInt(id));
     console.log(employees[empIndex]);
     console.log(employees.length);
@@ -49,7 +49,7 @@ const Employees = () => {
     //props.history.push('/admin/users/employee-details/'+id);
   };
 
-  const formatActionButtonCell = (_: undefined, row: any) => {
+  const formatActionButtonCell = (_, row) => {
     return (
       <>
         <Button
@@ -181,5 +181,3 @@ const Employees = () => {
     </>
   );
 };
-
-export default Employees;

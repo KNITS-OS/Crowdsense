@@ -38,7 +38,7 @@ import { BoxHeader } from "../../../components/Headers";
 
 const { SearchBar } = Search;
 
-const ArchivePage = () => {
+export const ArchivePage = () => {
   const componentRef = React.useRef(null);
 
   const { alert } = useAlert();
@@ -226,5 +226,3 @@ const ArchivePage = () => {
     </>
   );
 };
-
-export default ArchivePage;

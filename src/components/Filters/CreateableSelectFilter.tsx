@@ -11,7 +11,12 @@ interface Props {
   setValue: React.Dispatch<React.SetStateAction<Tag[]>>;
 }
 
-const CreateableSelectFilter = ({ setValue, id, label, value }: Props) => {
+export const CreateableSelectFilter = ({
+  setValue,
+  id,
+  label,
+  value,
+}: Props) => {
   const { defaultTags } = useTags();
 
   const handleChange = (newValue: OnChangeValue<any, true>) => {
@@ -36,4 +41,3 @@ const CreateableSelectFilter = ({ setValue, id, label, value }: Props) => {
     </FormGroup>
   );
 };
-export default CreateableSelectFilter;

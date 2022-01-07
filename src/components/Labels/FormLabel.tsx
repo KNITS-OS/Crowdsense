@@ -5,10 +5,8 @@ interface Props {
   id: string;
 }
 
-const FormLabel = ({ label, id }: Props) => (
+export const FormLabel = ({ label, id }: Props) => (
   <Label className="form-control-label" for={id}>
     {label}
   </Label>
 );
-
-export default FormLabel;

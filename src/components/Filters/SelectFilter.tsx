@@ -10,7 +10,7 @@ interface Props {
   defaultValue?: OptionType;
 }
 
-const SelectFilter = ({
+export const SelectFilter = ({
   setValue,
   options,
   id,
@@ -31,4 +31,3 @@ const SelectFilter = ({
     </FormGroup>
   );
 };
-export default SelectFilter;

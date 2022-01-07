@@ -29,7 +29,7 @@ interface Props {
   parentName: string;
 }
 
-const TimelineHeader = ({ name, parentName }: Props) => {
+export const TimelineHeader = ({ name, parentName }: Props) => {
   return (
     <>
       <div className="header header-dark bg-info pb-6 content__title content__title--calendar">
@@ -74,5 +74,3 @@ const TimelineHeader = ({ name, parentName }: Props) => {
     </>
   );
 };
-
-export default TimelineHeader;

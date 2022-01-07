@@ -7,12 +7,13 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-import { ICandidate, ICandidateStatus } from "../../types/types";
-import { getSelectStatus } from "../../utils";
-import { updateCandidatesMutation } from "../../utils/axios";
-import { candidatesWithAllStatuses } from "../../variables";
+
+import { ICandidate, ICandidateStatus } from "types/types";
+import { updateCandidatesMutation, getSelectStatus } from "utils";
+import { candidatesWithAllStatuses } from "variables";
+
+import { SelectFilter } from "../../Filters";
 import { WorkflowCard } from "../Cards";
-import { SelectFilter } from "../Filters";
 
 interface Props {
   candidates: ICandidate[];
@@ -24,7 +25,7 @@ interface Props {
   tableRef: React.MutableRefObject<undefined>;
 }
 
-const WorkflowModal = ({
+export const WorkflowModal = ({
   candidates,
   setCandidates,
   selectedCandidates,
@@ -134,4 +135,3 @@ const WorkflowModal = ({
     </>
   );
 };
-export default WorkflowModal;

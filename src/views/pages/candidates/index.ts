@@ -1,3 +1,4 @@
-export { default as AllCandidatesSearchPage } from "./AllCandidatesSearchPage";
-export { default as CandidateDetailsPage } from "./CandidateDetailsPage";
-export { default as CreateCandidatePage } from "./CreateCandidatePage";
+export * from "./components";
+export * from "./AllCandidatesSearchPage";
+export * from "./CandidateDetailsPage";
+export * from "./CreateCandidatePage";

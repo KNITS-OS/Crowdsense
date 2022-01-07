@@ -53,7 +53,7 @@ import {
   CandidateDetailsPage,
 } from "./views/pages/candidates";
 
-const routes: IRoute[] = [
+export const routes: IRoute[] = [
   // Home
   {
     collapse: false,
@@ -339,5 +339,3 @@ const routes: IRoute[] = [
     ],
   },
 ];
-
-export default routes;

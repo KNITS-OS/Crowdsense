@@ -1,12 +1,12 @@
 import { Rating } from "react-simple-star-rating";
 import { Card, CardBody, Col, Row } from "reactstrap";
-import { ICandidate } from "../../types/types";
+import { ICandidate } from "../../../types/types";
 
 interface Props {
   candidate: ICandidate;
 }
 
-const WorkflowCard = ({ candidate }: Props) => {
+export const WorkflowCard = ({ candidate }: Props) => {
   const { fullName, status, rating, submissionDate } = candidate;
   return (
     <Col md="6">
@@ -39,4 +39,3 @@ const WorkflowCard = ({ candidate }: Props) => {
     </Col>
   );
 };
-export default WorkflowCard;

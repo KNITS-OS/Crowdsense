@@ -1,1 +1,1 @@
-export { default as EmailPage } from "./EmailPage";
+export * from "./EmailPage";

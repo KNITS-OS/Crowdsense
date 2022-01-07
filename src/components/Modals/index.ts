@@ -1,1 +1,1 @@
-export { default as WorkflowModal } from "./WorkflowModal";
+export * from "./WorkflowModal";

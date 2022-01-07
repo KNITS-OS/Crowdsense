@@ -2,7 +2,13 @@ import { Card, CardBody, CardTitle, Col, Row } from "reactstrap";
 // @ts-ignore
 // import { MovableCardWrapper } from "react-trello";
 
-const TrelloCard = ({
+/**
+ *
+ * @ignore this component its for future use
+ * @this component is not used in the project
+ *
+ */
+export const TrelloCard = ({
   showDeleteButton: boolean,
   onDelete,
   onClick,
@@ -107,4 +113,3 @@ const TrelloCard = ({
     </>
   );
 };
-export default TrelloCard;

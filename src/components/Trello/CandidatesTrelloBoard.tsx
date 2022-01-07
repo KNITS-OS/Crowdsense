@@ -9,7 +9,7 @@ interface Props {
   workflow: ReactTrello.BoardData;
 }
 
-const CandidatesTrelloBoard = ({ workflow }: Props) => {
+export const CandidatesTrelloBoard = ({ workflow }: Props) => {
   const [eventBus, setEventBus] = useState<any>();
   return (
     // https://github.com/rcdexta/react-trello#properties
@@ -50,4 +50,3 @@ const CandidatesTrelloBoard = ({ workflow }: Props) => {
     />
   );
 };
-export default CandidatesTrelloBoard;

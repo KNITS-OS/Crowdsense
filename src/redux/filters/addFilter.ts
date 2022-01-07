@@ -16,7 +16,7 @@ interface Props {
   filter: ISimpleFilter | ILikeFilter | IArrayFilter;
 }
 
-const addFilter = ({ param, filter }: Props) => {
+export const addFilter = ({ param, filter }: Props) => {
   let finalFilter: StringOrUndefined = undefined;
 
   if (param) {
@@ -43,5 +43,3 @@ const addFilter = ({ param, filter }: Props) => {
 
   return finalFilter;
 };
-
-export default addFilter;

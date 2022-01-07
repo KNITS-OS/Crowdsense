@@ -35,7 +35,7 @@ import {
 // core components
 import ProfileHeader from "components/Headers/ProfileHeader";
 
-const CreateEmailTemplatePage = () => {
+export const CreateEmailTemplatePage = () => {
   return (
     <>
       <ProfileHeader />
@@ -535,5 +535,3 @@ const CreateEmailTemplatePage = () => {
     </>
   );
 };
-
-export default CreateEmailTemplatePage;

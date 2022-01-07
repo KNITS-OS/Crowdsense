@@ -1,29 +1,29 @@
-import { LabeledFormInput } from "components/Input";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import Select from "react-select";
 import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
   Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  Button,
+  CardBody,
   Form,
   FormGroup,
-  Row,
 } from "reactstrap";
-import { useCreateCandidateMutation } from "redux/features/candidates/candidatesApiSlice";
+import { LabeledFormInput } from "components/Form";
+import { BoxHeader } from "components/Headers";
+import { FormLabel } from "components/Labels";
+import { useCreateCandidateMutation } from "redux/features";
 import {
-  ICandidateRating,
-  ICreateCandidateFinalState,
   ICreateCandidateInitialState,
+  ICreateCandidateFinalState,
+  ICandidateRating,
 } from "types/types";
-import { BoxHeader } from "../../../components/Headers";
-import { FormLabel } from "../../../components/Labels";
-import { getSelectRating } from "../../../utils";
+import { getSelectRating } from "utils";
+import Select from "react-select";
 
-const CreateCandidatePage = () => {
+export const CreateCandidatePage = () => {
   const history = useHistory();
 
   const initialState: ICreateCandidateInitialState = {
@@ -228,4 +228,3 @@ const CreateCandidatePage = () => {
     </>
   );
 };
-export default CreateCandidatePage;

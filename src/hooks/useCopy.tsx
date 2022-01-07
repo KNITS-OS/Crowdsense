@@ -6,7 +6,7 @@ import ReactBSAlert from "react-bootstrap-sweetalert";
  * @description this hook will copy to clipboard an entire table,
  * so you can paste it inside an excel or csv file
  */
-const useCopy = () => {
+export const useCopy = () => {
   const { setAlert } = useAlert();
   return {
     copyToClipboardAsTable: (element: HTMLElement | null) => {
@@ -36,5 +36,3 @@ const useCopy = () => {
     },
   };
 };
-
-export default useCopy;

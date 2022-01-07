@@ -1,38 +1,39 @@
-import { SelectFilter } from "components/Filters";
-import { BoxHeader } from "components/Headers";
-import { LabeledFormInput } from "components/Input";
-import { useTags } from "hooks";
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router";
 import { OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { Rating } from "react-simple-star-rating";
 import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
   Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  Button,
+  CardBody,
   Form,
   FormGroup,
-  Row,
 } from "reactstrap";
+import { SelectFilter } from "components/Filters";
+import { LabeledFormInput } from "components/Form";
+import { BoxHeader } from "components/Headers";
+import { useTags } from "hooks";
 import { ICandidate, ICandidateStatus } from "types/types";
-import { getSelectStatus, mapTags, convertTag } from "utils";
 import {
+  createTagMutation,
+  convertTag,
   getCandidateByIdQuery,
   updateCandidateMutation,
-  createTagMutation,
-} from "utils/axios";
+  getSelectStatus,
+  mapTags,
+} from "utils";
 import { candidatesWithAllStatuses } from "variables";
 
 interface RouteParams {
   id: string;
 }
 
-const CandidateDetailsPage = () => {
+export const CandidateDetailsPage = () => {
   let { id } = useParams<RouteParams>();
 
   const { defaultTags, setDefaultTags } = useTags();
@@ -296,5 +297,3 @@ const CandidateDetailsPage = () => {
     </>
   );
 };
-
-export default CandidateDetailsPage;

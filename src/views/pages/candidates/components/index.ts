@@ -1,3 +1,3 @@
-export { default as TableActionButtons } from "./TableActionButtons";
-export { default as TableTagsCell } from "./TableTagsCell";
-export { default as TableRatingCell } from "./TableRatingCell";
+export * from "./TableActionButtons";
+export * from "./TableTagsCell";
+export * from "./TableRatingCell";

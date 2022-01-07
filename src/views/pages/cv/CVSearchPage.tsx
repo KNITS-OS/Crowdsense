@@ -1,12 +1,12 @@
 import { CandidateFilters } from "components/Filters";
-import { CandidatesTable } from "components/Table";
+import { CandidatesTable } from "components/Elements/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate } from "types/types";
 import { BoxHeader } from "components/Headers";
 import { candidatesWithCVStatus, ADMIN_CV_WORKFLOW } from "variables";
 
-const CVSearchPage = () => {
+export const CVSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
@@ -44,4 +44,3 @@ const CVSearchPage = () => {
     </div>
   );
 };
-export default CVSearchPage;

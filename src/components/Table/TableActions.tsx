@@ -5,7 +5,7 @@ import {
   ICandidate,
   ICandidateStatus,
   IWorkflowRoutes,
-} from "../../types/types";
+} from "../../../types/types";
 import DefaultExportCSVButton from "../Buttons/DefaultExportCSVButton";
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   defaultStatuses: ICandidateStatus[];
 }
 
-const TableActions = ({
+export const TableActions = ({
   selectedCandidates,
   updateCandidates,
   toolkitProps,
@@ -65,4 +65,3 @@ const TableActions = ({
     </div>
   );
 };
-export default TableActions;

@@ -1,4 +1,4 @@
-const AddNewCVPage = () => {
+export const AddNewCVPage = () => {
   return (
     <>
       <div>
@@ -7,4 +7,3 @@ const AddNewCVPage = () => {
     </>
   );
 };
-export default AddNewCVPage;

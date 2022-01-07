@@ -10,7 +10,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const FormInput = ({
+export const FormInput = ({
   id,
   name,
   onChange,
@@ -30,4 +30,3 @@ const FormInput = ({
     />
   );
 };
-export default FormInput;

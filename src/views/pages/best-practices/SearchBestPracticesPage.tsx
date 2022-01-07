@@ -40,7 +40,7 @@ import { BoxHeader } from "../../../components/Headers";
 
 const { SearchBar } = Search;
 
-const ReactBSTables = () => {
+export const ReactBSTables = () => {
   const componentRef = React.useRef(null);
   const { alert } = useAlert();
 
@@ -239,5 +239,3 @@ const ReactBSTables = () => {
     </>
   );
 };
-
-export default ReactBSTables;

@@ -5,7 +5,7 @@ import { getAllTags } from "utils/axios";
 /**
  * @description this hook will return all tags
  */
-const useTags = () => {
+export const useTags = () => {
   const [defaultTags, setDefaultTags] = useState<SelectTag[]>([]);
 
   useEffect(() => {
@@ -24,5 +24,3 @@ const useTags = () => {
     setDefaultTags,
   };
 };
-
-export default useTags;

@@ -31,7 +31,7 @@ interface Props {
   defaultStatuses: ICandidateStatus[];
 }
 
-const CandidateFilters = ({
+export const CandidateFilters = ({
   setCandidates,
   setSelectedCandidates,
   setUpdatedCandidates,
@@ -181,4 +181,3 @@ const CandidateFilters = ({
     </Row>
   );
 };
-export default CandidateFilters;

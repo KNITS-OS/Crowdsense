@@ -30,9 +30,9 @@ import {
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import IndexHeader from "components/Headers/IndexHeader";
-import AuthFooter from "components/Footers/AuthFooter";
+import AuthFooter from "components/Elements/Footer/AuthFooter";
 
-const Index = () => {
+export const Index = () => {
   return (
     <>
       <IndexNavbar />
@@ -574,5 +574,3 @@ const Index = () => {
     </>
   );
 };
-
-export default Index;

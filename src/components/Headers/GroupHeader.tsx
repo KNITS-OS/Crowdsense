@@ -15,7 +15,7 @@
 
 */
 
-const GroupHeader = () => {
+export const GroupHeader = () => {
   return (
     <>
       <div
@@ -33,5 +33,3 @@ const GroupHeader = () => {
     </>
   );
 };
-
-export default GroupHeader;

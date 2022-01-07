@@ -14,14 +14,15 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import AuthFooter from "components/Footers/AuthFooter";
-// core components
-import AuthNavbar from "components/Navbars/AuthNavbar";
-import { useEffect, useRef } from "react";
-// react library for routing
-import { Redirect, Switch } from "react-router-dom";
-import routes from "routes";
-import { useGetRoutes, useScrollToTop } from ".";
+
+import { useRef, useEffect } from "react";
+import { Switch, Redirect } from "react-router";
+
+import { AuthNavbar } from "components/Navbars";
+import { AuthFooter } from "components/Footers";
+import { routes } from "routes";
+
+import { useScrollToTop, useGetRoutes } from "./hooks";
 
 export const AuthLayout = () => {
   const mainContentRef = useRef(document.createElement("div"));

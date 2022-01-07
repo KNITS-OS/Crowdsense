@@ -8,7 +8,7 @@ interface Props {
   rowIndex?: number;
 }
 
-const TableActionButtons = ({ row }: Props) => {
+export const TableActionButtons = ({ row }: Props) => {
   const { reqId } = row;
   let candidateId = reqId.toString();
 
@@ -22,4 +22,3 @@ const TableActionButtons = ({ row }: Props) => {
     </Link>
   );
 };
-export default TableActionButtons;

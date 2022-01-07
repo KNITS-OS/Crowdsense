@@ -29,7 +29,7 @@ const AlertContext = createContext(initContextData);
 
 export const useAlert = () => useContext(AlertContext);
 
-const AlertProvider = ({ children }: ProviderProps) => {
+export const AlertProvider = ({ children }: ProviderProps) => {
   const [alert, setAlert] = useState<AlertType>(null);
   return (
     <AlertContext.Provider value={{ alert, setAlert }}>
@@ -37,5 +37,3 @@ const AlertProvider = ({ children }: ProviderProps) => {
     </AlertContext.Provider>
   );
 };
-
-export default AlertProvider;

@@ -1,6 +1,6 @@
 import { CandidateFilters } from "components/Filters";
 import { BoxHeader } from "components/Headers";
-import { CandidatesTable } from "components/Table";
+import { CandidatesTable } from "components/Elements/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate } from "types/types";
@@ -9,7 +9,7 @@ import {
   ADMIN_INTERVIEW_WORKFLOW,
 } from "variables";
 
-const InterviewSearchPage = () => {
+export const InterviewSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
@@ -47,4 +47,3 @@ const InterviewSearchPage = () => {
     </div>
   );
 };
-export default InterviewSearchPage;

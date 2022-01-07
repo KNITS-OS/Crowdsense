@@ -1,2 +1,2 @@
-export { default as CandidatesTrelloBoard } from "./CandidatesTrelloBoard";
-export { default as TrelloCard } from "./TrelloCard";
+export * from "./CandidatesTrelloBoard";
+export * from "./TrelloCard";

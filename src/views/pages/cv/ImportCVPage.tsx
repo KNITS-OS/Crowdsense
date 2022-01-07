@@ -1,4 +1,4 @@
-const ImportCVPage = () => {
+export const ImportCVPage = () => {
   return (
     <>
       <div>
@@ -7,4 +7,3 @@ const ImportCVPage = () => {
     </>
   );
 };
-export default ImportCVPage;

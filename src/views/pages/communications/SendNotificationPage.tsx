@@ -35,7 +35,7 @@ import {
 // core components
 import ProfileHeader from "components/Headers/ProfileHeader";
 
-const SendNotificationPage = () => {
+export const SendNotificationPage = () => {
   return (
     <>
       <ProfileHeader />
@@ -535,5 +535,3 @@ const SendNotificationPage = () => {
     </>
   );
 };
-
-export default SendNotificationPage;

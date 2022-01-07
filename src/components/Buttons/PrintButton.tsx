@@ -5,7 +5,7 @@ interface Props {
   ref: React.MutableRefObject<null>;
 }
 
-const PrintButton = ({ ref }: Props) => {
+export const PrintButton = ({ ref }: Props) => {
   return (
     <ReactToPrint
       trigger={() => (
@@ -22,4 +22,3 @@ const PrintButton = ({ ref }: Props) => {
     />
   );
 };
-export default PrintButton;

@@ -22,7 +22,7 @@ interface Props {
   lead: string;
 }
 
-const AuthHeader = ({ title, lead }: Props) => {
+export const AuthHeader = ({ title, lead }: Props) => {
   return (
     <>
       <div className="header bg-gradient-info py-7 py-lg-8 pt-lg-9">
@@ -57,5 +57,3 @@ const AuthHeader = ({ title, lead }: Props) => {
     </>
   );
 };
-
-export default AuthHeader;

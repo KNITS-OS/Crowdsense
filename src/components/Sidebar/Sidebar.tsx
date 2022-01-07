@@ -15,17 +15,14 @@
 
 */
 // nodejs library that concatenates classes
-import classnames from "classnames";
 import { useEffect, useState } from "react";
-// react library that creates nice scrollbar on windows devices
-import PerfectScrollbar from "react-perfect-scrollbar";
-// react library for routing
 import {
   Link,
   NavLink as NavLinkRRD,
   useLocation,
 } from "react-router-dom";
-// reactstrap components
+import classnames from "classnames";
+
 import {
   Collapse,
   Nav,
@@ -34,9 +31,13 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import { useAppDispatch, useAppSelector } from "redux/app/hooks";
-import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
+
+import PerfectScrollbar from "react-perfect-scrollbar";
+
 import { IRoute } from "types/types";
+
+import { useAppDispatch, useAppSelector } from "redux/app";
+import { toggleSidenav } from "redux/features";
 
 interface Props {
   /**
@@ -71,7 +72,7 @@ interface Props {
   rtlActive: boolean;
 }
 
-const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
+export const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
   const [state, setState] = useState<any>({});
   const location = useLocation();
 
@@ -344,5 +345,3 @@ const Sidebar = ({ routes, logo, rtlActive = false }: Props) => {
     </Navbar>
   );
 };
-
-export default Sidebar;

@@ -15,7 +15,7 @@
 
 */
 
-const GradientEmptyHeader = () => {
+export const GradientEmptyHeader = () => {
   return (
     <>
       <div
@@ -31,5 +31,3 @@ const GradientEmptyHeader = () => {
     </>
   );
 };
-
-export default GradientEmptyHeader;

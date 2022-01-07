@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
@@ -14,5 +14,3 @@ if (process.env.REACT_APP_BACKEND_ENV === "supabase") {
   axiosInstance.defaults.headers.common["Access-Control-Allow-Methods"] =
     "*";
 }
-
-export default axiosInstance;

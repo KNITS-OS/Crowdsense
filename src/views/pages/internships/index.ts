@@ -1,1 +1,1 @@
-export { default as InternshipPage } from "./InternshipPage";
+export * from "./InternshipPage";

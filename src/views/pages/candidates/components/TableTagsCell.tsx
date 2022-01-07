@@ -14,7 +14,11 @@ interface Props {
   updateCandidateUI: ({ reqId, body }: IUpdateCandidateUIParams) => void;
 }
 
-const TableTagsCell = ({ row, defaultTags, updateCandidateUI }: Props) => {
+export const TableTagsCell = ({
+  row,
+  defaultTags,
+  updateCandidateUI,
+}: Props) => {
   const tags = defaultTags;
   const handleChange = (newValue: OnChangeValue<any, true>) => {
     const newTags = newValue.map(tag => {
@@ -58,4 +62,3 @@ const TableTagsCell = ({ row, defaultTags, updateCandidateUI }: Props) => {
     />
   );
 };
-export default TableTagsCell;

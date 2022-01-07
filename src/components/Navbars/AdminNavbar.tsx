@@ -41,15 +41,23 @@ import {
   Row,
   UncontrolledDropdown,
 } from "reactstrap";
-import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
+
 import { Theme } from "types/types";
-import { useAppDispatch, useAppSelector } from "redux/app/hooks";
+
+import { useAppDispatch, useAppSelector } from "redux/app";
+import { toggleSidenav } from "redux/features";
+
+import team1Src from "../../assets/img/theme/team-1.jpg";
+import team2Src from "../../assets/img/theme/team-2.jpg";
+import team3Src from "../../assets/img/theme/team-3.jpg";
+import team4Src from "../../assets/img/theme/team-4.jpg";
+import team5Src from "../../assets/img/theme/team-5.jpg";
 
 interface Props {
   theme: Theme;
 }
 
-const AdminNavbar = ({ theme }: Props) => {
+export const AdminNavbar = ({ theme }: Props) => {
   const dispatch = useAppDispatch();
   const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
@@ -167,10 +175,7 @@ const AdminNavbar = ({ theme }: Props) => {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={
-                              require("assets/img/theme/team-1.jpg")
-                                .default
-                            }
+                            src={team1Src}
                           />
                         </Col>
                         <div className="col ml--2">
@@ -199,10 +204,7 @@ const AdminNavbar = ({ theme }: Props) => {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={
-                              require("assets/img/theme/team-2.jpg")
-                                .default
-                            }
+                            src={team2Src}
                           />
                         </Col>
                         <div className="col ml--2">
@@ -231,10 +233,7 @@ const AdminNavbar = ({ theme }: Props) => {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={
-                              require("assets/img/theme/team-3.jpg")
-                                .default
-                            }
+                            src={team3Src}
                           />
                         </Col>
                         <div className="col ml--2">
@@ -263,10 +262,7 @@ const AdminNavbar = ({ theme }: Props) => {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={
-                              require("assets/img/theme/team-4.jpg")
-                                .default
-                            }
+                            src={team4Src}
                           />
                         </Col>
                         <div className="col ml--2">
@@ -295,10 +291,7 @@ const AdminNavbar = ({ theme }: Props) => {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={
-                              require("assets/img/theme/team-5.jpg")
-                                .default
-                            }
+                            src={team5Src}
                           />
                         </Col>
                         <div className="col ml--2">
@@ -417,12 +410,7 @@ const AdminNavbar = ({ theme }: Props) => {
                 <DropdownToggle className="nav-link pr-0" color="" tag="a">
                   <Media className="align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
-                      <img
-                        alt="..."
-                        src={
-                          require("assets/img/theme/team-4.jpg").default
-                        }
-                      />
+                      <img alt="..." src={team4Src} />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm font-weight-bold">
@@ -480,5 +468,3 @@ const AdminNavbar = ({ theme }: Props) => {
     </>
   );
 };
-
-export default AdminNavbar;

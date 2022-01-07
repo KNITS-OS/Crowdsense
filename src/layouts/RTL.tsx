@@ -14,17 +14,21 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import AdminFooter from "components/Footers/AdminFooter";
-// core components
-import AdminNavbar from "components/Navbars/AdminNavbar";
+
+import { useRef, useEffect } from "react";
+import { Switch, Redirect } from "react-router";
+
+import { AdminFooter } from "components/Footers";
+import { AdminNavbar } from "components/Navbars";
 import { Sidebar } from "components/Sidebar";
-import { useEffect, useRef } from "react";
-// react library for routing
-import { Redirect, Switch } from "react-router-dom";
-import routes from "routes";
-import { useGetRoutes, useScrollToTop } from ".";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
-import { toggleSidenav } from "../redux/features/sidenav/sidenavSlice";
+
+import { routes } from "routes";
+import sideBarImageSrc from "../assets/img/brand/CareLogoMin.png";
+
+import { useAppDispatch, useAppSelector } from "redux/app";
+import { toggleSidenav } from "redux/features";
+
+import { useScrollToTop, useGetRoutes } from "./hooks";
 
 export const RTL = () => {
   const dispatch = useAppDispatch();
@@ -50,7 +54,7 @@ export const RTL = () => {
         routes={routes}
         logo={{
           innerLink: "/",
-          imgSrc: require("assets/img/brand/CareLogoMin.png").default,
+          imgSrc: sideBarImageSrc,
           imgAlt: "...",
         }}
         rtlActive

@@ -17,7 +17,7 @@
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-const ProfileHeader = () => {
+export const RTLProfileHeader = () => {
   return (
     <>
       <div
@@ -57,5 +57,3 @@ const ProfileHeader = () => {
     </>
   );
 };
-
-export default ProfileHeader;

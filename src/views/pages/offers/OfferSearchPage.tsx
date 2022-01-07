@@ -1,5 +1,5 @@
 import { CandidateFilters } from "components/Filters";
-import { CandidatesTable } from "components/Table";
+import { CandidatesTable } from "components/Elements/Table";
 import { useState } from "react";
 import { Container } from "reactstrap";
 import { ICandidate } from "types/types";
@@ -9,7 +9,7 @@ import {
   ADMIN_OFFER_WORKFLOW,
 } from "variables";
 
-const OfferSearchPage = () => {
+export const OfferSearchPage = () => {
   const [candidates, setCandidates] = useState<ICandidate[]>([]);
   const [selectedCandidates, setSelectedCandidates] = useState<
     ICandidate[]
@@ -47,4 +47,3 @@ const OfferSearchPage = () => {
     </div>
   );
 };
-export default OfferSearchPage;

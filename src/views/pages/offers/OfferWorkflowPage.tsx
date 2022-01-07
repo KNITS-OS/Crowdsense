@@ -13,7 +13,7 @@ import {
   ADMIN_OFFER_WORKFLOW,
 } from "variables";
 
-const OfferWorkflowPage = () => {
+export const OfferWorkflowPage = () => {
   const { state }: { state: ICandidate[] } = useLocation();
   const history = useHistory();
 
@@ -38,4 +38,3 @@ const OfferWorkflowPage = () => {
     </>
   );
 };
-export default OfferWorkflowPage;

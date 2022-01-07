@@ -14,11 +14,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-/*eslint-disable*/
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 
-const AuthFooter = () => {
+export const AuthFooter = () => {
   return (
     <>
       <footer className="py-5" id="footer-main">
@@ -30,7 +29,6 @@ const AuthFooter = () => {
                 <a
                   className="font-weight-bold ml-1"
                   href="https://www.creative-tim.com?ref=adpr-auth-footer"
-                  target="_blank"
                 >
                   Creative Tim
                 </a>
@@ -78,5 +76,3 @@ const AuthFooter = () => {
     </>
   );
 };
-
-export default AuthFooter;
