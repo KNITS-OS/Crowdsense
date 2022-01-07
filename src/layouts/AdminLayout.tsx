@@ -22,18 +22,18 @@ import { useRef } from "react";
 import { Redirect, Switch, useLocation } from "react-router-dom";
 import routes from "routes";
 import { Theme } from "types/types";
-import { getRoutes, ScrollToTop } from ".";
 import { Sidebar } from "components/Sidebar";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
+import { useGetRoutes, useScrollToTop } from ".";
 
-const Admin = () => {
+export const AdminLayout = () => {
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
   const dispatch = useAppDispatch();
   const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
-  ScrollToTop(mainContentRef);
+  useScrollToTop(mainContentRef);
 
   const getNavbarTheme = (): Theme => {
     return location.pathname.indexOf("admin/alternative-dashboard") === -1
@@ -55,7 +55,7 @@ const Admin = () => {
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar theme={getNavbarTheme()} />
         <Switch>
-          {getRoutes(routes, "/admin")}
+          {useGetRoutes(routes, "/admin")}
           <Redirect from="*" to="/admin/home" />
         </Switch>
         <AdminFooter />
@@ -69,5 +69,3 @@ const Admin = () => {
     </>
   );
 };
-
-export default Admin;

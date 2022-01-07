@@ -22,11 +22,11 @@ import { useEffect, useRef } from "react";
 // react library for routing
 import { Redirect, Switch } from "react-router-dom";
 import routes from "routes";
-import { getRoutes, ScrollToTop } from ".";
+import { useGetRoutes, useScrollToTop } from ".";
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
 import { toggleSidenav } from "../redux/features/sidenav/sidenavSlice";
 
-const RTL = () => {
+export const RTL = () => {
   const dispatch = useAppDispatch();
   const { isSidenavOpen } = useAppSelector(state => state.sidenav);
 
@@ -42,7 +42,7 @@ const RTL = () => {
     };
   });
 
-  ScrollToTop(mainContentRef);
+  useScrollToTop(mainContentRef);
 
   return (
     <>
@@ -58,7 +58,7 @@ const RTL = () => {
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar theme="dark" />
         <Switch>
-          {getRoutes(routes, "/rtl")}
+          {useGetRoutes(routes, "/rtl")}
           <Redirect from="*" to="/rtl/rtl-support" />
         </Switch>
         <AdminFooter />
@@ -72,5 +72,3 @@ const RTL = () => {
     </>
   );
 };
-
-export default RTL;

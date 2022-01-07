@@ -32,11 +32,11 @@ import "./assets/scss/argon-dashboard-pro-react.scss?v1.2.0";
 // plugins styles downloaded
 import "./assets/vendor/nucleo/css/nucleo.css";
 import { AlertProvider } from "./context";
-import { AdminLayout, AuthLayout } from "./layouts";
 import { store } from "./redux/app/store";
 import "./variables/chartDefaults";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "./assets/css/custom.css";
+import { AdminLayout, AuthLayout } from "./layouts";
 
 ReactDOM.render(
   <Provider store={store}>

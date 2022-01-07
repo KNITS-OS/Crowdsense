@@ -21,9 +21,9 @@ import { useEffect, useRef } from "react";
 // react library for routing
 import { Redirect, Switch } from "react-router-dom";
 import routes from "routes";
-import { getRoutes, ScrollToTop } from ".";
+import { useGetRoutes, useScrollToTop } from ".";
 
-const Auth = () => {
+export const AuthLayout = () => {
   const mainContentRef = useRef(document.createElement("div"));
   useEffect(() => {
     document.body.classList.add("bg-default");
@@ -33,14 +33,14 @@ const Auth = () => {
     };
   });
 
-  ScrollToTop(mainContentRef);
+  useScrollToTop(mainContentRef);
 
   return (
     <>
       <div className="main-content" ref={mainContentRef}>
         <AuthNavbar />
         <Switch>
-          {getRoutes(routes, "/auth")}
+          {useGetRoutes(routes, "/auth")}
           <Redirect from="*" to="/auth/login" />
         </Switch>
       </div>
@@ -48,5 +48,3 @@ const Auth = () => {
     </>
   );
 };
-
-export default Auth;

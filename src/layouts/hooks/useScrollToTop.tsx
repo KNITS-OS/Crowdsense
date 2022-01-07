@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 
-const ScrollToTop = (
+export const useScrollToTop = (
   mainContentRef: React.MutableRefObject<HTMLDivElement>,
 ) => {
   const location = useLocation();
@@ -13,4 +13,3 @@ const ScrollToTop = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 };
-export default ScrollToTop;
