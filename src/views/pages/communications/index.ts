@@ -1,4 +1,3 @@
-export * from "./ArchivePage";
 export * from "./CreateEmailPage";
 export * from "./CreateEmailTemplatePage";
 export * from "./EmailHistoryPage";
