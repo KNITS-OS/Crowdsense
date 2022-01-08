@@ -20,7 +20,7 @@ export const TableRatingCell = ({ row, updateCandidateUI }: Props) => {
         <Col md="10">
           <Rating
             onClick={newRating => handleRatingChange(newRating / 20)}
-            ratingValue={row.rating}
+            ratingValue={row.rating * 20}
             size={25}
           />
         </Col>

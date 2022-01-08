@@ -243,7 +243,7 @@ export const CandidateDetailsPage = () => {
                             onClick={newRating =>
                               handleRatingChange(newRating / 20)
                             }
-                            ratingValue={rating}
+                            ratingValue={rating * 20}
                             size={30}
                           />
                         </FormGroup>

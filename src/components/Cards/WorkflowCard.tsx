@@ -22,7 +22,7 @@ export const WorkflowCard = ({ candidate }: Props) => {
           >
             <h4 className="text-uppercase text-muted mb-0">{fullName}</h4>
             <Rating
-              ratingValue={rating as number}
+              ratingValue={(rating as number) * 20}
               readonly={true}
               size={25}
               onClick={() => {}}
