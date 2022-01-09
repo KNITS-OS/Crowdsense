@@ -26,27 +26,29 @@ export const removeCandidateFromLane = ({
   eventBus,
 }: IRemoveCandidateOnLastLaneParams) => {
   // declined by candidate
-  const lastLaneId1 = workflow.lanes[workflow.lanes.length - 1].id;
+  const declinedByCandidateLane =
+    workflow.lanes[workflow.lanes.length - 1].id;
   // declined by reviewer
-  const lastLaneId2 = workflow.lanes[workflow.lanes.length - 2].id;
+  const declinedByReviewerLane =
+    workflow.lanes[workflow.lanes.length - 2].id;
   // to next workflow
-  const lastLaneId3 = workflow.lanes[workflow.lanes.length - 3].id;
+  const toNextWorkflowLane = workflow.lanes[workflow.lanes.length - 3].id;
 
-  if (laneId === lastLaneId1) {
+  if (laneId === declinedByCandidateLane) {
     // if true, remove the card
     eventBus.publish({
       type: "REMOVE_CARD",
       laneId,
       cardId,
     });
-  } else if (laneId === lastLaneId2) {
+  } else if (laneId === declinedByReviewerLane) {
     eventBus.publish({
       type: "REMOVE_CARD",
       laneId,
       cardId,
     });
   } else if (
-    laneId === lastLaneId3 &&
+    laneId === toNextWorkflowLane &&
     (laneId === READY_FOR_INTERVIEW || laneId === READY_TO_OFFER)
   ) {
     eventBus.publish({
@@ -55,44 +57,6 @@ export const removeCandidateFromLane = ({
       cardId,
     });
   }
-};
-
-/**
- * @description creates a query string from given candidate ids
- * @param route given route, where the workflow is
- * @param selectedCandidates array of selected candidates
- */
-export const createQueryStringForWorkflow = (
-  workflowRoute: IWorkflowRoutes,
-  selectedCandidates: ICandidate[],
-  defaultStatuses: ICandidateStatus[],
-) => {
-  let queryString = `${workflowRoute}/`;
-
-  defaultStatuses
-    .map(status => {
-      return {
-        status,
-        candidateIds: selectedCandidates
-          .map(candidate => {
-            if (candidate.status === status) return candidate.reqId;
-            else return null;
-          })
-          .filter(candidate => candidate !== null),
-      };
-    })
-    .forEach(element => {
-      if (element.candidateIds.length > 0) {
-        // queryString += `${
-        //   element.status
-        // }=${element.candidateIds.toString()}&`;
-        queryString += `${element.candidateIds.toString()}/`;
-      } else {
-        queryString += `null/`;
-      }
-    });
-
-  return queryString;
 };
 
 /**

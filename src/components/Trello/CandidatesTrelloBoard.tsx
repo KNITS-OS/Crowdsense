@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Board from "react-trello";
 import { ICandidateStatus } from "types/types";
-import { removeCandidateFromLane, updateCandidateMutation } from "utils";
 
 import { trelloDefaults } from "variables/workflowDefaults";
+import {
+  updateCandidateMutation,
+  getCandidateByIdQuery,
+} from "utils/axios";
+import { removeCandidateFromLane } from "utils/workflowUtils";
 
 interface Props {
   workflow: ReactTrello.BoardData;
@@ -31,9 +35,12 @@ export const CandidatesTrelloBoard = ({ workflow }: Props) => {
         cardId: string,
         __: number,
       ) => {
-        updateCandidateMutation({
+        const { data } = await getCandidateByIdQuery(cardId);
+
+        await updateCandidateMutation({
           reqId: cardId,
           body: {
+            ...data,
             status: toLaneId,
           },
         });
