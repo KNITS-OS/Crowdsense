@@ -78,6 +78,7 @@ const AddNewCVPage = () => {
                 rating: rating.value,
                 comment: comment.value
             };
+
             console.log(createValues)
         }
     };
