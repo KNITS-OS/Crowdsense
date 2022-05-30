@@ -1,92 +1,36 @@
-import React, { useState } from "react";
-import {
-    Button,
-    Card,
-    CardBody,
-    CardHeader,
-    Col,
-    Container,
-    Form,
-    FormGroup,
-    Input,
-    Label,
-    Row
-} from "reactstrap";
+import React from "react";
+import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from "reactstrap";
 import GradientEmptyHeader from "../../../components/Headers/GradientEmptyHeader";
-import { LabeledFormInput, SelectInput } from "../../../components/Input";
+import { InputField, SelectInput } from "../../../components/Input";
 import { getSelectRating, getSelectStatus } from "../../../utils";
-import { ICreateCandidateFinalState, ICreateCvInitialState } from "../../../types/types";
 import moment from "moment";
 import { DATE_FILTER_FORMAT } from "../../../variables/general";
+import { useForm } from "react-hook-form";
+import { ICreateCurriculumRequest } from "../../../types/api";
+import { v4 as uuidv4 } from 'uuid';
+import { findSelectValue } from "../../../utils/selectUtils";
 
 
 const AddNewCVPage = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, dirtyFields },
+        reset
+    } = useForm<ICreateCurriculumRequest>({ mode: 'onChange' });
 
-    const initialState: ICreateCvInitialState = {
-        firstName: { value:'', state:'' },
-        lastName: { value:'', state:'' },
-        submissionDate: { value:moment(Date.now()).format(DATE_FILTER_FORMAT), state:'valid'},
-        email:{ value:'', state:'' },
-        country: { value:'', state:'' },
-        status: { value:'', state:'' },
-        rating: { value:'', state:'' },
-        comment: { value:'', state:'' },
-    };
-
-    const [values, setValues] = useState(initialState);
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-
-        setValues({
-            ...values,
-            [name]: { value:value, state: value ? "valid" : "invalid" },
-        });
-    };
-
-    const handleSubmit = () => {
-        const isValid = Object.values(values).every(
-            item => item.state === "valid"
-        );
-
-        if (!isValid) {
-            const validatedValues = {...values}
-            Object.keys(validatedValues).forEach(key => {
-                if (validatedValues[key].state !== "valid")
-                    validatedValues[key].state = 'invalid';
-            });
-            setValues(validatedValues)
-        } else {
-            const {
-                firstName,
-                lastName,
-                comment,
-                country,
-                submissionDate,
-                email,
-                rating,
-                status,
-            } = values;
-
-            const createValues: ICreateCandidateFinalState = {
-                reqId: `Req${Math.random()}`,
-                firstName: firstName.value,
-                fullName: firstName.value + " " + lastName.value,
-                submissionDate: submissionDate.value,
-                email: email.value,
-                country: country.value,
-                status: status.value,
-                rating: rating.value,
-                comment: comment.value
-            };
-
-            console.log(createValues)
+    const onFormSubmit = handleSubmit((data) => {
+        const createValues = {
+            reqId: `Req${uuidv4()}`,
+            ...data
         }
-    };
-
+        console.log(createValues)
+        reset()
+    });
 
     return (
         <>
-            <GradientEmptyHeader />
+            <GradientEmptyHeader/>
             <Container className="mt--6" fluid>
                 <Row>
                     <Col className="order-xl-1" xl="12">
@@ -99,137 +43,121 @@ const AddNewCVPage = () => {
                                 </Row>
                             </CardHeader>
                             <CardBody>
-                                <Form>
+                                <Form onSubmit={onFormSubmit}>
                                     <h6 className="heading-small text-muted mb-4">
                                         Applicant information
                                     </h6>
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col lg="4">
-                                                <FormGroup>
-                                                    <LabeledFormInput
-                                                        id="input-firstname"
-                                                        label="First name"
-                                                        name="firstName"
-                                                        placeholder="First Name"
-                                                        valid={values.firstName.state === "valid"}
-                                                        invalid={values.firstName.state === "invalid"}
-                                                        value={values.firstName.value}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                    <div className="invalid-feedback">Empty field.</div>
-                                                </FormGroup>
+                                                <InputField
+                                                    id="input-firstname"
+                                                    label="First name"
+                                                    placeholder="First Name"
+                                                    errorText="Empty field"
+                                                    valid={dirtyFields.firstName && !errors.firstName}
+                                                    invalid={!!errors.firstName}
+                                                    {...register("firstName",
+                                                        { required: true })}
+                                                />
                                             </Col>
                                             <Col lg="4">
-                                                <FormGroup>
-                                                    <LabeledFormInput
-                                                        id="input-lastname"
-                                                        label="Last Name"
-                                                        name="lastName"
-                                                        placeholder="Last Name"
-                                                        valid={values.lastName.state === "valid"}
-                                                        invalid={values.lastName.state === "invalid"}
-                                                        value={values.lastName.value}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                    <div className="invalid-feedback">Empty field.</div>
-                                                </FormGroup>
+
+                                                <InputField
+                                                    id="input-lastname"
+                                                    label="Last Name"
+                                                    placeholder="Last Name"
+                                                    errorText="Empty field"
+                                                    valid={dirtyFields.lastName && !errors.lastName}
+                                                    invalid={!!errors.lastName}
+                                                    {...register("lastName",
+                                                        { required: true, })}
+                                                />
                                             </Col>
                                             <Col lg="4">
-                                                <FormGroup>
-                                                    <LabeledFormInput
-                                                        id="input-email"
-                                                        label="Email"
-                                                        name="email"
-                                                        type="email"
-                                                        placeholder="Email"
-                                                        valid={values.email.state === "valid"}
-                                                        invalid={values.email.state === "invalid"}
-                                                        value={values.email.value}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                    <div className="invalid-feedback">Empty field.</div>
-                                                </FormGroup>
+                                                <InputField
+                                                    id="input-email"
+                                                    label="Email"
+                                                    type="email"
+                                                    placeholder="Email"
+                                                    errorText="Empty field"
+                                                    valid={dirtyFields.email && !errors.email}
+                                                    invalid={!!errors.email}
+                                                    {...register("email",
+                                                        { required: true })}
+                                                />
                                             </Col>
                                         </Row>
-
                                         <Row>
                                             <Col lg="6">
-                                                <FormGroup>
-                                                    <Label
-                                                        className="form-control-label"
-                                                        htmlFor="input-submission-date"
-                                                    >
-                                                        Submission Date
-                                                    </Label>
-                                                        <Input
-                                                            id="input-submission-date"
-                                                            type="date"
-                                                            name="submissionDate"
-                                                            value={values.submissionDate.value}
-                                                            valid={values.submissionDate.state === "valid"}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                </FormGroup>
+                                                <InputField
+                                                    id="input-submission-date"
+                                                    label="Submission Date"
+                                                    type="date"
+                                                    defaultValue={moment(Date.now()).format(DATE_FILTER_FORMAT)}
+                                                    valid={!errors.submissionDate}
+                                                    invalid={!!errors.submissionDate}
+                                                    {...register("submissionDate",
+                                                        { required: true })}
+                                                />
                                             </Col>
                                             <Col lg="4">
-                                                <FormGroup>
-                                                    <LabeledFormInput
-                                                        id="input-country"
-                                                        label="Country"
-                                                        name="country"
-                                                        placeholder="Country"
-                                                        valid={values.country.state === "valid"}
-                                                        invalid={values.country.state === "invalid"}
-                                                        value={values.country.value}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                    <div className="invalid-feedback">Empty field.</div>
-
-                                                </FormGroup>
+                                                <InputField
+                                                    id="input-country"
+                                                    label="Country"
+                                                    placeholder="Country"
+                                                    errorText="Empty field"
+                                                    valid={dirtyFields.country && !errors.country}
+                                                    invalid={!!errors.country}
+                                                    {...register("country",
+                                                        { required: true })}
+                                                />
                                             </Col>
                                         </Row>
                                     </div>
-                                    <hr className="my-4" />
+                                    <hr className="my-4"/>
                                     <h6 className="heading-small text-muted mb-4">
                                         Evaluation
                                     </h6>
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col lg="6">
-                                                <FormGroup>
                                                 <SelectInput
                                                     id="rating"
-                                                    name="rating"
                                                     label="Rating"
+                                                    defaultOption="select applicant rating"
+                                                    errorText="Rating not selected"
                                                     options={getSelectRating}
-                                                    defaultOption={" -- select applicant rating -- "}
-                                                    valid={values.rating.state === "valid"}
-                                                    invalid={values.rating.state === "invalid"}
-                                                    onChange={handleInputChange}
+                                                    valid={dirtyFields.rating && !errors.rating}
+                                                    invalid={!!errors.rating}
+                                                    {...register("rating",
+                                                        {
+                                                            validate: {
+                                                                value: v => findSelectValue(getSelectRating, v.toString())
+                                                            }
+                                                        })}
                                                 />
-                                                    <div className="invalid-feedback">Option not selected.</div>
-                                                </FormGroup>
                                             </Col>
                                             <Col lg="6">
-
-                                                <FormGroup>
-                                                    <SelectInput
-                                                        id="status"
-                                                        name="status"
-                                                        label="Status"
-                                                        options={getSelectStatus}
-                                                        defaultOption={" -- select applicant status -- "}
-                                                        valid={values.status.state === "valid"}
-                                                        invalid={values.status.state === "invalid"}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                    <div className="invalid-feedback">Option not selected.</div>
-                                                </FormGroup>
+                                                <SelectInput
+                                                    id="status"
+                                                    label="Status"
+                                                    defaultOption={"select applicant status"}
+                                                    errorText="Status not selected"
+                                                    options={getSelectStatus}
+                                                    valid={dirtyFields.status && !errors.status}
+                                                    invalid={!!errors.status}
+                                                    {...register("status",
+                                                        {
+                                                            validate: {
+                                                                value: (v) => findSelectValue(getSelectStatus, v)
+                                                            }
+                                                        })}
+                                                />
                                             </Col>
                                         </Row>
                                     </div>
-                                    <hr className="my-4" />
+                                    <hr className="my-4"/>
 
                                     <h6 className="heading-small text-muted mb-4">
                                         Additional information
@@ -237,26 +165,19 @@ const AddNewCVPage = () => {
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col lg="12">
-                                                <FormGroup>
-                                                    <LabeledFormInput
-                                                        id="input-comment"
-                                                        label="Comment"
-                                                        name="comment"
-                                                        valid={values.comment.state === "valid"}
-                                                        invalid={values.comment.state === "invalid"}
-                                                        value={values.comment.value}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                    <div className="invalid-feedback">Empty field.</div>
-                                                </FormGroup>
+                                                <InputField
+                                                    id="input-comment"
+                                                    label="Comment"
+                                                    errorText="Empty field"
+                                                    valid={dirtyFields.comment && !errors.comment}
+                                                    invalid={!!errors.comment}
+                                                    {...register("comment",
+                                                        { required: true })}
+                                                />
                                             </Col>
                                         </Row>
                                     </div>
-                                    <Button
-                                        type="button"
-                                        color="success"
-                                        onClick={handleSubmit}
-                                    >
+                                    <Button type="submit" color="success">
                                         Add
                                     </Button>
                                 </Form>

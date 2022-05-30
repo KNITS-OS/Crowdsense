@@ -22,9 +22,13 @@ export const getSelectStatus: OptionType[] = selectStatusArray.map(
 
 export const selectRatingArray: ICandidateRating[] = [1, 2, 3, 4, 5];
 
-export const getSelectRating: any = selectRatingArray.map(status => {
+export const getSelectRating: OptionType[] = selectRatingArray.map(status => {
   return {
     value: status.toString(),
     label: status.toString(),
   };
 });
+
+export const findSelectValue = (selectArr:OptionType[], inputValue:string) => {
+  return  selectArr.some(val => val.value.includes(inputValue))
+}
