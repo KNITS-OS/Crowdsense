@@ -1,7 +1,7 @@
-import { Input } from "reactstrap";
+import { Input, InputProps } from "reactstrap";
 import { InputType } from "reactstrap/es/Input";
 
-interface Props {
+type Props = InputProps & {
   id: string;
   name: string;
   value: string | number | undefined;
@@ -17,6 +17,7 @@ const FormInput = ({
   value,
   type = "text",
   disabled = false,
+    ...rest
 }: Props) => {
   return (
     <Input
@@ -27,6 +28,7 @@ const FormInput = ({
       required={true}
       type={type}
       disabled={disabled}
+      {...rest}
     />
   );
 };

@@ -1,8 +1,9 @@
 import { InputType } from "reactstrap/es/Input";
 import { FormInput } from ".";
 import { FormLabel } from "../Labels";
+import { InputProps } from "reactstrap";
 
-interface Props {
+type Props = InputProps & {
   id: string;
   name: string;
   label: string;
@@ -19,6 +20,7 @@ const LabeledFormInput = ({
   onChange,
   label,
   disabled,
+  ...rest
 }: Props) => {
   return (
     <>
@@ -29,6 +31,7 @@ const LabeledFormInput = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        {...rest}
       />
     </>
   );

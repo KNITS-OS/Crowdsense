@@ -15,7 +15,7 @@ export const pagination = paginationFactory({
             aria-controls="datatable-basic"
             className="form-control form-control-sm"
             onChange={e =>
-              onSizePerPageChange(parseInt(e.target.value), 1)
+              onSizePerPageChange(parseInt(e.target.value))
             }
           >
             <option value="10">10</option>

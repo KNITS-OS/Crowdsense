@@ -158,3 +158,38 @@ export interface ICreateCandidateFinalState {
   comment: string;
   submissionDate: string;
 }
+
+export interface ICreateCvInitialState {
+  firstName: {
+    value:string,
+    state:string
+  },
+  lastName:{
+    value:string,
+    state:string
+  },
+  email:{
+    value:string,
+    state:string
+  },
+  country: {
+    value:string,
+    state:string
+  },
+  status:{
+    value: ICandidateStatus | "",
+    state:string
+  },
+  rating: {
+    value: ICandidateRating | "",
+    state:string
+  },
+  submissionDate: {
+    value:string,
+    state:string
+  },
+  comment:  {
+    value: string,
+    state:string
+  },
+}
