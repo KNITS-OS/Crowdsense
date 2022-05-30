@@ -1,13 +1,13 @@
 import React from "react";
 import { FormGroup, Input, InputProps } from "reactstrap";
 
-interface IProps extends InputProps  {
+interface IProps extends InputProps {
     id: string;
     label: string;
-    errorText?:string
+    errorText?: string
 }
 
-const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
+const FormInputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
     ({
          id,
          label,
@@ -26,4 +26,4 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IPro
     }
 )
 
-export default InputField;
+export default FormInputField;

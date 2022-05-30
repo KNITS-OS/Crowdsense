@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from "reactstrap";
 import GradientEmptyHeader from "../../../components/Headers/GradientEmptyHeader";
-import { InputField, SelectInput } from "../../../components/Input";
+import { FormInputField, FormSelectField } from "../../../components/Input";
 import { getSelectRating, getSelectStatus } from "../../../utils";
 import moment from "moment";
 import { DATE_FILTER_FORMAT } from "../../../variables/general";
@@ -50,7 +50,7 @@ const AddNewCVPage = () => {
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col lg="4">
-                                                <InputField
+                                                <FormInputField
                                                     id="input-firstname"
                                                     label="First name"
                                                     placeholder="First Name"
@@ -63,7 +63,7 @@ const AddNewCVPage = () => {
                                             </Col>
                                             <Col lg="4">
 
-                                                <InputField
+                                                <FormInputField
                                                     id="input-lastname"
                                                     label="Last Name"
                                                     placeholder="Last Name"
@@ -75,7 +75,7 @@ const AddNewCVPage = () => {
                                                 />
                                             </Col>
                                             <Col lg="4">
-                                                <InputField
+                                                <FormInputField
                                                     id="input-email"
                                                     label="Email"
                                                     type="email"
@@ -90,7 +90,7 @@ const AddNewCVPage = () => {
                                         </Row>
                                         <Row>
                                             <Col lg="6">
-                                                <InputField
+                                                <FormInputField
                                                     id="input-submission-date"
                                                     label="Submission Date"
                                                     type="date"
@@ -102,7 +102,7 @@ const AddNewCVPage = () => {
                                                 />
                                             </Col>
                                             <Col lg="4">
-                                                <InputField
+                                                <FormInputField
                                                     id="input-country"
                                                     label="Country"
                                                     placeholder="Country"
@@ -122,7 +122,7 @@ const AddNewCVPage = () => {
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col lg="6">
-                                                <SelectInput
+                                                <FormSelectField
                                                     id="rating"
                                                     label="Rating"
                                                     defaultOption="select applicant rating"
@@ -139,7 +139,7 @@ const AddNewCVPage = () => {
                                                 />
                                             </Col>
                                             <Col lg="6">
-                                                <SelectInput
+                                                <FormSelectField
                                                     id="status"
                                                     label="Status"
                                                     defaultOption={"select applicant status"}
@@ -165,7 +165,7 @@ const AddNewCVPage = () => {
                                     <div className="pl-lg-4">
                                         <Row>
                                             <Col lg="12">
-                                                <InputField
+                                                <FormInputField
                                                     id="input-comment"
                                                     label="Comment"
                                                     errorText="Empty field"

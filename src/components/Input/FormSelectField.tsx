@@ -10,7 +10,7 @@ interface IProps extends InputProps {
     errorText?: string
 }
 
-const SelectField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
+const FormSelectField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
     ({
          id,
          label,
@@ -43,4 +43,4 @@ const SelectField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IPr
     }
 )
 
-export default SelectField;
+export default FormSelectField;
