@@ -1,36 +1,17 @@
-import { InputType } from "reactstrap/es/Input";
-import { FormInput } from ".";
 import { FormLabel } from "../Labels";
+import { Input, InputProps } from "reactstrap";
 
-interface Props {
-  id: string;
-  name: string;
-  label: string;
-  value: string | number | undefined;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type?: InputType;
-  disabled?: boolean;
+interface IProps extends InputProps {
+    id: string;
+    label: string;
 }
 
-const LabeledFormInput = ({
-  id,
-  name,
-  value,
-  onChange,
-  label,
-  disabled,
-}: Props) => {
-  return (
-    <>
-      <FormLabel id={id} label={label} />
-      <FormInput
-        id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-      />
-    </>
-  );
+const LabeledFormInput = ({ id, label, ...props }: IProps) => {
+    return (
+        <>
+            <FormLabel id={id} label={label}/>
+            <Input{...props} id={id} required={true}/>
+        </>
+    );
 };
 export default LabeledFormInput;

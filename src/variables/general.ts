@@ -26,6 +26,8 @@ let y = today.getFullYear();
 let m = today.getMonth();
 let d = today.getDate();
 
+export const DATE_FILTER_FORMAT = "YYYY-MM-DD";
+
 const events: IEvent[] = [
   {
     id: 1,
@@ -654,3 +656,5 @@ const dataTable: IDataTable[] = [
 ];
 
 export { events, widgetEvents, dataTable };
+
+
