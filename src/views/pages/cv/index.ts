@@ -1,5 +1,6 @@
-export { default as AddNewCVPage } from "./AddNewCVPage";
-export { default as ImportCVPage } from "./ImportCVPage";
-export { default as ExportPage } from "./ExportPage";
-export { default as DetailsPage } from "./DetailsPage";
-export { default as WorkflowPage } from "./WorkflowPage";
+export * from "./cv-search"
+export * from "./cv-import"
+export * from "./cv-create"
+export * from "./cv-export"
+export * from "./cv-workflow"
+export * from "./cv-details"
