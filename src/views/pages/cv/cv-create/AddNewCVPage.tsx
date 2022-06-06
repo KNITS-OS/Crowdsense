@@ -1,30 +1,26 @@
-import React from "react";
+import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from "reactstrap";
-import GradientEmptyHeader from "../../../components/Headers/GradientEmptyHeader";
-import { FormInputField, FormSelectField } from "../../../components/Input";
-import { getSelectRating, getSelectStatus } from "../../../utils";
-import moment from "moment";
-import { DATE_FILTER_FORMAT } from "../../../variables/general";
+import { FormInputField, FormSelectField } from "../../../../components/Input";
 import { useForm } from "react-hook-form";
-import { ICreateCurriculumRequest } from "../../../types/api";
-import { v4 as uuidv4 } from 'uuid';
-import { findSelectValue } from "../../../utils/selectUtils";
+import moment from "moment";
+import { ICreateCurriculumRequest } from "../../../../types/api";
+import { DATE_FILTER_FORMAT } from "../../../../variables/general";
+import { getCurriculumSelectStatus, getSelectRating } from "../../../../utils";
+import { findSelectValue } from "../../../../utils/selectUtils";
+import { useHistory } from "react-router";
+import { CV_SEARCH } from "../../../../variables/routes";
 
-
-const AddNewCVPage = () => {
+export const AddNewCVPage = () => {
     const {
         register,
         handleSubmit,
         formState: { errors, dirtyFields },
         reset
     } = useForm<ICreateCurriculumRequest>({ mode: 'onChange' });
+    const history = useHistory()
 
     const onFormSubmit = handleSubmit((data) => {
-        const createValues = {
-            reqId: `Req${uuidv4()}`,
-            ...data
-        }
-        console.log(createValues)
+        console.log(data)
         reset()
     });
 
@@ -36,9 +32,17 @@ const AddNewCVPage = () => {
                     <Col className="order-xl-1" xl="12">
                         <Card>
                             <CardHeader>
-                                <Row className="align-items-center">
-                                    <Col xs="8">
-                                        <h3 className="mb-0">CV Details</h3>
+                                <Row>
+                                    <Col xs="12"
+                                         className="d-flex justify-content-between align-items-center">
+                                        <h3 className="mb-0">New Curriculum</h3>
+                                        <Button
+                                            className="btn btn-primary"
+                                            color="primary"
+                                            onClick={() => history.push(`/admin${CV_SEARCH}`)}
+                                        >
+                                            Back to Search
+                                        </Button>
                                     </Col>
                                 </Row>
                             </CardHeader>
@@ -144,13 +148,13 @@ const AddNewCVPage = () => {
                                                     label="Status"
                                                     defaultOption={"select applicant status"}
                                                     errorText="Status not selected"
-                                                    options={getSelectStatus}
+                                                    options={getCurriculumSelectStatus}
                                                     valid={dirtyFields.status && !errors.status}
                                                     invalid={!!errors.status}
                                                     {...register("status",
                                                         {
                                                             validate: {
-                                                                value: (v) => findSelectValue(getSelectStatus, v)
+                                                                value: (v) => findSelectValue(getCurriculumSelectStatus, v)
                                                             }
                                                         })}
                                                 />
@@ -188,5 +192,5 @@ const AddNewCVPage = () => {
             </Container>
         </>
     );
-};
-export default AddNewCVPage;
+}
+

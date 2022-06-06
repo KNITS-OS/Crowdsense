@@ -18,7 +18,6 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fullcalendar/common/main.min.css";
 import "@fullcalendar/daygrid/main.min.css";
 import "quill/dist/quill.core.css";
-import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 // plugins styles from node_modules
 import "react-notification-alert/dist/animate.css";
@@ -38,19 +37,17 @@ import { store } from "./redux/app/store";
 import "./variables/chartDefaults";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <StrictMode>
-        <AlertProvider>
-          <Switch>
-            <Route path="/admin" render={() => <AdminLayout />} />
-            <Route path="/auth" render={() => <AuthLayout />} />
-            <Route path="/" render={() => <AdminLayout />} />
-            <Redirect from="*" to="/" />
-          </Switch>
-        </AlertProvider>
-      </StrictMode>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root"),
+    <Provider store={store}>
+        <BrowserRouter>
+            <AlertProvider>
+                <Switch>
+                    <Route path="/admin" render={() => <AdminLayout/>}/>
+                    <Route path="/auth" render={() => <AuthLayout/>}/>
+                    <Route path="/" render={() => <AdminLayout/>}/>
+                    <Redirect from="*" to="/"/>
+                </Switch>
+            </AlertProvider>
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById("root"),
 );
