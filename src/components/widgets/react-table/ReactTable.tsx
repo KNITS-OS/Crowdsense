@@ -13,8 +13,8 @@ import {
     GlobalFilter,
     IndeterminateCheckbox,
     PaginationReactTable,
+    SelectElementPropsProvider,
     Sorter,
-    TableUtilitiesWrapper,
 } from ".";
 
 interface Props<T> {
@@ -91,20 +91,28 @@ export const ReactTable = <T, >({ data, columns, selectElements }: Props<T>) => 
 
     return (
         <>
-            <div
-                className="react-table-filter d-flex justify-content-between align-items-center">
+            <div className="react-table-filter d-flex justify-content-between align-items-center">
                 <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
-                <div>
+                <div
+                    className="react-table-btn-wrapper d-flex flex-wrap align-content-start">
                     {selectElements && (
-                        selectElements.map((elem, index) => (
-                            <TableUtilitiesWrapper
-                                key={"table-elements" + index}
-                                selectedFlatRows={selectedFlatRows}
-                                toggleAllRowsSelected={() => toggleAllRowsSelected(false)}
-                            >
-                                {elem}
-                            </TableUtilitiesWrapper>
-                        ))
+                        <>
+                            <h3 className="mr-2 mb-0 align-self-center">Selected (
+                                <span
+                                    className={selectedFlatRows.length ? "text-success" : "text-danger"}>
+                                    {selectedFlatRows.length}
+                                </span>)
+                            </h3>
+                            {selectElements.map((elem, index) => (
+                                <SelectElementPropsProvider
+                                    key={"table-elements" + index}
+                                    selectedFlatRows={selectedFlatRows}
+                                    toggleAllRowsSelected={() => toggleAllRowsSelected(false)}
+                                >
+                                    {elem}
+                                </SelectElementPropsProvider>
+                            ))}
+                        </>
                     )}
                 </div>
             </div>
@@ -163,6 +171,7 @@ export const ReactTable = <T, >({ data, columns, selectElements }: Props<T>) => 
                                         // Apply the cell props
                                         return (
                                             <td
+                                                data-label={typeof cell.column.Header === "function" ? "select" : cell.column.Header}
                                                 {...cell.getCellProps()}
                                                 className="react-table-td"
                                             >
