@@ -78,7 +78,22 @@
 
 @media (min-width: 360px) {
 }
-@media (min-width: 640px) {
+
+@media (max-width: 640px) {
+    .react-table-filter {
+        flex-direction: column-reverse;
+    }
+
+    .react-table-btn-wrapper {
+        width: 100%;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    .react-table-search {
+        width: 100%;
+    }
+
 }
 @media (min-width: 850px) {
 }
@@ -126,10 +141,15 @@
     max-width: 5rem;
   }
 
-  .react-table-td:before {
-    content: none;
-    text-transform: none;
-  }
+    .react-table-tags-button:hover {
+        cursor: pointer;
+        opacity: 50%;
+    }
+
+    .react-table-td:before {
+        content: none;
+        text-transform: none;
+    }
 
   .react-table-td:last-child {
     width: 15%;
