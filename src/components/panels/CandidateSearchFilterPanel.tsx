@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Col, Row } from "reactstrap";
-import { FilterPanel } from "components/panels";
-import SelectFilter from "../../Filters/SelectFilter";
-import { getSelectRating } from "../../../utils";
-import { InputFilter } from "../../Filters";
-import { ICandidateFilters, OptionType } from "../../../types/types";
-import { addFilter } from "../../../redux/filters";
+import SelectFilter from "../Filters/SelectFilter";
+import { getSelectRating } from "../../utils";
+import { InputFilter } from "../Filters";
+import { ICandidateFilters, OptionType } from "../../types/types";
+import { addFilter } from "../../redux/filters";
+import { FilterPanel } from "./FilterPanel";
 
 interface Props {
     title: string
@@ -13,7 +13,7 @@ interface Props {
     callback: (filters: ICandidateFilters) => void;
 }
 
-export const SearchFilterPanel = ({ callback, title, statusSelectOptions }: Props) => {
+export const CandidateSearchFilterPanel = ({ callback, title, statusSelectOptions }: Props) => {
     const [ searchName, setSearchName ] = useState('');
     const [ searchEmail, setSearchEmail ] = useState('');
 

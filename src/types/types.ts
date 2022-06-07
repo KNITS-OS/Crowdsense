@@ -53,7 +53,8 @@ export interface ITag {
     createdAt: Date;
 }
 
-export type IKNCareerStatus = "New" | "Closed" | "In Review";
+export type IKNCareerStatus = "New" | "Closed" | "In Review" | "Declined By Candidate" |
+    "Declined By Reviewer";
 export type IKNCareerCurriculumStatus = "CV Review" | "CV Reviewed" | "Ready for interview"
 
 export type ICandidateRating = 0 | 1 | 2 | 3 | 4 | 5 | number;
@@ -68,6 +69,7 @@ export interface ICandidate {
     country: string;
     rating?: ICandidateRating;
     comment?: string;
+    tags?: OptionType[]
 }
 
 export interface IEvent {

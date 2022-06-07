@@ -1,17 +1,22 @@
 import { MouseEvent } from "react";
 import { Column } from "react-table";
-import { MouseEventActionButton } from "../../../../components/widgets/react-table";
-import { ICandidate } from "../../../../types/types";
-import tableRatingCell from "../../../../components/widgets/react-table/components/TableRatingCell";
+import tableRatingCell from "../components/TableRatingCell";
+import { ICandidate, OptionType } from "../../../../types/types";
+import { EditableColumn, MouseEventActionButton } from "../../index";
+import TableTagsCell from "../components/TableTagsCell";
 
 export interface IDefaultActions {
     onDetailsButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-    updateRatingHandler: (newRating: number, reqId: string) => void
+    onChangeRating: (newRating: number, reqId: string) => void
+    onChangeComment?: (value: string) => void
+    onSelectTags?: (id: string, value: OptionType[]) => void
 }
 
 export const candidatesTableColumns = ({
                                            onDetailsButtonClick,
-                                           updateRatingHandler,
+                                           onChangeRating,
+                                           onChangeComment,
+                                           onSelectTags,
                                        }: IDefaultActions): Column<ICandidate>[] => {
 
     const tableArray: Column<ICandidate>[] = [
@@ -35,10 +40,11 @@ export const candidatesTableColumns = ({
                 return tableRatingCell({
                     rating,
                     reqId,
-                    callback: updateRatingHandler
+                    callback: onChangeRating
                 })
             }
         },
+
         {
             accessor: 'email',
             Header: 'Email',
@@ -55,7 +61,37 @@ export const candidatesTableColumns = ({
             accessor: 'country',
             Header: 'Country'
         },
+
     ]
+
+
+    if (onSelectTags) {
+        tableArray.splice(8, 0, {
+            accessor: 'tags',
+            Header: 'Tags',
+            Cell: ({ row }) => {
+                const { reqId } = row.original
+                return (
+                    <TableTagsCell id={reqId} callback={onSelectTags}/>
+                )
+            }
+        })
+    }
+
+    if (onChangeComment) {
+        tableArray.splice(3, 0, {
+            accessor: 'comment',
+            Header: 'Comment',
+            Cell: ({ row }) => {
+                return (
+                    <EditableColumn
+                        value={row.values.comment}
+                        updateColumn={onChangeComment}
+                    />
+                )
+            }
+        })
+    }
 
     if (onDetailsButtonClick) {
         tableArray.push(MouseEventActionButton({ onDetailsButtonClick }) as Column<ICandidate>);

@@ -1,2 +1,2 @@
 export * from "./SearchCurriculumPage"
-export * from "./SearchCurriculumTable"
+export * from "../../../../components/widgets/react-table/columns/CandidatesTableColumn"

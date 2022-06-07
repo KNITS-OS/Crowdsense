@@ -1,14 +1,13 @@
 import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
-import { Button, Card, CardHeader, Col, Container, Row } from "reactstrap";
-import { ICandidate, ICandidateFilters } from "../../../../types/types";
-import { curriculumsTableColumns } from "./SearchCurriculumTable";
+import { Col, Container, Row } from "reactstrap";
+import { ICandidate, ICandidateFilters, OptionType } from "../../../../types/types";
 import { MouseEvent } from "react";
 import { useHistory } from "react-router";
-import { ReactTable, TableSelectButton } from "../../../../components/widgets/react-table";
 import mockedCurriculums from "../../../../mockData/curriculums.json"
-import { CV_DETAILS, CV_IMPORT, CV_NEW, CV_WORKFLOW } from "../../../../variables/routes";
+import { CV_DETAILS, CV_WORKFLOW } from "../../../../variables/routes";
 import { getCurriculumSelectStatus } from "../../../../utils";
-import { SearchFilterPanel } from "../../../../components/widgets/search-panel";
+import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "../../../../components/panels";
+import { candidatesTableColumns } from "../../../../components/widgets/react-table/columns";
 
 export const SearchCurriculumPage = () => {
     const history = useHistory();
@@ -34,12 +33,17 @@ export const SearchCurriculumPage = () => {
         console.log("workflow", selectedCurriculums)
         history.push(`/admin${CV_WORKFLOW}`);
     }
-    const onCurriculumCommentChange = (newComment: string) => {
+
+    const onChangeCurriculumComment = (newComment: string) => {
         console.log("update comment", newComment)
     }
 
-    const onCurriculumRatingChange = (newRating: number, reqId: string) => {
+    const onChangeCurriculumRating = (newRating: number, reqId: string) => {
         console.log("update rating", newRating, reqId)
+    }
+
+    const onSelectCurriculumTags = (id: string, tags: OptionType[]) => {
+        console.log("Tags", id, tags)
     }
 
     return (
@@ -48,7 +52,7 @@ export const SearchCurriculumPage = () => {
             <Container className="mt--6" fluid>
                 <Row>
                     <Col>
-                        <SearchFilterPanel
+                        <CandidateSearchFilterPanel
                             title="Search Curriculums"
                             statusSelectOptions={getCurriculumSelectStatus}
                             callback={onSearchCurriculums}
@@ -57,57 +61,21 @@ export const SearchCurriculumPage = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Card>
-                            <CardHeader className="d-flex justify-content-between">
-                                <Row>
-                                    <Col md="12">
-                                        <h3 className="mb-0">Curriculums</h3>
-                                        <p className="text-sm mb-0">
-                                            Applicants curriculums
-                                        </p>
-                                    </Col>
-                                </Row>
-                                <div>
-                                    <Button
-                                        onClick={() => history.push(`/admin${CV_IMPORT}`)}
-                                    >
-                                        Import
-                                    </Button>
-                                    <Button
-                                        color="success"
-                                        className="mr-2"
-                                        onClick={() => history.push(`/admin${CV_NEW}`)}
-                                    >
-                                        New
-                                    </Button>
-                                </div>
-                            </CardHeader>
-
-                            <ReactTable
-                                data={mockedCurriculums}
-                                selectElements={[
-                                    <TableSelectButton
-                                        title="Export"
-                                        callback={onExportCurriculums}
-                                    />,
-                                    <TableSelectButton
-                                        title="Workflow"
-                                        color="info"
-                                        callback={onMoveCurriculumsToWorkflow}
-                                    />,
-                                    <TableSelectButton
-                                        title="Delete"
-                                        color="danger"
-                                        callback={onDeleteCurriculums}
-                                    />,
-                                ]}
-                                columns={curriculumsTableColumns({
-                                    updateRatingHandler: onCurriculumRatingChange,
-                                    onDetailsButtonClick: onViewCurriculumDetails,
-                                    onColumnChange: onCurriculumCommentChange
-                                })}
-                            />
-                        </Card>
+                        <CandidateResultSetPanel
+                            title="Curriculums"
+                            subTitle="Applicants curriculums"
+                            tableType="curriculum"
+                            data={mockedCurriculums as ICandidate[]}
+                            columns={candidatesTableColumns({
+                                onChangeRating: onChangeCurriculumRating,
+                                onDetailsButtonClick: onViewCurriculumDetails,
+                                onChangeComment: onChangeCurriculumComment,
+                                onSelectTags: onSelectCurriculumTags
+                            })}
+                            onExport={onExportCurriculums}
+                            onDelete={onDeleteCurriculums}
+                            onWorkflow={onMoveCurriculumsToWorkflow}
+                        />
                     </Col>
                 </Row>
             </Container>

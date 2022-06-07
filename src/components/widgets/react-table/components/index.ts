@@ -3,7 +3,7 @@ export * from "./Sorter";
 export * from "./GlobalFilter";
 export * from "./Pagination";
 export * from "./TableColumnHelpers";
-export * from "./TableUtilitiesWrapper";
+export * from "./SelectElementPropsProvider";
 export * from "./TableRatingCell";
 export * from "./TableTagsCell";
 export * from "./TableSelectButton";

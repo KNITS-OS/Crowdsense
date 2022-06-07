@@ -1,20 +1,20 @@
-import {
-    ICandidateRating,
-    IKNCareerCurriculumStatus,
-    IKNCareerStatus,
-    OptionType,
-} from "types/types";
+import { ICandidateRating, ICandidateStatus, IKNCareerStatus, OptionType, } from "types/types";
 
 export const selectCandidatesStatusArray: IKNCareerStatus[] = [
-    "Closed",
-    "In Review",
-    "New",
-];
+        "Closed",
+        "In Review",
+        "New",
+        "Declined By Candidate",
+        "Declined By Reviewer"
+    ]
+;
 
-export const selectCurriculumStatusArray: IKNCareerCurriculumStatus[] = [
+export const selectCurriculumStatusArray: ICandidateStatus[] = [
     "CV Review",
     "CV Reviewed",
-    "Ready for interview"
+    "Ready for interview",
+    "Declined By Candidate",
+    "Declined By Reviewer"
 ];
 
 

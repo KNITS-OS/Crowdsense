@@ -14,13 +14,12 @@ export const TableSelectButton = ({
                                       ...rest
                                   }: IProps) => {
     return (
-        <>
-            <Button
-                onClick={() => selectedFlatRows && callback(selectedFlatRows)}
-                {...rest}
-            >
-                {title}
-            </Button>
-        </>
+        <Button
+            className="ml-0"
+            onClick={() => selectedFlatRows && callback(selectedFlatRows)}
+            {...rest}
+        >
+            {title}
+        </Button>
     );
 };

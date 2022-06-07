@@ -12,7 +12,7 @@ export const EditableColumn = ({ value, updateColumn }: IProps) => {
 
     const onSave = () => {
         if (newValue !== value) {
-            updateColumn(value)
+            updateColumn(newValue)
             setToggle(false)
         } else return
     }

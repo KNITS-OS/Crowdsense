@@ -7,11 +7,11 @@ interface Props {
     children: JSX.Element;
 }
 
-export const TableUtilitiesWrapper = <T, >({
-                                               children,
-                                               selectedFlatRows,
-                                               toggleAllRowsSelected,
-                                           }: Props) => {
+export const SelectElementPropsProvider = <T, >({
+                                                    children,
+                                                    selectedFlatRows,
+                                                    toggleAllRowsSelected,
+                                                }: Props) => {
     const selectedEntities = selectedFlatRows.map(row => row.original as unknown as T);
     return (
         <>{cloneElement(children, { selectedFlatRows: selectedEntities, toggleAllRowsSelected })}</>

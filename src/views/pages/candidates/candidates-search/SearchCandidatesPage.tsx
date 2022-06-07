@@ -1,17 +1,16 @@
 import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
-import { Card, CardHeader, Col, Container, Row } from "reactstrap";
-import { ReactTable, TableSelectButton } from "../../../../components/widgets/react-table";
+import { Col, Container, Row } from "reactstrap";
 import { useHistory } from "react-router";
-import { ICandidate, ICandidateFilters } from "../../../../types/types";
+import { ICandidate, ICandidateFilters, OptionType } from "../../../../types/types";
 import { MouseEvent } from "react";
-import mockedCandidates from "../../../../mockData/candidates.json"
 import { getCandidatesSelectStatus } from "../../../../utils";
-import { SearchFilterPanel } from "../../../../components/widgets/search-panel";
-import { candidatesTableColumns } from "./SearchCandidatesTable";
 import {
     useUpdateCandidateMutation
 } from "../../../../redux/features/candidates/candidatesApiSlice";
 import { CANDIDATE_DETAILS } from "../../../../variables/routes";
+import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "../../../../components/panels";
+import { candidatesTableColumns } from "../../../../components/widgets/react-table/columns";
+import mockedCurriculums from "../../../../mockData/curriculums.json";
 
 export const SearchCandidatesPage = () => {
     const [ updateCandidate ] = useUpdateCandidateMutation();
@@ -23,7 +22,7 @@ export const SearchCandidatesPage = () => {
         history.push(`/admin${CANDIDATE_DETAILS}/${id.toLowerCase()}`);
     };
 
-    const onExportCandidate = (selectedCandidates: ICandidate[]) => {
+    const onExportCandidates = (selectedCandidates: ICandidate[]) => {
         console.log("export", selectedCandidates)
     }
 
@@ -31,7 +30,7 @@ export const SearchCandidatesPage = () => {
         console.log("delete", selectedCandidates)
     }
 
-    const onCandidateRatingChange = (newRating: number, reqId: string) => {
+    const onChangeCandidateRating = (newRating: number, reqId: string) => {
         updateCandidate({
             reqId: reqId,
             body: { rating: newRating },
@@ -42,6 +41,13 @@ export const SearchCandidatesPage = () => {
     const onSearchCandidates = (filters: ICandidateFilters) => {
         console.log("Search filters", filters)
     }
+    const onChangeCandidateComment = (newComment: string) => {
+        console.log("update comment", newComment)
+    }
+
+    const onSelectCandidateTags = (id: string, tags: OptionType[]) => {
+        console.log("Tags", id, tags)
+    }
 
     return (
         <>
@@ -49,7 +55,7 @@ export const SearchCandidatesPage = () => {
             <Container className="mt--6" fluid>
                 <Row>
                     <Col>
-                        <SearchFilterPanel
+                        <CandidateSearchFilterPanel
                             title="Search Candidates"
                             statusSelectOptions={getCandidatesSelectStatus}
                             callback={onSearchCandidates}
@@ -58,36 +64,20 @@ export const SearchCandidatesPage = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Card>
-                            <CardHeader className="d-flex justify-content-between">
-                                <Row>
-                                    <Col md="12">
-                                        <h3 className="mb-0">Candidates</h3>
-                                        <p className="text-sm mb-0">
-                                            Applicants
-                                        </p>
-                                    </Col>
-                                </Row>
-                            </CardHeader>
-                            <ReactTable
-                                data={mockedCandidates}
-                                selectElements={[
-                                    <TableSelectButton
-                                        title="Export"
-                                        callback={onExportCandidate}
-                                    />,
-                                    <TableSelectButton
-                                        title="Delete"
-                                        color="danger"
-                                        callback={onDeleteCandidates}
-                                    />,
-                                ]}
-                                columns={candidatesTableColumns({
-                                    updateRatingHandler: onCandidateRatingChange,
-                                    onDetailsButtonClick: onViewCandidateDetails,
-                                })}
-                            />
-                        </Card>
+                        <CandidateResultSetPanel
+                            title="Candidates"
+                            subTitle="Applicants"
+                            tableType="candidates"
+                            data={mockedCurriculums as ICandidate[]}
+                            columns={candidatesTableColumns({
+                                onChangeRating: onChangeCandidateRating,
+                                onDetailsButtonClick: onViewCandidateDetails,
+                                onChangeComment: onChangeCandidateComment,
+                                onSelectTags: onSelectCandidateTags
+                            })}
+                            onDelete={onDeleteCandidates}
+                            onExport={onExportCandidates}
+                        />
                     </Col>
                 </Row>
             </Container>
