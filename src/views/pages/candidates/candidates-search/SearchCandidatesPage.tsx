@@ -67,7 +67,6 @@ export const SearchCandidatesPage = () => {
                         <CandidateResultSetPanel
                             title="Candidates"
                             subTitle="Applicants"
-                            tableType="candidates"
                             data={mockedCurriculums as ICandidate[]}
                             columns={candidatesTableColumns({
                                 onChangeRating: onChangeCandidateRating,

@@ -1,10 +1,10 @@
 import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
-import { Col, Container, Row } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 import { ICandidate, ICandidateFilters, OptionType } from "../../../../types/types";
-import { MouseEvent } from "react";
+import React, { MouseEvent } from "react";
 import { useHistory } from "react-router";
 import mockedCurriculums from "../../../../mockData/curriculums.json"
-import { CV_DETAILS, CV_WORKFLOW } from "../../../../variables/routes";
+import { CV_DETAILS, CV_IMPORT, CV_NEW, CV_WORKFLOW } from "../../../../variables/routes";
 import { getCurriculumSelectStatus } from "../../../../utils";
 import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "../../../../components/panels";
 import { candidatesTableColumns } from "../../../../components/widgets/react-table/columns";
@@ -64,7 +64,6 @@ export const SearchCurriculumPage = () => {
                         <CandidateResultSetPanel
                             title="Curriculums"
                             subTitle="Applicants curriculums"
-                            tableType="curriculum"
                             data={mockedCurriculums as ICandidate[]}
                             columns={candidatesTableColumns({
                                 onChangeRating: onChangeCurriculumRating,
@@ -75,7 +74,22 @@ export const SearchCurriculumPage = () => {
                             onExport={onExportCurriculums}
                             onDelete={onDeleteCurriculums}
                             onWorkflow={onMoveCurriculumsToWorkflow}
-                        />
+                        >
+                                <Button
+                                    color="success"
+                                    onClick={() => history.push(`/admin${CV_IMPORT}`)}
+                                >
+                                    Import
+                                </Button>
+
+                                <Button
+                                    color="success"
+                                    className="mr-2"
+                                    onClick={() => history.push(`/admin${CV_NEW}`)}
+                                >
+                                    New
+                                </Button>
+                        </CandidateResultSetPanel>
                     </Col>
                 </Row>
             </Container>

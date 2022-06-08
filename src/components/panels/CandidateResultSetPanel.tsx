@@ -1,8 +1,6 @@
-import { Button, Card, CardHeader, Col, Row } from "reactstrap";
-import { CV_IMPORT, CV_NEW } from "../../variables/routes";
+import { Card, CardHeader, Col, Row } from "reactstrap";
 import { ReactTable, TableSelectButton } from "../widgets";
 import { ICandidate } from "../../types/types";
-import { useHistory } from "react-router";
 import { Column } from "react-table";
 
 interface IProps {
@@ -10,23 +8,23 @@ interface IProps {
     subTitle: string;
     data: ICandidate[]
     columns: Column<ICandidate>[]
-    tableType: "candidates" | "curriculum" | "interview" | "offer"
     onDelete: (value: ICandidate[]) => void,
     onExport?: (value: ICandidate[]) => void
     onWorkflow?: (value: ICandidate[]) => void
+    onImport?:(value: ICandidate[]) => void
 }
 
-export const CandidateResultSetPanel = ({
+export const CandidateResultSetPanel:React.FC<IProps> = ({
                                             title,
                                             subTitle,
                                             data,
-                                            tableType,
                                             columns,
                                             onDelete,
                                             onExport,
-                                            onWorkflow
-                                        }: IProps) => {
-    const history = useHistory()
+                                            onWorkflow,
+                                            onImport,
+                                            children
+                                        }) => {
 
     const selectElementsFilter = () => {
         const elements = []
@@ -47,6 +45,15 @@ export const CandidateResultSetPanel = ({
                 />
             )
         }
+        if (onImport) {
+            elements.push(<TableSelectButton
+                    title="Import"
+                    color="success"
+                    callback={onImport}
+                />
+
+            )
+        }
 
         return [ ...elements,
             <TableSelectButton
@@ -60,7 +67,7 @@ export const CandidateResultSetPanel = ({
     return (
         <Card>
             <CardHeader className="d-flex justify-content-between">
-                <Row>
+                <Row className="d-flex justify-content-between align-items-center">
                     <Col md="12">
                         <h3 className="mb-0">{title}</h3>
                         <p className="text-sm mb-0">
@@ -68,21 +75,9 @@ export const CandidateResultSetPanel = ({
                         </p>
                     </Col>
                 </Row>
-                {tableType === "curriculum" && (
+                {children && (
                     <div className="d-flex align-items-center">
-                        <Button
-                            color="success"
-                            onClick={() => history.push(`/admin${CV_IMPORT}`)}
-                        >
-                            Import
-                        </Button>
-                        <Button
-                            color="success"
-                            className="mr-2"
-                            onClick={() => history.push(`/admin${CV_NEW}`)}
-                        >
-                            New
-                        </Button>
+                        {children}
                     </div>
                 )}
             </CardHeader>
