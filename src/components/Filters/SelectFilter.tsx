@@ -1,26 +1,29 @@
 import Select from "react-select";
 import { FormGroup, Label } from "reactstrap";
 import { OptionType } from "types/types";
+import { StateManagerProps } from "react-select/dist/declarations/src/useStateManager";
 
-interface Props {
-  id: string;
-  label: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  options: OptionType[];
+interface Props extends StateManagerProps {
+    id: string;
+    label: string;
+    setValue: React.Dispatch<OptionType | null>;
+    options: OptionType[];
 }
 
-const SelectFilter = ({ setValue, options, id, label }: Props) => {
-  return (
-    <FormGroup>
-      <Label className="form-control-label" htmlFor={id}>
-        {label}
-      </Label>
-      <Select
-        id={id}
-        options={options}
-        onChange={item => item && setValue(item.value)}
-      />
-    </FormGroup>
-  );
+const SelectFilter = ({ setValue, options, id, label, ...rest }: Props) => {
+    return (
+        <FormGroup>
+            <Label className="form-control-label" htmlFor={id}>
+                {label}
+            </Label>
+            <Select
+                id={id}
+                options={options}
+                onChange={(item) => setValue(item as OptionType)}
+                {...rest}
+            />
+
+        </FormGroup>
+    );
 };
 export default SelectFilter;
