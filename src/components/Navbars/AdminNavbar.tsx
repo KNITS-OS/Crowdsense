@@ -29,7 +29,6 @@ import {
   FormGroup,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputGroupText,
   ListGroup,
   ListGroupItem,
@@ -100,11 +99,9 @@ const AdminNavbar = ({ theme }: Props) => {
             >
               <FormGroup className="mb-0">
                 <InputGroup className="input-group-alternative input-group-merge">
-                  <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <i className="fas fa-search" />
                     </InputGroupText>
-                  </InputGroupAddon>
                   <Input placeholder="Search" type="text" />
                 </InputGroup>
               </FormGroup>

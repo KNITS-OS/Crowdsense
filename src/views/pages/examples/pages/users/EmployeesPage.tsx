@@ -1,41 +1,22 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-// core components
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import React from "react";
-// react component for creating dynamic tables
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { useHistory } from "react-router";
-// reactstrap components
 import { Button, Card, CardHeader, Container, Row } from "reactstrap";
 import { pagination } from "utils";
 import { useAlert } from "context";
 import { employees } from "./EmployeesData";
+import { useNavigate } from "react-router-dom";
 
 const { SearchBar } = Search;
 
 const Employees = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { alert } = useAlert();
 
   const goToEmployeeDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
     var { id } = e.target as HTMLButtonElement;
-    history.push(`/admin/users/employee-details/${id}`);
+    navigate(`/admin/users/employee-details/${id}`);
   };
 
   const employeeRemove = (e: React.MouseEvent<HTMLButtonElement>) => {

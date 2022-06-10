@@ -1,25 +1,22 @@
-import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { Col, Container, Row } from "reactstrap";
-import { useHistory } from "react-router";
-import { ICandidate, ICandidateFilters, OptionType } from "../../../../types/types";
+import { ICandidate, ICandidateFilters, OptionType } from "types/types";
 import { MouseEvent } from "react";
-import { getCandidatesSelectStatus } from "../../../../utils";
-import {
-    useUpdateCandidateMutation
-} from "../../../../redux/features/candidates/candidatesApiSlice";
-import { CANDIDATE_DETAILS } from "../../../../variables/routes";
-import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "../../../../components/panels";
-import { candidatesTableColumns } from "../../../../components/widgets/react-table/columns";
-import mockedCurriculums from "../../../../mockData/curriculums.json";
+import { getCandidatesSelectStatus } from "utils";
+import { useUpdateCandidateMutation } from "redux/features/candidates/candidatesApiSlice";
+import { CANDIDATE_DETAILS } from "variables/routes";
+import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "components/panels";
+import { candidatesTableColumns } from "components/widgets/react-table/columns";
+import mockedCurriculums from "mockData/curriculums.json";
+import { useNavigate } from "react-router-dom";
 
 export const SearchCandidatesPage = () => {
     const [ updateCandidate ] = useUpdateCandidateMutation();
-
-    const history = useHistory()
+    const navigate = useNavigate();
 
     const onViewCandidateDetails = (e: MouseEvent<HTMLButtonElement>) => {
         const { id } = e.currentTarget;
-        history.push(`/admin${CANDIDATE_DETAILS}/${id.toLowerCase()}`);
+        navigate(`/admin${CANDIDATE_DETAILS}/${id.toLowerCase()}`);
     };
 
     const onExportCandidates = (selectedCandidates: ICandidate[]) => {

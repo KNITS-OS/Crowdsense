@@ -1,7 +1,6 @@
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { useState } from "react";
-import { useHistory } from "react-router";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
 import {
     Button,
@@ -16,24 +15,21 @@ import {
     Spinner,
 } from "reactstrap";
 import { useGetCandidateQuery } from "redux/features/candidates/candidatesApiSlice";
-import { LabeledFormInput } from "../../../../components/Input";
-import { ITag } from "../../../../types/types";
-import { defaultTags } from "../../../../mockData";
-
-interface RouteParams {
-    id: string;
-}
+import { LabeledFormInput } from "components/Input";
+import { ITag } from "types/types";
+import { defaultTags } from "mockData";
 
 export const CandidateDetailsPage = () => {
-    let { id } = useParams<RouteParams>();
+    let { id } = useParams();
     const [ tags, setTags ] = useState<ITag[]>([]);
+    const navigate = useNavigate()
+
     const {
         data = [],
         isError,
         isLoading,
         isFetching,
-    } = useGetCandidateQuery({ id, select: "*" });
-    const history = useHistory();
+    } = useGetCandidateQuery({ id:id || '', select: "*" });
 
     let candidate = data[0];
     if (isLoading || isFetching) {
@@ -94,7 +90,7 @@ export const CandidateDetailsPage = () => {
                                             type="button"
                                             color="info"
                                             onClick={() =>
-                                                history.push("/admin/candidates-search")
+                                                navigate("/admin/candidates-search")
                                             }
                                         >
                                             Back to Search

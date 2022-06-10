@@ -1,26 +1,8 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import AdminFooter from "components/Footers/AdminFooter";
-// core components
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import { Sidebar } from "components/Sidebar";
 import { useEffect, useRef } from "react";
-// react library for routing
-import { Redirect, Switch } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import routes from "routes";
 import { getRoutes, ScrollToTop } from ".";
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
@@ -57,10 +39,10 @@ const RTL = () => {
       />
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar theme="dark" />
-        <Switch>
+        <Routes>
           {getRoutes(routes, "/rtl")}
-          <Redirect from="*" to="/rtl/rtl-support" />
-        </Switch>
+            <Route path="*" element={<Navigate to="/rtl/rtl-support" replace/>}/>
+        </Routes>
         <AdminFooter />
       </div>
       {isSidenavOpen ? (

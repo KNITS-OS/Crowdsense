@@ -1,19 +1,19 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import * as XLSX from "xlsx";
-import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { Button, Col, Container, Row } from "reactstrap";
+import { convertFileToJson, getFileExtension } from "utils/utils";
+import { ICandidate, OptionType } from "types/types";
+import { CandidateResultSetPanel } from "components/panels";
+import { candidatesTableColumns } from "components/widgets/react-table/columns";
+import { FileButton } from "components/Buttons";
+import { CV_SEARCH } from "variables/routes";
+import { useNavigate } from "react-router-dom";
 import { importCurriculumsTableColumns } from "./ImportCVTable";
-import { convertFileToJson, getFileExtension } from "../../../../utils/utils";
-import { ICandidate, OptionType } from "../../../../types/types";
-import { CandidateResultSetPanel } from "../../../../components/panels";
-import { candidatesTableColumns } from "../../../../components/widgets/react-table/columns";
-import { FileButton } from "../../../../components/Buttons";
-import { CV_SEARCH } from "../../../../variables/routes";
-import { useHistory } from "react-router";
 
 export function ImportCv() {
     const [ importedData, setImportedData ] = useState<ICandidate[]>([])
-    const history = useHistory()
+    const navigate = useNavigate();
 
     const onImportExcel = (e: ChangeEvent) => {
         const target = e.target as HTMLInputElement;
@@ -100,7 +100,7 @@ export function ImportCv() {
                                 <Button
                                     className="btn btn-primary"
                                     color="primary"
-                                    onClick={() => history.push(`/admin${CV_SEARCH}`)}
+                                    onClick={() => navigate(`/admin${CV_SEARCH}`)}
                                 >
                                     Back to Search
                                 </Button>

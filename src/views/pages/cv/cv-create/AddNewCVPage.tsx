@@ -1,14 +1,14 @@
-import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from "reactstrap";
-import { FormInputField, FormSelectField } from "../../../../components/Input";
+import { FormInputField, FormSelectField } from "components/Input";
 import { useForm } from "react-hook-form";
 import moment from "moment";
-import { ICreateCurriculumRequest } from "../../../../types/api";
-import { DATE_FILTER_FORMAT } from "../../../../variables/general";
-import { getCurriculumSelectStatus, getSelectRating } from "../../../../utils";
-import { findSelectValue } from "../../../../utils/selectUtils";
-import { useHistory } from "react-router";
-import { CV_SEARCH } from "../../../../variables/routes";
+import { ICreateCurriculumRequest } from "types/api";
+import { DATE_FILTER_FORMAT } from "variables/general";
+import { getCurriculumSelectStatus, getSelectRating } from "utils";
+import { findSelectValue } from "utils/selectUtils";
+import { CV_SEARCH } from "variables/routes";
+import { useNavigate } from "react-router-dom";
 
 export const AddNewCVPage = () => {
     const {
@@ -17,7 +17,8 @@ export const AddNewCVPage = () => {
         formState: { errors, dirtyFields },
         reset
     } = useForm<ICreateCurriculumRequest>({ mode: 'onChange' });
-    const history = useHistory()
+    const navigate = useNavigate();
+
 
     const onFormSubmit = handleSubmit((data) => {
         console.log(data)
@@ -39,7 +40,7 @@ export const AddNewCVPage = () => {
                                         <Button
                                             className="btn btn-primary"
                                             color="primary"
-                                            onClick={() => history.push(`/admin${CV_SEARCH}`)}
+                                            onClick={() => navigate(`/admin${CV_SEARCH}`)}
                                         >
                                             Back to Search
                                         </Button>

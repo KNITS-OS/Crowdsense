@@ -1,16 +1,16 @@
 import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
 import { Button, Col, Container, Row } from "reactstrap";
 import { ICandidate, ICandidateFilters, OptionType } from "../../../../types/types";
-import React, { MouseEvent } from "react";
-import { useHistory } from "react-router";
-import mockedCurriculums from "../../../../mockData/curriculums.json"
-import { CV_DETAILS, CV_IMPORT, CV_NEW, CV_WORKFLOW } from "../../../../variables/routes";
-import { getCurriculumSelectStatus } from "../../../../utils";
-import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "../../../../components/panels";
-import { candidatesTableColumns } from "../../../../components/widgets/react-table/columns";
+import { MouseEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import mockedCurriculums from "mockData/curriculums.json"
+import { CV_DETAILS, CV_IMPORT, CV_NEW, CV_WORKFLOW } from "variables/routes";
+import { getCurriculumSelectStatus } from "utils";
+import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "components/panels";
+import { candidatesTableColumns } from "components/widgets/react-table/columns";
 
 export const SearchCurriculumPage = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const onSearchCurriculums = (filters: ICandidateFilters) => {
         console.log("Search filters", filters)
@@ -18,7 +18,7 @@ export const SearchCurriculumPage = () => {
 
     const onViewCurriculumDetails = (e: MouseEvent<HTMLButtonElement>) => {
         const { id } = e.currentTarget;
-        history.push(`/admin${CV_DETAILS}/${id.toLowerCase()}`);
+        navigate(`/admin${CV_DETAILS}/${id.toLowerCase()}`);
     };
 
     const onExportCurriculums = (selectedCurriculums: ICandidate[]) => {
@@ -31,7 +31,7 @@ export const SearchCurriculumPage = () => {
 
     const onMoveCurriculumsToWorkflow = (selectedCurriculums: ICandidate[]) => {
         console.log("workflow", selectedCurriculums)
-        history.push(`/admin${CV_WORKFLOW}`);
+        navigate(`/admin${CV_WORKFLOW}`);
     }
 
     const onChangeCurriculumComment = (newComment: string) => {
@@ -77,7 +77,7 @@ export const SearchCurriculumPage = () => {
                         >
                                 <Button
                                     color="success"
-                                    onClick={() => history.push(`/admin${CV_IMPORT}`)}
+                                    onClick={() => navigate(`/admin${CV_IMPORT}`)}
                                 >
                                     Import
                                 </Button>
@@ -85,7 +85,7 @@ export const SearchCurriculumPage = () => {
                                 <Button
                                     color="success"
                                     className="mr-2"
-                                    onClick={() => history.push(`/admin${CV_NEW}`)}
+                                    onClick={() => navigate(`/admin${CV_NEW}`)}
                                 >
                                     New
                                 </Button>

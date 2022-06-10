@@ -1,21 +1,5 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-// reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
+import  logo from "assets/img/theme/profile-cover.jpg"
 
 const ProfileHeader = () => {
   return (
@@ -24,10 +8,7 @@ const ProfileHeader = () => {
         className="header pb-6 d-flex align-items-center"
         style={{
           minHeight: "500px",
-          backgroundImage:
-            'url("' +
-            require("assets/img/theme/profile-cover.jpg").default +
-            '")',
+          backgroundImage:logo,
           backgroundSize: "cover",
           backgroundPosition: "center top",
         }}

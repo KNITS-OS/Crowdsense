@@ -23,21 +23,20 @@ import NotificationAlert from "react-notification-alert";
 import ReactBSAlert from "react-bootstrap-sweetalert";
 // reactstrap components
 import {
-  UncontrolledAlert,
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Modal,
-  Container,
-  Row,
+  CardHeader,
   Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  InputGroup,
+  InputGroupText,
+  Modal,
+  Row,
+  UncontrolledAlert,
 } from "reactstrap";
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader";
@@ -442,11 +441,11 @@ function Notifications() {
                                 })}
                               >
                                 <InputGroup className="input-group-merge input-group-alternative">
-                                  <InputGroupAddon addonType="prepend">
+                                  {/*<InputGroupAddon addonType="prepend">*/}
                                     <InputGroupText>
                                       <i className="ni ni-email-83" />
                                     </InputGroupText>
-                                  </InputGroupAddon>
+                                  {/*</InputGroupAddon>*/}
                                   <Input
                                     placeholder="Email"
                                     type="email"
@@ -461,11 +460,11 @@ function Notifications() {
                                 })}
                               >
                                 <InputGroup className="input-group-merge input-group-alternative">
-                                  <InputGroupAddon addonType="prepend">
+                                  {/*/!*<InputGroupAddon addonType="prepend">*!/*/}
                                     <InputGroupText>
                                       <i className="ni ni-lock-circle-open" />
                                     </InputGroupText>
-                                  </InputGroupAddon>
+                                  {/*/!*</InputGroupAddon>*!/*/}
                                   <Input
                                     placeholder="Password"
                                     type="password"

@@ -1,31 +1,14 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import AdminFooter from "components/Footers/AdminFooter";
-// core components
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import { useRef } from "react";
-// react library for routing
-import { Redirect, Switch, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import routes from "routes";
 import { Theme } from "types/types";
-import { getRoutes, ScrollToTop } from ".";
+import { ScrollToTop } from ".";
 import { Sidebar } from "components/Sidebar";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
+import logo from "../assets/img/brand/CareLogoMin.png"
 
 const Admin = () => {
   const location = useLocation();
@@ -47,17 +30,14 @@ const Admin = () => {
         routes={routes}
         logo={{
           innerLink: "/",
-          imgSrc: require("assets/img/brand/CareLogoMin.png").default,
+          imgSrc: logo,
           imgAlt: "...",
         }}
         rtlActive={false}
       />
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar theme={getNavbarTheme()} />
-        <Switch>
-          {getRoutes(routes, "/admin")}
-          <Redirect from="*" to="/admin/home" />
-        </Switch>
+          <Outlet/>
         <AdminFooter />
       </div>
       {isSidenavOpen ? (

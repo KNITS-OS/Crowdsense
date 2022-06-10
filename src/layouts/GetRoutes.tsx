@@ -11,7 +11,7 @@ export const getRoutes = (routes: IRoute[], layout: LayoutType) => {
       return (
         <Route
           path={route.layout + route.path}
-          component={route.component as React.ComponentType}
+          element={route.component}
           key={key}
         />
       );
@@ -30,7 +30,7 @@ const getRouteViews = (routes: IRoute[], layout: LayoutType) => {
       return (
         <Route
           path={route.layout + route.path}
-          component={route.component as React.ComponentType}
+          element={route.component}
           key={key}
         />
       );
@@ -46,7 +46,7 @@ const getRouteViewsViews = (routes: IRoute[], layout: LayoutType) => {
       return (
         <Route
           path={route.layout + route.path}
-          component={route.component as React.ComponentType}
+          element={route.component}
           key={key}
         />
       );

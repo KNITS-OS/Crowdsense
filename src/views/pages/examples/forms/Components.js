@@ -36,7 +36,6 @@ import {
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
   InputGroupText,
   InputGroup,
   ListGroupItem,
@@ -215,11 +214,11 @@ function Components() {
                               focused: yourName,
                             })}
                           >
-                            <InputGroupAddon addonType="prepend">
+                            {/*<InputGroupAddon addonType="prepend">*/}
                               <InputGroupText>
                                 <i className="fas fa-user" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                             <Input
                               placeholder="Your name"
                               type="text"
@@ -236,11 +235,11 @@ function Components() {
                               focused: emailAddress,
                             })}
                           >
-                            <InputGroupAddon addonType="prepend">
+                            {/*<InputGroupAddon addonType="prepend">*/}
                               <InputGroupText>
                                 <i className="fas fa-envelope" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                             <Input
                               placeholder="Email address"
                               type="email"
@@ -265,11 +264,11 @@ function Components() {
                               onFocus={e => setlocation(true)}
                               onBlur={e => setlocation(false)}
                             />
-                            <InputGroupAddon addonType="append">
+                            {/*<InputGroupAddon addonType="append">*/}
                               <InputGroupText>
                                 <i className="fas fa-map-marker" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                           </InputGroup>
                         </FormGroup>
                       </Col>
@@ -286,11 +285,11 @@ function Components() {
                               onFocus={e => setpassword(true)}
                               onBlur={e => setpassword(false)}
                             />
-                            <InputGroupAddon addonType="append">
+                            {/*<InputGroupAddon addonType="append">*/}
                               <InputGroupText>
                                 <i className="fas fa-eye" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                           </InputGroup>
                         </FormGroup>
                       </Col>
@@ -303,24 +302,24 @@ function Components() {
                               focused: paymentMethos,
                             })}
                           >
-                            <InputGroupAddon addonType="prepend">
+                            {/*<InputGroupAddon addonType="prepend">*/}
                               <InputGroupText>
                                 <i className="fas fa-credit-card" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                             <Input
                               placeholder="Payment method"
                               type="text"
                               onFocus={e => setpaymentMethos(true)}
                               onBlur={e => setpaymentMethos(false)}
                             />
-                            <InputGroupAddon addonType="append">
+                            {/*<InputGroupAddon addonType="append">*/}
                               <InputGroupText>
                                 <small className="font-weight-bold">
                                   USD
                                 </small>
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                           </InputGroup>
                         </FormGroup>
                       </Col>
@@ -331,22 +330,22 @@ function Components() {
                               focused: phoneNumber,
                             })}
                           >
-                            <InputGroupAddon addonType="prepend">
+                            {/*<InputGroupAddon addonType="prepend">*/}
                               <InputGroupText>
                                 <i className="fas fa-globe-americas" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                             <Input
                               placeholder="Phone number"
                               type="text"
                               onFocus={e => setphoneNumber(true)}
                               onBlur={e => setphoneNumber(false)}
                             />
-                            <InputGroupAddon addonType="append">
+                            {/*<InputGroupAddon addonType="append">*/}
                               <InputGroupText>
                                 <i className="fas fa-phone" />
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                           </InputGroup>
                         </FormGroup>
                       </Col>

@@ -4,7 +4,7 @@ import { Badge, Button, Col, Row } from "reactstrap";
 import { useState } from "react";
 import { OptionType } from "../../../../types/types";
 import CreatableSelect from "react-select/creatable";
-import { FcPlus } from "react-icons/all";
+import { FcPlus } from "react-icons/fc";
 
 interface IProps {
     id: string

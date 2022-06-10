@@ -23,10 +23,9 @@ const useCopy = () => {
                 title="Good job!"
                 onConfirm={() => setAlert(null)}
                 onCancel={() => setAlert(null)}
+                confirmBtnText="  Copied to clipboard!"
                 confirmBtnBsStyle="info"
-              >
-                Copied to clipboard!
-              </ReactBSAlert>,
+              />
             );
           })
           .catch(function () {

@@ -12,9 +12,10 @@ interface IProps {
     onExport?: (value: ICandidate[]) => void
     onWorkflow?: (value: ICandidate[]) => void
     onImport?:(value: ICandidate[]) => void
+    children?: JSX.Element | JSX.Element[]
 }
 
-export const CandidateResultSetPanel:React.FC<IProps> = ({
+export const CandidateResultSetPanel = ({
                                             title,
                                             subTitle,
                                             data,
@@ -24,7 +25,7 @@ export const CandidateResultSetPanel:React.FC<IProps> = ({
                                             onWorkflow,
                                             onImport,
                                             children
-                                        }) => {
+                                        }:IProps) => {
 
     const selectElementsFilter = () => {
         const elements = []

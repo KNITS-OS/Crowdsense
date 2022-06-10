@@ -1,13 +1,11 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import GradientEmptyHeader from "../../../../components/Headers/GradientEmptyHeader";
+import { useNavigate, useParams } from "react-router-dom";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { Button, Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
-import { CV_SEARCH } from "../../../../variables/routes";
-import { useHistory } from "react-router";
+import { CV_SEARCH } from "variables/routes";
 
 export const CurriculumDetailsPage = () => {
     const params = useParams() as { id: string }
-    const history = useHistory()
+    const navigate = useNavigate();
 
     return (
         <>
@@ -24,7 +22,7 @@ export const CurriculumDetailsPage = () => {
                                 <Button
                                     className="btn btn-primary"
                                     color="primary"
-                                    onClick={() => history.push(`/admin${CV_SEARCH}`)}
+                                    onClick={() => navigate(`/admin${CV_SEARCH}`)}
                                 >
                                     Back to Search
                                 </Button>

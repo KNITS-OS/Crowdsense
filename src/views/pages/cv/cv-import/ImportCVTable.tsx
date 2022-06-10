@@ -1,6 +1,5 @@
 import { Column } from "react-table";
-import tableRatingCell from "../../../../components/widgets/react-table/components/TableRatingCell";
-import { ICandidate } from "../../../../types/types";
+import { ICandidate } from "types/types";
 
 export const importCurriculumsTableColumns = (): Column<ICandidate>[] => {
 
@@ -20,10 +19,6 @@ export const importCurriculumsTableColumns = (): Column<ICandidate>[] => {
         {
             accessor: 'rating',
             Header: 'Rating',
-            Cell: ({ row }) => {
-                const { rating } = row.values
-                return tableRatingCell({ rating, })
-            }
         },
         {
             accessor: 'comment',

@@ -1,23 +1,5 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-// nodejs library that concatenates classes
 import classnames from "classnames";
-// reactstrap components
 import {
   Button,
   Card,
@@ -26,14 +8,12 @@ import {
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
   InputGroupText,
   InputGroup,
   Container,
   Row,
   Col,
 } from "reactstrap";
-// core components
 import SimpleHeader from "components/Headers/SimpleHeader";
 
 function Validation() {
@@ -392,11 +372,11 @@ function Validation() {
                             Username
                           </label>
                           <InputGroup>
-                            <InputGroupAddon addonType="prepend">
+                            {/*<InputGroupAddon addonType="prepend">*/}
                               <InputGroupText id="inputGroupPrepend2">
                                 @
                               </InputGroupText>
-                            </InputGroupAddon>
+                            {/*</InputGroupAddon>*/}
                             <Input
                               aria-describedby="inputGroupPrepend2"
                               id="validationDefaultUsername"
