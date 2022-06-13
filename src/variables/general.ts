@@ -17,13 +17,13 @@
 
 import { IDataTable, IEvent, IWidgetEvent } from "types/types";
 
+export const DATE_FILTER_FORMAT = "YYYY-MM-DD";
+export const FILE_EXTENSIONS = [ 'xlsx', 'xls', 'csv' ]
+export const XLSX_FILE_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+
 // ##############################
 // // // data for populating the calendar in Calendar view
 // #############################
-
-export const DATE_FILTER_FORMAT = "YYYY-MM-DD";
-export const FILE_EXTENSIONS = [ 'xlsx', 'xls', 'csv' ]
-
 
 let today = new Date();
 let y = today.getFullYear();

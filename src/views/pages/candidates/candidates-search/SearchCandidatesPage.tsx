@@ -9,6 +9,9 @@ import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "components/
 import { candidatesTableColumns } from "components/widgets/react-table/columns";
 import mockedCurriculums from "mockData/curriculums.json";
 import { useNavigate } from "react-router-dom";
+import { convertTableStateToXLSX } from "../../../../utils/XLSXutils";
+import { defaultTableHeaders } from "../../../../variables/table";
+import FileSaver from "file-saver";
 
 export const SearchCandidatesPage = () => {
     const [ updateCandidate ] = useUpdateCandidateMutation();
@@ -20,7 +23,10 @@ export const SearchCandidatesPage = () => {
     };
 
     const onExportCandidates = (selectedCandidates: ICandidate[]) => {
-        console.log("export", selectedCandidates)
+        if (selectedCandidates.length) {
+            const exportFile = convertTableStateToXLSX(selectedCandidates, defaultTableHeaders)
+            FileSaver.saveAs(exportFile, "Candidates.xlsx");
+        } else alert('No Candidates Selected!')
     }
 
     const onDeleteCandidates = (selectedCandidates: ICandidate[]) => {

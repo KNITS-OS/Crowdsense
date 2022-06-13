@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from 'react';
 import * as XLSX from "xlsx";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { Button, Col, Container, Row } from "reactstrap";
-import { convertFileToJson, getFileExtension } from "utils/utils";
 import { ICandidate, OptionType } from "types/types";
 import { CandidateResultSetPanel } from "components/panels";
 import { candidatesTableColumns } from "components/widgets/react-table/columns";
@@ -10,6 +9,7 @@ import { FileButton } from "components/Buttons";
 import { CV_SEARCH } from "variables/routes";
 import { useNavigate } from "react-router-dom";
 import { importCurriculumsTableColumns } from "./ImportCVTable";
+import { convertFileToJson, getFileExtension } from "../../../../utils/XLSXutils";
 
 export function ImportCv() {
     const [ importedData, setImportedData ] = useState<ICandidate[]>([])

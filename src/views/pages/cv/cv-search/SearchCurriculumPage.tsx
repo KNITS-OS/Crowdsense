@@ -8,6 +8,9 @@ import { CV_DETAILS, CV_IMPORT, CV_NEW, CV_WORKFLOW } from "variables/routes";
 import { getCurriculumSelectStatus } from "utils";
 import { CandidateResultSetPanel, CandidateSearchFilterPanel } from "components/panels";
 import { candidatesTableColumns } from "components/widgets/react-table/columns";
+import { convertTableStateToXLSX } from "../../../../utils/XLSXutils";
+import FileSaver from "file-saver";
+import { defaultTableHeaders } from "../../../../variables/table";
 
 export const SearchCurriculumPage = () => {
     const navigate = useNavigate();
@@ -22,7 +25,10 @@ export const SearchCurriculumPage = () => {
     };
 
     const onExportCurriculums = (selectedCurriculums: ICandidate[]) => {
-        console.log("export", selectedCurriculums)
+    if (selectedCurriculums.length) {
+        const exportFile = convertTableStateToXLSX(selectedCurriculums, defaultTableHeaders)
+        FileSaver.saveAs(exportFile, "Curriculums.xlsx");
+    } else alert('No Curriculums Selected!')
     }
 
     const onDeleteCurriculums = (selectedCurriculums: ICandidate[]) => {
