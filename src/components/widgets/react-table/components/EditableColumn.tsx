@@ -2,17 +2,18 @@ import { Button } from "reactstrap";
 import { useState } from "react";
 
 interface IProps {
+    reqId:string
     value: string
-    updateColumn: (value: string) => void
+    updateColumn: (value: string, reqId:string) => void
 }
 
-export const EditableColumn = ({ value, updateColumn }: IProps) => {
+export const EditableColumn = ({ value, reqId, updateColumn }: IProps) => {
     const [ newValue, setNewValue ] = useState('')
     const [ toggle, setToggle ] = useState(false)
 
     const onSave = () => {
         if (newValue !== value) {
-            updateColumn(newValue)
+            updateColumn(newValue, reqId)
             setToggle(false)
         } else return
     }

@@ -2,21 +2,22 @@ import { defaultTags } from "mockData";
 import { MultiValue } from "react-select";
 import { Badge, Button, Col, Row } from "reactstrap";
 import { useState } from "react";
-import { OptionType } from "../../../../types/types";
+import { OptionType } from "types/types";
 import CreatableSelect from "react-select/creatable";
 import { FcPlus } from "react-icons/fc";
 
 interface IProps {
-    id: string
-    callback: (id: string, value: OptionType[]) => void
+    reqId: string
+    callback: (value: OptionType[],reqId: string) => void
+    value: OptionType[]
 }
 
-const TableTagsCell = ({ id, callback }: IProps) => {
-    const [ tags, setTags ] = useState<MultiValue<OptionType>>([])
+const TableTagsCell = ({ reqId, value, callback }: IProps) => {
+    const [ tags, setTags ] = useState<MultiValue<OptionType>>(value)
     const [ toggle, setToggle ] = useState(false)
 
     const handleChange = () => {
-        callback(id, tags as OptionType[])
+        callback(tags as OptionType[] , reqId)
         setToggle(false)
     };
 
@@ -28,7 +29,7 @@ const TableTagsCell = ({ id, callback }: IProps) => {
                         {tags.map(item => <Badge
                                 key={item.value}
                                 color="primary"
-                                className="ml-0 mr-1"
+                                className="ml-0 mr-1 text-white"
                             >
                                 {item.label}
                             </Badge>

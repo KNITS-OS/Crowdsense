@@ -1,11 +1,11 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   ICandidate,
   ICandidateFilters,
-  ICreateCandidateFinalState,
+  // ICreateCandidateFinalState,
   ITag,
 } from "types/types";
-import { baseQuery } from "utils/rtkQueryConfig";
+// import { baseQuery } from "utils/rtkQueryConfig";
 
 const candidatesTable = "candidates";
 const tagsTable = "tags";
@@ -38,7 +38,8 @@ interface IGetCandidateTagsArgs {
 // https://redux-toolkit.js.org/rtk-query/usage/mutations#revalidation-example
 export const candidatesApiSlice = createApi({
   reducerPath: "candidates",
-  baseQuery,
+  // baseQuery,
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8999/' }),
   tagTypes: ["Candidates"],
   endpoints(builder) {
     return {
@@ -97,12 +98,12 @@ export const candidatesApiSlice = createApi({
             : [{ type: "Candidates", id: "LIST" }],
       }),
       createCandidate: builder.mutation<
-        ICandidate,
-        ICreateCandidateFinalState
+        ICandidate[],
+          ICandidate[]
       >({
         query: args => {
           return {
-            url: `${candidatesTable}`,
+            url: `candidates`,
             method: "POST",
             body: args,
           };

@@ -1,15 +1,15 @@
 import { MouseEvent } from "react";
 import { Column } from "react-table";
 import tableRatingCell from "../components/TableRatingCell";
-import { ICandidate, OptionType } from "../../../../types/types";
+import { ICandidate, OptionType } from "types/types";
 import { EditableColumn, MouseEventActionButton } from "../../index";
 import TableTagsCell from "../components/TableTagsCell";
 
 export interface IDefaultActions {
     onDetailsButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     onChangeRating: (newRating: number, reqId: string) => void
-    onChangeComment?: (value: string) => void
-    onSelectTags?: (id: string, value: OptionType[]) => void
+    onChangeComment?: (value: string , reqId:string) => void
+    onSelectTags?: (value: OptionType[],reqId: string,) => void
 }
 
 export const candidatesTableColumns = ({
@@ -70,9 +70,9 @@ export const candidatesTableColumns = ({
             accessor: 'tags',
             Header: 'Tags',
             Cell: ({ row }) => {
-                const { reqId } = row.original
+                let { reqId, tags = [] } = row.original
                 return (
-                    <TableTagsCell id={reqId} callback={onSelectTags}/>
+                    <TableTagsCell reqId={reqId} value={tags} callback={onSelectTags}/>
                 )
             }
         })
@@ -83,9 +83,11 @@ export const candidatesTableColumns = ({
             accessor: 'comment',
             Header: 'Comment',
             Cell: ({ row }) => {
+                let { reqId, comment = '' } = row.original
                 return (
                     <EditableColumn
-                        value={row.values.comment}
+                        reqId={reqId}
+                        value={comment}
                         updateColumn={onChangeComment}
                     />
                 )
