@@ -1,6 +1,6 @@
 import { Card, CardHeader, Col, Row } from "reactstrap";
 import { ReactTable, TableSelectButton } from "../widgets";
-import { ICandidate } from "../../types/types";
+import { ICandidate } from "types/types";
 import { Column } from "react-table";
 
 interface IProps {
@@ -12,6 +12,8 @@ interface IProps {
     onExport?: (value: ICandidate[]) => void
     onWorkflow?: (value: ICandidate[]) => void
     onImport?:(value: ICandidate[]) => void
+    deleteBtnIsFetching?:boolean
+    importBtnIsFetching?:boolean
     children?: JSX.Element | JSX.Element[]
 }
 
@@ -24,6 +26,8 @@ export const CandidateResultSetPanel = ({
                                             onExport,
                                             onWorkflow,
                                             onImport,
+                                            deleteBtnIsFetching,
+                                            importBtnIsFetching,
                                             children
                                         }:IProps) => {
 
@@ -51,6 +55,7 @@ export const CandidateResultSetPanel = ({
                     title="Import"
                     color="success"
                     callback={onImport}
+                    disabled={importBtnIsFetching}
                 />
 
             )
@@ -61,6 +66,7 @@ export const CandidateResultSetPanel = ({
                 title="Delete"
                 color="danger"
                 callback={onDelete}
+                disabled={deleteBtnIsFetching}
             />
         ]
     }

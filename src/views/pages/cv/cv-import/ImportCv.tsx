@@ -23,7 +23,7 @@ export function ImportCv() {
     const {alert:sweetAlert ,setAlert} = useAlert()
     const {alert,setIsSuccess,setSuccessMessage,setSaveSent,setErrorMessage} = useLocalStateAlerts()
 
-    const [importCandidates] = useCreateCandidateMutation()
+    const [importCandidates,{isLoading}] = useCreateCandidateMutation()
 
     const onImportExcel = (e: ChangeEvent) => {
         const target = e.target as HTMLInputElement;
@@ -62,9 +62,8 @@ export function ImportCv() {
     }
 
     const onImportCurriculums = async (selectedCurriculums: ICandidate[]) => {
-        console.log(selectedCurriculums)
         setSaveSent(true)
-        await importCandidates(selectedCurriculums).then(() => {
+        await importCandidates(selectedCurriculums).unwrap().then(() => {
             const filteredData = filterTwoArraysByReqId(importedData, selectedCurriculums)
             setIsSuccess(true)
             setSuccessMessage("Candidates successfully imported")
@@ -123,6 +122,7 @@ export function ImportCv() {
                             })}
                             onImport={onImportCurriculums}
                             onDelete={onDeleteCurriculums}
+                            importBtnIsFetching={isLoading}
                         >
                                 <FileButton
                                     label="Upload file"

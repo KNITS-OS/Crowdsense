@@ -18,15 +18,16 @@ export const TableSelectButton = ({
     const {setAlert} = useAlert()
 
     const clickHandler = (selectedRows:Array<any>) => {
-        if (title === "Delete") {
-            setAlert(<WarningSweetAlert callback={() => callback(selectedRows)}/>)
-        } else callback(selectedRows)
+        if (selectedRows.length || title === "Workflow") {
+            if (title === "Delete") {
+                setAlert(<WarningSweetAlert callback={() => callback(selectedRows)}/>)
+            } else callback(selectedRows)
+        } else return
     }
 
     return (
         <Button
             className="ml-0"
-            disabled={title === "Workflow" ? false : !selectedFlatRows?.length}
             onClick={() => selectedFlatRows && clickHandler(selectedFlatRows)}
             {...rest}
         >
