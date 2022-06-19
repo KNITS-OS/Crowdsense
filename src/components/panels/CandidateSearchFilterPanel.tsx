@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { Col, Row } from "reactstrap";
-import SelectFilter from "../Filters/SelectFilter";
-import { getSelectRating } from "../../utils";
-import { InputFilter } from "../Filters";
-import { ICandidateFilters, OptionType } from "../../types/types";
-import { addFilter } from "../../redux/filters";
-import { FilterPanel } from "./FilterPanel";
+import {Col, Form, Row} from "reactstrap";
+import {ICandidateFilters, OptionType} from "types/types";
+import {FilterPanel} from "./FilterPanel";
+import {useForm} from "react-hook-form";
+import {FormInputField, FormSelectField} from "components/Input";
+import {getSelectRating} from "utils";
 
 interface Props {
     title: string
@@ -13,78 +11,66 @@ interface Props {
     callback: (filters: ICandidateFilters) => void;
 }
 
-export const CandidateSearchFilterPanel = ({ callback, title, statusSelectOptions }: Props) => {
-    const [ searchName, setSearchName ] = useState('');
-    const [ searchEmail, setSearchEmail ] = useState('');
+export const CandidateSearchFilterPanel = ({callback, title, statusSelectOptions}: Props) => {
+    const {
+        register,
+        handleSubmit,
+        control,
+        reset
+    } = useForm<ICandidateFilters>();
 
-    const [ statusSelected, setStatusSelected ] = useState<OptionType | null>();
-    const [ ratingSelected, setRatingSelected ] = useState<OptionType | null>();
+    const onFormSubmit = handleSubmit((filters) => {
+        callback({
+            ...filters,
+            fullName: filters.fullName || undefined,
+            email: filters.email || undefined
+        })
+    });
 
-    const resetFilters = () => {
-        setSearchName('');
-        setSearchEmail('')
-        setRatingSelected(null);
-        setStatusSelected(null);
-    };
-
-    const findByFilters = () => {
-        const fullNameFilter = addFilter({ param: searchName, filter: "like", });
-        const statusFilter = addFilter({ param: statusSelected?.value || '', filter: "eq" });
-        const ratingFilter = addFilter({ param: ratingSelected?.value || '', filter: "eq" });
-        const emailFilter = addFilter({ param: searchEmail, filter: "like" });
-
-        const filters: ICandidateFilters = {
-            fullName: fullNameFilter,
-            status: statusFilter,
-            rating: ratingFilter,
-            email: emailFilter,
-        };
-
-        callback(filters)
-    };
+    const onReset = () => {
+        reset()
+    }
 
     return (
-        <FilterPanel
-            title={title}
-            findByAllParameters={findByFilters}
-            resetFilters={resetFilters}
-        >
-            <Row>
-                <Col md="3">
-                    <InputFilter
-                        id="name"
-                        placeholder="Name"
-                        value={searchName}
-                        setValue={setSearchName}
-                    />
-                </Col>
-                <Col md="3">
-                    <InputFilter
-                        id="email"
-                        placeholder="Email"
-                        value={searchEmail}
-                        setValue={setSearchEmail}
-                    />
-                </Col>
-                <Col md="3">
-                    <SelectFilter
-                        id="status"
-                        label="Status"
-                        value={statusSelected}
-                        setValue={setStatusSelected}
-                        options={statusSelectOptions}
-                    />
-                </Col>
-                <Col md="3">
-                    <SelectFilter
-                        id="rating"
-                        label="Rating"
-                        value={ratingSelected}
-                        setValue={setRatingSelected}
-                        options={getSelectRating}
-                    />
-                </Col>
-            </Row>
-        </FilterPanel>
+        <Form onSubmit={onFormSubmit}>
+            <FilterPanel
+                title={title}
+                resetFilters={onReset}
+            >
+                <Row>
+                    <Col md="3">
+                        <FormInputField
+                            label="First name"
+                            placeholder="First Name"
+                            {...register("fullName")}
+                        />
+                    </Col>
+                    <Col md="3">
+                        <FormInputField
+                            id="input-firstname"
+                            label="First name"
+                            placeholder="First Name"
+                            {...register("email")}
+                        />
+                    </Col>
+                    <Col md="3">
+                        <FormSelectField
+                            options={statusSelectOptions}
+                            name={"status"}
+                            label={"Status"}
+                            control={control}
+                        />
+                    </Col>
+                    <Col md="3">
+                        <FormSelectField
+                            name="rating"
+                            label="Rating"
+                            options={getSelectRating}
+                            control={control}
+                        />
+                    </Col>
+                </Row>
+            </FilterPanel>
+        </Form>
     );
 };

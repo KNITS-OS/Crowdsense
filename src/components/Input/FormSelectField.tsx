@@ -1,46 +1,51 @@
-import { FormGroup, Input, InputProps } from "reactstrap";
-import { OptionType } from "../../types/types";
-import React from "react";
+import { FormGroup } from "reactstrap";
+import { OptionType } from "types/types";
+import Select, { SingleValue } from "react-select";
+import { Control, Controller, RegisterOptions } from "react-hook-form";
+import { StateManagerProps } from "react-select/dist/declarations/src/useStateManager";
 
-interface IProps extends InputProps {
-    id: string;
-    label: string;
-    options: OptionType[];
-    defaultOption: string,
-    errorText?: string
+interface IProps extends StateManagerProps {
+  name: string;
+  label: string;
+  options: OptionType[];
+  control: Control<any>;
+  rules?: RegisterOptions;
 }
 
-const FormSelectField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
-    ({
-         id,
-         label,
-         options,
-         defaultOption,
-         errorText,
-         ...props
-     }, ref) => {
-        return (
-            <FormGroup>
-                <label className="form-control-label" htmlFor={id}>
-                    {label}
-                </label>
-                <Input
-                    id={id}
-                    innerRef={ref}
-                    type="select"
-                    defaultValue='DEFAULT'
-                    {...props}
-                >
-                    <option hidden disabled value="DEFAULT"> -- {defaultOption} --</option>
-                    {options.map(option => (
-                        <option style={{ fontSize: "1rem" }} value={option.value}
-                                key={option.value}>{option.label}</option>
-                    ))}
-                </Input>
-                {errorText && <div className="invalid-feedback">{errorText}</div>}
-            </FormGroup>
-        )
-    }
-)
+const FormSelectField = ({
+  name,
+  label,
+  options,
+  control,
+  rules,
+  value,
+  ...rest
+}: IProps) => {
+  return (
+    <FormGroup>
+      <label className="form-control-label" htmlFor={name}>
+        {label}
+      </label>
+      <Controller
+        control={control}
+        name={name}
+        rules={rules}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <Select
+              value={options.find((opt) => opt.value === value)}
+              options={options}
+              // @ts-ignore
+              onChange={(selectedOption: SingleValue<OptionType>) => {
+                onChange(selectedOption?.value);
+              }}
+              {...rest}
+            />
+          );
+        }}
+      />
+    </FormGroup>
+  );
+};
 
 export default FormSelectField;

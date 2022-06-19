@@ -2,12 +2,11 @@ import { Button, Card, CardBody, CardHeader, Col, FormGroup, Row } from "reactst
 
 interface Props {
     title: string;
-    findByAllParameters: () => void;
     resetFilters: () => void;
     children?: React.ReactNode;
 }
 
-export const FilterPanel = ({ title, children, findByAllParameters, resetFilters }: Props) => {
+export const FilterPanel = ({ title, children, resetFilters }: Props) => {
     return (
         <Card>
             <CardHeader>
@@ -27,8 +26,7 @@ export const FilterPanel = ({ title, children, findByAllParameters, resetFilters
                             </Button>
                         </FormGroup>
                         <FormGroup>
-                            <Button className="btn btn-info" color="primary"
-                                    onClick={findByAllParameters}>
+                            <Button className="btn btn-info" color="primary" type="submit">
                                 Search
                             </Button>
                         </FormGroup>
