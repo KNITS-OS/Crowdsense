@@ -17,6 +17,9 @@ import { DATE_FILTER_FORMAT } from "variables/general";
 import { getCurriculumSelectStatus, getSelectRating } from "utils";
 import { CV_SEARCH } from "variables/routes";
 import { useNavigate } from "react-router-dom";
+import { useCreateCandidateMutation } from "redux/features/candidates/candidatesApiSlice";
+import { ICandidate } from "types/types";
+import { useLocalStateAlerts } from "hooks/useLocalStateAlerts";
 
 export const AddNewCVPage = () => {
   const {
@@ -27,17 +30,47 @@ export const AddNewCVPage = () => {
     reset,
   } = useForm<ICreateCurriculumRequest>({ mode: "onChange" });
 
+  const {
+    alert,
+    setIsSuccess,
+    setSuccessMessage,
+    setSaveSent,
+    setErrorMessage,
+  } = useLocalStateAlerts();
+
+  const [importCandidates, { isLoading }] = useCreateCandidateMutation();
+
   const navigate = useNavigate();
 
-  const onFormSubmit = handleSubmit((data) => {
-    console.log(data);
-    reset();
+  const onFormSubmit = handleSubmit(async (data) => {
+    const { firstName, lastName, ...rest } = data;
+
+    const newCandidateData = {
+      reqId: `Req${Math.floor(Math.random() * 90000) + 10000}`,
+      firstName: firstName,
+      fullName: firstName + " " + lastName,
+      ...rest,
+    } as ICandidate;
+
+    setSaveSent(true);
+    await importCandidates(newCandidateData)
+      .unwrap()
+      .then(() => {
+        setIsSuccess(true);
+        setSuccessMessage("Candidate successfully added");
+        reset();
+      })
+      .catch((error) => {
+        setErrorMessage(error.error || "Some error has been occurred");
+        setIsSuccess(false);
+      });
   });
 
   return (
     <>
       <GradientEmptyHeader />
       <Container className="mt--6" fluid>
+        {alert}
         <Row>
           <Col className="order-xl-1" xl="12">
             <Card>
@@ -170,7 +203,7 @@ export const AddNewCVPage = () => {
                       </Col>
                     </Row>
                   </div>
-                  <Button type="submit" color="success">
+                  <Button type="submit" color="success" disabled={isLoading}>
                     Add
                   </Button>
                 </Form>
