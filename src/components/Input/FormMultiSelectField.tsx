@@ -1,8 +1,9 @@
 import { FormGroup } from "reactstrap";
 import { OptionType } from "types/types";
-import Select, { SingleValue } from "react-select";
+import { MultiValue } from "react-select";
 import { Control, Controller, RegisterOptions } from "react-hook-form";
 import { StateManagerProps } from "react-select/dist/declarations/src/useStateManager";
+import CreatableSelect from "react-select/creatable";
 
 interface IProps extends StateManagerProps {
   name: string;
@@ -31,12 +32,13 @@ const FormSelectField = ({
         rules={rules}
         render={({ field: { onChange, value } }) => {
           return (
-            <Select
+            <CreatableSelect
+              isMulti
               value={options.find((opt) => opt.value === value)}
               options={options}
               // @ts-ignore
-              onChange={(selectedOption: SingleValue<OptionType>) => {
-                onChange(selectedOption?.value);
+              onChange={(selectedOption: MultiValue<OptionType[]>) => {
+                onChange(selectedOption);
               }}
               {...rest}
             />

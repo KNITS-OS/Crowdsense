@@ -49,6 +49,7 @@ export const AddNewCVPage = () => {
       reqId: `Req${Math.floor(Math.random() * 90000) + 10000}`,
       firstName: firstName,
       fullName: firstName + " " + lastName,
+      workflow: "null",
       ...rest,
     } as ICandidate;
 

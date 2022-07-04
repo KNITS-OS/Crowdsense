@@ -2,76 +2,90 @@ import { defaultTags } from "mockData";
 import { MultiValue } from "react-select";
 import { Badge, Button, Col, Row } from "reactstrap";
 import { useState } from "react";
-import { OptionType } from "types/types";
+import { ICandidate, OptionType } from "types/types";
 import CreatableSelect from "react-select/creatable";
 import { FcPlus } from "react-icons/fc";
+import { CandidatesMutationTriggerType } from "redux/features/candidates/candidatesApiSlice";
 
 interface IProps {
-    reqId: string
-    callback: (value: OptionType[],reqId: string) => void
-    value: OptionType[]
+  candidate: ICandidate;
+  updateCellMutation?: CandidatesMutationTriggerType<ICandidate>;
+  localChange?: (value: OptionType[], reqId: string) => void;
 }
 
-const TableTagsCell = ({ reqId, value, callback }: IProps) => {
-    const [ tags, setTags ] = useState<MultiValue<OptionType>>(value)
-    const [ toggle, setToggle ] = useState(false)
+export const TableTagsCell = ({
+  candidate,
+  updateCellMutation,
+  localChange,
+}: IProps) => {
+  const [newTags, setTags] = useState<MultiValue<OptionType> | undefined>(
+    candidate.tags
+  );
+  const [toggle, setToggle] = useState(false);
 
-    const handleChange = () => {
-        callback(tags as OptionType[] , reqId)
-        setToggle(false)
-    };
+  const { tags, reqId } = candidate;
 
-    return (
-        <Row className="flex-column">
-            {
-                !toggle ? (
-                    <Col>
-                        {tags.map(item => <Badge
-                                key={item.value}
-                                color="primary"
-                                className="ml-0 mr-1 text-white"
-                            >
-                                {item.label}
-                            </Badge>
-                        )}
-                        <FcPlus
-                            size={24}
-                            className="react-table-tags-button"
-                            onClick={() => setToggle(true)}/>
-                    </Col>
-                ) : (
-                    <>
-                        <Col>
-                            <CreatableSelect
-                                isMulti
-                                onChange={setTags}
-                                isSearchable={false}
-                                className="flex-column"
-                                defaultValue={tags}
-                                options={defaultTags}
-                            />
-                        </Col>
-                        <Col className="d-flex justify-content-between flex-wrap">
-                            <Button
-                                size="sm"
-                                color="success"
-                                onClick={handleChange}
-                            >
-                                Save
-                            </Button>
-                            <Button
-                                size="sm"
-                                color="danger"
-                                className="m-0"
-                                onClick={() => setToggle(false)}
-                            >
-                                Cancel
-                            </Button>
-                        </Col>
-                    </>
-                )
-            }
-        </Row>
-    );
+  const handleChange = () => {
+    if (updateCellMutation) {
+      updateCellMutation({
+        reqId: reqId,
+        body: { tags: newTags as OptionType[] },
+      });
+    }
+    if (localChange) {
+      localChange(newTags as OptionType[], reqId);
+    }
+    setToggle(false);
+  };
+
+  return (
+    <Row className="flex-column">
+      {!toggle ? (
+        <Col>
+          {tags?.map((item) => (
+            <Badge
+              key={item.value}
+              color="primary"
+              className="ml-0 mr-1 text-white"
+            >
+              {item.label}
+            </Badge>
+          ))}
+          <FcPlus
+            size={24}
+            className="react-table-tags-button"
+            onClick={() => setToggle(true)}
+          />
+        </Col>
+      ) : (
+        <>
+          <Col>
+            <CreatableSelect
+              isMulti
+              onChange={setTags}
+              isSearchable={false}
+              className="flex-column"
+              defaultValue={tags}
+              options={defaultTags}
+              menuPortalTarget={document.body}
+              styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+            />
+          </Col>
+          <Col className="d-flex justify-content-between flex-wrap">
+            <Button size="sm" color="success" onClick={handleChange}>
+              Save
+            </Button>
+            <Button
+              size="sm"
+              color="danger"
+              className="m-0"
+              onClick={() => setToggle(false)}
+            >
+              Cancel
+            </Button>
+          </Col>
+        </>
+      )}
+    </Row>
+  );
 };
-export default TableTagsCell;

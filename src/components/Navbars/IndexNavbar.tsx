@@ -18,20 +18,18 @@
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
-  UncontrolledCollapse,
-  NavbarBrand,
+  Button,
+  Col,
+  Container,
+  Nav,
   Navbar,
+  NavbarBrand,
   NavItem,
   NavLink,
-  Nav,
-  Container,
   Row,
-  Col,
+  UncontrolledCollapse,
   UncontrolledTooltip,
-  Button,
 } from "reactstrap";
-
-import CareLogoMin from "assets/img/brand/CareLogoMin.png";
 
 const AdminNavbar = () => {
   return (
@@ -43,7 +41,7 @@ const AdminNavbar = () => {
       >
         <Container>
           <NavbarBrand to="/" tag={Link}>
-            <img alt="..." src={CareLogoMin} />
+            <img alt="..." src={require("assets/img/brand/CareLogoMin.png")} />
           </NavbarBrand>
           <button
             aria-controls="navbar-collapse"
@@ -66,10 +64,7 @@ const AdminNavbar = () => {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <Link to="/admin/dashboard">
-                    <img
-                      alt="..."
-                      src={require("assets/img/brand/blue.png").default}
-                    />
+                    <img alt="..." src={require("assets/img/brand/blue.png")} />
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
@@ -174,9 +169,7 @@ const AdminNavbar = () => {
                   target="_blank"
                 >
                   <i className="fab fa-github" />
-                  <span className="nav-link-inner--text d-lg-none">
-                    Github
-                  </span>
+                  <span className="nav-link-inner--text d-lg-none">Github</span>
                 </NavLink>
                 <UncontrolledTooltip delay={0} target="tooltip931502898">
                   Star us on Github
@@ -192,9 +185,7 @@ const AdminNavbar = () => {
                   <span className="btn-inner--icon">
                     <i className="fas fa-shopping-cart mr-2" />
                   </span>
-                  <span className="nav-link-inner--text">
-                    Purchase now
-                  </span>
+                  <span className="nav-link-inner--text">Purchase now</span>
                 </Button>
               </NavItem>
             </Nav>

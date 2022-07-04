@@ -1,29 +1,29 @@
-import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
-import { Col, Container, Row } from "reactstrap";
-import { ICandidate, ICandidateFilters } from "types/types";
-import { MouseEvent, useState } from "react";
-import { getCandidatesSelectStatus } from "utils";
+import { useNavigate } from "react-router-dom";
+import { useAlert } from "context";
+import { useLocalStateAlerts } from "hooks/useLocalStateAlerts";
 import {
   useDeleteCandidateMutation,
   useGetAllCandidatesQuery,
   useLazyGetFilteredCandidatesQuery,
   useUpdateCandidateMutation,
 } from "redux/features/candidates/candidatesApiSlice";
-import { CV_DETAILS } from "variables/routes";
+import { ICandidate, ICandidateFilters } from "types/types";
+import { MouseEvent, useState } from "react";
+import { CV_DETAILS, WORKFLOW_PAGE } from "variables/routes";
+import { convertTableStateToXLSX } from "utils/XLSXutils";
+import { defaultTableHeaders } from "variables/table";
+import FileSaver from "file-saver";
+import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
+import { Col, Container, Row } from "reactstrap";
 import {
   CandidateResultSetPanel,
   CandidateSearchFilterPanel,
 } from "components/panels";
 import { candidatesTableColumns } from "components/widgets/react-table/columns";
-import { useNavigate } from "react-router-dom";
-import { convertTableStateToXLSX } from "utils/XLSXutils";
-import { defaultTableHeaders } from "variables/table";
-import FileSaver from "file-saver";
-import { useLocalStateAlerts } from "hooks/useLocalStateAlerts";
-import { useAlert } from "../../../../context";
+import { getOfferSelectStatus } from "utils/selectUtils";
 
-export const SearchCandidatesPage = () => {
-  const { data = [] } = useGetAllCandidatesQuery();
+export const SearchOfferPage = () => {
+  const { data = [] } = useGetAllCandidatesQuery("offer");
   const [updateCandidate] = useUpdateCandidateMutation();
   const [deleteCandidate, { isLoading }] = useDeleteCandidateMutation();
   const [getFilteredCandidates] = useLazyGetFilteredCandidatesQuery();
@@ -41,7 +41,7 @@ export const SearchCandidatesPage = () => {
     setErrorMessage,
   } = useLocalStateAlerts();
 
-  const onSearchCandidates = async (filters: ICandidateFilters) => {
+  const onSearchOffers = async (filters: ICandidateFilters) => {
     setSaveSent(true);
     await getFilteredCandidates(filters)
       .unwrap()
@@ -54,12 +54,16 @@ export const SearchCandidatesPage = () => {
       });
   };
 
-  const onViewCandidateDetails = (e: MouseEvent<HTMLButtonElement>) => {
+  const onViewOfferDetails = (e: MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
     navigate(`/admin${CV_DETAILS}/${id.toLowerCase()}`);
   };
 
-  const onExportCandidates = (selectedCurriculums: ICandidate[]) => {
+  const onViewWorkflow = () => {
+    navigate(`/admin${WORKFLOW_PAGE}`);
+  };
+
+  const onExportOffers = (selectedCurriculums: ICandidate[]) => {
     const exportFile = convertTableStateToXLSX(
       selectedCurriculums,
       defaultTableHeaders
@@ -67,7 +71,7 @@ export const SearchCandidatesPage = () => {
     FileSaver.saveAs(exportFile, "Curriculums.xlsx");
   };
 
-  const onDeleteCandidates = async (selectedCurriculums: ICandidate[]) => {
+  const onDeleteOffers = async (selectedCurriculums: ICandidate[]) => {
     // @todo Switch from single element delete to collection
 
     // const selectedIds = selectedCurriculums.map(cv => cv.reqId)
@@ -92,10 +96,10 @@ export const SearchCandidatesPage = () => {
         <Row>
           <Col>
             <CandidateSearchFilterPanel
-              setFilteredData={setFilteredData}
               title="Search Candidates"
-              statusSelectOptions={getCandidatesSelectStatus}
-              callback={onSearchCandidates}
+              statusSelectOptions={getOfferSelectStatus}
+              callback={onSearchOffers}
+              setFilteredData={setFilteredData}
             />
           </Col>
         </Row>
@@ -103,15 +107,16 @@ export const SearchCandidatesPage = () => {
         <Row>
           <Col>
             <CandidateResultSetPanel
-              title="Candidates"
-              subTitle="Applicants"
+              title="Offers"
+              subTitle="Applicants Offers"
               data={filteredData ? filteredData : data}
               columns={candidatesTableColumns({
                 updateCellMutation: updateCandidate,
-                onDetailsButtonClick: onViewCandidateDetails,
+                onDetailsButtonClick: onViewOfferDetails,
               })}
-              onDelete={onDeleteCandidates}
-              onExport={onExportCandidates}
+              onExport={onExportOffers}
+              onDelete={onDeleteOffers}
+              onWorkflow={onViewWorkflow}
               deleteBtnIsFetching={isLoading}
             />
           </Col>

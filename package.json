@@ -61,7 +61,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json-server": "json-server --watch ./data/db.js --port 8999 --delay 0",
+    "json-server": "json-server --watch --id reqId ./data/db.js --port 8998 --delay 0",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss"
   },

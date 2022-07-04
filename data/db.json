@@ -1,0 +1,92 @@
+{
+  "candidates": [
+    {
+      "reqId": "Req00675",
+      "firstName": "Ashton",
+      "fullName": "Ashton Baxill",
+      "rating": 5,
+      "comment": "dolor quis odio consequat varius integer ac leo pellentesque ultrices",
+      "email": "abaxill3@ed.gov",
+      "submissionDate": "3/3/2021",
+      "status": "In Review",
+      "country": "Russia",
+      "tags": [
+        {
+          "value": "angular",
+          "label": "Angular"
+        },
+        {
+          "value": "javascript",
+          "label": "Javascript"
+        }
+      ]
+    },
+    {
+      "reqId": "Req15836",
+      "firstName": "Helene",
+      "fullName": "Helene Cowin",
+      "rating": 3,
+      "comment": "uus",
+      "email": "hcowin4@naver.com",
+      "submissionDate": "2/2/2021",
+      "status": "In Review",
+      "country": "Russia",
+      "tags": []
+    },
+    {
+      "reqId": "Req86058",
+      "firstName": "Prue",
+      "fullName": "Prue Dentith",
+      "rating": 4,
+      "comment": "amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue",
+      "email": "pdentith5@com.com",
+      "submissionDate": "8/26/2021",
+      "status": "New",
+      "country": "Russia"
+    },
+    {
+      "email": "koldi887@gmail.com",
+      "submissionDate": "2022-06-20",
+      "country": "Estonia",
+      "comment": "hey hey",
+      "rating": "3",
+      "status": "CV Reviewed",
+      "reqId": "Req46204",
+      "firstName": "Dmitri",
+      "fullName": "Dmitri Kolisnitsenko"
+    },
+    {
+      "reqId": "Rssseq86058",
+      "firstName": "Prue",
+      "fullName": "Prue Dentith",
+      "rating": 4,
+      "comment": "amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue",
+      "email": "pdentith5@com.com",
+      "submissionDate": "8/26/2021",
+      "status": "New",
+      "country": "Russia"
+    },
+    {
+      "reqId": "Req01928",
+      "firstName": "Betta",
+      "fullName": "Betta Winnett",
+      "rating": 5,
+      "comment": "nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor",
+      "email": "bwinnett1@buzzfeed.com",
+      "submissionDate": "3/17/2021",
+      "status": "New",
+      "country": "Russia"
+    },
+    {
+      "reqId": "Req28626",
+      "firstName": "Donny",
+      "fullName": "Donny Kielt",
+      "rating": 3,
+      "comment": "vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod",
+      "email": "dkielt0@spiegel.de",
+      "submissionDate": "7/25/2021",
+      "status": "Closed",
+      "country": "Russia"
+    }
+  ]
+}

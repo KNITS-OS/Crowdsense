@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const curriculumsData = require("./curriculums");
+const candidatesData = require("./candidates");
+const workflowData = require("./workflow");
 
 module.exports = () => ({
-    curriculums: curriculumsData,
+  candidates: candidatesData,
+  workflow: workflowData,
 });

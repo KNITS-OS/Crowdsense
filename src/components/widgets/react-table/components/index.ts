@@ -7,5 +7,5 @@ export * from "./SelectElementPropsProvider";
 export * from "./TableRatingCell";
 export * from "./TableTagsCell";
 export * from "./TableSelectButton";
-export * from "./EditableColumn";
+export * from "./TableCommentCell";
 

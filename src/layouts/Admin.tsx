@@ -8,13 +8,12 @@ import { ScrollToTop } from ".";
 import { Sidebar } from "components/Sidebar";
 import { useAppDispatch, useAppSelector } from "redux/app/hooks";
 import { toggleSidenav } from "redux/features/sidenav/sidenavSlice";
-import logo from "../assets/img/brand/CareLogoMin.png"
 
 const Admin = () => {
   const location = useLocation();
   const mainContentRef = useRef(document.createElement("div"));
   const dispatch = useAppDispatch();
-  const { isSidenavOpen } = useAppSelector(state => state.sidenav);
+  const { isSidenavOpen } = useAppSelector((state) => state.sidenav);
 
   ScrollToTop(mainContentRef);
 
@@ -30,14 +29,14 @@ const Admin = () => {
         routes={routes}
         logo={{
           innerLink: "/",
-          imgSrc: logo,
+          imgSrc: require("assets/img/brand/CareLogoMin.png"),
           imgAlt: "...",
         }}
         rtlActive={false}
       />
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar theme={getNavbarTheme()} />
-          <Outlet/>
+        <Outlet />
         <AdminFooter />
       </div>
       {isSidenavOpen ? (

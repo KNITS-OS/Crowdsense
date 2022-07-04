@@ -22,19 +22,21 @@ type ProviderProps = {
 
 const initContextData: InitialContextType = {
   alert: null,
-  setAlert: () => {},
+  setAlert: () => {
+  },
 };
 
 const AlertContext = createContext(initContextData);
 
 export const useAlert = () => useContext(AlertContext);
 
-const AlertProvider = ({ children }: ProviderProps) => {
+const AlertProvider = ({children}: ProviderProps) => {
   const [alert, setAlert] = useState<AlertType>(null);
+
   return (
-    <AlertContext.Provider value={{ alert, setAlert }}>
-      {children}
-    </AlertContext.Provider>
+      <AlertContext.Provider value={{alert, setAlert}}>
+        {children}
+      </AlertContext.Provider>
   );
 };
 
