@@ -1,5 +1,5 @@
 import { Card, CardHeader, Col, Row } from "reactstrap";
-import { ReactTable, TableSelectButton } from "../widgets";
+import { ReactTable, TableSelectButton } from "components/widgets/react-table"
 import { ICandidate } from "types/types";
 import { Column } from "react-table";
 
@@ -32,12 +32,13 @@ export const CandidateResultSetPanel = ({
   onAddToWorkflow,
   children,
 }: IProps) => {
+
   const selectElementsFilter = () => {
     const elements = [];
 
     if (onExport) {
       elements.push(
-        <TableSelectButton title="Export" color="info" callback={onExport} />
+        <TableSelectButton title="Export" color="info" doWithSelected={onExport} />
       );
     }
     if (onWorkflow) {
@@ -45,7 +46,7 @@ export const CandidateResultSetPanel = ({
         <TableSelectButton
           title="Workflow"
           color="info"
-          callback={onWorkflow}
+          doWithSelected={onWorkflow}
         />
       );
     }
@@ -54,7 +55,7 @@ export const CandidateResultSetPanel = ({
         <TableSelectButton
           title="Import"
           color="success"
-          callback={onImport}
+          doWithSelected={onImport}
           disabled={importBtnIsFetching}
         />
       );
@@ -64,7 +65,7 @@ export const CandidateResultSetPanel = ({
         <TableSelectButton
           title="Add To Workflow"
           color="success"
-          callback={onAddToWorkflow}
+          doWithSelected={onAddToWorkflow}
           disabled={importBtnIsFetching}
         />
       );
@@ -74,7 +75,7 @@ export const CandidateResultSetPanel = ({
       <TableSelectButton
         title="Delete"
         color="danger"
-        callback={onDelete}
+        doWithSelected={onDelete}
         disabled={deleteBtnIsFetching}
       />,
     ];

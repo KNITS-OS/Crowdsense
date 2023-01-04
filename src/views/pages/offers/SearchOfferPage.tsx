@@ -18,8 +18,8 @@ import { Col, Container, Row } from "reactstrap";
 import {
   CandidateResultSetPanel,
   CandidateSearchFilterPanel,
-} from "components/panels";
-import { candidatesTableColumns } from "components/widgets/react-table/columns";
+  candidatesTableColumns
+} from "views/panels"
 import { getOfferSelectStatus } from "utils/selectUtils";
 
 export const SearchOfferPage = () => {
@@ -54,6 +54,9 @@ export const SearchOfferPage = () => {
       });
   };
 
+  const onSaveComment = (event: React.MouseEvent<HTMLElement>) => {};
+  const onChangeComment= (newComment: string, id: string) => {};
+  
   const onViewOfferDetails = (e: MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
     navigate(`/admin${CV_DETAILS}/${id.toLowerCase()}`);
@@ -113,6 +116,8 @@ export const SearchOfferPage = () => {
               columns={candidatesTableColumns({
                 updateCellMutation: updateCandidate,
                 onDetailsButtonClick: onViewOfferDetails,
+                onSaveComment:onSaveComment,
+                onChangeComment:onChangeComment 
               })}
               onExport={onExportOffers}
               onDelete={onDeleteOffers}

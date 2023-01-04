@@ -18,8 +18,9 @@ import { Col, Container, Row } from "reactstrap";
 import {
   CandidateResultSetPanel,
   CandidateSearchFilterPanel,
-} from "components/panels";
-import { candidatesTableColumns } from "components/widgets/react-table/columns";
+  candidatesTableColumns
+} from "views/panels"
+
 import { getInterviewSelectStatus } from "utils/selectUtils";
 
 export const SearchInterviewsPage = () => {
@@ -71,6 +72,9 @@ export const SearchInterviewsPage = () => {
     FileSaver.saveAs(exportFile, "Curriculums.xlsx");
   };
 
+  const onSaveComment = (event: React.MouseEvent<HTMLElement>) => {};
+  const onChangeComment= (newComment: string, id: string) => {};
+
   const onDeleteInterviews = async (selectedCurriculums: ICandidate[]) => {
     // @todo Switch from single element delete to collection
 
@@ -113,6 +117,9 @@ export const SearchInterviewsPage = () => {
               columns={candidatesTableColumns({
                 updateCellMutation: updateCandidate,
                 onDetailsButtonClick: onViewInterviewDetails,
+                onSaveComment:onSaveComment,
+                onChangeComment:onChangeComment 
+
               })}
               onExport={onExportInterviews}
               onDelete={onDeleteInterviews}

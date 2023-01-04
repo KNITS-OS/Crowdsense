@@ -8,8 +8,8 @@ import { getCurriculumSelectStatus } from "utils";
 import {
   CandidateResultSetPanel,
   CandidateSearchFilterPanel,
-} from "components/panels";
-import { candidatesTableColumns } from "components/widgets/react-table/columns";
+  candidatesTableColumns
+} from "views/panels"
 import { convertTableStateToXLSX } from "utils/XLSXutils";
 import FileSaver from "file-saver";
 import { defaultTableHeaders } from "variables/table";
@@ -87,6 +87,10 @@ export const SearchCurriculumPage = () => {
       });
   };
 
+
+  const onSaveComment = (event: React.MouseEvent<HTMLElement>) => {};
+  const onChangeComment= (newComment: string, id: string) => {};
+
   const onAddCurriculumsToWorkflow = async (
     selectedCurriculums: ICandidate[]
   ) => {
@@ -138,7 +142,10 @@ export const SearchCurriculumPage = () => {
               columns={candidatesTableColumns({
                 updateCellMutation: updateCandidate,
                 onDetailsButtonClick: onViewCurriculumDetails,
-              })}
+                onSaveComment:onSaveComment,
+                onChangeComment:onChangeComment                                
+                })
+              }
               onExport={onExportCurriculums}
               onDelete={onDeleteCurriculums}
               onAddToWorkflow={onAddCurriculumsToWorkflow}

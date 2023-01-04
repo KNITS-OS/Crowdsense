@@ -13,8 +13,8 @@ import { CV_DETAILS } from "variables/routes";
 import {
   CandidateResultSetPanel,
   CandidateSearchFilterPanel,
-} from "components/panels";
-import { candidatesTableColumns } from "components/widgets/react-table/columns";
+  candidatesTableColumns
+} from "views/panels"
 import { useNavigate } from "react-router-dom";
 import { convertTableStateToXLSX } from "utils/XLSXutils";
 import { defaultTableHeaders } from "variables/table";
@@ -54,6 +54,9 @@ export const SearchCandidatesPage = () => {
       });
   };
 
+  const onSaveComment = (event: React.MouseEvent<HTMLElement>) => {};
+  const onChangeComment= (newComment: string, id: string) => {};
+  
   const onViewCandidateDetails = (e: MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
     navigate(`/admin${CV_DETAILS}/${id.toLowerCase()}`);
@@ -109,6 +112,8 @@ export const SearchCandidatesPage = () => {
               columns={candidatesTableColumns({
                 updateCellMutation: updateCandidate,
                 onDetailsButtonClick: onViewCandidateDetails,
+                onSaveComment:onSaveComment,
+                onChangeComment:onChangeComment 
               })}
               onDelete={onDeleteCandidates}
               onExport={onExportCandidates}

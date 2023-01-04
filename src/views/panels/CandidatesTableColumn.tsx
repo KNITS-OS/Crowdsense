@@ -1,16 +1,17 @@
 import { MouseEvent } from "react";
 import { Column } from "react-table";
-import { TableRatingCell, TableTagsCell } from "../components";
+import { TableRatingCell, TableTagsCell } from "../../components/widgets/react-table/components";
 import { ICandidate, OptionType } from "types/types";
-import { MouseEventActionButton, TableCommentCell } from "../../index";
+import { MouseEventActionButton, TableCommentCell } from "../../components/widgets/index";
 import { CandidatesMutationTriggerType } from "redux/features/candidates/candidatesApiSlice";
 
 export interface IDefaultActions {
   updateCellMutation?: CandidatesMutationTriggerType<ICandidate>;
   onDetailsButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   onLocalChangeRating?: (newRating: number, reqId: string) => void;
-  onLocalChangeComment?: (newComment: string, reqId: string) => void;
+  onChangeComment: (newComment: string, reqId: string) => void;
   onLocalChangeTags?: (value: OptionType[], reqId: string) => void;
+  onSaveComment: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const candidatesTableColumns = ({
@@ -18,8 +19,12 @@ export const candidatesTableColumns = ({
   onDetailsButtonClick,
   onLocalChangeTags,
   onLocalChangeRating,
-  onLocalChangeComment,
+  onChangeComment,
+  onSaveComment
 }: IDefaultActions): Column<ICandidate>[] => {
+
+  
+
   const tableArray: Column<ICandidate>[] = [
     {
       accessor: "reqId",
@@ -39,9 +44,10 @@ export const candidatesTableColumns = ({
       Cell: ({ row }) => {
         return (
           <TableCommentCell
-            candidate={row.original}
-            localChange={onLocalChangeComment}
-            updateCellMutation={updateCellMutation}
+            id={row.original.reqId}
+            comment={row.original.comment}
+            onChangeComment={onChangeComment}
+            onSaveComment={onSaveComment}
           />
         );
       },

@@ -1,7 +1,7 @@
 import { Rating } from "react-simple-star-rating";
 import { Col, Row } from "reactstrap";
 import { useAlert } from "context";
-import { WarningSweetAlert } from "../../../alerts";
+import { WarningSweetAlert } from "../../../../alerts";
 import { ICandidate } from "types/types";
 import { CandidatesMutationTriggerType } from "redux/features/candidates/candidatesApiSlice";
 

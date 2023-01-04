@@ -3,8 +3,7 @@ import * as XLSX from "xlsx";
 import GradientEmptyHeader from "components/Headers/GradientEmptyHeader";
 import { Button, Col, Container, Row } from "reactstrap";
 import { ICandidate, OptionType } from "types/types";
-import { CandidateResultSetPanel } from "components/panels";
-import { candidatesTableColumns } from "components/widgets/react-table/columns";
+import { CandidateResultSetPanel,candidatesTableColumns } from "views/panels";
 import { FileButton } from "components/Buttons";
 import { CV_SEARCH } from "variables/routes";
 import { useNavigate } from "react-router-dom";
@@ -115,6 +114,9 @@ export function ImportCv() {
     setImportedData(newState);
   };
 
+  const onSaveComment = (event: React.MouseEvent<HTMLElement>) => {};
+ // const onChangeComment= (newComment: string, id: string) => {};
+
   const onChangeCurriculumRating = (newRating: number, reqId: string) => {
     const newState = importedData.map((candidate) =>
       candidate.reqId === reqId
@@ -145,7 +147,8 @@ export function ImportCv() {
               data={importedData}
               columns={candidatesTableColumns({
                 onLocalChangeRating: onChangeCurriculumRating,
-                onLocalChangeComment: onChangeCurriculumComment,
+                onSaveComment:onSaveComment,
+                onChangeComment:onChangeCurriculumComment, 
                 onLocalChangeTags: onSelectCurriculumTags,
               })}
               onImport={onImportCurriculums}

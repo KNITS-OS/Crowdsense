@@ -1,20 +1,20 @@
 import {Button, ButtonProps} from "reactstrap";
-import {useAlert} from "context";
-import {WarningSweetAlert} from "components/alerts";
 
 interface IProps extends ButtonProps {
   title: string;
   selectedFlatRows?: object[];
-  callback: (selectedItems: Array<any>) => void;
+  doWithSelected: (selectedItems: Array<any>) => void;
 }
 
 export const TableSelectButton = ({
                                     selectedFlatRows,
-                                    callback,
+                                    doWithSelected,
                                     title,
                                     toggleAllRowsSelected,
                                     ...rest
                                   }: IProps) => {
+
+                                    /*
   const {setAlert} = useAlert();
 
   const clickHandler = (selectedRows: Array<any>) => {
@@ -34,12 +34,12 @@ export const TableSelectButton = ({
         );
       } else callback(selectedRows);
     } else return;
-  };
+  };*/
 
   return (
       <Button
           className="ml-0"
-          onClick={() => selectedFlatRows && clickHandler(selectedFlatRows)}
+          onClick={() => selectedFlatRows && doWithSelected(selectedFlatRows)}
           {...rest}
       >
         {title}

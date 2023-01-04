@@ -1,6 +1,6 @@
 import { Col, Form, Row } from "reactstrap";
 import { ICandidateFilters, OptionType } from "types/types";
-import { FilterPanel } from "./FilterPanel";
+import { FilterPanel } from "../../components/panels/FilterPanel";
 import { useForm } from "react-hook-form";
 import { FormInputField, FormSelectField } from "components/Input";
 import { getSelectRating } from "utils";

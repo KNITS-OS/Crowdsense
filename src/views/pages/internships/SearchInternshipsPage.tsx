@@ -3,9 +3,9 @@ import { Col, Container, Row } from "reactstrap";
 import {
   CandidateResultSetPanel,
   CandidateSearchFilterPanel,
-} from "components/panels";
+  candidatesTableColumns
+} from "views/panels"
 import { getCurriculumSelectStatus } from "utils";
-import { candidatesTableColumns } from "components/widgets/react-table/columns";
 import { useNavigate } from "react-router-dom";
 import { useAlert } from "context";
 import { useLocalStateAlerts } from "hooks/useLocalStateAlerts";
@@ -40,6 +40,10 @@ export const SearchInternshipsPage = () => {
     setSaveSent,
     setErrorMessage,
   } = useLocalStateAlerts();
+
+
+  const onSaveComment = (event: React.MouseEvent<HTMLElement>) => {};
+  const onChangeComment= (newComment: string, id: string) => {};
 
   const onSearchCurriculums = async (filters: ICandidateFilters) => {
     setSaveSent(true);
@@ -113,6 +117,8 @@ export const SearchInternshipsPage = () => {
               columns={candidatesTableColumns({
                 updateCellMutation: updateCandidate,
                 onDetailsButtonClick: onViewCurriculumDetails,
+                onSaveComment:onSaveComment,
+                onChangeComment:onChangeComment, 
               })}
               onExport={onExportCurriculums}
               onDelete={onDeleteCurriculums}

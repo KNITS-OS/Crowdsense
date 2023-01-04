@@ -4,8 +4,8 @@ export * from "./GlobalFilter";
 export * from "./Pagination";
 export * from "./TableColumnHelpers";
 export * from "./SelectElementPropsProvider";
-export * from "./TableRatingCell";
-export * from "./TableTagsCell";
+export * from "./table-cells/TableRatingCell";
+export * from "./table-cells/TableTagsCell";
 export * from "./TableSelectButton";
-export * from "./TableCommentCell";
+export * from "./table-cells/TableCommentCell";
 
